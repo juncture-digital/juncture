@@ -181,9 +181,11 @@ def render_app(path=None):
       if host == 'dev.juncture-digital.org': branch = 'dev'
       resp = requests.get(f'https://raw.githubusercontent.com/juncture-digital/juncture/{branch}/{route}.html')
       if resp.status_code == 200:
-        PAGE_CACHE[route] = resp.text
+        html = resp.text
+        PAGE_CACHE[route] = html
       else: return '', resp.status_code
-      html = PAGE_CACHE[route]
+  else:
+    html = PAGE_CACHE[route]
   if host == 'localhost':
     html = html.replace('https://api.juncture-digital.org', API_ENDPOINT)
     html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js', WC_ENDPOINT)
