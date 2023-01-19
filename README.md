@@ -1,2 +1,0 @@
-# juncture
-Juncture web application
