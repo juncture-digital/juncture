@@ -10,7 +10,7 @@ In the example above the text `dolor` is marked and associated with the attribut
 ## Marked Text
 Marked text is used to create a essay interactions such as zooming into an image region or playing a specific segment of a video.  The text to trigger the interaction is marked by surrounding a word or phrase with double equal signs and enclosing a value for the desired behavior in brace characters (`{`,`}`).  Below are a few examples of some commonly used marked text behaviors.  These are explained in more detail the following sections.
 
-- [**Image region zoom**](/actions/zoom) - `==click to zoom=={100,100,400,400}`
+- [**Image region zoom**](/actions/zoom-to) - `==click to zoom=={100,100,400,400}`
 - [**Play multimedia (video or audio) segment**](/actions/play-at) - `==click to play=={1:30,1:45}`
 - [**Fly to region**](/actions/fly-to)
 - [**Show entity information popup**](/actions/infobox-hover) - `==Vincent van Gogh=={Q5582}`
