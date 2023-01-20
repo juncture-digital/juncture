@@ -24,7 +24,7 @@ If you're looking for best of breed capabilities in image display, map rendering
 
 In developing Juncture we were guided by a few key principles.
 
-1. **Juncture will not retain user data** **  It's your data, we just want to make it easier to create and share.
+1. **Juncture will not retain user data** **  It's your data, we just want to make it easier for you to use it to create and share great web content.
     - Many web hosting services store a copy of the source files used to render a web page or site.  Juncture does not.  It is principally a set of rendering engine and authoring tools.  User content is stored in a Github repository that is owned and managed by a user.  Juncture only requires read access to the Github repository to access the files for conversion and rendering.
     - The Juncture tool suite includes an optional browser-based editor that may be used to create and modify user files in Github.  When using the Juncture editor a user must authorize the editor to perform Github file updates on their behalf.  This authorization can be easily revoked by a user at any time.
     - ** The only caveat to the "Juncture does not retain user data" principle is that an optimized copy of user-hosted image files used in a rendered page are cached by the Juncture image server for a fixed period of time for performance reasons.
@@ -64,44 +64,37 @@ If you haven't already done so, you'll need to,
 
 Once you've successfully logged in with Github (and authorized Juncture access), open the Github Editor in a new window. <ve-window href="/editor" button-label="Open Juncture Editor"></ve-window>
 
-### Create new essay
+### Create a new essay file in Github
+
+In the Github navigation tool at the top of the Editor window (located just below the header), select the `Add File` icon and enter the name of the essay to be created (for example, `hello-juncture`) in the input dialog that appears.  Press the `Add` button to create the new essay.  
+
+When a file extension (such as `.md`) is not included in the name entered into the dialog, a folder with the specified named is created with a single child file named `README.md`.  _README.md_ is the Github convention for naming index files in a folder.  While we could have used the file name `hello-juncture.md` for our new essay (which would have worked perfectly fine), creating a parent folder for the essay has advantages and is generally recommended.  The main advantage is that is folder provides a convenient location for storing other files that may eventually be assocaiated with the essay.  This could include annotation files and map overlays, among others.
+
+### Add some content
 
 <ve-snippet>
-    .ve-header "Farmhouse in Provence" wc:Farmhouse_in_Provence,_1888,_Vincent_van_Gogh,_NGA.jpg sticky
+    # Hello, Juncture
 
-    # Farmhouse in Provence
+    This example illustrates the use of a few Markdown formatting tags and the incorporation of an image and a map into a Juncture  essay.
 
-    Farmhouse in Provence, also known as Entrance Gate to a Farm with Haystacks, is an oil-on-canvas painting produced in 1888 by Dutch painter ==Vincent van Gogh=={Q5582} in Arles, Provence, at the height of his career. Partially due to having been inspired by painter Adolphe Monticelli, Van Gogh sought the Provence region of France to further expand his painting skill and experience. Van Gogh used several pairs of complementary colors in the Farmhouse in Provence, the color contrast bringing an intensity to his work. The painting is owned by the National Gallery of Art in Washington, D.C.[^1]
+    ## Aulacophora indica
 
-    ## The painting
+    .ve-media wc:The_Bug_Peek.jpg right
 
-    .ve-media wc:Farmhouse_in_Provence,_1888,_Vincent_van_Gogh,_NGA.jpg right
+    The image depicts a leaf beetle (Aulacophora indica) (Family: Chrysomelidae; subfamily: Galerucinae) looking out from a leaf hole of Alnus nepalensis tree. Adult leaf beetles make holes in host plant leaves while feeding. They camouflage themselves with these holes.
 
-    Van Gogh used three pairs of complementary, or contrasting, colors which when sat together intensified the brilliance and intensity of one another's colors. One pair is orange and blue. Another would be the red and green of the plants. Last, pink clouds against the turquoise sky.
+    This image is hosted on [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:The_Bug_Peek.jpg) and was runner-up for Wikimedia Commons Picture of the Year for 2021.
 
-    Van Gogh used complementary, contrasting colors to bring an intensity to his work, which evolved over the periods of his work. Two complementary colors of the same degree of vividness and brightness placed next to one another produce an intense reaction, called the "law of simultaneous contrast."
+    Image controls are located in the top-right corner of the image and can be seen when hovering over the image.  Controls are available for image zoom, rotation, full-screen viewing, and image repositioning.  Panning can be performed with keyboard arrow keys or by mouse click-and-drag.
 
-    Van Gogh mentioned the liveliness and interplay of "a wedding of two complementary colors, their mingling and opposition, the mysterious vibrations of two kindred souls."
+    Image information can be seen when hovering the cursor over the info icon located in the top-right corner of the image.  The Image information popover includes image title, description, attribution statement, and reuse rights.
 
-    While in Nuenen Van Gogh became familiar with Michel Eugène Chevreul's laws in weaving to maximize the intensity of colors through their contrast to adjacent colors.
+    ## Chitwan National Park, Nepal
 
-    In Paris he was exposed through his brother Theo to Adolphe Monticelli's still life work with flowers, which he admired. First, he saw Monticelli's use of color as an expansion of Delacroix's theories of color and contrast. Secondly he admired the effect Monticelli created by heavy application of paint. It was partially Monticelli, from Marseilles, who inspired Van Gogh's southerly move to Provence. He felt such kinship for the man, and desire to emulate his style, that he wrote in a letter to his sister Wil that he felt as if he were "Monticelli's son or his brother."
+    .ve-map Q1075023 right
 
-    ## Arles
+    The map is centered on the Chitwan National Park in Nepal, which is the location associated with the image above.  The Wikidata identifier for Chitwan National Park is `Q1075023`.  When a map location is specified using a Wikidata ID (or QID) Juncture can automatically retrieve the geographic coordinates for map centering.
 
-    .ve-map Q48292 5 left
-        - Q48292
+    An alternative to using a Wikidata identifier for map positioning is to use regular latitude and longitude coordinates.  In that approach the QID would be replaced with the coordinates `27.5,84.333`, resulting in an identical map.
 
-    At the time that Van Gogh painted Farmhouse in Provence, he was 35 years old. Living in Arles, in southern France, he was at the height of his career, producing some of his best work,[1] such as fields, farmhouses and people of the Arles, Nîmes and Avignon area.
-
-    The area was quite different from what he'd known in the Netherlands and Paris. The climate was hot and dry. People had dark hair and skin and spoke a different language than Parisian French. The colors were vivid. The terrain varied from plains to mountains. Here Van Gogh found a "brilliance and light that would wash out details and simplify forms, reducing the world around him to the sort of pattern he admired in Japanese woodblocks" and where the "effect of the sun would strengthen the outlines of composition and reduce nuances of color to a few vivid contrasts."
-
-    A prolific time, in less than 444 days Vincent made about 100 drawings and produced more than 200 paintings Yet, he still wrote more than 200 letters. He described a series of seven studies of wheat fields as, "landscapes, yellow—old gold—done quickly, quickly, quickly, and in a hurry just like the harvester who is silent under the blazing sun, intent only on the reaping."
-
-    In a letter to his brother, Theo, he wrote, "Painting as it is now, promises to become more subtle—more like music and less like sculpture—and above all, it promises color."
-
-    [^1]: Wikipedia contributors. (2021, November 9). Farmhouse in Provence. In Wikipedia, The Free Encyclopedia. Retrieved 01:09, January 20, 2023, from https://en.wikipedia.org/w/index.php?title=Farmhouse_in_Provence&oldid=1054303646
-
-    .ve-footer
-        - CC0
 </ve-snippet>
