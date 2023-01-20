@@ -1,7 +1,6 @@
 - Juncture
 
   - [Overview](/)
-  - [Quick start](/quick-start)
 
 - Viewer Components
   - [overview](/overview)
@@ -24,7 +23,7 @@
   - [Essay annotation using Hypothes.is](/annotation/essay-annotation)
   - [Image annotation](/annotation/image-annotation)
 
-- Actions
+- Actions Framework
   - [Overview](/actions/overview)
   - [Marking text](/actions/marking-text)
   - [Zoom to](/actions/zoom-to)

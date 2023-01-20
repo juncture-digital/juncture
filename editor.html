@@ -145,7 +145,8 @@
     computed: {
       isLoggedIn() { return this.ghAuthToken !== null },
       webHost() { return isDev ? 'http://localhost:8080' : window.location.origin },
-      link() { return this.contentPath ? `${this.webHost}/${this.contentPath.replace(/juncture-digital\/essays\//,'').replace(/\/README\.md$/,'').replace(/\.md$/,'')}` : null }
+      link() { return this.contentPath ? `${this.webHost}/${this.contentPath.replace(/juncture-digital\/essays\//,'').replace(/\/README\.md$/,'').replace(/\.md$/,'')}` : null },
+      contentPathIsFile() { return this.contentPath?.split('?')[0].split('/').pop().indexOf('.') >= 0 }
     },
     created() {
       this.ghAuthToken = localStorage.getItem('gh-auth-token')
@@ -157,10 +158,11 @@
         this.pathRoot = '/editor/'
         pathElems = pathElems.slice(1)
       }
-      this.contentPath = pathElems.length === 0
-        ? localStorage.getItem('smde_juncture_path') || ''
+      let prior = localStorage.getItem('smde_juncture_path') || ''
+      // console.log(`prior=${prior} current=${pathElems.join('/')}`)
+      this.contentPath = pathElems.length === 0 || prior.indexOf(pathElems.join('/')) === 0
+        ? prior
         : pathElems.join('/')
-      // console.log(this.contentPath)
       this.$nextTick(() => {
         document.getElementById('contentSelector')?.addEventListener('contentPathChanged', async (evt) => {
           this.parseContentPath(evt.detail[0].replace(/^gh:/,''))
@@ -185,23 +187,17 @@
         }, 500)
       },
 
-      isFile(path) {
-        let fname = path.split('?')[0].split('/').pop()
-        // return fname.indexOf('.md') === fname.length-3
-        return fname.indexOf('.') >= 0
-      },
-
       async parseContentPath(newContentPath) {
         this.newContentPath = newContentPath
         if (this.isPreviewActive) EasyMDE.togglePreview(this.easyMDE)
         
-        if (this.contentPath && this.newContentPath !== this.contentPath && this.isFile(this.contentPath)) {
+        if (this.contentPath && this.newContentPath !== this.contentPath && this.contentPathIsFile) {
 
           // let currentHash = this.easyMDE.value().trim().hashCode()
           // let savedHash = (await document.getElementById('contentSelector')?._instance.exposed.getFile(this.contentPath)).content.trim().hashCode()
           // let currentIsSaved = currentHash === savedHash
 
-          // console.log(`changePath: current=${this.contentPath} new=${this.newContentPath} currentIsSaved=${this.currentIsSaved}`)
+          console.log(`changePath: current=${this.contentPath} new=${this.newContentPath} currentIsSaved=${this.currentIsSaved} isFile=${this.contentPathIsFile}`)
           
           if (!this.currentIsSaved) {
             this.toSavePath = this.contentPath
@@ -234,9 +230,10 @@
         let filePath = contentPath.split('/').slice(2).join('/')
         this.userCanUpdate = document.getElementById('contentSelector')?._instance.exposed.repositoryIsWriteable()
         
-        // console.log(`editor.setContent: acct=${this.acct} repo=${this.repo} contentPath=${contentPath} filePath=${filePath} isFile=${this.isFile(filePath)} writeable=${this.userCanUpdate}`)
+        let isFile = filePath.split('/').pop().indexOf('.') >= 0 
+        // console.log(`editor.setContent: acct=${this.acct} repo=${this.repo} contentPath=${contentPath} filePath=${filePath} isFile=${isFile} writeable=${this.userCanUpdate}`)
 
-        if (this.isFile(filePath)) {
+        if (isFile) {
           let markdown
           if (this.newContentPath === localStorage.getItem('smde_juncture_path')) {
             markdown = localStorage.getItem('smde_juncture_content')
@@ -262,7 +259,6 @@
       },
 
       initEditor() {
-
         CodeMirror.defineMode('ve-tag', () => {
           return {
             token: function (stream, state) {
@@ -352,6 +348,7 @@
 
         document.querySelector('#save').disabled = true
         this.easyMDE.codemirror.on('change', this.watchContent)
+        document.querySelector('.EasyMDEContainer').style.visibility = 'hidden'
       },
 
       async markText(editor) {
@@ -599,6 +596,10 @@
 
     },
     watch: {
+      contentPathIsFile() {
+        let container = document.querySelector('.EasyMDEContainer')
+        if (container) container.style.visibility = this.contentPathIsFile ? 'visible' : 'hidden'
+      },
       async isLoggedIn(isLoggedIn) {
         if (isLoggedIn) {
           this.userCanUpdate = document.getElementById('contentSelector')?.repositoryIsWriteable
