@@ -1,6 +1,6 @@
 # Hello, Juncture
 
-This example essay illustrates the incorporation of an image and a map into a Juncture essay.   
+This example illustrates the incorporation of an image and a map into a Juncture essay.   
 
 ## Aulacophora indica
 
