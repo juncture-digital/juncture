@@ -1,6 +1,6 @@
 # Hello, Juncture
 
-This example illustrates the use of a few Markdown formatting tags and the incorporation of an image and a map into a simple Juncture essay.
+This example illustrates the use of a few Markdown formatting tags and the incorporation of an image and a map into a simple Juncture essay.  The public URL for the web page associated with this essay is [https://dev.juncture-digital.org/juncture-digital/juncture/examples/hello-juncture](https://dev.juncture-digital.org/juncture-digital/juncture/examples/hello-juncture).
 
 ## Aulacophora indica
 
