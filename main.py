@@ -191,7 +191,7 @@ def render_app(path=None):
     html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js', WC_ENDPOINT)
     html = html.replace('https://raw.githubusercontent.com/juncture-digital/juncture/main', '' )
   elif host == 'dev.juncture-digital.org':
-    html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/js\/index\.js', 'https://juncture-digital.github.io/web-components/js/index.js', html)
+    html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/', 'https://juncture-digital.github.io/web-components/', html)
     html = html.replace('https://raw.githubusercontent.com/juncture-digital/juncture/main', 'https://raw.githubusercontent.com/juncture-digital/juncture/dev' )
   else:
     html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/dist/assets/')
