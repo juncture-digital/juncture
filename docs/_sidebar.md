@@ -1,16 +1,19 @@
 - Juncture
 
   - [Overview](/)
+  - [Quick Start](/quick-start)
 
-- Viewer Components
-  - [overview](/overview)
-  - [ve-footer](/components/footer)
-  - [ve-header](/components/header)
-  - [ve-hero](/components/hero)
-  - [ve-map](/components/map)
-  - [ve-media](/components/media)
-  - [ve-mermaid](/components/mermaid)
-  - [ve-meta](/components/meta)
+- Creating an Essay 
+  - [Overview](/overview)
+  - [Using Markdown](/markdown)
+  - **Juncture Tags**
+    - [ve-media](/components/media)
+    - [ve-map](/components/map)
+    - [ve-mermaid](/components/mermaid)
+    - [ve-header](/components/header)
+    - [ve-footer](/components/footer)
+    - [ve-hero](/components/hero)
+    - [ve-meta](/components/meta)
 
 - Styling
   - [General](/styling/general)
