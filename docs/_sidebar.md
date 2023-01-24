@@ -18,7 +18,7 @@
 - Styling
   - [General](/styling/general)
   - [Text formatting with Markdown](/styling/markdown)
-  - [Viewer component positioning](/styling/component-positioning)
+  - [Viewer positioning](/styling/viewer-positioning)
   - [Tabs](/styling/tabs)
   - [Cards](/styling/cards)
 

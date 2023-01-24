@@ -201,7 +201,7 @@
           
           if (!this.currentIsSaved) {
             this.toSavePath = this.contentPath
-            this.toSaveContent = this.easyMDE.value().trim()
+            this.toSaveContent = this.easyMDE.value()
             this.$bvModal.show('save-confirm')
           } else {
             this.setContent()
@@ -240,7 +240,7 @@
             // console.log(`loadContent: path: ${this.newContentPath} source: locally saved content`)
           } else {
             markdown = (await document.getElementById('contentSelector')?._instance.exposed.getFile(this.newContentPath)).content
-            localStorage.setItem('smde_juncture_saved_hash', markdown.hashCode())
+            localStorage.setItem('smde_juncture_saved_hash', markdown.trim().hashCode())
             // console.log(`loadContent: path: ${this.newContentPath} source: remote content`)
           }
           localStorage.setItem('smde_juncture_path', this.newContentPath)
@@ -381,10 +381,10 @@
       },
 
       async saveFile() {
-        let content = this.easyMDE.value().trim()
+        let content = this.easyMDE.value()
         this.saveStatus = await document.getElementById('contentSelector')?._instance.exposed.putFile(this.contentPath, content)
         if (this.saveStatus.status === 200) {
-          localStorage.setItem('smde_juncture_saved_hash', content.hashCode())
+          localStorage.setItem('smde_juncture_saved_hash', content.trim().hashCode())
           this.currentIsSaved = true
         }
         this.$bvToast.show('save-status')
