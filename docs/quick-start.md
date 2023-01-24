@@ -15,7 +15,7 @@ If you haven't already done so, you'll need to,
 - [Signup for a Free Github account](https://github.com/join), and 
 - **Login to Github from Juncture**.  There's a login button at the top left of this page that can be used to login to Github.  In the initial login you will be asked to authorize Juncture to make changes on your behalf (via the Juncture Editor tool).  
 
-<ve-modal label="Initial Github Login" width="520px" style="margin-left:1rem;">
+<ve-modal label="Initial Github Login" button-icon="play-circle" width="520px" style="margin-left:1rem;">
 .ve-media gh:juncture-digital/media/videos/Initial_Github_Login.gif no-caption no-info-icon
 </ve-modal>
 
@@ -31,8 +31,8 @@ In the Github navigation toolbar at the top of the Editor window (located just b
 
 ?> When a file extension (such as `.md`) is not included in the name, a folder with the specified name is created with a single child file named `README.md`.  **README.md** is the Github convention for naming index files in a folder.  While we could have used the file name `hello-juncture.md` for our new essay (which would have worked perfectly fine), creating a parent folder for the essay has advantages and is generally recommended.  The main benefit is that is folder provides a convenient location for storing other files that may eventually be associated with the essay.  This could include annotation files and map overlays, among others.
 
-<ve-modal label="Create new Juncture Essay" width="520px">
-.ve-media gh:rsnyder/media/Create_Essay.gif no-caption no-info-icon
+<ve-modal label="Create new Juncture Essay" button-icon="play-circle" width="520px">
+.ve-media gh:juncture-digital/media/videos/Add_Essay.gif no-caption no-info-icon
 </ve-modal>
 
 ### 4. Add some content
@@ -43,8 +43,8 @@ Before we add our new text delete any existing text found in the editor pane.  T
 
 The text we're going to add can be found in the snippet viewer below.  The text can be copied into the clipboard by clicking on the `Copy` button that appears at the top-right corner when hovering over the snippet viewer.  You can also click-and-drag the window into the editor.  In either case ensure the snippet viewer is showing the Markdown formatted text.
 
-<ve-modal label="Adding text, saving, and previewing" button-icon="info-circle-fill" width="520px">
-.ve-media gh:rsnyder/media/Create_Essay.gif no-caption no-info-icon
+<ve-modal label="Add Content (using drag-n-drop)" button-icon="play-circle" width="520px">
+.ve-media gh:juncture-digital/media/videos/Add_Content.gif no-caption no-info-icon
 </ve-modal>
 
 <ve-snippet label="Code snippet">
@@ -83,8 +83,8 @@ Next, click the `Save` icon in the tool panel to save the updated contents of ou
 
 ?> Note that previewing an essay from the editor does not require that it is first saved to Github.  The preview and save actions may be performed in any order.  When previewing an in-process essay the text used for the preview comes from the editor directly, not from Github.
 
-<ve-modal label="Adding text, saving, and previewing" width="520px">
-.ve-media gh:rsnyder/media/Create_Essay.gif no-caption no-info-icon
+<ve-modal label="Preview and Save" button-icon="play-circle" width="520px">
+.ve-media gh:juncture-digital/media/videos/Preview_and_Save.gif no-caption no-info-icon
 </ve-modal>
 
 Congratulations, you've just created your first Juncture essay. 
