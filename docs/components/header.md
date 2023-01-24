@@ -12,15 +12,18 @@ As with the images displayed by the `.ve-image` tag, the banner image used by th
 
 ## .ve-header Attributes
 
-- **label** (_text string_):  The text to use for the essay title. 
-- **subtitle** (_text string_):  The text to use for the essay subtitle.
-- **height** (_height in pixels_):  The height of the header (before collapsing when in _sticky_ mode).
-- **background** (_IIIF manifest URL_):  The URL to the IIIF manifest for the image to display as a banner image in the header.
-- **logo** (_logo image URL_): A URL to a logo image.
-- **url** (_URL associated with logo image_):  The URL that is invoked when the logo image is clicked.
-- **options** (_IIIF image options_):  The _options_ attribute is used to define the [IIIF image request parameters](https://iiif.io/api/image/2.1/#image-request-parameters) for an image.  This attribute is most commonly used to define a coordinates for displaying an image region.   
-- **position** ("_top_", "_center_" or "_bottom_"):  The portion of a cropped banner image to display.  The default is _center_.  Other recognized values are _top_ and _bottom_.
-- **sticky** ("_true_" or "_false_"):  If set to "_true_" the header will collapse into a condensed form and remain fixed at the top of the page.
+| Syntax         | Type                              | Description                                                                                                                                                                                                                                     |
+|----------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **label**      | text string                       | The text to use for the essay title.                                                                                                                                                                                                            |
+| **subtitle**   | text string                       | The text to use for the essay subtitle.                                                                                                                                                                                                         |
+| **height**     | height in pixels                  | The height of the header (before collapsing when in _sticky_ mode).                                                                                                                                                                             |
+| **background** | IIIF manifest URL                 | The URL to the IIIF manifest for the image to display as a banner image in the header.                                                                                                                                                          |
+| logo           | logo image URL                    | A URL to a logo image.                                                                                                                                                                                                                          |
+| url            | URL associated with logo image    | The URL that is invoked when the logo image is clicked.                                                                                                                                                                                         |
+| options        | IIIF image options                | The options attribute is used to define the [IIIF image request parameters](https://iiif.io/api/image/2.1/#image-request-parameters) for an image. This attribute is most commonly used to define a coordinates for displaying an image region. |
+| position       | _"top"_, _"center"_ or _"bottom"_ | The portion of a cropped banner image to display. The default is _center_. Other recognized values are _top_ and _bottom_.                                                                                                                      |
+| sticky         | _"true"_ or _"false"_             | If set to _"true"_ the header will collapse into a condensed form and remain fixed at the top of the page.                                                                                                                                      |
+
 
 ## Examples
 
