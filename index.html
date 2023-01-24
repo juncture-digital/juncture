@@ -7,7 +7,10 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css">
+  <style>
+    .app-name-link img { width: 100px; }
+  </style>
 </head>
 <body>
   <nav>
@@ -17,12 +20,17 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
+      name: 'Juncture',
+      // repo: 'https://github.com/juncture-digital/juncture',
       basePath: 'https://raw.githubusercontent.com/juncture-digital/juncture/main/docs/',
       alias: {
           '.*/_sidebar.md': '/_sidebar.md'
         },
+      // coverpage: true,
       homepage: 'README.md',
       loadSidebar: true,
+      logo: 'https://juncture-digital.github.io/juncture/static/images/favicon.svg',
+      themeColor: '#5B152E',
       // routerMode: 'history'
     }
   </script>
