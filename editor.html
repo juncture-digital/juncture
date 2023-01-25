@@ -453,10 +453,10 @@
       drop(e) {
         let cursorPos = this.easyMDE.codemirror.coordsChar({left:e.pageX, top:e.pageY})
         let inputText = ''
-        if (e.dataTransfer) inputText = decodeURI(e.dataTransfer.getData('Text') || e.dataTransfer.getData('text/plain') || e.dataTransfer.getData('text/uri-list'))
-        console.log('drop', isURL(inputText), inputText)
+        if (e.dataTransfer) inputText = e.dataTransfer.getData('Text') || e.dataTransfer.getData('text/plain') || e.dataTransfer.getData('text/uri-list')
         if (inputText) {
           if (isURL(inputText)) {
+            inputText = decodeURIComponent(inputText)
             let url = inputText
             let parsed = new URL(url)
             let fileExtension = parsed.pathname.split('/').pop().split('.').pop().toLowerCase()
@@ -482,6 +482,14 @@
               else this.getManifestUrl(url).then((manifestUrl) => this.addImage(manifestUrl, cursorPos))
             }
           } else {
+            inputText = inputText.trim()
+            if (inputText.indexOf('.ve-header') === 0) {
+              cursorPos.ch = 0
+              inputText = `${inputText}\n\n`
+            } else {
+              inputText = `\n${inputText}\n`
+            }
+            this.easyMDE.codemirror.setSelection(cursorPos)
             this.easyMDE.codemirror.replaceSelection(inputText)
           }
         }
@@ -515,7 +523,7 @@
           let merged = imagesList.length === 1
             ? `.ve-media\n    - ${imagesList[0].slice(10)}\n`
             : imagesList.join('\n') + '\n'
-          merged += `    - ${text.split(/\s/).filter(x => x).slice(1).join(' ')}\n`
+          merged += `    - ${text.split(/\s/).filter(x => x).slice(1).join(' ')}`
           this.easyMDE.codemirror.setSelection({line:pos.line-imagesList.length+1,ch:0}, {line:pos.line})
           this.easyMDE.codemirror.replaceSelection(merged)
         } else {

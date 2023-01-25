@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css">
   <style>
     .app-name-link img { width: 100px; }
+    .app-nav { position:fixed; top:0; }
   </style>
 </head>
 <body>
@@ -20,18 +21,17 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
-      name: 'Juncture',
-      // repo: 'https://github.com/juncture-digital/juncture',
+      alias: { '.*/_sidebar.md': '/_sidebar.md' },
+      // autoHeader: true,
       basePath: 'https://raw.githubusercontent.com/juncture-digital/juncture/main/docs/',
-      alias: {
-          '.*/_sidebar.md': '/_sidebar.md'
-        },
       // coverpage: true,
       homepage: 'README.md',
       loadSidebar: true,
       logo: 'https://juncture-digital.github.io/juncture/static/images/favicon.svg',
+      name: 'Juncture',
+      // repo: 'https://github.com/juncture-digital/juncture',
+      routerMode: 'hash', // or history
       themeColor: '#5B152E',
-      // routerMode: 'history'
     }
   </script>
   <!-- Docsify v4 -->
