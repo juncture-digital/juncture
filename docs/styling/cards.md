@@ -1,11 +1,10 @@
 # Cards
 
-Adding a `cards` class attribute to a section will format child sections as cards with an image, title, and short description.  The title may be linked using an `href` attribute.  Cards formatting can be useful in creating an index page for navigating to essays or other indexes.
-
+Adding a `cards` class attribute to a section heading will format child sections as cards with an image, title, and short description.  The title may be linked using an `href` attribute.  Cards formatting can be useful in creating an index page for navigating to essays or other indexes.
 
 <ve-snippet>
 
-    ### Places {#data .cards icon=icon}
+    ### Places {.cards}
 
     #### Ancient Lavatory {href=#}
 
