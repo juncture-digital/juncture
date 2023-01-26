@@ -5,8 +5,16 @@
 
 - Creating an Essay 
   - [Overview](/creating-an-essay?id=overview)
-  - [Using Markdown](/creating-an-essay?id=markdown)
-  
+  - [The basic process](/creating-an-essay?id=the-basic-process)
+    - [Add text](/creating-an-essay?id=add-text)
+    - [Format text with Markdown](/creating-an-essay?id=format-text-with-markdown)
+    - [Add footnotes](/creating-an-essay?id=add-footnotes)
+    - [Add entity popovers](/creating-an-essay?id=add-entity-popovers)
+    - [Add Juncture viewer tags](/creating-an-essay?id=add-juncture-viewer-tags)
+    - [Add interactions](/creating-an-essay?id=add-interactions)
+    - [Add header and footer](/creating-an-essay?id=add-header-and-footer)
+    - [Enable annotations](/creating-an-essay?id=enable-annotations)
+
 - Juncture Tags
   - [ve-media](/components/media)
   - [ve-map](/components/map)

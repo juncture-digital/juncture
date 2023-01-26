@@ -1,21 +1,22 @@
-<div style="display:flex;align-items:center;width:100%;gap:18px;">
+<div style="display:flex; align-items:center; width:100%; gap:18px; margin-bottom:2rem;">
     <div style="width:50%;">
         <div style="display:flex;align-items:center;">
             <img src="https://juncture-digital.github.io/juncture/static/images/favicon.svg" style="margin-left:-12px;height:90px">
             <div style="font-size:3rem;color:#455;margin-top:-10px;font-weight:bold;">Juncture</div>
         </div>
         <div style="padding-right:12px;">
-            <h4>Create and share rich, interactive essays in minutes</h4>
+            <h4><i>Create and share rich, interactive essays in minutes!</i></h4>
             <ul style="padding-right:1rem;">
-                <li>Create single visual essays and complete web sites (including custom domains)</li>
+                <li>Quickly create single visual essays and complete web sites (including using custom domains)</li>
                 <li>Zero setup (all that is needed to get started is a free Github account)</li>
                 <li>Zero ongoing administration</li>
                 <li>Easy to use drag-n-drop essay editor</li>
-                <li>Flexible content viewers for images, video, audio, maps, diagrams, and more</li>
-                <li>Use web-based resources as well as your your own content</li>
-                <li>Easy to add and use annotation tools</li>
-                <li>Flexible viewer components can be used outside of Juncture environment, for instance in vanilla HTML or Wordpress site</li>
-                <li>Open source</li>
+                <li>Flexible content viewers for displaying images, video, audio, maps, diagrams, and more</li>
+                <li>Use web-based resources as well as your own content</li>
+                <li>Easy to use tools for image and essay annotation</li>
+                <li>IIIF-enabled features for using high-quality, attributed digital objects</li>
+                <li>Juncture components can be used outside of Juncture environment, for instance in vanilla HTML or WordPress site</li>
+                <li>Open source and built on open tools and data formats</li>
             </ul>
         </div>
     </div>
@@ -24,22 +25,23 @@
 ">
 </div>
 
+# Welcome to Juncture
 
 **Juncture** is a suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.  
 
-Juncture is developed and maintained by the friendly folks at JSTOR Labs and grew out of a project that used visual essays in a form of digital storytelling.  The visual essays consisted of a text narrative augmented with interactive visualizations providing depth and context for the narrative.  
+Juncture is developed and maintained by the friendly folks at JSTOR Labs and grew out of a project that used visual essays for a form of digital storytelling.  Visual essays are text narratives augmented with interactive visualizations providing depth and context.  
 
-This version of Juncture represents the second generation of the Juncture concept.  It's a complete rewrite of the code base and documentation.  Juncture version 2 is backwards compatible with visual essays written for version 1, so if you're an existing Juncture user, no worries, your Juncture essays will continue to work.  
+This version of Juncture represents the second generation of the Juncture concept.  It's a complete rewrite of the Juncture code base and documentation.  The rendering engine in version 2 is backwards compatible with visual essays written for version 1, so if you're an existing Juncture user, no worries, your Juncture essays will continue to work.  
 
 ?> If you came to this page looking for documentation for Juncture version 1, that can be found [here](https://github.com/jstor-labs/juncture/wiki).
 
-In its current form Juncture is still well-suited for the type of digital story telling emphasized in version 1 but this new version can more be easily used for generating web pages that are less text-centric, such as an image exhibitions.
+In its current form Juncture is still well-suited for the type of digital story telling emphasized in version 1 but now can be more easily used for generating web pages that are less text-centric, such as an image exhibitions.
 
 A few examples are provided to help explain what Juncture is.  Press any of the buttons below for a quick demo.
 
 <ve-modal button-label="Hello, Juncture" src="juncture-digital/juncture/examples/hello-juncture"></ve-modal> <ve-modal button-label="Bedroom in Arles" src="juncture-digital/juncture/examples/bedroom-in-arles"></ve-modal>
 
-# How can Juncture be used?
+# What problem does this solve?
 
 Juncture's primary goal is to make the use of modern technology (like deep-zoom with high resolution images, interactive maps, etc) accessible to anyone with an interest in sharing something on the web, regardless of background or technical skills.  In the [Quick Start](/quick-start) section below you can give it try and see for yourself.  All that is required for this quick start (and to use Juncture generally) is an active Github account.  If you already have one the "hard" part is done.  If not, you'll need to take a take a couple minutes to signup with Github.  Signing up is free and painless, really.
 
