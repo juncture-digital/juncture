@@ -1,6 +1,31 @@
-# What is Juncture?
+<div style="display:flex;align-items:center;width:100%;gap:18px;">
+    <div style="width:50%;">
+        <div style="display:flex;align-items:center;">
+            <img src="https://juncture-digital.github.io/juncture/static/images/favicon.svg" style="margin-left:-12px;height:90px">
+            <div style="font-size:3rem;color:#455;margin-top:-10px;font-weight:bold;">Juncture</div>
+        </div>
+        <div style="padding-right:12px;">
+            <h4>Create and share rich, interactive essays in minutes</h4>
+            <ul style="padding-right:1rem;">
+                <li>Create single visual essays and complete web sites (including custom domains)</li>
+                <li>Zero setup (all that is needed to get started is a free Github account)</li>
+                <li>Zero ongoing administration</li>
+                <li>Easy to use drag-n-drop essay editor</li>
+                <li>Flexible content viewers for images, video, audio, maps, diagrams, and more</li>
+                <li>Use web-based resources as well as your your own content</li>
+                <li>Easy to add and use annotation tools</li>
+                <li>Flexible viewer components can be used outside of Juncture environment, for instance in vanilla HTML or Wordpress site</li>
+                <li>Open source</li>
+            </ul>
+        </div>
+    </div>
+    <!-- <img src="https://raw.githubusercontent.com/juncture-digital/juncture/dev/static/images/create-with-juncture.svg" style="width:40%;margin-left:12px;""> -->
+    <img src="https://iiif-image.juncture-digital.org/iiif/2/3cfe1031e8afcb3b90b817fa4f2f937462786fd78f87954ca684152c42516675/full/500,/0/default.jpg" style="width:50%; height:100%;margin:auto; border-radius:3px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+">
+</div>
 
-Juncture is a suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.  
+
+**Juncture** is a suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.  
 
 Juncture is developed and maintained by the friendly folks at JSTOR Labs and grew out of a project that used visual essays in a form of digital storytelling.  The visual essays consisted of a text narrative augmented with interactive visualizations providing depth and context for the narrative.  
 
@@ -14,13 +39,11 @@ A few examples are provided to help explain what Juncture is.  Press any of the 
 
 <ve-modal button-label="Hello, Juncture" src="juncture-digital/juncture/examples/hello-juncture"></ve-modal> <ve-modal button-label="Bedroom in Arles" src="juncture-digital/juncture/examples/bedroom-in-arles"></ve-modal>
 
-# What problem does Juncture solve?
+# How can Juncture be used?
 
-Juncture's primary goal is to make the use of some great technology (like deep-zoom with high resolution images, interactive maps, etc) accessible to any user with an interest in sharing something on the web.  In the [Quick Start](/quick-start) section below you can give it try and see for yourself.  All that is required for this quick start (and to use Juncture generally) is an active Github account.  If you already have one the "hard" part is done.  If not, you'll need to take a take a couple minutes to signup with Github.  Signing up is free and painless, really.
+Juncture's primary goal is to make the use of modern technology (like deep-zoom with high resolution images, interactive maps, etc) accessible to anyone with an interest in sharing something on the web, regardless of background or technical skills.  In the [Quick Start](/quick-start) section below you can give it try and see for yourself.  All that is required for this quick start (and to use Juncture generally) is an active Github account.  If you already have one the "hard" part is done.  If not, you'll need to take a take a couple minutes to signup with Github.  Signing up is free and painless, really.
 
-Many of the capabilities provided by Juncture can be found in any number of existing web services and tools, and if we're honest about it, often with better feature sets than provided by Juncture.  Juncture is not the best of breed in any of the technologies used.  Rather, Juncture's goal is make these features easy to use by anyone. 
-
-If you're looking for leading edge capabilities in image display, map rendering, etc, then Juncture may not be the best fit.  On the other hand, if you're looking for a tool set that hits the sweet-spot of providing a really nice set of tools for quickly creating web pages with engaging and interactive content with minimal setup and zero on-going administration, Juncture may be worth considering.
+If you're looking for leading edge capabilities in image display, map rendering, etc, then Juncture may not be the best fit.  On the other hand, if you're looking for a set of easy-to-use tools for quickly creating web pages with engaging and interactive content with minimal setup and zero on-going administration, Juncture might be exactly what you need.
 
 # Juncture design principles
 
