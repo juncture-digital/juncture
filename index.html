@@ -55,9 +55,16 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markdown.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js" type="module"></script>
   <script>
+    
     function toggleSidebar() {
       document.body.classList.toggle('close')
     }
+
+    window.onload = () => {
+      console.log('onload', window.location)
+      if (window.location.hash !== '#/') toggleSidebar()
+    }
+
   </script>
 </body>
 </html>

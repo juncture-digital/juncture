@@ -4,16 +4,17 @@
   - [Quick Start](/quick-start)
 
 - Creating an Essay 
-  - [Overview](/overview)
-  - [Using Markdown](/markdown)
-  - **Juncture Tags**
-    - [ve-media](/components/media)
-    - [ve-map](/components/map)
-    - [ve-mermaid](/components/mermaid)
-    - [ve-header](/components/header)
-    - [ve-footer](/components/footer)
-    - [ve-hero](/components/hero)
-    - [ve-meta](/components/meta)
+  - [Overview](/creating-an-essay?id=overview)
+  - [Using Markdown](/creating-an-essay?id=markdown)
+  
+- Juncture Tags
+  - [ve-media](/components/media)
+  - [ve-map](/components/map)
+  - [ve-mermaid](/components/mermaid)
+  - [ve-header](/components/header)
+  - [ve-footer](/components/footer)
+  - [ve-hero](/components/hero)
+  - [ve-meta](/components/meta)
 
 - Styling
   - [General](/styling/general)

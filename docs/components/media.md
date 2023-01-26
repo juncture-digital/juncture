@@ -2,6 +2,8 @@
 
 The `.ve-media` tag is the most commonly used essay tag.  The tag creates a viewer that is able to display IIIF images, video, and audio. The viewer can also be used to display streamed video from YouTube and Vimeo.
 
+The Media viewer covers a lot of needs and is able to display images, video (including streaming video from YouTube and Vimeo), and audio.  The Media viewer exclusively uses IIIF resources for images, audio and non-streaming video.  
+
 ## .ve-media Attributes
 
 **alt** (_text string_):  The text to use in the _alt_ tag used by screen readers.  If not provided an _alt_ tag is automatically generated from the manifest label property.
