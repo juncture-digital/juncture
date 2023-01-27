@@ -1,7 +1,10 @@
-- Juncture
-
-  - [Overview](/)
-  - [Quick Start](/quick-start)
+  - 
+    - <ve-auth></ve-auth>
+    - <ve-button label="Open Editor" icon="pencil" href="/editor" auth-required></ve-button>
+  
+  - Juncture
+    - [Overview](/)
+    - [Quick Start](/quick-start)
 
 - Creating an Essay 
   - [Overview](/creating-an-essay?id=overview)

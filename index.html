@@ -7,8 +7,11 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/pure.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css">
+  <link rel="stylesheet" href="/docs/custom.css">
   <style>
+    /*
     body { font-size:1.1rem; }
     .app-name-link img { width:100px; }
     .content { padding-top: 0; }
@@ -18,10 +21,12 @@
     ve-menu ul { display:none; }
     ve-menu { position:absolute; top:37px; left:15px; }
     body.close nav { width:0; }
+    */
   </style>
 </head>
-<body class="close">
+<body>
 
+  <!--
   <nav>
      <ve-menu background="#5A162E" position="left" contact="ron@snyderjr.com">
         <ul>
@@ -33,18 +38,20 @@
         </ul>
     </ve-menu> 
   </nav>
+  -->
 
   <div id="app"></div>
   <script>
     window.$docsify = {
       alias: { '.*/_sidebar.md': '/_sidebar.md' },
-      // autoHeader: true,
+      autoHeader: false,
       basePath: 'https://raw.githubusercontent.com/juncture-digital/juncture/main/docs/',
       // coverpage: true,
       homepage: 'README.md',
+      loadNavbar: false,
       loadSidebar: true,
-      // logo: 'https://juncture-digital.github.io/juncture/static/images/favicon.svg',
-      // name: 'Juncture',
+      logo: 'https://juncture-digital.github.io/juncture/static/images/favicon.svg',
+      name: 'Juncture',
       // repo: 'https://github.com/juncture-digital/juncture',
       routerMode: 'hash', // or history
       // themeColor: '#5B152E',
@@ -56,14 +63,19 @@
   <script src="https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js" type="module"></script>
   <script>
     
+    const isMobile = window.innerWidth < 768
+    console.log(`hash=${location.hash} width=${window.innerWidth} isMobile=${isMobile}`)
+    if (!isMobile && (!location.hash || location.hash === '#/')) toggleSidebar()
+
     function toggleSidebar() {
       document.body.classList.toggle('close')
     }
 
-    window.onload = () => {
-      console.log('onload', window.location)
-      if (window.location.hash !== '#/') toggleSidebar()
-    }
+    window.addEventListener('popstate', (event) => {
+      // The URL changed...
+      // console.log(location.hash)
+      // location.hash = '#/'
+    })
 
   </script>
 </body>
