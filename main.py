@@ -147,7 +147,7 @@ def pwa_manifest():
 
 @app.route('/static/css/<path:path>')
 def css(path):
-  logger.info(f'{os.path.join(app.root_path, "static")}/{path}')
+  # logger.info(f'{os.path.join(app.root_path, "static", "css")}/{path}')
   return send_from_directory(os.path.join(app.root_path, 'static', 'css'), path, mimetype='text/css')
 
 @app.route('/<path:path>')

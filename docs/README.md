@@ -1,3 +1,4 @@
+<!--
 <div style="display:flex; align-items:center; width:100%; gap:18px; margin-bottom:2rem;">
     <div style="width:50%;">
         <div style="display:flex;align-items:center;">
@@ -20,10 +21,44 @@
             </ul>
         </div>
     </div>
-    <!-- <img src="https://raw.githubusercontent.com/juncture-digital/juncture/dev/static/images/create-with-juncture.svg" style="width:40%;margin-left:12px;""> -->
-    <img src="https://iiif-image.juncture-digital.org/iiif/2/3cfe1031e8afcb3b90b817fa4f2f937462786fd78f87954ca684152c42516675/full/500,/0/default.jpg" style="width:50%; height:100%;margin:auto; border-radius:3px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-">
+    <img src="https://iiif-image.juncture-digital.org/iiif/2/3cfe1031e8afcb3b90b817fa4f2f937462786fd78f87954ca684152c42516675/full/500,/0/default.jpg" style="width:50%; height:100%;margin:auto; border-radius:3px; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
 </div>
+-->
+
+<div class="splash">
+<div class="splash-start">
+
+<div class="splash-logo" style="display:flex;align-items:center;">
+    <img src="https://juncture-digital.github.io/juncture/static/images/favicon.svg" style="margin:-12px 0 0 -12px;height:90px">
+    <div style="font-size:3rem;color:#455;margin-top:-10px;font-weight:bold;">Juncture</div>
+</div>
+
+<h3 style="line-height:1.3;margin-top:1rem;"><i>Create and share rich, interactive essays in minutes!</i></h3>
+
+- Quickly create single essays or full web sites
+- Minimal setup and no ongoing administration
+- Easy to use drag-n-drop editor with preview
+- Flexible content viewers for displaying images, video, audio, maps, diagrams, and more
+- Use web-based resources and your own content
+- Image and text annotation tools
+- IIIF-enabled features for using high-quality, attributed digital objects
+- WordPress compatible
+- Open source and built on open tools and data formats
+
+Developed and maintained by [JSTOR Labs](https://labs.jstor.org).
+
+</div>
+<div class="splash-end">
+<img class="splash-image" src="https://iiif-image.juncture-digital.org/iiif/2/3cfe1031e8afcb3b90b817fa4f2f937462786fd78f87954ca684152c42516675/full/500,/0/default.jpg" alt="Juncture graphic">
+</div>
+</div>
+
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@shoelace-style/shoelace/badge)](https://www.jsdelivr.com/package/npm/@shoelace-style/shoelace)
+[![npm](https://img.shields.io/npm/dw/@shoelace-style/shoelace?label=npm&style=flat-square)](https://www.npmjs.com/package/@shoelace-style/shoelace)
+[![License](https://img.shields.io/badge/license-MIT-232323.svg?style=flat-square)](https://github.com/shoelace-style/shoelace/blob/next/LICENSE.md)<br>
+[![Discord](https://img.shields.io/badge/Discord-Join%20the%20chat-5965f2.svg?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/mg8f26C)
+[![Twitter](https://img.shields.io/badge/Twitter-Follow-00acee.svg?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/shoelace_style)
+[![Sponsor](https://img.shields.io/badge/GitHub-Code-232323.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/shoelace-style/shoelace)
 
 # Welcome to Juncture
 
