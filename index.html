@@ -8,37 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/pure.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css">
   <link rel="stylesheet" href="/static/css/custom.css">
-  <style>
-    /*
-    body { font-size:1.1rem; }
-    .app-name-link img { width:100px; }
-    .content { padding-top: 0; }
-    .sidebar-toggle span { background-color:#5A162E; }
-    aside.sidebar { margin-top:120px; padding:0; }
-    .app-nav { position:fixed; top:0; left:0; margin:0; height:120px; width:295px; }
-    ve-menu ul { display:none; }
-    ve-menu { position:absolute; top:37px; left:15px; }
-    body.close nav { width:0; }
-    */
-  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css">
 </head>
 <body>
-
-  <!--
-  <nav>
-     <ve-menu background="#5A162E" position="left" contact="ron@snyderjr.com">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li>auth</li>
-          <li><a href="editor" target="_blank">Open Editor</a></li>
-          <li><a href="contact">Contact Us</a></li>
-          <li><a href="window.toggleSidebar">Documentation</a></li>
-        </ul>
-    </ve-menu> 
-  </nav>
-  -->
 
   <div id="app"></div>
   <script>
@@ -60,22 +33,17 @@
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markdown.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js" type="module"></script>
   <script>
     
+    function toggleSidebar() { document.body.classList.toggle('close') }
+
     const isMobile = window.innerWidth < 768
-    console.log(`hash=${location.hash} width=${window.innerWidth} isMobile=${isMobile}`)
     if (!isMobile && (!location.hash || location.hash === '#/')) toggleSidebar()
 
-    function toggleSidebar() {
-      document.body.classList.toggle('close')
-    }
-
-    window.addEventListener('popstate', (event) => {
-      // The URL changed...
-      // console.log(location.hash)
-      // location.hash = '#/'
-    })
+    window.addEventListener('popstate', (evt) => {
+      // console.log(location.hash, evt) 
+    }) // The URL changed...
 
   </script>
 </body>

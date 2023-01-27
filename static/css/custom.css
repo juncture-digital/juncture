@@ -157,6 +157,7 @@ strong {
 .splash {
   display: flex;
   padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .splash-start {
@@ -165,7 +166,7 @@ strong {
 
 .splash-end {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   width: auto;
   padding-left: 1rem;
 }

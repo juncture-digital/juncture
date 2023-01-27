@@ -124,9 +124,9 @@ def _get_html(path, base_url, ref=REF, host=None, **kwargs):
     status_code, html =  resp.status_code, resp.text if resp.status_code == 200 else ''
   if status_code == 200:
     if host == 'localhost:8080':
-      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/js\/index\.js', WC_ENDPOINT, html)
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/js\/index\.js', WC_ENDPOINT, html)
     elif host == 'dev.juncture-digital.org':
-      html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js', 'https://juncture-digital.github.io/web-components/js/index.js')
+      html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/', 'https://juncture-digital.github.io/web-components/')
   return status_code, html
 
 @app.route('/favicon.ico')
@@ -193,13 +193,14 @@ def render_app(path=None):
     html = PAGE_CACHE[route]
   if host == 'localhost':
     html = html.replace('https://api.juncture-digital.org', API_ENDPOINT)
-    html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js', WC_ENDPOINT)
+    html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js', WC_ENDPOINT)
+    html = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', html)
     html = html.replace('https://raw.githubusercontent.com/juncture-digital/juncture/main', '' )
   elif host == 'dev.juncture-digital.org':
-    html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/', 'https://juncture-digital.github.io/web-components/', html)
+    html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/', 'https://juncture-digital.github.io/web-components/', html)
     html = html.replace('https://raw.githubusercontent.com/juncture-digital/juncture/main', 'https://raw.githubusercontent.com/juncture-digital/juncture/dev' )
   else:
-    html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/dist/assets/')
+    html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs/')
   return html
 
 @app.route('/search')
