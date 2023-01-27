@@ -145,6 +145,11 @@ def sitemap_txt():
 def pwa_manifest():
   return send_from_directory(os.path.join(app.root_path), 'manifest.json', mimetype='application/json')
 
+@app.route('/static/css/<path:path>')
+def css(path):
+  logger.info(f'{os.path.join(app.root_path, "static")}/{path}')
+  return send_from_directory(os.path.join(app.root_path, 'static', 'css'), path, mimetype='text/css')
+
 @app.route('/<path:path>')
 @app.route('/<path:path>/')
 def render_html(path=None):
