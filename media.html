@@ -23,16 +23,17 @@
       v-cloak
       label="Media Tool"
       background="#5B152E"
-      logo="https://raw.githubusercontent.com/juncture-digital/media/main/images/Juncture_Logo.png"
+      logo="https://raw.githubusercontent.com/juncture-digital/juncture/main/images/juncture-logo.svg"
     >
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/media" target="_blank">Media tool</a></li>
+        <li><a href="/editor" target="_blank">Editor</a></li>
         <li>auth</li>
       </ul>
     </ve-header>
 
-    <ve-content-selector v-if="contentPath !== null" id="contentSelector" 
+    <ve-content-selector v-if="contentPath !== null" id="contentSelector"
+      compact
       :content-path="contentPath"
       mode="media"
       sticky
