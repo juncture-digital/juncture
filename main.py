@@ -125,7 +125,11 @@ def _get_html(path, base_url, ref=REF, host=None, **kwargs):
   if status_code == 200:
     if host == 'localhost:8080':
       html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/js\/index\.js', WC_ENDPOINT, html)
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/js\/index\.js', WC_ENDPOINT, html)
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/css\/', 'https://juncture-digital.github.io/web-components/css/', html)
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/css\/', 'https://juncture-digital.github.io/web-components/css/', html)
     elif host == 'dev.juncture-digital.org':
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/', 'https://juncture-digital.github.io/web-components/', html)
       html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/', 'https://juncture-digital.github.io/web-components/')
   return status_code, html
 
