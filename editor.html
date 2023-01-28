@@ -6,6 +6,7 @@
   <link href="https://juncture-digital.github.io/juncture/static/images/favicon.png" rel="icon" type="image/png"/>
   <title>Juncture: Editor</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:400" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <link href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" type="text/css" rel="stylesheet"/>
@@ -55,7 +56,7 @@
       </ul>
     </ve-header>
 
-    <ve-content-selector v-if="contentPath !== null" id="contentSelector" :content-path="contentPath" mode="essays" sticky></ve-content-selector>
+    <ve-content-selector v-if="contentPath !== null" id="contentSelector" compact :content-path="contentPath" mode="essays" sticky></ve-content-selector>
 
     <div id="mde" ref="mde"
       @paste.prevent="paste" 
@@ -295,7 +296,9 @@
             mode: CodeMirror.getMode({}, 've-tag'),
             combine: false,
           },
-          toolbar: ['undo', 'redo', '|', 'bold', 'italic', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', 
+          toolbar: [
+            'undo', 'redo', '|',
+            // 'bold', 'italic', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', 
             {
               class: 'mark',
               action: () => {this.markText()},
@@ -305,24 +308,20 @@
             },           
             '|', 'preview',
             {
-              class: 'help',
-              action: () => {this.showHelp()},
-              className: 'fa fa-question',
-              title: 'Help',
-              attributes: {id: 'help'}
-            }, {
             class: 'save',
               action: () => {this.saveFile()},
               className: 'fa fa-save',
               title: 'Save file',
               attributes: {id: 'save'}
             }, {
+            /*
             class: 'copy',
               action: () => {this.copyText()},
               className: 'fa fa-copy',
               title: 'Copy text',
               attributes: {id: 'copy'}
-            }, {
+            }, { 
+            */
               class: 'launch',
               action: () => {this.launch()},
               className: 'fa fa-external-link',
