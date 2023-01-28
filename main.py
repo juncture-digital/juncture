@@ -138,8 +138,12 @@ def favicon():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/robots.txt')
-def robots_txt():
+def pwa_sw():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'robots.txt', mimetype='text/plain')
+
+@app.route('/sw.js')
+def robots_txt():
+  return send_from_directory(os.path.join(app.root_path), 'sw.js', mimetype='text/javascript')
 
 @app.route('/sitemap.txt')
 def sitemap_txt():

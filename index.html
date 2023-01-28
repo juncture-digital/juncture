@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/pure.css" />
   <link rel="stylesheet" href="/static/css/custom.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css">
+  <link rel="manifest" href="./manifest.json">
 </head>
 <body>
 
@@ -45,6 +46,10 @@
       // console.log(location.hash, evt) 
     }) // The URL changed...
 
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  
   </script>
 </body>
 </html>
