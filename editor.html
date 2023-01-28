@@ -48,7 +48,7 @@
       v-cloak
       label="Editor"
       background="#5B152E"
-      logo="https://raw.githubusercontent.com/juncture-digital/juncture/main/static/images/juncture-logo.svg"
+      logo="https://raw.githubusercontent.com/juncture-digital/juncture/main/static/images/juncture-logo.png"
       url="/"
     >
       <ul>
@@ -128,6 +128,7 @@
       repo: null,
       easyMDE: null,
       overDropzone: false,
+      isMobile: false,
       isPreviewActive: false,
       loadedDependencies: [],
       userCanUpdate: false,
@@ -153,6 +154,7 @@
       window.addEventListener('storage', (evt) => this.ghAuthToken = localStorage.getItem('gh-auth-token'))
     },
     mounted() {
+      this.isMobile = 'ontouchstart' in document.documentElement && /mobi/i.test(navigator.userAgent)
       let pathElems = window.location.pathname.split('/').filter(pe => pe)
       if (pathElems.length > 0 && pathElems[0] === 'editor') {
         this.pathRoot = '/editor/'
@@ -176,7 +178,7 @@
 
     },
     methods: {
-
+    
       watchContent(evt) {
         if (this.debounce !== null) {
           clearTimeout(this.debounce)
@@ -303,38 +305,42 @@
             combine: false,
           },
           toolbar: [
-            'undo', 'redo', '|',
-            'bold', 'italic', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', 
-            {
-              class: 'mark',
-              action: () => {this.markText()},
-              className: 'fa fa-code',
-              title: 'Mark Text ',
-              attributes: {id: 'mark'}
-            },           
-            '|', 
-            // 'preview',
-            {
-            class: 'save',
-              action: () => {this.saveFile()},
-              className: 'fa fa-save',
-              title: 'Save file',
-              attributes: {id: 'save'}
-            }, {
-            /*
-            class: 'copy',
-              action: () => {this.copyText()},
-              className: 'fa fa-copy',
-              title: 'Copy text',
-              attributes: {id: 'copy'}
-            }, { 
-            */
-              class: 'launch',
-              action: () => {this.launch()},
-              className: 'fa fa-external-link',
-              title: 'Launch',
-              attributes: {id: 'launch'}
-            }
+            ...[
+              ...['undo', 'redo', '|','bold', 'italic', 'heading', 'quote'],
+              ...this.isMobile ? [] : ['unordered-list', 'ordered-list', 'link']
+            ], 
+            ...[
+              {
+                class: 'mark',
+                action: () => {this.markText()},
+                className: 'fa fa-code',
+                title: 'Mark Text ',
+                attributes: {id: 'mark'}
+              },           
+              '|', 
+              // 'preview',
+              {
+              class: 'save',
+                action: () => {this.saveFile()},
+                className: 'fa fa-save',
+                title: 'Save file',
+                attributes: {id: 'save'}
+              }, {
+              /*
+              class: 'copy',
+                action: () => {this.copyText()},
+                className: 'fa fa-copy',
+                title: 'Copy text',
+                attributes: {id: 'copy'}
+              }, { 
+              */
+                class: 'launch',
+                action: () => {this.launch()},
+                className: 'fa fa-external-link',
+                title: 'Launch',
+                attributes: {id: 'launch'}
+              }
+            ]
           ]
         })
         // if (this.contentPath) localStorage.setItem('smde_juncture_path', this.contentPath)
