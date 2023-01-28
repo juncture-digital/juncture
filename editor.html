@@ -16,10 +16,11 @@
     * {box-sizing: border-box;}
     body {max-width:1000px; margin: auto !important;}
     #editor {display:grid; grid-template-rows: auto auto 1fr; height: 100vh;}
-    #mde {font-family:Roboto,sans-serif; height:100%; overflow-y: hidden;}
+    #mde {font-family:Roboto,sans-serif; height:100%; overflow-y: hidden; position: relative;}
     .EasyMDEContainer {height:calc(100%);}
-    .EasyMDEContainer .CodeMirror {height:calc(100% - 75px); font-size:1.2rem; line-height:1.4; color:#444}
-    .preview .EasyMDEContainer .CodeMirror {height:calc(100% - 60px); border:none;}
+    .EasyMDEContainer .CodeMirror {height:calc(100% - 88px); font-size:1.2rem; line-height:1.4; color:#444}
+    /* .preview .EasyMDEContainer .CodeMirror {height:calc(100% - 60px); border:none;} */
+    .preview .EasyMDEContainer .CodeMirror {height:100%; border:none;}
     .editor-preview {padding:0; background-color:white; border:none;}
     .preview .editor-statusbar {display:none;}
     .cm-ve-tag, .cm-mark {color:red;}
@@ -31,9 +32,10 @@
     .cm-s-easymde .cm-header-5{font-size: calc(1rem + .5vw);}
     .cm-s-easymde .cm-header-6{font-size: calc(1rem + .5vw);}
     .editor-toolbar {display: flex;}
+    .preview .editor-toolbar {display: none;}
     button.preview, #help, #save, #launch, #copy {font-size: 1.5rem; color:#5B152E;}
     button.preview i, #mde #help i, #mde #save i, #mde #launch i, #mde #copy i {font-size: 1.4rem;}
-    button.preview {margin-left:auto;}
+    button#save {margin-left:auto;}
     #save:disabled {color: #ddd;}
     ve-header ul { display: none; }
   </style>
@@ -62,6 +64,7 @@
       @paste.prevent="paste" 
       @drop.prevent="drop" @dragover.prevent @dragover="overDropzone=true" @dragleave="overDropzone=false">
       <textarea v-cloak ref="content"></textarea>
+      <ve-fab id="fab" label="Toggle Preview" icon="plus" action="toggle" color="#5B152E" bottom="70px"></ve-fab>
     </div>
 
     <b-modal v-cloak id="save-confirm" title="Save file?">
@@ -165,6 +168,9 @@
           this.parseContentPath(evt.detail[0].replace(/^gh:/,''))
         })
         document.getElementById('contentSelector')?.addEventListener('accessChanged', async (evt) => this.userCanUpdate = evt.detail.canUpdate)  
+        document.getElementById('fab')?.addEventListener('fabClicked', (evt) => {
+          EasyMDE.togglePreview(this.easyMDE)
+        })  
       })
       this.initEditor()
 
@@ -298,7 +304,7 @@
           },
           toolbar: [
             'undo', 'redo', '|',
-            // 'bold', 'italic', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', 
+            'bold', 'italic', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', 
             {
               class: 'mark',
               action: () => {this.markText()},
@@ -306,7 +312,8 @@
               title: 'Mark Text ',
               attributes: {id: 'mark'}
             },           
-            '|', 'preview',
+            '|', 
+            // 'preview',
             {
             class: 'save',
               action: () => {this.saveFile()},
