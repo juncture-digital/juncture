@@ -1,0 +1,23 @@
+[
+  {
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "chair",
+        "purpose": "commenting"
+      }
+    ],
+    "target": {
+      "source": "http://zoomviewer.toolforge.org/iipsrv.fcgi/?iiif=cache/76ed38ac46c69154917263be0f47301e.tif",
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:10360.10546875,7583.1015625,3432.962890625,5126.7724609375"
+      },
+      "id": "bf72380f"
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "739730cb"
+  }
+]
