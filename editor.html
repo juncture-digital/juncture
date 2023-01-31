@@ -16,7 +16,6 @@
     * {box-sizing: border-box;}
     body {max-width:1000px; margin: auto !important;}
     #editor {display:grid; grid-template-rows: auto auto 1fr; height: 100vh;}
-    #mde {font-family:Roboto,sans-serif; height:calc(100vh - 60px); overflow-y: hidden; position: relative;}
     .EasyMDEContainer {height:calc(100%);}
     .EasyMDEContainer .CodeMirror {height:calc(100% - 88px); font-size:1.2rem; line-height:1.4; color:#444}
     /* .preview .EasyMDEContainer .CodeMirror {height:calc(100% - 60px); border:none;} */
@@ -45,44 +44,57 @@
 
   <div id="editor">
 
-    <!--
-    <ve-header 
-      v-cloak
-      label="Editor"
-      background="#5B152E"
-      logo="https://raw.githubusercontent.com/juncture-digital/juncture/main/static/images/juncture-logo.png"
-      url="/"
-    >
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/media" target="_blank">Media tool</a></li>
-        <li>auth</li>
-      </ul>
-    </ve-header>
-    -->
+    <template v-if="isLoggedIn">
 
-    <ve-content-selector v-if="contentPath !== null" id="contentSelector" compact :content-path="contentPath" mode="essays" sticky></ve-content-selector>
+      <ve-header v-if="!inIframe"
+        v-cloak
+        label="Editor"
+        background="#5B152E"
+        logo="https://raw.githubusercontent.com/juncture-digital/juncture/main/static/images/juncture-logo.png"
+        url="/"
+      >
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/media" target="_blank">Media tool</a></li>
+          <li>auth</li>
+        </ul>
+      </ve-header>
 
-    <div id="mde" ref="mde"
-      @paste.prevent="paste" 
-      @drop.prevent="drop" @dragover.prevent @dragover="overDropzone=true" @dragleave="overDropzone=false">
-      <textarea v-cloak ref="content"></textarea>
-      <ve-fab id="fab" label="Toggle Preview" icon="eye" action="toggle" color="#5B152E" bottom="100px" :disabled="!contentPathIsFile"></ve-fab>
+      <ve-content-selector v-if="contentPath !== null" id="contentSelector" compact :content-path="contentPath" mode="essays" sticky></ve-content-selector>
+
+      <div id="mde" ref="mde"
+        @paste.prevent="paste" 
+        @drop.prevent="drop" @dragover.prevent @dragover="overDropzone=true" @dragleave="overDropzone=false"
+        :style="{
+          fontFamily: 'Roboto,sans-serif',
+          height: `calc(100vh - ${inIframe ? 60 : 140}px)`,
+          overflowY: 'hidden',
+          position: 'relative'
+        }"
+      >
+        <textarea v-cloak ref="content"></textarea>
+        <ve-fab id="fab" label="Toggle Preview" icon="eye" action="toggle" color="#5B152E" bottom="100px" :disabled="contentPathIsFile ? null : ''"></ve-fab>
+      </div>
+
+      <b-modal v-cloak id="save-confirm" title="Save file?">
+        <p class="my-4">Path: <b>{{toSavePath}}</b></p>
+        <!-- <div style="height:40vh; overflow-y:scroll;"><pre>{{toSaveContent}}</pre></div> -->
+        <template #modal-footer="{ ok }">
+          <b-button size="sm" variant="normal" @click="setContent()">No</b-button>
+          <b-button size="sm" variant="primary" @click="doSave()">Yes</b-button>
+        </template>
+      </b-modal>
+
+      <b-toast v-cloak id="save-status" title="" solid :auto-hide-delay="saveStatus.status === 200 ? 1000 : 10000" no-close-button><b>Essay save to Github: {{`${saveStatus.status === 200 ? 'success' : 'failed (' + saveStatus.status + ')'} ${saveStatus.statusText}`}}</b></b-toast>
+      <b-toast v-cloak id="link-copied" title="" solid auto-hide-delay="1000" no-close-button><b>Link copied to clipboard:</b>&nbsp;{{link}}</b-toast>
+      <b-toast v-cloak id="text-copied" title="" solid auto-hide-delay="1000" no-close-button><b>Essay text copied to clipboard</b></b-toast>
+    
+    </template>
+
+    <div v-else>
+      <ve-auth></ve-auth>
     </div>
 
-    <b-modal v-cloak id="save-confirm" title="Save file?">
-      <p class="my-4">Path: <b>{{toSavePath}}</b></p>
-      <!-- <div style="height:40vh; overflow-y:scroll;"><pre>{{toSaveContent}}</pre></div> -->
-      <template #modal-footer="{ ok }">
-        <b-button size="sm" variant="normal" @click="setContent()">No</b-button>
-        <b-button size="sm" variant="primary" @click="doSave()">Yes</b-button>
-      </template>
-    </b-modal>
-
-    <b-toast v-cloak id="save-status" title="" solid :auto-hide-delay="saveStatus.status === 200 ? 1000 : 10000" no-close-button><b>Essay save to Github: {{`${saveStatus.status === 200 ? 'success' : 'failed (' + saveStatus.status + ')'} ${saveStatus.statusText}`}}</b></b-toast>
-    <b-toast v-cloak id="link-copied" title="" solid auto-hide-delay="1000" no-close-button><b>Link copied to clipboard:</b>&nbsp;{{link}}</b-toast>
-    <b-toast v-cloak id="text-copied" title="" solid auto-hide-delay="1000" no-close-button><b>Essay text copied to clipboard</b></b-toast>
-  
   </div>
   
   <!-- This is used for deep linking of Single Page Apps when hosted with GitHub Pages -->
@@ -124,7 +136,7 @@
     el: '#editor',
     data: () => ({
       contentPath: null,
-      // priorContentPath: '',
+      inIframe: false,
       pathRoot: '/',
       ghAuthToken: null,
       acct: null,
@@ -153,6 +165,8 @@
       contentPathIsFile() { return this.contentPath?.split('?')[0].split('/').pop().indexOf('.') >= 0 }
     },
     created() {
+      this.inIframe = window.location !== window.parent.location
+      console.log(`inIframe=${this.inIframe}`)
       this.ghAuthToken = localStorage.getItem('gh-auth-token')
       window.addEventListener('storage', (evt) => this.ghAuthToken = localStorage.getItem('gh-auth-token'))
     },
@@ -177,7 +191,7 @@
           EasyMDE.togglePreview(this.easyMDE)
         })  
       })
-      this.initEditor()
+      if (this.isLoggedIn) this.initEditor()
 
     },
     methods: {
@@ -239,7 +253,7 @@
         this.userCanUpdate = document.getElementById('contentSelector')?._instance.exposed.repositoryIsWriteable()
         
         let isFile = filePath.split('/').pop().indexOf('.') >= 0 
-        // console.log(`editor.setContent: acct=${this.acct} repo=${this.repo} contentPath=${contentPath} filePath=${filePath} isFile=${isFile} writeable=${this.userCanUpdate}`)
+        console.log(`editor.setContent: acct=${this.acct} repo=${this.repo} contentPath=${contentPath} filePath=${filePath} isFile=${isFile} writeable=${this.userCanUpdate}`)
 
         if (isFile) {
           let markdown
@@ -624,9 +638,20 @@
           this.userCanUpdate = document.getElementById('contentSelector')?.repositoryIsWriteable
             ? await document.getElementById('contentSelector')?.repositoryIsWriteable()
             : false
+          if (!this.easyMDE) this.$nextTick(() => {
+            document.getElementById('contentSelector')?.addEventListener('contentPathChanged', async (evt) => {
+              this.parseContentPath(evt.detail[0].replace(/^gh:/,''))
+            })
+            document.getElementById('contentSelector')?.addEventListener('accessChanged', async (evt) => this.userCanUpdate = evt.detail.canUpdate)  
+            document.getElementById('fab')?.addEventListener('fabClicked', (evt) => {
+              EasyMDE.togglePreview(this.easyMDE)
+            })  
+            this.initEditor()
+          })
         } else {
           Object.keys(localStorage).forEach(key => localStorage.removeItem(key))
           this.easyMDE.value('')
+          location.href = '/'
         }
       },
       userCanUpdate(canUpdate) {

@@ -1,13 +1,14 @@
   - 
     - <ve-auth></ve-auth>
-    <!-- - <ve-button label="Open Editor" icon="pencil" href="/editor" auth-required></ve-button> -->
-    - [Editor](/embedded-editor)
+    - <ve-button label="Open editor in new window" icon="pencil" href="/editor" target="_blank" auth-required></ve-button>
 
   - Juncture
-    - [Overview](/)
+    - [Home](/)
     - [Quick Start](/quick-start)
+    - [Editor](/embedded-editor)
+    - [Media Tool](/embedded-media)
 
-- Creating an Essay 
+- Getting Started
   - [Overview](/creating-an-essay?id=overview)
   - [The basic process](/creating-an-essay?id=the-basic-process)
     - [Add text](/creating-an-essay?id=add-text)
