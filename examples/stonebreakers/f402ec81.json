@@ -61,26 +61,5 @@
     },
     "@context": "http://www.w3.org/ns/anno.jsonld",
     "id": "a6aae092"
-  },
-  {
-    "type": "Annotation",
-    "body": [
-      {
-        "type": "TextualBody",
-        "value": "axe",
-        "purpose": "commenting"
-      }
-    ],
-    "target": {
-      "source": "http://zoomviewer.toolforge.org/iipsrv.fcgi/?iiif=cache/460f0c8682b407f01ec6ada5f495d532.tif",
-      "selector": {
-        "type": "FragmentSelector",
-        "conformsTo": "http://www.w3.org/TR/media-frags/",
-        "value": "xywh=pixel:468.85205078125,428.5067138671875,156.98577880859375,99.949951171875"
-      },
-      "id": "f402ec81"
-    },
-    "@context": "http://www.w3.org/ns/anno.jsonld",
-    "id": "a55f1e9d"
   }
 ]
