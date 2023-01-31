@@ -4,27 +4,6 @@
     "body": [
       {
         "type": "TextualBody",
-        "value": "hat",
-        "purpose": "commenting"
-      }
-    ],
-    "target": {
-      "source": "http://zoomviewer.toolforge.org/iipsrv.fcgi/?iiif=cache/460f0c8682b407f01ec6ada5f495d532.tif",
-      "selector": {
-        "type": "FragmentSelector",
-        "conformsTo": "http://www.w3.org/TR/media-frags/",
-        "value": "xywh=pixel:910.8738403320312,154.0676727294922,154.73968505859375,137.4137420654297"
-      },
-      "id": "f402ec81"
-    },
-    "@context": "http://www.w3.org/ns/anno.jsonld",
-    "id": "c6707db5"
-  },
-  {
-    "type": "Annotation",
-    "body": [
-      {
-        "type": "TextualBody",
         "value": "pot",
         "purpose": "commenting"
       }
