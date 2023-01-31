@@ -106,7 +106,7 @@ def _get_local_content(path):
     if os.path.exists(_path):
       return open(_path, 'r').read()
   logger.warn(f'Local content not found: path={path}')
-
+  
 def _get_html(path, base_url, ref=REF, host=None, **kwargs):
   logger.info(f'_get_html: path=={path} base_url=={base_url} ref={ref} prefix={PREFIX} host={host}')
   html = ''
@@ -202,7 +202,8 @@ def render_app(path=None):
   if host == 'localhost':
     html = html.replace('https://api.juncture-digital.org', API_ENDPOINT)
     html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js', WC_ENDPOINT)
-    html = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', html)
+    css = f'\n<style>\n{open("../web-components/src/style.css", "r").read()}\n</style>\n'
+    html = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', css, html)
     html = html.replace('https://raw.githubusercontent.com/juncture-digital/juncture/main', '' )
   elif host == 'dev.juncture-digital.org':
     html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/', 'https://juncture-digital.github.io/web-components/', html)

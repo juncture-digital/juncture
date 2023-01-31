@@ -16,7 +16,7 @@
     * {box-sizing: border-box;}
     body {max-width:1000px; margin: auto !important;}
     #editor {display:grid; grid-template-rows: auto auto 1fr; height: 100vh;}
-    #mde {font-family:Roboto,sans-serif; height:100%; overflow-y: hidden; position: relative;}
+    #mde {font-family:Roboto,sans-serif; height:calc(100vh - 60px); overflow-y: hidden; position: relative;}
     .EasyMDEContainer {height:calc(100%);}
     .EasyMDEContainer .CodeMirror {height:calc(100% - 88px); font-size:1.2rem; line-height:1.4; color:#444}
     /* .preview .EasyMDEContainer .CodeMirror {height:calc(100% - 60px); border:none;} */
@@ -38,12 +38,14 @@
     button#save {margin-left:auto;}
     #save:disabled {color: #ddd;}
     ve-header ul { display: none; }
+    .CodeMirror-scroll { padding-bottom:0; margin-bottom:0;}
   </style>
 </head>
 <body>
 
   <div id="editor">
 
+    <!--
     <ve-header 
       v-cloak
       label="Editor"
@@ -57,6 +59,7 @@
         <li>auth</li>
       </ul>
     </ve-header>
+    -->
 
     <ve-content-selector v-if="contentPath !== null" id="contentSelector" compact :content-path="contentPath" mode="essays" sticky></ve-content-selector>
 

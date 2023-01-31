@@ -1,7 +1,8 @@
   - 
     - <ve-auth></ve-auth>
-    - <ve-button label="Open Editor" icon="pencil" href="/editor" auth-required></ve-button>
-  
+    <!-- - <ve-button label="Open Editor" icon="pencil" href="/editor" auth-required></ve-button> -->
+    - [Editor](/embedded-editor)
+
   - Juncture
     - [Overview](/)
     - [Quick Start](/quick-start)
@@ -21,6 +22,7 @@
 - Juncture Tags
   - [ve-media](/components/media)
   - [ve-map](/components/map)
+  - [ve-iframe](/components/iframe)
   - [ve-mermaid](/components/mermaid)
   - [ve-header](/components/header)
   - [ve-footer](/components/footer)
