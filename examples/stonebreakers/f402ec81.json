@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "shoe",
+        "purpose": "commenting"
+      }
+    ],
+    "target": {
+      "source": "http://zoomviewer.toolforge.org/iipsrv.fcgi/?iiif=cache/460f0c8682b407f01ec6ada5f495d532.tif",
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:483.6938781738281,586.389892578125,199.80178833007812,120.857421875"
+      },
+      "id": "f402ec81"
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "c3e0a0a9"
+  }
+]
