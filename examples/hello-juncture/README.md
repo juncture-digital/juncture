@@ -1,10 +1,6 @@
 # Hello, Juncture
 
-<<<<<<< HEAD
-This example illustrates the use of a few Markdown formatting tags and the incorporation of an image and a map into a simple Juncture essay.  The public URL for the web page associated with this essay is [https://dev.juncture-digital.org/juncture-digital/juncture/examples/hello-juncture](https://dev.juncture-digital.org/juncture-digital/juncture/examples/hello-juncture).
-=======
 This example illustrates the use of an image and a map into a Juncture essay.   
->>>>>>> f9ffe64d97642386a4ee7e367b088013b6a03f76
 
 ## Aulacophora indica
 
@@ -14,11 +10,7 @@ The image depicts a leaf beetle (Aulacophora indica) (Family: Chrysomelidae; sub
 
 This image is hosted on [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:The_Bug_Peek.jpg) and was runner-up for Wikimedia Commons Picture of the Year for 2021.
 
-<<<<<<< HEAD
 Image controls are located in the top-left corner of the image and can be seen when hovering over the image.  These controls support image zoom, rotation, full-screen viewing, and repositioning to start position.  Panning can be performed with keyboard arrow keys or by mouse click-and-drag.
-=======
-Image controls are located in the top-right corner of the image and can be seen when hovering over the image.  Controls are available for image zoom, rotation, full-screen viewing, and image repositioning.  Panning can be performed with keyboard arrow keys or by mouse click-and-drag.
->>>>>>> f9ffe64d97642386a4ee7e367b088013b6a03f76
 
 Image information can be seen when hovering the cursor over the info icon located in the top-right corner of the image.  The Image information popover includes image title, description, attribution statement, and reuse rights.
 
