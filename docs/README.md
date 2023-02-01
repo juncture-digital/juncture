@@ -1,40 +1,99 @@
-# What is Juncture?
+<style>
+a.cta {
+  background-color: #FFE55A;
+  border-radius: 50px;
+  font-family: Roboto, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1.6rem;
+  padding: 12px 60px;
+  margin: auto;
+  margin-top: 0;
+  text-align: center;
+  color: #0b0080;
+  text-decoration: None;
+}
+.splash-end img, .splash-end a {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.splash-start p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.splash-start p img {
+  height: 30px;
+}
 
-Juncture is a suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.  
+</style>
 
-Juncture is developed and maintained by the friendly folks at JSTOR Labs and grew out of a project that used visual essays in a form of visual story telling.  The visual essays consisted of a text narrative augmented with interactive visualizations providing depth and context for the narrative.  
+<div class="splash">
+<div class="splash-start">
 
-This version of Juncture represents the second generation of the Juncture concept.  It's a complete rewrite of the code base and documentation.  Juncture version 2 is backwards compatible with visual essays written for version 1, so if you're an existing Juncture user, no worries, your Juncture essays will continue to work.  If you came to this page looking for documetation for version 1 that can be found [here](https://github.com/jstor-labs/juncture/wiki).
+<div class="splash-logo" style="display:flex;align-items:center;">
+    <img src="https://juncture-digital.github.io/juncture/static/images/favicon.svg" style="margin:-12px 0 0 -12px;height:90px">
+    <div style="font-size:3rem;color:#455;margin-top:-10px;font-weight:bold;">Juncture</div>
+</div>
 
-In its current form Juncture is still well-suited for the type of digital story telling emphasized in version 1 but this new version can more be easily used for generating web pages that are less text-centric, such as an image exhibitions.
+<h3 style="line-height:1.3;margin-top:1rem;"><i>Create and share rich, interactive essays in minutes!</i></h3>
 
-A few examples are provided to help explain what Junture is.  Press any of the buttons below for a quick demo.
+- Quickly create single essays or full web sites
+- Minimal setup and no ongoing administration
+- Easy-to-use drag-n-drop editor with preview
+- Flexible content viewers for displaying images, video, audio, maps, diagrams, and more
+- Use web-based resources and your own content
+- Image and text annotation tools
+- IIIF-enabled features for using high-quality, attributed digital objects
+- WordPress compatible
+- Open source and built on open tools and data formats
 
-<ve-modal button-label="Hello, Juncture" src="juncture-digital/juncture/examples/hello-juncture"></ve-modal> <ve-modal button-label="A Travelogue" src="juncture-digital/juncture/examples/travelogue"></ve-modal> <ve-modal button-label="Bedroom in Arles" src="juncture-digital/juncture/examples/bedroom-in-arles"></ve-modal>
+Juncture was developed and is maintained by [![JSTOR](https://raw.githubusercontent.com/juncture-digital/juncturemain/static/images/labs.jpg)](https://labs.jstor.org)
 
-# What problem does Juncture solve?
+</div>
+<div class="splash-end">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:2rem;">
+        <img class="splash-image" src="https://iiif-image.juncture-digital.org/iiif/2/e058046a1379d7dfc9a4daee11a9a6ca1b7ac9bafd78fd30d40ff92fef99ce86/full/500,/0/default.jpg" alt="Juncture graphic">
+        <div><a href="#/getting-started" class="cta">Get Started</a></div>
+    </div>
+</div>
+</div>
 
-To be honest, all of the capabilities provided by Juncture can be found in any number of existing web services and tools, and often with better feature sets and polish than provided by Juncture.  Juncture aims to be a platform that lowers the bar in using some great features like deep-zoom images and interactive maps in easy to create web pages, without the overhead often involved in using many of these tools. 
+# Welcome to Juncture
 
-Juncture's primary goal is to make great technology accessible to any user with an interest in sharing something on the web.  In the [Quick Start](#quick-start) section below you can give it spin and see for yourself.  All that is required is Github account.  If you already have one the "hard" part is done.  If not, you'll need to take a take a couple minutes to do the sign-up.  Signing up is free and painless.  
+**Juncture** is a suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.  
 
-If you're looking for best of breed capabilities in image display, map rendering, etc, then Juncture may not be the best fit.  On the other hand, if you're looking for a tool set that hits the sweet-spot of providing a really nice set of tools for quickly creating web pages with engaging and interactive content with minimal setup and zero on-going administration, Juncture may be worth considering.
+Juncture is developed and maintained by the friendly folks at [JSTOR Labs](https://labs.jstor.org) and [grew out of a project](https://www.doaks.org/research/mellon-initiatives/plant-humanities-initiative) that used visual essays for a form of digital storytelling.  Visual essays are text narratives augmented with interactive visualizations providing depth and context.  
+
+This version of Juncture represents the second generation of the Juncture concept.  It's a complete rewrite of the Juncture code base and documentation.  The rendering engine in version 2 is backwards compatible with visual essays written for version 1, so if you're an existing Juncture user, no worries, your Juncture essays will continue to work.  
+
+?> Documentation for Juncture version 1 can be found [here](https://github.com/jstor-labs/juncture/wiki).
+
+In its current form Juncture is still well-suited for the type of digital story telling emphasized in version 1 but now can be more easily used for generating web pages that are less text-centric, such as an image exhibitions.
+
+A few examples are provided to help explain what Juncture is.  Press any of the buttons below for a quick demo.
+
+<ve-modal button-label="Hello, Juncture" src="juncture-digital/juncture/examples/hello-juncture"></ve-modal> <ve-modal button-label="Bedroom in Arles" src="juncture-digital/juncture/examples/bedroom-in-arles"></ve-modal>
+
+# What problem does this solve?
+
+Juncture's primary goal is to make the use of modern web technology (deep-zoom and panning for high-resolution images, interactive maps, etc) accessible to anyone with an interest in sharing something on the web, regardless of background or technical skills.  In the [Quick Start guide](/quick-start) you can give it try and see for yourself.  All that is required for this quick start (and to use Juncture generally) is an active Github account.  If you already have one the "hard" part is done.  If not, you'll need to take a take a couple minutes to signup with Github.  Signing up for a Github account is free and painless.
+
+If you're looking for a set of easy-to-use tools for quickly creating web pages with engaging and interactive content with minimal setup and zero on-going administration, Juncture might be exactly what you need.
 
 # Juncture design principles
 
 In developing Juncture we were guided by a few key principles.
 
-1. **Juncture will not retain user data** **  It's your data, we just want to make it easier to create and share.
-    - Many web hosting services store a copy of the source files used to render a web page or site.  Juncture does not.  It is principally a set of rendering engine and authoring tools.  User content is stored in a Github repository that is owned and managed by a user.  Juncture only requires read access to the Github repository to access the files for conversion and rendering.
-    - The Juncture tool suite includes an optional browser-based editor that may be used to create and modify user files in Github.  When using the Juncture editor a user must authorize the editor to perform Github file updates on their behalf.  This authorization can be easily revoked by a user at any time.
+1. **Juncture will not store user data.** **  We just want to make it easier for you to use it to create and share great web content.
+    - Many web hosting services store a copy of the source files used to render a web page or site.  Juncture does not.  It is principally an HTML rendering engine and set of authoring tools.  Content is stored in a Github repository that is user owned and managed.  Juncture only requires read access to the Github repository to access the files for rendering.
+    - The Juncture tool suite includes an optional browser-based editor that may be used to create and modify user files in Github.  When using the Juncture editor a user will first need to authorize the editor to perform Github file updates on their behalf.  This authorization can be easily revoked by a user at any time.
     - ** The only caveat to the "Juncture does not retain user data" principle is that an optimized copy of user-hosted image files used in a rendered page are cached by the Juncture image server for a fixed period of time for performance reasons.
-2. **Juncture will use open and non-proprietary tools and data where possible**.  This includes:
-    - Markdown (with a few Juncture extensions) for page definitions
+2. **Juncture will use open and non-proprietary tools and data where possible.**  This includes:
+    - Markdown (with a few Juncture extensions) for visual essay definitions
     - The International Image Interoperability Framework (IIIF) for media (image, video, audio) rendering
     - GeoJSON for map features and overlays
     - Various data and services provided by the Wikimedia Foundation, including text from Wikipedia, Linked Open Data (LOD) from Wikidata, and images and other media from Wikimedia Commons
-3. **Promote the responsible use of web resources** ...
-3. **Minimal setup and administration by a user.**  This could have been "_Zero_ setup and administration" but some initial work is needed by a user to create a home for the content to be rendered by Juncture.  When Juncture is used to render custom content a user must signup for a Github account and populate a Github repository (workspace) with page definition files.  Other than creating the page definition files and providing a home for them in Github, there is nothing required by a user long-term.  No cloud infrastrcture provisioning, no server management, nothing of that sort. A user is able to focus time and energy on creating great content. 
+3. **Support and promote the responsible use of web resources**  All resources used in a visual essay include attribution when required and clearly define reuse rights. 
+3. **Minimal setup and administration by a user.**  Some initial work is needed by a user to create a home for the content to be rendered by Juncture.  That's where Github comes in.  To get started a user must signup for a Github account and link it to the Juncture editor.  For many users.that's it.  There is no on-going administration required of a user.  No cloud infrastructure provisioning, no server management, nothing of that sort. A user is able to focus time and energy on creating great content. The only exception to this would be the setup of a custom domain for a Juncture web site if that was desired.  A step-by-step build is provided for custom domain setup. It would typically require no more than a few minutes of time.   
 
 The Juncture tools and services are designed to work together to provide an integrated and easy-to-use work-flow for web page definition and rendering.  These tools are based on web standards and may also be used separately.
 
@@ -47,61 +106,3 @@ Uses of Juncture include:
 
 - Creation of a web site containing themed essayy
 - 
-
-
-# Quick Start
-
-In this Quick Start guide you'll create your own version of the `Hello, Juncture` demo essay, also linked in the [What is Juncture?](#what-is-juncture) section.  While this is a simple essay it illustrates the basic steps in creating and "publishing" and essay.  The generated essay could also be used as a starting point for more  involved essays.
-
-### First things, first...
-
-If you haven't already done so, you'll need to,
-
-- [Signup for a Free Github account](https://github.com/join), and 
-- **Login to Github** with Juncture.  There's a login button at the top left of this page that can be used to login to Github.  In the initial login you will be asked to authorize Juncture to make changes on your behalf (via the Juncture Editor tool).  This short video clip demonstrates the steps involved in this initial login.  After the initial login has been performed, the login/logout process is a single button click.
-
-### Open the Juncture Editor
-
-Once you've successfully logged in with Github (and authorized Juncture access), open the Github Editor in a new window. <ve-window href="/editor" button-label="Open Juncture Editor"></ve-window>
-
-### Create new essay
-
-<ve-snippet>
-    .ve-header "Farmhouse in Provence" wc:Farmhouse_in_Provence,_1888,_Vincent_van_Gogh,_NGA.jpg sticky
-
-    # Farmhouse in Provence
-
-    Farmhouse in Provence, also known as Entrance Gate to a Farm with Haystacks, is an oil-on-canvas painting produced in 1888 by Dutch painter ==Vincent van Gogh=={Q5582} in Arles, Provence, at the height of his career. Partially due to having been inspired by painter Adolphe Monticelli, Van Gogh sought the Provence region of France to further expand his painting skill and experience. Van Gogh used several pairs of complementary colors in the Farmhouse in Provence, the color contrast bringing an intensity to his work. The painting is owned by the National Gallery of Art in Washington, D.C.[^1]
-
-    ## The painting
-
-    .ve-media wc:Farmhouse_in_Provence,_1888,_Vincent_van_Gogh,_NGA.jpg right
-
-    Van Gogh used three pairs of complementary, or contrasting, colors which when sat together intensified the brilliance and intensity of one another's colors. One pair is orange and blue. Another would be the red and green of the plants. Last, pink clouds against the turquoise sky.
-
-    Van Gogh used complementary, contrasting colors to bring an intensity to his work, which evolved over the periods of his work. Two complementary colors of the same degree of vividness and brightness placed next to one another produce an intense reaction, called the "law of simultaneous contrast."
-
-    Van Gogh mentioned the liveliness and interplay of "a wedding of two complementary colors, their mingling and opposition, the mysterious vibrations of two kindred souls."
-
-    While in Nuenen Van Gogh became familiar with Michel Eugène Chevreul's laws in weaving to maximize the intensity of colors through their contrast to adjacent colors.
-
-    In Paris he was exposed through his brother Theo to Adolphe Monticelli's still life work with flowers, which he admired. First, he saw Monticelli's use of color as an expansion of Delacroix's theories of color and contrast. Secondly he admired the effect Monticelli created by heavy application of paint. It was partially Monticelli, from Marseilles, who inspired Van Gogh's southerly move to Provence. He felt such kinship for the man, and desire to emulate his style, that he wrote in a letter to his sister Wil that he felt as if he were "Monticelli's son or his brother."
-
-    ## Arles
-
-    .ve-map Q48292 5 left
-        - Q48292
-
-    At the time that Van Gogh painted Farmhouse in Provence, he was 35 years old. Living in Arles, in southern France, he was at the height of his career, producing some of his best work,[1] such as fields, farmhouses and people of the Arles, Nîmes and Avignon area.
-
-    The area was quite different from what he'd known in the Netherlands and Paris. The climate was hot and dry. People had dark hair and skin and spoke a different language than Parisian French. The colors were vivid. The terrain varied from plains to mountains. Here Van Gogh found a "brilliance and light that would wash out details and simplify forms, reducing the world around him to the sort of pattern he admired in Japanese woodblocks" and where the "effect of the sun would strengthen the outlines of composition and reduce nuances of color to a few vivid contrasts."
-
-    A prolific time, in less than 444 days Vincent made about 100 drawings and produced more than 200 paintings Yet, he still wrote more than 200 letters. He described a series of seven studies of wheat fields as, "landscapes, yellow—old gold—done quickly, quickly, quickly, and in a hurry just like the harvester who is silent under the blazing sun, intent only on the reaping."
-
-    In a letter to his brother, Theo, he wrote, "Painting as it is now, promises to become more subtle—more like music and less like sculpture—and above all, it promises color."
-
-    [^1]: Wikipedia contributors. (2021, November 9). Farmhouse in Provence. In Wikipedia, The Free Encyclopedia. Retrieved 01:09, January 20, 2023, from https://en.wikipedia.org/w/index.php?title=Farmhouse_in_Provence&oldid=1054303646
-
-    .ve-footer
-        - CC0
-</ve-snippet>

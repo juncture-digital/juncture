@@ -1,21 +1,40 @@
-- Juncture
+  - 
+    - <ve-auth></ve-auth>
+    - <ve-button label="Open editor in new window" icon="pencil" href="/editor" target="_blank" auth-required></ve-button>
 
-  - [Overview](/)
+  - Juncture
+    - [Home](/)
+    - [Quick Start](/quick-start)
+    - [Editor](/embedded-editor)
+    - [Media Tool](/embedded-media)
 
-- Viewer Components
-  - [overview](/overview)
-  - [ve-footer](/components/footer)
-  - [ve-header](/components/header)
-  - [ve-hero](/components/hero)
-  - [ve-map](/components/map)
+- Getting Started
+  - [Using the Juncture Documentation](/getting-started)
+  - [Juncture Essay Rendering](/getting-started?id=juncture-essay-rendering-overview)
+  - [Creating an essay](/getting-started?id=creating-an-essay)
+    - [Add text](/getting-started?id=add-text)
+    - [Format text with Markdown](/getting-started?id=format-text-with-markdown)
+    - [Add footnotes](/getting-started?id=add-footnotes)
+    - [Add entity popovers](/getting-started?id=add-entity-popovers)
+    - [Add Juncture viewer tags](/getting-started?id=add-juncture-viewer-tags)
+    - [Add interactions](/getting-started?id=add-interactions)
+    - [Add header and footer](/getting-started?id=add-header-and-footer)
+    - [Enable annotations](/getting-started?id=enable-annotations)
+
+- Juncture Tags
   - [ve-media](/components/media)
+  - [ve-map](/components/map)
+  - [ve-iframe](/components/iframe)
   - [ve-mermaid](/components/mermaid)
+  - [ve-header](/components/header)
+  - [ve-footer](/components/footer)
+  - [ve-hero](/components/hero)
   - [ve-meta](/components/meta)
 
 - Styling
   - [General](/styling/general)
   - [Text formatting with Markdown](/styling/markdown)
-  - [Viewer component positioning](/styling/component-positioning)
+  - [Viewer positioning](/styling/viewer-positioning)
   - [Tabs](/styling/tabs)
   - [Cards](/styling/cards)
 

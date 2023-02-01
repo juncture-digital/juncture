@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <link href="https://juncture-digital.github.io/web-app/static/images/favicon.svg" rel="icon" type="image/svg+xml"/>
-  <link href="https://juncture-digital.github.io/web-app/static/images/favicon.png" rel="icon" type="image/png"/>
+  <link href="https://juncture-digital.github.io/juncture/static/images/favicon.svg" rel="icon" type="image/svg+xml"/>
+  <link href="https://juncture-digital.github.io/juncture/static/images/favicon.png" rel="icon" type="image/png"/>
   <title>Juncture: Media Tool</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
-  <!-- <link href="https://unpkg.com/juncture-digital/dist/assets/css/index.css" rel="stylesheet" /> -->
-  <link href="https://cdn.jsdelivr.net/npm/juncture-digital@1.0.0-beta.25/dist/assets/css/index.css" rel="stylesheet" />
-
+  <link href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css" type="text/css" rel="stylesheet"/>
   <style>
     [v-cloak] {display:none}
     * {box-sizing:border-box;}
@@ -23,18 +21,19 @@
   
     <ve-header
       v-cloak
+      label="Media Tool"
       background="#5B152E"
-      logo="https://raw.githubusercontent.com/juncture-digital/media/main/images/Juncture_Logo.png"
-      contact="Ron.Snyder@ithaka.org"
+      logo="https://raw.githubusercontent.com/juncture-digital/juncture/main/static/images/juncture-logo.png"
     >
       <ul>
-        <li><a href="/">Juncture home</a></li>
-        <li><a href="/contact">Contact us</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/editor" target="_blank">Editor</a></li>
         <li>auth</li>
       </ul>
     </ve-header>
 
-    <ve-content-selector v-if="contentPath !== null" id="contentSelector" 
+    <ve-content-selector v-if="contentPath !== null" id="contentSelector"
+      compact
       :content-path="contentPath"
       mode="media"
       sticky
@@ -59,13 +58,12 @@
       }
     }(window.location))
   </script>
-  <!-- <script src="https://unpkg.com/juncture-digital/dist/assets/js" type="module"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
   <script type="module">
     
     const isDev = window.location.hostname == 'localhost'
-    const wcEndpoint = 'https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js'
+    const wcEndpoint = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
     const iiifEndpoint = 'https://iiif.juncture-digital.org'
 
     const fileExtensions = new Set(['jp2', 'jpeg', 'jpg', 'mp3', 'mp4', 'ogg', 'ogv', 'png', 'tif', 'tiff', 'webm', 'yaml'])

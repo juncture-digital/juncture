@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <link href="https://juncture-digital.github.io/web-app/static/images/favicon.svg" rel="icon" type="image/svg+xml"/>
-  <link href="https://juncture-digital.github.io/web-app/static/images/favicon.png" rel="icon" type="image/png"/>
+  <link href="https://juncture-digital.github.io/juncture/static/images/favicon.svg" rel="icon" type="image/svg+xml"/>
+  <link href="https://juncture-digital.github.io/juncture/static/images/favicon.png" rel="icon" type="image/png"/>
   <title>Juncture: Editor</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:400" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <link href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" type="text/css" rel="stylesheet"/>
-  <!-- <link href="https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/css/index.css" rel="stylesheet"> -->
-
+  <link href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css" type="text/css" rel="stylesheet"/>
   <style>
     [v-cloak] {display: none}
     * {box-sizing: border-box;}
     body {max-width:1000px; margin: auto !important;}
     #editor {display:grid; grid-template-rows: auto auto 1fr; height: 100vh;}
-    #mde {font-family:Roboto,sans-serif; height:100%; overflow-y: hidden;}
     .EasyMDEContainer {height:calc(100%);}
-    .EasyMDEContainer .CodeMirror {height:calc(100% - 75px); font-size:1.2rem; line-height:1.4; color:#444}
-    .preview .EasyMDEContainer .CodeMirror {height:calc(100% - 60px); border:none;}
+    .EasyMDEContainer .CodeMirror {height:calc(100% - 88px); font-size:1.2rem; line-height:1.4; color:#444}
+    /* .preview .EasyMDEContainer .CodeMirror {height:calc(100% - 60px); border:none;} */
+    .preview .EasyMDEContainer .CodeMirror {height:100%; border:none;}
     .editor-preview {padding:0; background-color:white; border:none;}
     .preview .editor-statusbar {display:none;}
     .cm-ve-tag, .cm-mark {color:red;}
@@ -31,55 +31,70 @@
     .cm-s-easymde .cm-header-5{font-size: calc(1rem + .5vw);}
     .cm-s-easymde .cm-header-6{font-size: calc(1rem + .5vw);}
     .editor-toolbar {display: flex;}
+    .preview .editor-toolbar {display: none;}
     button.preview, #help, #save, #launch, #copy {font-size: 1.5rem; color:#5B152E;}
     button.preview i, #mde #help i, #mde #save i, #mde #launch i, #mde #copy i {font-size: 1.4rem;}
-    button.preview {margin-left:auto;}
+    button#save {margin-left:auto;}
     #save:disabled {color: #ddd;}
     ve-header ul { display: none; }
+    .CodeMirror-scroll { padding-bottom:0; margin-bottom:0;}
   </style>
 </head>
 <body>
 
   <div id="editor">
 
-    <ve-header 
-      v-cloak
-      labe="Editor"
-      background="#5B152E"
-      logo="https://raw.githubusercontent.com/juncture-digital/media/main/images/Juncture_Logo.png"
-      url="/"
-      contact="Ron.Snyder@ithaka.org"
-    >
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/media" target="_blank">Media tool</a></li>
-        <li><a href="/contact">Contact us</a></li>
-        <li><a href="/docs">Help</a></li>
-        <li>auth</li>
-      </ul>
-    </ve-header>
+    <template v-if="isLoggedIn">
 
-    <ve-content-selector v-if="contentPath !== null" id="contentSelector" :content-path="contentPath" mode="essays" sticky></ve-content-selector>
+      <ve-header v-if="!inIframe"
+        v-cloak
+        label="Editor"
+        background="#5B152E"
+        logo="https://raw.githubusercontent.com/juncture-digital/juncture/main/static/images/juncture-logo.png"
+        url="/"
+      >
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/media" target="_blank">Media tool</a></li>
+          <li>auth</li>
+        </ul>
+      </ve-header>
 
-    <div id="mde" ref="mde"
-      @paste.prevent="paste" 
-      @drop.prevent="drop" @dragover.prevent @dragover="overDropzone=true" @dragleave="overDropzone=false">
-      <textarea v-cloak ref="content"></textarea>
+      <ve-content-selector v-if="contentPath !== null" id="contentSelector" compact :content-path="contentPath" mode="essays" sticky></ve-content-selector>
+
+      <div id="mde" ref="mde"
+        @paste.prevent="paste" 
+        @drop.prevent="drop" @dragover.prevent @dragover="overDropzone=true" @dragleave="overDropzone=false"
+        :style="{
+          fontFamily: 'Roboto,sans-serif',
+          height: `calc(100vh - ${inIframe ? 60 : 140}px)`,
+          overflowY: 'hidden',
+          position: 'relative'
+        }"
+      >
+        <textarea v-cloak ref="content"></textarea>
+        <ve-fab id="fab" label="Toggle Preview" icon="eye" action="toggle" color="#5B152E" bottom="100px" :disabled="contentPathIsFile ? null : ''"></ve-fab>
+      </div>
+
+      <b-modal v-cloak id="save-confirm" title="Save file?">
+        <p class="my-4">Path: <b>{{toSavePath}}</b></p>
+        <!-- <div style="height:40vh; overflow-y:scroll;"><pre>{{toSaveContent}}</pre></div> -->
+        <template #modal-footer="{ ok }">
+          <b-button size="sm" variant="normal" @click="setContent()">No</b-button>
+          <b-button size="sm" variant="primary" @click="doSave()">Yes</b-button>
+        </template>
+      </b-modal>
+
+      <b-toast v-cloak id="save-status" title="" solid :auto-hide-delay="saveStatus.status === 200 ? 1000 : 10000" no-close-button><b>Essay save to Github: {{`${saveStatus.status === 200 ? 'success' : 'failed (' + saveStatus.status + ')'} ${saveStatus.statusText}`}}</b></b-toast>
+      <b-toast v-cloak id="link-copied" title="" solid auto-hide-delay="1000" no-close-button><b>Link copied to clipboard:</b>&nbsp;{{link}}</b-toast>
+      <b-toast v-cloak id="text-copied" title="" solid auto-hide-delay="1000" no-close-button><b>Essay text copied to clipboard</b></b-toast>
+    
+    </template>
+
+    <div v-else>
+      <ve-auth></ve-auth>
     </div>
 
-    <b-modal v-cloak id="save-confirm" title="Save file?">
-      <p class="my-4">Path: <b>{{toSavePath}}</b></p>
-      <!-- <div style="height:40vh; overflow-y:scroll;"><pre>{{toSaveContent}}</pre></div> -->
-      <template #modal-footer="{ ok }">
-        <b-button size="sm" variant="normal" @click="setContent()">No</b-button>
-        <b-button size="sm" variant="primary" @click="doSave()">Yes</b-button>
-      </template>
-    </b-modal>
-
-    <b-toast v-cloak id="save-status" title="" solid :auto-hide-delay="saveStatus.status === 200 ? 1000 : 10000" no-close-button><b>Essay save to Github: {{`${saveStatus.status === 200 ? 'success' : 'failed (' + saveStatus.status + ')'} ${saveStatus.statusText}`}}</b></b-toast>
-    <b-toast v-cloak id="link-copied" title="" solid auto-hide-delay="1000" no-close-button><b>Link copied to clipboard:</b>&nbsp;{{link}}</b-toast>
-    <b-toast v-cloak id="text-copied" title="" solid auto-hide-delay="1000" no-close-button><b>Essay text copied to clipboard</b></b-toast>
-  
   </div>
   
   <!-- This is used for deep linking of Single Page Apps when hosted with GitHub Pages -->
@@ -92,8 +107,7 @@
     }(window.location))
   </script>
 
-  <!-- <script src="https://unpkg.com/juncture-digital/dist/assets/js" type="module"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js" type="module"></script>
+  <script src="https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
   <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
@@ -103,7 +117,7 @@
 
     const isDev = window.location.hostname == 'localhost'
     const apiEndpoint = 'https://api.juncture-digital.org'
-    const wcEndpoint = 'https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js'
+    const wcEndpoint = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
     const iiifEndpoint = 'https://iiif.juncture-digital.org'
 
     const videoExtensions = new Set(['mp4', 'ogg', 'ogv', 'webm'])
@@ -121,13 +135,14 @@
     el: '#editor',
     data: () => ({
       contentPath: null,
-      // priorContentPath: '',
+      inIframe: false,
       pathRoot: '/',
       ghAuthToken: null,
       acct: null,
       repo: null,
       easyMDE: null,
       overDropzone: false,
+      isMobile: false,
       isPreviewActive: false,
       loadedDependencies: [],
       userCanUpdate: false,
@@ -149,10 +164,13 @@
       contentPathIsFile() { return this.contentPath?.split('?')[0].split('/').pop().indexOf('.') >= 0 }
     },
     created() {
+      this.inIframe = window.location !== window.parent.location
+      console.log(`inIframe=${this.inIframe}`)
       this.ghAuthToken = localStorage.getItem('gh-auth-token')
       window.addEventListener('storage', (evt) => this.ghAuthToken = localStorage.getItem('gh-auth-token'))
     },
     mounted() {
+      this.isMobile = 'ontouchstart' in document.documentElement && /mobi/i.test(navigator.userAgent)
       let pathElems = window.location.pathname.split('/').filter(pe => pe)
       if (pathElems.length > 0 && pathElems[0] === 'editor') {
         this.pathRoot = '/editor/'
@@ -168,12 +186,15 @@
           this.parseContentPath(evt.detail[0].replace(/^gh:/,''))
         })
         document.getElementById('contentSelector')?.addEventListener('accessChanged', async (evt) => this.userCanUpdate = evt.detail.canUpdate)  
+        document.getElementById('fab')?.addEventListener('fabClicked', (evt) => {
+          EasyMDE.togglePreview(this.easyMDE)
+        })  
       })
-      this.initEditor()
+      if (this.isLoggedIn) this.initEditor()
 
     },
     methods: {
-
+    
       watchContent(evt) {
         if (this.debounce !== null) {
           clearTimeout(this.debounce)
@@ -201,7 +222,7 @@
           
           if (!this.currentIsSaved) {
             this.toSavePath = this.contentPath
-            this.toSaveContent = this.easyMDE.value().trim()
+            this.toSaveContent = this.easyMDE.value()
             this.$bvModal.show('save-confirm')
           } else {
             this.setContent()
@@ -231,7 +252,7 @@
         this.userCanUpdate = document.getElementById('contentSelector')?._instance.exposed.repositoryIsWriteable()
         
         let isFile = filePath.split('/').pop().indexOf('.') >= 0 
-        // console.log(`editor.setContent: acct=${this.acct} repo=${this.repo} contentPath=${contentPath} filePath=${filePath} isFile=${isFile} writeable=${this.userCanUpdate}`)
+        console.log(`editor.setContent: acct=${this.acct} repo=${this.repo} contentPath=${contentPath} filePath=${filePath} isFile=${isFile} writeable=${this.userCanUpdate}`)
 
         if (isFile) {
           let markdown
@@ -240,7 +261,7 @@
             // console.log(`loadContent: path: ${this.newContentPath} source: locally saved content`)
           } else {
             markdown = (await document.getElementById('contentSelector')?._instance.exposed.getFile(this.newContentPath)).content
-            localStorage.setItem('smde_juncture_saved_hash', markdown.hashCode())
+            localStorage.setItem('smde_juncture_saved_hash', markdown.trim().hashCode())
             // console.log(`loadContent: path: ${this.newContentPath} source: remote content`)
           }
           localStorage.setItem('smde_juncture_path', this.newContentPath)
@@ -299,40 +320,43 @@
             mode: CodeMirror.getMode({}, 've-tag'),
             combine: false,
           },
-          toolbar: ['undo', 'redo', '|', 'bold', 'italic', 'heading', 'quote', 'unordered-list', 'ordered-list', 'link', 
-            {
-              class: 'mark',
-              action: () => {this.markText()},
-              className: 'fa fa-code',
-              title: 'Mark Text ',
-              attributes: {id: 'mark'}
-            },           
-            '|', 'preview',
-            {
-              class: 'help',
-              action: () => {this.showHelp()},
-              className: 'fa fa-question',
-              title: 'Help',
-              attributes: {id: 'help'}
-            }, {
-            class: 'save',
-              action: () => {this.saveFile()},
-              className: 'fa fa-save',
-              title: 'Save file',
-              attributes: {id: 'save'}
-            }, {
-            class: 'copy',
-              action: () => {this.copyText()},
-              className: 'fa fa-copy',
-              title: 'Copy text',
-              attributes: {id: 'copy'}
-            }, {
-              class: 'launch',
-              action: () => {this.launch()},
-              className: 'fa fa-external-link',
-              title: 'Launch',
-              attributes: {id: 'launch'}
-            }
+          toolbar: [
+            ...[
+              ...['undo', 'redo', '|','bold', 'italic', 'heading', 'quote'],
+              ...this.isMobile ? [] : ['unordered-list', 'ordered-list', 'link']
+            ], 
+            ...[
+              {
+                class: 'mark',
+                action: () => {this.markText()},
+                className: 'fa fa-code',
+                title: 'Mark Text ',
+                attributes: {id: 'mark'}
+              },           
+              '|', 
+              // 'preview',
+              {
+              class: 'save',
+                action: () => {this.saveFile()},
+                className: 'fa fa-save',
+                title: 'Save file',
+                attributes: {id: 'save'}
+              }, {
+              /*
+              class: 'copy',
+                action: () => {this.copyText()},
+                className: 'fa fa-copy',
+                title: 'Copy text',
+                attributes: {id: 'copy'}
+              }, { 
+              */
+                class: 'launch',
+                action: () => {this.launch()},
+                className: 'fa fa-external-link',
+                title: 'Launch',
+                attributes: {id: 'launch'}
+              }
+            ]
           ]
         })
         // if (this.contentPath) localStorage.setItem('smde_juncture_path', this.contentPath)
@@ -381,10 +405,10 @@
       },
 
       async saveFile() {
-        let content = this.easyMDE.value().trim()
+        let content = this.easyMDE.value()
         this.saveStatus = await document.getElementById('contentSelector')?._instance.exposed.putFile(this.contentPath, content)
         if (this.saveStatus.status === 200) {
-          localStorage.setItem('smde_juncture_saved_hash', content.hashCode())
+          localStorage.setItem('smde_juncture_saved_hash', content.trim().hashCode())
           this.currentIsSaved = true
         }
         this.$bvToast.show('save-status')
@@ -453,10 +477,10 @@
       drop(e) {
         let cursorPos = this.easyMDE.codemirror.coordsChar({left:e.pageX, top:e.pageY})
         let inputText = ''
-        if (e.dataTransfer) inputText = decodeURI(e.dataTransfer.getData('Text') || e.dataTransfer.getData('text/plain') || e.dataTransfer.getData('text/uri-list'))
-        console.log('drop', isURL(inputText), inputText)
+        if (e.dataTransfer) inputText = e.dataTransfer.getData('Text') || e.dataTransfer.getData('text/plain') || e.dataTransfer.getData('text/uri-list')
         if (inputText) {
           if (isURL(inputText)) {
+            inputText = decodeURIComponent(inputText)
             let url = inputText
             let parsed = new URL(url)
             let fileExtension = parsed.pathname.split('/').pop().split('.').pop().toLowerCase()
@@ -482,6 +506,14 @@
               else this.getManifestUrl(url).then((manifestUrl) => this.addImage(manifestUrl, cursorPos))
             }
           } else {
+            inputText = inputText.trim()
+            if (inputText.indexOf('.ve-header') === 0) {
+              cursorPos.ch = 0
+              inputText = `${inputText}\n\n`
+            } else {
+              inputText = `\n${inputText}\n`
+            }
+            this.easyMDE.codemirror.setSelection(cursorPos)
             this.easyMDE.codemirror.replaceSelection(inputText)
           }
         }
@@ -515,7 +547,7 @@
           let merged = imagesList.length === 1
             ? `.ve-media\n    - ${imagesList[0].slice(10)}\n`
             : imagesList.join('\n') + '\n'
-          merged += `    - ${text.split(/\s/).filter(x => x).slice(1).join(' ')}\n`
+          merged += `    - ${text.split(/\s/).filter(x => x).slice(1).join(' ')}`
           this.easyMDE.codemirror.setSelection({line:pos.line-imagesList.length+1,ch:0}, {line:pos.line})
           this.easyMDE.codemirror.replaceSelection(merged)
         } else {
@@ -605,9 +637,20 @@
           this.userCanUpdate = document.getElementById('contentSelector')?.repositoryIsWriteable
             ? await document.getElementById('contentSelector')?.repositoryIsWriteable()
             : false
+          if (!this.easyMDE) this.$nextTick(() => {
+            document.getElementById('contentSelector')?.addEventListener('contentPathChanged', async (evt) => {
+              this.parseContentPath(evt.detail[0].replace(/^gh:/,''))
+            })
+            document.getElementById('contentSelector')?.addEventListener('accessChanged', async (evt) => this.userCanUpdate = evt.detail.canUpdate)  
+            document.getElementById('fab')?.addEventListener('fabClicked', (evt) => {
+              EasyMDE.togglePreview(this.easyMDE)
+            })  
+            this.initEditor()
+          })
         } else {
           Object.keys(localStorage).forEach(key => localStorage.removeItem(key))
           this.easyMDE.value('')
+          location.href = '/'
         }
       },
       userCanUpdate(canUpdate) {

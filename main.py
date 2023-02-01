@@ -39,8 +39,8 @@ except:
 CONFIG = yaml.load(open(f'{SCRIPT_DIR}/config.yaml', 'r').read(), Loader=yaml.FullLoader)
 
 API_ENDPOINT = 'https://api.juncture-digital.org'
-WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js'
-WC_VERSION = '1.0.0-beta.33'
+WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
+WC_VERSION = '2.0.0-beta.1'
 
 PREFIX = 'juncture-digital/essays' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)
@@ -106,7 +106,7 @@ def _get_local_content(path):
     if os.path.exists(_path):
       return open(_path, 'r').read()
   logger.warn(f'Local content not found: path={path}')
-
+  
 def _get_html(path, base_url, ref=REF, host=None, **kwargs):
   logger.info(f'_get_html: path=={path} base_url=={base_url} ref={ref} prefix={PREFIX} host={host}')
   html = ''
@@ -124,9 +124,13 @@ def _get_html(path, base_url, ref=REF, host=None, **kwargs):
     status_code, html =  resp.status_code, resp.text if resp.status_code == 200 else ''
   if status_code == 200:
     if host == 'localhost:8080':
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/js\/index\.js', WC_ENDPOINT, html)
       html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/js\/index\.js', WC_ENDPOINT, html)
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/css\/', 'https://juncture-digital.github.io/web-components/css/', html)
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/css\/', 'https://juncture-digital.github.io/web-components/css/', html)
     elif host == 'dev.juncture-digital.org':
-      html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js', 'https://juncture-digital.github.io/web-components/dist/assets/js/index.js')
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/', 'https://juncture-digital.github.io/web-components/', html)
+      html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/', 'https://juncture-digital.github.io/web-components/')
   return status_code, html
 
 @app.route('/favicon.ico')
@@ -134,8 +138,12 @@ def favicon():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/robots.txt')
-def robots_txt():
+def pwa_sw():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'robots.txt', mimetype='text/plain')
+
+@app.route('/sw.js')
+def robots_txt():
+  return send_from_directory(os.path.join(app.root_path), 'sw.js', mimetype='text/javascript')
 
 @app.route('/sitemap.txt')
 def sitemap_txt():
@@ -144,6 +152,11 @@ def sitemap_txt():
 @app.route('/manifest.json')
 def pwa_manifest():
   return send_from_directory(os.path.join(app.root_path), 'manifest.json', mimetype='application/json')
+
+@app.route('/static/css/<path:path>')
+def css(path):
+  # logger.info(f'{os.path.join(app.root_path, "static", "css")}/{path}')
+  return send_from_directory(os.path.join(app.root_path, 'static', 'css'), path, mimetype='text/css')
 
 @app.route('/<path:path>')
 @app.route('/<path:path>/')
@@ -188,13 +201,15 @@ def render_app(path=None):
     html = PAGE_CACHE[route]
   if host == 'localhost':
     html = html.replace('https://api.juncture-digital.org', API_ENDPOINT)
-    html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js', WC_ENDPOINT)
+    html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js', WC_ENDPOINT)
+    css = f'\n<style>\n{open("../web-components/src/style.css", "r").read()}\n</style>\n'
+    html = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', css, html)
     html = html.replace('https://raw.githubusercontent.com/juncture-digital/juncture/main', '' )
   elif host == 'dev.juncture-digital.org':
-    html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/js\/index\.js', 'https://juncture-digital.github.io/web-components/dist/assets/js/index.js', html)
+    html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/', 'https://juncture-digital.github.io/web-components/', html)
     html = html.replace('https://raw.githubusercontent.com/juncture-digital/juncture/main', 'https://raw.githubusercontent.com/juncture-digital/juncture/dev' )
   else:
-    html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/dist/assets/')
+    html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs/')
   return html
 
 @app.route('/search')
