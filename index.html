@@ -45,7 +45,8 @@
     if (!isMobile && (!location.hash || location.hash === '#/')) toggleSidebar()
 
     window.addEventListener('popstate', (evt) => {
-      // console.log(location.hash, evt) 
+      console.log(location.hash, evt)
+      if (location.hash !== '#/') document.body.classList.remove('close')
     }) // The URL changed...
 
     if (typeof navigator.serviceWorker !== 'undefined') {

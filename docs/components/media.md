@@ -37,6 +37,13 @@ The `.ve-media` viewer supports multiple modes of operation for images.  The def
 
 By default the `.ve-media` viewer will render an image with full deep-zoom and panning enabled.  An alternative to this is to use the `static` attribute to render the image with the interaction features disabled.  Static mode offers some performance advantages and additional image formatting options.  Clicking on an image in static mode will display a popup window with the same image displayed with deep-zoom and panning enabled.
 
+The example belows demonstrates the use of the .ve-media viewer with the same image in static and dynamic modes.  In both cases the caption bar and information popover are rendered in the same way.  The core difference is in how the image is displayed in the viewer pane.  In the dynamic version hovering over the image will reveal the image controls in the top-left portion of the viewer pane.  These controls allow the image to be zoomed and rotated.  The mouse and/or keyboard can be used to pan the image.  In the viewer with the static image these controls are not available.  However, in static mode, clicking on the image will cause the image to be redisplayed in a modal window.  The image viewer in the modal window displays the image in dynamic mode with zooming, panning, rotation enabled.
+
+<ve-snippet collapsible label="Static vs dynamic images">
+.ve-media wc:The_Bug_Peek.jpg left caption="Dynamic image"
+.ve-media wc:The_Bug_Peek.jpg right static caption="Static image"
+</ve-snippet>
+
 ### Multiple images mode
 
 To use more than one image with a `.ve-media` tag the Markdown nested list notation is used.  A Markdown list is defined by prefixing the `    - ` text to each list element on separate lines.   Each list element can include positional and/or key-value attributes for the associated image.
