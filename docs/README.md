@@ -46,7 +46,7 @@ a.cta {
 - WordPress compatible
 - Open source and built on open tools and data formats
 
-Juncture was developed and is maintained by [![JSTOR](https://raw.githubusercontent.com/juncture-digital/juncturemain/static/images/labs.jpg)](https://labs.jstor.org)
+Juncture was developed and is maintained by [![JSTOR](https://raw.githubusercontent.com/juncture-digital/juncture/main/static/images/labs.jpg)](https://labs.jstor.org)
 
 </div>
 <div class="splash-end">
