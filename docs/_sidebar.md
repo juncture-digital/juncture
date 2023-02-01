@@ -10,7 +10,7 @@
 
 - Getting Started
   - [Using the Juncture Documentation](/getting-started)
-  - [Juncture Essay Rendering](/getting-started?id=juncture-essay-rendering-overview)
+  - [Juncture Essay Rendering](/getting-started?id=juncture-essay-rendering)
   - [Creating an essay](/getting-started?id=creating-an-essay)
     - [Add text](/getting-started?id=add-text)
     - [Format text with Markdown](/getting-started?id=format-text-with-markdown)
@@ -28,7 +28,6 @@
   - [ve-mermaid](/components/mermaid)
   - [ve-header](/components/header)
   - [ve-footer](/components/footer)
-  - [ve-hero](/components/hero)
   - [ve-meta](/components/meta)
 
 - Styling
@@ -50,17 +49,17 @@
   - [Fly to](/actions/fly-to)
 
 - Tools
-  - [Editor](/tools/editor)
-  - [Media tool](/tools/media-tool)
+  - [Using the Juncture Editor](/tools/editor)
+  - [The Juncture Media tool](/tools/media-tool)
 
 - How To's
-  - [Use a historical map overlay](/howto/historical-map)
+  - [Use a historical map overlay](/tutorials/historical-map)
+  - [Setting up a custom domain](/tutorials/custom-domain)
 
 - Resources
   - [Background Information](/background)
 
 - Tutorials
-  - [Getting Started](/tutorials/getting-started)
   - [Annotating images](/tutorials/annotating-images)
   - [Building and using a personal media collection](/tutorials/media-collection)
 
