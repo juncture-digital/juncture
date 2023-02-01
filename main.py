@@ -39,8 +39,8 @@ except:
 CONFIG = yaml.load(open(f'{SCRIPT_DIR}/config.yaml', 'r').read(), Loader=yaml.FullLoader)
 
 API_ENDPOINT = 'https://api.juncture-digital.org'
-WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/dist/assets/js/index.js'
-WC_VERSION = '1.0.0-beta.33'
+WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
+WC_VERSION = '2.0.0-beta.1'
 
 PREFIX = 'juncture-digital/essays' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)
