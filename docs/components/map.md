@@ -71,8 +71,8 @@ Map overlays are defined in a Markdown list following the `.ve-map` tag.
     .ve-map 55.4,6.7 2
 </ve-snippet>
 
-<ve-snippet collapsible label="Basic map with center defined Wikidata QID">
-    .ve-map Q485172 5
+<ve-snippet collapsible label="Basic map with center defined using the Wikidata QID for New York City">
+    .ve-map Q60 8
 </ve-snippet>
 
 ### Overlays
