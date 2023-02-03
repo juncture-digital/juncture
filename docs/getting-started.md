@@ -36,14 +36,14 @@ The primary function performed by Juncture is to turn a plain text file stored i
 
 As an example, consider a Juncture user with the Github username of **snagsby**.  Snagsby has created a Juncture visual essay in his essays repository about his favorite Dickens novel, "Bleak House".  The text for the essay has been created in a file named "bleak-house/README.md" located at the root of his Github essays repository.
 - The Github URL for snagsby's essay file is https://github.com/snagsby/essays/blob/main/bleak-house/README.md
-- The URL for rendered Juncture essay would be https://juncture-digital.org/snagsby/essays/bleak-house
+- The URL for rendered Juncture essay would be https://beta.juncture-digital.org/snagsby/essays/bleak-house
 
-All Juncture essays are associated with a URL of the form `https://juncture-digital.org/<USERNAME>/<REPOSITORY>/<PATH><ESSAY-ID>`, where:
+All Juncture essays are associated with a URL of the form `https://beta.juncture-digital.org/<USERNAME>/<REPOSITORY>/<PATH><ESSAY-ID>`, where:
 - `<USERNAME>` and `<REPOSITORY>` are the Github username and repository hosting the file.
 - `<PATH>` is an optional path to a Github folder that contains the essay folder or file.  This is not used for essays stored at the root of a repository.
-- `<ESSAY-ID>` is an identifier associated with the essay.  By convention, this identifier is lower-case text (characters or numbers) without punctuation and dash characters (`-`) replacing spaces. 
+- `<ESSAY-ID>` is an identifier associated with the essay.  By convention, this identifier is lower-case text (characters or numbers) without punctuation, using dash characters (`-`) replacing spaces. 
 
-In addition to the `juncture-digital.org` URL that is available for any Juncture essay, an essay may also be associated with a custom domain.  For example, our friend snagsby has obtained the domain `snagsby.net` for a personal site and connected it to his Github essays repository.  With this custom domain, the URL root https://snagsby.net can also be used for his essays, for instance https://snagsby.net/bleak-house.
+In addition to the `juncture-digital.org` URL that is available for any Juncture essay, an essay may also be associated with a custom domain.  For example, our friend snagsby has obtained the domain `snagsby.net` for a personal site and connected it to his Github essays repository.  With this custom domain, the domain https://snagsby.net can also be used for his essays, for instance https://snagsby.net/bleak-house.  When using a custom domain the URL path will not include the Github username or repository name.
 
 ?> Note that snagsby could have also created his essay in a text file named `bleak-house.md`.  A Juncture essay associated with the identifier bleak-house could be created in either a file named with the desired identifier (bleak-house, in this case) and a `.md` extension, **or** in a file named `README.md` located in a Github folder named with the essay identifier, for instance (`bleak-house/README.md`).  Either of these approaches would result in a Juncture essay accessed by the URL https://juncture-digital.org/snagsby/essays/bleak-house.  The advantage of using the folder-based approach is that this provides a convenient place for storing other files that may eventually be associated with an essay (for instance, image annotations or map overlays).  The folder approach is generally recommended for all but the simplest essays.
 
@@ -171,7 +171,7 @@ This next snippet shows the use of `fly to` actions with a `.ve-map` viewer.
     - ==Overview=={11.18,-27.77,2}
 </ve-snippet>
 
-More information on the Juncture interactions framework can be found [here](/actions/overview).
+More information on the Juncture interactions framework can be found [here](/actions).
 
 ## Add Header and Footer
 
