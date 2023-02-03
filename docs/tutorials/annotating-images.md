@@ -11,4 +11,3 @@ Once activated, you can add an annotation by holding the SHIFT key and clicking 
 Once the annotations are added, the icon in the bottom left of the image will update with a yellow number indicating that annotated regions are included in the image. In the video below, we are viewing the annotations in the completed essay.
 
 <ve-media src="gh:juncture-digital/media/videos/Delete_Annotation.gif" no-caption no-info-icon width="60%"></ve-media>
- d

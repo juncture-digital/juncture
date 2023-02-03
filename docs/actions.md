@@ -79,10 +79,50 @@ In the example below a map and 3 paragraphs are defined.  Each of the paragraphs
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </ve-snippet>
 
+### Getting action values
 
-## Media viewer actions
+This section describe techniques for obtaining action values.  In many cases the values can be obtained from the respective viewer when in editor preview mode.
 
-### Zoom to image region
+  When using the Juncture editor to develop an essay, actions values for the image `zoomto` and map `flyto` actions can be easily obtained from the respective component while in editor preview mode.   
+
+### Adding action values to marked text
+
+The `Mark text` icon in the editor formatting toolbar is also convenient for marking text and inserting action values.  When using this approach, first add the coordinates to the clipboard as described above.  Exit preview mode and then select the text to be marked by dragging your cursor over the text in the editor window.  After the text has been selected, press the `Mark text` icon in the formatting toolbar.  This will result in the text being marked with the desired coordinates.
+
+#### Image region
+
+An image region can be expressed in absolute pixel values or as a percent of the full image size.  The table below describes the format of the value in each approach.
+
+| Approach | Format | Description |
+| -------- | ------ | ----------- |
+| Absolute pixels | x,y,w,h     | The region of the full image to be returned is specified in terms of absolute pixel values. The value of x represents the number of pixels from the 0 position on the horizontal axis. The value of y represents the number of pixels from the 0 position on the vertical axis. Thus the x,y position 0,0 is the upper left-most pixel of the image. w represents the width of the region and h represents the height of the region in pixels. |
+| Pct of full image | pct:x,y,w,h | The region to be returned is specified as a sequence of percentages of the full image’s dimensions, as reported in the image information document. Thus, x represents the number of pixels from the 0 position on the horizontal axis, calculated as a percentage of the reported width. w represents the width of the region, also calculated as a percentage of the reported width. The same applies to y and h respectively. These may be floating point numbers. |
+
+Percentage values can often be determined with an initial approximation and a little iterative fine-tuning using the viewer.  However, in most cases it is probably quickest and easiest to use pixel values that can be copied from the viewer.  This is accomplished by using the media viewer controls to position the image to reflect its desired appearance following the `zoomto` action.  Once the image is in the desired position, hover your cursor over the bottom-right corner of the media viewer.  When hovering over the bottom-right corner, the region coordinates will become visible.  Clicking on them will copy the values onto the clipboard.  Once that is done they can then be pasted directly into the essay text (after toggling out of preview mode).  The value can also be added to text using the `Mark text` helper in the editor formatting tool bar.
+
+The example below shows the use of a `zoomto` action using both percent and absolute pixel values.  In both cases the same image region should be displayed following the action.
+
+<ve-snippet>
+    .ve-media wc:The_Bug_Peek.jpg right
+    
+    - ==Full image=={pct:0,0,100,100}
+    - ==Zoomto using image percent=={pct:17,16,30,30}
+    - ==Zoomto using absolute pixels=={923,580,1630,1085}
+</ve-snippet>
+
+#### Image annotation ID
+
+After an image has been annotated (as described in [this tutorial](tutorials/annotating-images)) the annotation ID can be obtained by clicking on the annotation.  When clicking on the annotation the annotation ID is copied onto the clipboard.  Once that has been accomplished the vale can then be pasted into the essay text directly or by using the `Mark text` helper located in the editor formatting tool bar. 
+
+#### Map coordinates
+
+#### Map location ID
+
+## Examples
+
+### Media viewer actions
+
+#### Zoom to image region
 
 <ve-snippet collapsible label="Zoom to image region (using key-value notation)">
 .ve-media wc:The_Bug_Peek.jpg right
@@ -94,7 +134,7 @@ The image depicts a ==leaf beetle=={zoomto=1005,507,1676,1117} looking out from 
 The image depicts a ==leaf beetle=={1005,507,1676,1117} looking out from a leaf hole of Alnus nepalensis tree. Adult leaf beetles make holes in host plant leaves while feeding. They camouflage themselves with these holes.
 </ve-snippet>
 
-### Show annotation
+#### Show annotation
 
 <ve-snippet collapsible label="Show annotation (using key-value notation)">
 .ve-media wc:The_Bug_Peek.jpg right base=juncture-digital/juncture/examples/hello-juncture
@@ -106,7 +146,7 @@ The image depicts a ==leaf beetle=={anno=386db45b} looking out from a leaf hole 
 The image depicts a ==leaf beetle=={386db45b} looking out from a leaf hole of Alnus nepalensis tree. Adult leaf beetles make holes in host plant leaves while feeding. They camouflage themselves with these holes.
 </ve-snippet>
 
-### Zoom to image region and show annotation
+#### Zoom to image region and show annotation
 
 <ve-snippet collapsible label="Zoom to image region and show annotation (using key-value notation)">
 .ve-media wc:The_Bug_Peek.jpg right base=juncture-digital/juncture/examples/hello-juncture
@@ -118,7 +158,7 @@ The image depicts a ==leaf beetle=={zoomto=167,1,3352,2233,386db45b} looking out
 The image depicts a ==leaf beetle=={167,1,3352,2233,386db45b} looking out from a leaf hole of Alnus nepalensis tree. Adult leaf beetles make holes in host plant leaves while feeding. They camouflage themselves with these holes.
 </ve-snippet>
 
-### Play at time
+#### Play at time
 
 <ve-snippet collapsible label="Play at time (using key-value notation)">
 .ve-media https://www.youtube.com/watch?v=Zy3K2Lcw7hQ right
@@ -130,7 +170,7 @@ Start playing video at ==time=={play=10}
 Start playing video at ==time=={10}
 </ve-snippet>
 
-## Map viewer actions
+### Map viewer actions
 
 <ve-snippet collapsible label="Fly to location using lat/lng coordinates">
 .ve-map Q60 8 right

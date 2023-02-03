@@ -171,7 +171,7 @@ This next snippet shows the use of `fly to` actions with a `.ve-map` viewer.
     - ==Overview=={11.18,-27.77,2}
 </ve-snippet>
 
-More information on the Juncture interactions framework can be found [here](/actions/overview).
+More information on the Juncture interactions framework can be found [here](/actions).
 
 ## Add Header and Footer
 

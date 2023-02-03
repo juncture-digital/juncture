@@ -42,11 +42,10 @@
   - [Image annotation](/annotation/image-annotation)
 
 - Actions Framework
-  - [Overview](/actions/overview)
-  - [Marking text](/actions/marking-text)
-  - [Zoom to](/actions/zoom-to)
-  - [Play at](/actions/play-at)
-  - [Fly to](/actions/fly-to)
+  - [Overview](/actions?id=overview)
+  - [Marking text](/actions?id=marking-text)
+  - [Action values](/actions?id=getting-action-values)
+  - [Examples](/actions?id=examples)
 
 - Tools
   - [Using the Juncture Editor](/tools/editor)
