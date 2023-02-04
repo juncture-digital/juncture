@@ -29,6 +29,7 @@
   - [ve-header](/components/header)
   - [ve-footer](/components/footer)
   - [ve-meta](/components/meta)
+  - [ve-annotate](/components/annotate)
 
 - Styling
   - [General](/styling/general)

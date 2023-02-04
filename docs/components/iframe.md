@@ -118,6 +118,10 @@ The following attributes are passed through to the native `iframe` element.  The
 .ve-iframe https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1xuY4upIooEeszZ_lCmeNx24eSFWe0rHe9ZdqH2xqVNk&font=Default&lang=en&initial_zoom=2&height=100% right
 </ve-snippet>
 
+<ve-snippet collapsible label="Wikimedia Commons picture of the day">
+.ve-iframe https://commons.wikimedia.org/wiki/Commons:Picture_of_the_day/Today
+</ve-snippet>
+
 ### Expert
 
 Coming...

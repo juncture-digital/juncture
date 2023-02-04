@@ -2,11 +2,13 @@
 
 In this Quick Start guide you'll create your own version of the `Hello, Juncture` demo essay.  This quick start consists of 5 easy steps and should only require a couple minutes to complete if you already have a Github account.  A few minutes more if not.
 
+?> After completing this quick start, visiting the more comprehensive [Getting Started](/getting-started) guide would be a great next step in becoming acquainted with Juncture features and use.  The Getting Started guide provides more information and many helpful examples.
+
 Click this button to see what we're going to create. <ve-modal button-label="Hello, Juncture" src="juncture-digital/juncture/examples/hello-juncture"></ve-modal> 
 
 While this is a simple essay it illustrates the basic steps in creating an essay.  The generated essay could also be used as a starting point for more involved essays.
 
-?> Some of the steps in this guide include a <ve-modal></ve-modal> button below the step instruction text.  Clicking this button will open a popup with an animation demonstrating the actions to be performed.  Note that clicking this button is optional, but can often be helpful in clarifying something that may not be clear in the text.
+?> **Show me** buttons - Some of the steps in this guide include a "Show me" button below the step's instruction text.  Clicking this button will open a popup with a short animation demonstrating the actions to be performed.  Clicking this button is optional, but can often be helpful in clarifying something that may not be clear from the text alone.
 
 ### 1. First things, first...
 

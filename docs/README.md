@@ -67,7 +67,7 @@ This version of Juncture represents the second generation of the Juncture concep
 
 ?> Documentation for Juncture version 1 can be found [here](https://github.com/jstor-labs/juncture/wiki).
 
-In its current form Juncture is still well-suited for the type of digital story telling emphasized in version 1 but now can be more easily used for generating web pages that are less text-centric, such as an image exhibitions.
+In its current form Juncture is still well-suited for the type of digital story telling emphasized in version 1 but can now be more easily used for generating web pages that are less text-centric, such as an image exhibition.
 
 A few examples are provided to help explain what Juncture is.  Press any of the buttons below for a quick demo.
 
