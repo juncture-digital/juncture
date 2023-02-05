@@ -6,10 +6,10 @@
     - [Home](/)
     - [Quick Start](/quick-start)
     - [**Editor**](/tools/editor)
-      - [Overview](/tools/editor)
+      - [Getting started](/tools/editor)
       - [Open Editor](/embedded-editor)
     - [**Media Tool**](/tools/media-tool)
-      - [Overview](/tools/media-tool)
+      - [Getting started](/tools/media-tool)
       - [Open Media Tool](/embedded-media)
     - [**Showcase**](/showcase)
 

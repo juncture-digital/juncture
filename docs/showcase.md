@@ -1,37 +1,14 @@
-# Juncture Showcase {.cards}
+<ve-essay>
+<pre>
 
-## Ancient Lavatory {href=#}
+    # Juncture Showcase
+    
+    ## {.cards}
 
-![](https://iiif.juncture-digital.org/thumbnail/wc:Canterbury_-_lavatory_tower03b.jpg)
+    ### Bedroom in Arles {href=/examples/bedroom-in-arles}
 
-The ancient lavatory at Canterbury Cathedral where the monks washed before and after eating.
+    ![](https://iiif.juncture-digital.org/thumbnail/wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg)
 
-## St Augustine's Abbey {href=#}
-
-![](https://iiif.juncture-digital.org/thumbnail/wc:Augustine_Abbey.jpg)
-
-St Augustine's Abbey was a Benedictine monastery in Canterbury. The abbey was founded in 598.
-
-## Canterbury High Street {href=#}
-
-![](https://iiif.juncture-digital.org/thumbnail/wc:High_Street%2C_Canterbury%2C_Kent.jpg)
-
-The first Archbishop of Canterbury, Augustine, arrived in Kent as a missionary in 597AD. 
-
-## Canterbury Cathedral {href=#}
-
-![](https://iiif.juncture-digital.org/thumbnail/wc:Canterbury_cathedral_20160901.jpg)
-
-Founded in 597, the cathedral is the oldest Christian structure in England.
-
-## Dane John Gardens {href=#}
-
-![](https://iiif.juncture-digital.org/thumbnail/wc:Dane_John_gardens_-_geograph.org.uk_-_746465.jpg)
-
-The Dane John Gardens were created on common land by Alderman James Simmons in 1790.
-
-## Dane John Mound {href=#}
-
-![](https://iiif.juncture-digital.org/thumbnail/wc:Dane_John_mound_-_geograph.org.uk_-_2277327.jpg)
-
-The Dane John Mound is a Roman cemetery in Canterbury.
+    An essay about one of Vincent van Gogh's most famous works, "Bedroom in Arles".  The painting was created in 1888 while he was living at 2 Place Lamartine in Arles, France, in what would come to be known as the "Yellow House".
+</pre>
+</ve-essay>

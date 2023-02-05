@@ -64,6 +64,10 @@ Essays are defined in plain text files that are stored in a Github repository.  
 
 - A Github repository will be associated with a URL of the form `https://github.com/<USERNAME>/<REPOSITORY>`, where `<USERNAME>` is the Github username associated with your Github account and `REPOSITORY` is the name of a repository in the account.  By convention the repository name is often `essays`, but any repository name can be used.  
 
+# Creating an essay
+
+This section describes the steps typically performed in the creation of a Juncture essay.  The steps described represent a logical progression from plain, unformatted text, to a completed visual essay with text formatting, interactive viewers, text-to-viewer interactions, headers and footers, and more.  This is a conceptual workflow.  All of these activities are actually optional and can be performed in any sequence.  In practice the creation of an essay is often an iterative process where aspects of some steps are performed multiple times. 
+
 ## Essay creation options
 
 Options for creating an essay text file include:
@@ -84,10 +88,6 @@ After logging in with Github the Juncture editor can be used in one of two ways:
 !> The editor works identically in either mode.  One caution though - **try to avoid using both simultaneously as divergent edits may result in Github merge conflicts when saving.**
 
 An overview on using the Juncture Editor can be found [here](/tools/editor)
-
-# Creating an essay
-
-This section describes the steps typically performed in the creation of a Juncture essay.  The steps described represent a logical progression from plain, unformatted text, to a completed visual essay with text formatting, interactive viewers, text-to-viewer interactions, headers and footers, and more.  This is a conceptual workflow.  All of these activities are actually optional and can be performed in any sequence.  In practice the creation of an essay is often an iterative process where aspects of some steps are performed multiple times. 
 
 ## Add Text
 
