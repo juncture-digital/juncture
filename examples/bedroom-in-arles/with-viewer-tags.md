@@ -1,5 +1,3 @@
-.ve-header "Bedroom in Arles" wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg position=top sticky
-
 # Bedroom in Arles
 
 **Bedroom in Arles** (French: _La Chambre à Arles_; Dutch: _Slaapkamer te Arles_) is the title given to each of three similar paintings by 19th-century Dutch Post-Impressionist painter ==Vincent van Gogh=={Q5582}.
@@ -22,7 +20,7 @@ Van Gogh started the first version during mid October 1888 while staying in Arle
 
 .ve-media wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg width=70%
 
-Van Gogh included sketches of the composition in this letter as well as in a letter to Gauguin, written slightly later.[^3] In the letter, van Gogh explained that the painting had come out of a sickness that left him bedridden for days.[^4] This version has on the wall to the right miniatures of van Gogh's portraits of his friends Eugène Boch and Paul-Eugène Milliet. The portrait of ==Eugène Boch=={Q1373445} is called ==The Poet=={18424,26,3552,2816} and the portrait of ==Paul Eugène Milliet=={Q7232361} is called ==The Lover=={21999,1,2437,1932}.[^5] [^6]
+Van Gogh included sketches of the composition in this letter as well as in a letter to Gauguin, written slightly later.[^3] In the letter, van Gogh explained that the painting had come out of a sickness that left him bedridden for days.[^4] This version has on the wall to the right miniatures of van Gogh's portraits of his friends Eugène Boch and Paul-Eugène Milliet. The portrait of ==Eugène Boch=={Q1373445} is called The Poet and the portrait of ==Paul Eugène Milliet=={Q7232361} is called The Lover.[^5] [^6]
 
 ### Second Version
 
@@ -52,11 +50,7 @@ Click on any of the thumbnails above for a larger version of the image with deep
 
 .ve-video https://www.youtube.com/watch?v=q8abIqDaqvE right
 
-This episode of "Anatomy of an Artwork" (YouTube video uploaded by [Sotheby's](https://www.youtube.com/@sothebys)), provides a guided tour of the painting and context in which it was created.  A few clips of note are linked below: 
-
-- ==The "Yellow House" and location of van Gogh's Bedroom=={74}
-- ==The Sketch=={89}
-- ==Paintings perspective=={160}
+This episode of "Anatomy of an Artwork" (YouTube video uploaded by [Sotheby's](https://www.youtube.com/@sothebys)), provides a guided tour of the painting and context in which it was created.  
 
 ## Arles
 
@@ -77,15 +71,15 @@ Vincent van Gogh lived in Arles from 1888 to 1889, and produced over 300 paintin
 
 ### The Yellow House
 
-The house was the right wing of ==2 Place Lamartine, Arles, France=={43.68217,4.63251,18}, where, on May 1, 1888, van Gogh rented four rooms. 
+The house was the right wing of 2 Place Lamartine, Arles, France, where, on May 1, 1888, van Gogh rented four rooms. 
 
 .ve-media wc:Vincent_van_Gogh_-_The_yellow_house_('The_street').jpg left
 
 Van Gogh occupied two large ones on the ground floor to serve as an atelier (workshop) and kitchen, and on the first floor, two smaller ones facing Place Lamartine. 
 
-The window on the first floor nearest the corner with both shutters open is that of ==van Gogh's guest room, where Paul Gauguin lived=={2444,1755,1730,1344,529bba37} for nine weeks from late October 1888. 
+The window on the first floor nearest the corner with both shutters open is that of van Gogh's guest room, where Paul Gauguin lived for nine weeks from late October 1888. 
 
-Behind the next window, with shutters nearly closed, is ==van Gogh's bedroom=={2566,2019,1300,1010,b53cd661}. The two small rooms at the rear were rented by van Gogh at a later time.
+Behind the next window, with shutters nearly closed, is van Gogh's bedroom. The two small rooms at the rear were rented by van Gogh at a later time.
 
 ## References
 

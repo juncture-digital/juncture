@@ -1,5 +1,3 @@
-.ve-header "Bedroom in Arles" wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg position=top sticky
-
 # Bedroom in Arles
 
 **Bedroom in Arles** (French: _La Chambre à Arles_; Dutch: _Slaapkamer te Arles_) is the title given to each of three similar paintings by 19th-century Dutch Post-Impressionist painter ==Vincent van Gogh=={Q5582}.
@@ -101,5 +99,3 @@ Behind the next window, with shutters nearly closed, is ==van Gogh's bedroom=={2
 [^10]: ["Vincent van Gogh to Theo van Gogh : 28 September 1889"](https://www.webexhibits.org//vangogh/letter/20/608.htm). webexhibits.org.
 [^11]:  ["Van Gogh's Bedrooms"](https://www.artic.edu/exhibitions/1865/van-gogh-s-bedrooms). The Art Institute of Chicago.
 [^12]:  ["The Bedroom"](https://www.artic.edu/artworks/28560/the-bedroom). The Art Institute of Chicago.
-
-.ve-annotate
