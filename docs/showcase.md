@@ -5,7 +5,7 @@
     
     ## {.cards}
 
-    ### Bedroom in Arles {href=/examples/bedroom-in-arles}
+    ### Bedroom in Arles {href=https://beta.juncture-digital.org/examples/bedroom-in-arles}
 
     ![](https://iiif.juncture-digital.org/thumbnail/wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg)
 
