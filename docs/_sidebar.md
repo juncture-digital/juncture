@@ -5,8 +5,13 @@
   - Juncture
     - [Home](/)
     - [Quick Start](/quick-start)
-    - [Editor](/embedded-editor)
-    - [Media Tool](/embedded-media)
+    - [**Editor**](/tools/editor)
+      - [Overview](/tools/editor)
+      - [Open Editor](/embedded-editor)
+    - [**Media Tool**](/tools/media-tool)
+      - [Overview](/tools/media-tool)
+      - [Open Media Tool](/embedded-media)
+    - [**Showcase**](/showcase)
 
 - Getting Started
   - [Using the Juncture Documentation](/getting-started)
@@ -17,30 +22,28 @@
     - [Add footnotes](/getting-started?id=add-footnotes)
     - [Add entity popovers](/getting-started?id=add-entity-popovers)
     - [Add Juncture viewer tags](/getting-started?id=add-juncture-viewer-tags)
-    - [Add interactions](/getting-started?id=add-interactions)
+    - [Add viewer interactions](/getting-started?id=add-viewer-interactions)
     - [Add header and footer](/getting-started?id=add-header-and-footer)
     - [Enable annotations](/getting-started?id=enable-annotations)
 
-- Juncture Tags
-  - [ve-media](/components/media)
-  - [ve-map](/components/map)
-  - [ve-iframe](/components/iframe)
-  - [ve-mermaid](/components/mermaid)
-  - [ve-header](/components/header)
-  - [ve-footer](/components/footer)
-  - [ve-meta](/components/meta)
-  - [ve-annotate](/components/annotate)
+- Juncture Tagging
+  - [Overview](/components/overview)
+  - [Viewer Tags](/components/overview?id=viewer-tags)
+    - [ve-media](/components/media)
+    - [ve-map](/components/map)
+    - [ve-iframe](/components/iframe)
+    - [ve-mermaid](/components/mermaid)
+    - [ve-header](/components/header)
+    - [ve-footer](/components/footer)
+  - [Other Tags](/components/overview?id=other-tags)
+    - [ve-meta](/components/meta)
+    - [ve-annotate](/components/annotate)
 
 - Styling
   - [General](/styling/general)
-  - [Text formatting with Markdown](/styling/markdown)
   - [Viewer positioning](/styling/viewer-positioning)
   - [Tabs](/styling/tabs)
   - [Cards](/styling/cards)
-
-- Annotation
-  - [Essay annotation using Hypothes.is](/annotation/essay-annotation)
-  - [Image annotation](/annotation/image-annotation)
 
 - Actions Framework
   - [Overview](/actions?id=overview)
@@ -48,20 +51,20 @@
   - [Action values](/actions?id=getting-action-values)
   - [Examples](/actions?id=examples)
 
-- Tools
-  - [Using the Juncture Editor](/tools/editor)
-  - [The Juncture Media tool](/tools/media-tool)
-
-- How To's
-  - [Use a historical map overlay](/tutorials/historical-map)
-  - [Setting up a custom domain](/tutorials/custom-domain)
+- How To Guides
+  - [Finding images](/howto/find-images)
+  - [Annotating images](/howto/annotate-images)
+  - [Setting up a media collection](/howto/setup-media-collection)
+  - [Use a historical map overlay](/howto/use-historic-maps)
+  - [Configuring a custom domain](/howto/configure-custom-domain)
+  - [Using Juncture with WordPress](/howto/use-juncture-with-wordpress)
 
 - Resources
-  - [Background Information](/background)
-
-- Tutorials
-  - [Annotating images](/tutorials/annotating-images)
-  - [Building and using a personal media collection](/tutorials/media-collection)
+  - [Background Information](/resources/background)
+    - [IIIF](/resources/background?id=iiif)
+    - [GeoJSON](/resources/background?id=iiif)
+  - [IIIF](/resources/iiif)
+  - [GeoJSON](/resources/geojson)
 
 - Misc
   - [Contact Us](/contact)

@@ -89,115 +89,59 @@ An overview on using the Juncture Editor can be found [here](/tools/editor)
 
 This section describes the steps typically performed in the creation of a Juncture essay.  The steps described represent a logical progression from plain, unformatted text, to a completed visual essay with text formatting, interactive viewers, text-to-viewer interactions, headers and footers, and more.  This is a conceptual workflow.  All of these activities are actually optional and can be performed in any sequence.  In practice the creation of an essay is often an iterative process where aspects of some steps are performed multiple times. 
 
-This Getting Started guide provides step-by-step instructions and examples for creating a Juncture essay.
-
-In addition to the general information provided, each section will incrementally build a completed essay that utilizes many Juncture features.  The subject of this sample essay will be the "Bedroom in Arles" paining by Vincent van Gogh. 
-
-Click on the buttons below to see the incremental updates that will be applied in each step.  We'll be exploring this in more detail in the following sections.
-
-<ve-modal src="juncture-digital/juncture/examples/bedroom-in-arles/plain-text" button-label="Plain text"></ve-modal> ⮕ <ve-modal src="juncture-digital/juncture/examples/bedroom-in-arles/with-markdown" button-label="Markdown formatting"></ve-modal> ⮕ <ve-modal src="juncture-digital/juncture/examples/bedroom-in-arles/with-footnotes" button-label="Footnotes"></ve-modal> ⮕ <ve-modal src="juncture-digital/juncture/examples/bedroom-in-arles/with-entity-popovers" button-label="Entity Info Popovers"></ve-modal> ⮕ <ve-modal src="juncture-digital/juncture/examples/bedroom-in-arles/with-viewer-tags" button-label="Juncture Viewer Tagging"></ve-modal> ⮕ <ve-modal src="juncture-digital/juncture/examples/bedroom-in-arles/with-interactions" button-label="Text-to-Viewer Interactions"></ve-modal> ⮕ <ve-modal src="juncture-digital/juncture/examples/bedroom-in-arles/with-header" button-label="Header"></ve-modal> ⮕ <ve-modal src="juncture-digital/juncture/examples/bedroom-in-arles" button-label="Completed Version"></ve-modal>
-
 ## Add Text
 
-Essay text is often entered as plain, unformatted text using a text editor.  During this phase of essay development the text is often just organized into paragraphs.  There is nothing special about paragraph formatting in Markdown (and by extension, Juncture).  A paragraph is simply a grouping of one or more sentences separated by one or more blank lines.  The Juncture editor will automatically wrap paragraph text so separating each sentence with a new line is not necessary, or even recommended.  In this digital format it is also a good idea to keep paragraphs relatively small.
-
-The starting text that we'll be using for this sample essay was obtained from [Wikipedia](https://en.wikipedia.org/wiki/Bedroom_in_Arles).
-
-<ve-snippet collapsible label="Plain text version of 'Bedroom in Arles' sample essay">
-    Bedroom in Arles
-
-    Bedroom in Arles (French: La Chambre à Arles; Dutch: Slaapkamer te Arles) is the title given to each of three similar paintings by 19th-century Dutch Post-Impressionist painter Vincent van Gogh.
-
-    Van Gogh's own title for this composition was simply The Bedroom (French: La Chambre à coucher). There are three authentic versions described in his letters, easily distinguishable from one another by the pictures on the wall to the right.
-
-    The Paintings
-
-    The painting depicts van Gogh's bedroom at 2, Place Lamartine in Arles, Bouches-du-Rhône, France, known as the Yellow House. The door to the right opened on to the upper floor and the staircase; the door to the left was that of the guest room he held prepared for Gauguin; the window in the front wall looked on to Place Lamartine and its public gardens. This room was not rectangular but trapezoid with an obtuse angle in the left hand corner of the front wall and an acute angle at the right.
-
-    First Version
-
-    Van Gogh started the first version during mid October 1888 while staying in Arles, and explained his aims and means to his brother Theo:
-
-    "This time it simply reproduces my bedroom; but colour must be abundant in this part, its simplification adding a rank of grandee to the style applied to the objects, getting to suggest a certain rest or dream. Well, I have thought that on watching the composition we stop thinking and imagining. I have painted the walls pale violet. The ground with checked material. The wooden bed and the chairs, yellow like fresh butter; the sheet and the pillows, lemon light green. The bedspread, scarlet coloured. The window, green. The washbasin, orangey; the tank, blue. The doors, lilac. And, that is all. There is not anything else in this room with closed shutters. The square pieces of furniture must express unswerving rest; also the portraits on the wall, the mirror, the bottle, and some costumes. The white colour has not been applied to the picture, so its frame will be white, aimed to get me even with the compulsory rest recommended for me. I have depicted no type of shade or shadow; I have only applied simple plain colours, like those in crêpes."
-    
-    Van Gogh included sketches of the composition in this letter as well as in a letter to Gauguin, written slightly later.[3] In the letter, van Gogh explained that the painting had come out of a sickness that left him bedridden for days.[4] This version has on the wall to the right miniatures of van Gogh's portraits of his friends Eugène Boch and Paul-Eugène Milliet. The portrait of Eugène Boch is called The Poet and the portrait of Paul Eugène Milliet is called The Lover.
-
-    Second Version
-
-    In April 1889, van Gogh sent the initial version to his brother regretting that it had been damaged by the flood of the Rhône while he was interned at the Old Hospital in Arles. Theo proposed to have it relined and sent back to him in order to copy it. This "repetition" in original scale (Van Gogh's term was "répetition") was executed in September 1889. Both paintings were then sent back to Theo.
-
-    Third version
-
-    In summer, 1889, Van Gogh finally decided to redo some of his "best" compositions in a smaller size (the term he used was réductions) for his mother and his sister Wil, The Bedroom was among the subjects he chose. These réductions, finished late in September 1889, are not exact copies.
-
-    In The Bedroom, the miniature portrait to the left recalls van Gogh's Peasant of Zundert self-portrait. The one to the right cannot be linked convincingly to any existing painting by van Gogh.
-
-    Provenance
-
-    The first version never left the artist's estate. Since 1962, it has been in the possession of the Vincent van Gogh Foundation, established by Vincent Willem van Gogh, the artist's nephew, and on permanent loan to the Van Gogh Museum, Amsterdam.
-    The second version has, since 1926, been the possession of the Art Institute of Chicago as part of the Helen Birch Bartlett Memorial Collection.
-    The third version, formerly in the possession of Van Gogh's sister Wil and later acquired by Prince Matsukata, entered the French national collections in 1959, following the French-Japanese peace settlement, and is on permanent display in the Musée d'Orsay, Paris.
-    All three versions of the Bedroom were brought together for an exhibition entitled Van Gogh's Bedrooms at the Art Institute of Chicago in 2016. The exhibition featured related works as well as a digital reconstruction of his bedroom.
-
-    Arles
-
-    Arles is a coastal city and commune in the South of France, a subprefecture in the Bouches-du-Rhône department of the Provence-Alpes-Côte d'Azur region, in the former province of Provence.
-
-    Many artists have lived and worked in this area because of the southern light, including Pablo Picasso, Paul Gauguin, Jacques Réattu, and Peter Brown. The Dutch post-Impressionist painter Vincent van Gogh lived in Arles from 1888 to 1889, and produced over 300 paintings and drawings during his time there. These are in internationally known museums and private collections around the world.
-
-</ve-snippet>
+Essay text is often entered as plain, unformatted text using a text editor.  During this phase of essay development the text is often just organized into paragraphs.  There is nothing special about paragraph formatting in Juncture.  A paragraph is simply a grouping of one or more sentences separated by one or more blank lines.  The Juncture editor will automatically wrap paragraph text so putting each sentence on a new line is not necessary, or even recommended.  In this digital format it is also a good idea to keep paragraphs relatively small.
 
 ## Format Text with Markdown
 
-Adding Markdown formatting can be done during the initial text entry or added later.  Most often it will be a combination of both.  The Juncture Editor includes a Markdown formatting tool bar in the top-left portion of the editor window.  This can be convenient for most formatting.  The Markdown tags are also quite simple and easy to remember.  Entering the tags manually is often equally fast and convenient.  Below are some links to Markdown resources.
+Adding Markdown formatting can be done during the initial text entry or added later.  Most often it will be a combination of both.  The Juncture Editor includes a Markdown formatting tool bar in the top-left portion of the editor window.  This can be convenient for most formatting.  The Markdown tags are also quite simple and easy to remember.  Entering the tags manually is often equally fast and convenient.  Below are some links to resources describing the Markdown syntax.
 
 - [Markdown Guide](https://www.markdownguide.org/)
 - [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 - [Short (12min) Markdown tutorial on YouTube](https://www.youtube.com/watch?v=6A5EpqqDOdk)
 
-In the example below, Markdown tags have been added our sample essay.  This includes the addition of links, section headings, lists, and text formatting to create bold and italicized text passages. 
+The most commonly used Markdown tags are
 
-<ve-snippet collapsible label="'Bedroom in Arles' sample essay with Markdown formatting">
-    # Bedroom in Arles
+- **paragraph** - A paragraph is defined by using a blank line to separate one or more lines of text.  Multiple sentences can appear in a single line of Juncture text.  The Juncture Editor will wrap long lines of text.
+- **heading** - To create a heading, add number signs (#) in front of a word or phrase. The number of number signs you use should correspond to the heading level. For example, to create a heading level three , use three number signs.  Note that the number signs for a heading must start at the beginning of a line.
+- **bold** - To bold text, add two asterisks or underscores before and after a word or phrase. To bold the middle of a word for emphasis, add two asterisks without spaces around the letters.
+- **italic** -To italicize text, add one asterisk or underscore before and after a word or phrase. To italicize the middle of a word for emphasis, add one asterisk without spaces around the letters.
+- **link** - To create a link, enclose the link text in brackets (e.g., [Juncture]) and then follow it immediately with the URL in parentheses (e.g., (https://juncture-digital.org)).
+- **blockquote** - To create a blockquote, add a > in front of a paragraph.
+- **list** - Lists can be ordered or unordered.  To create an ordered list, add line items with numbers followed by periods. The numbers don’t have to be in numerical order, but the list should start with the number one.  To create an unordered list, add dashes (-), asterisks (*), or plus signs (+) in front of line items. Indent one or more items to create a nested list.
 
-    **Bedroom in Arles** (French: _La Chambre à Arles_; Dutch: _Slaapkamer te Arles_) is the title given to each of three similar paintings by 19th-century Dutch Post-Impressionist painter Vincent van Gogh.
+<ve-snippet collapsible label="Basic Markdown formatting">
+    # Markdown example
 
-    Van Gogh's own title for this composition was simply **The Bedroom** (French: _La Chambre à coucher_). There are three authentic versions described in his letters, easily distinguishable from one another by the pictures on the wall to the right.
+    ## Markdown paragraphs
 
-    ## The Paintings
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit laoreet id donec ultrices tincidunt arcu non. Lectus urna duis convallis convallis tellus id interdum. Mi bibendum neque egestas congue quisque egestas diam in. 
+    
+    Proin nibh nisl condimentum id. Donec massa sapien faucibus et molestie ac feugiat. Sit amet est placerat in egestas erat imperdiet sed euismod. Nunc aliquet bibendum enim facilisis. Metus aliquam eleifend mi in nulla posuere. Odio eu feugiat pretium nibh ipsum consequat nisl vel.
 
-    The painting depicts van Gogh's bedroom at 2, Place Lamartine in Arles, Bouches-du-Rhône, France, known as the Yellow House. The door to the right opened on to the upper floor and the staircase; the door to the left was that of the guest room he held prepared for Gauguin; the window in the front wall looked on to Place Lamartine and its public gardens. This room was not rectangular but trapezoid with an obtuse angle in the left hand corner of the front wall and an acute angle at the right.
+    ## Markdown lists
 
-    ### First Version
+    **An unordered list:**
+    - First list item
+    - Second list item
+    - Third list item
 
-    Van Gogh started the first version during mid October 1888 while staying in Arles, and explained his aims and means to his brother Theo:
+    **An ordered list:**
+    1. First list item
+    1. Second list item
+    1. Third list item
 
-    > "This time it simply reproduces my bedroom; but colour must be abundant in this part, its simplification adding a rank of grandee to the style applied to the objects, getting to suggest a certain rest or dream. Well, I have thought that on watching the composition we stop thinking and imagining. I have painted the walls pale violet. The ground with checked material. The wooden bed and the chairs, yellow like fresh butter; the sheet and the pillows, lemon light green. The bedspread, scarlet coloured. The window, green. The washbasin, orangey; the tank, blue. The doors, lilac. And, that is all. There is not anything else in this room with closed shutters. The square pieces of furniture must express unswerving rest; also the portraits on the wall, the mirror, the bottle, and some costumes. The white colour has not been applied to the picture, so its frame will be white, aimed to get me even with the compulsory rest recommended for me. I have depicted no type of shade or shadow; I have only applied simple plain colours, like those in crêpes."
+    ## A blockquote
 
-    Van Gogh included sketches of the composition in this letter as well as in a letter to Gauguin, written slightly later. In the letter, van Gogh explained that the painting had come out of a sickness that left him bedridden for days. This version has on the wall to the right miniatures of van Gogh's portraits of his friends Eugène Boch and Paul-Eugène Milliet. The portrait of Eugène Boch is called The Poet and the portrait of Paul Eugène Milliet is called The Lover.
+    > Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Velit laoreet id donec ultrices tincidunt arcu non. Lectus urna duis convallis convallis tellus id interdum. Mi bibendum neque egestas congue quisque egestas diam in. 
 
-    ### Second Version
+    ## Word and phrase formatting
 
-    In April 1889, van Gogh sent the initial version to his brother regretting that it had been damaged by the flood of the Rhône while he was interned at the Old Hospital in Arles. Theo proposed to have it relined and sent back to him in order to copy it. This "repetition" in original scale (Van Gogh's term was "répetition") was executed in September 1889. Both paintings were then sent back to Theo.
-
-    ### Third version
-
-    In summer, 1889, Van Gogh finally decided to redo some of his "best" compositions in a smaller size (the term he used was réductions) for his mother and his sister Wil, The Bedroom was among the subjects he chose. These réductions, finished late in September 1889, are not exact copies.
-
-    In The Bedroom, the miniature portrait to the left recalls van Gogh's Peasant of Zundert self-portrait. The one to the right cannot be linked convincingly to any existing painting by van Gogh.
-
-    ### Provenance
-
-    - The first version never left the artist's estate. Since 1962, it has been in the possession of the Vincent van Gogh Foundation, established by Vincent Willem van Gogh, the artist's nephew, and on permanent loan to the Van Gogh Museum, Amsterdam.
-    - The second version has, since 1926, been the possession of the Art Institute of Chicago as part of the Helen Birch Bartlett Memorial Collection.
-    - The third version, formerly in the possession of Van Gogh's sister Wil and later acquired by Prince Matsukata, entered the French national collections in 1959, following the French-Japanese peace settlement, and is on permanent display in the Musée d'Orsay, Paris.
-    - All three versions of the Bedroom were brought together for an exhibition entitled Van Gogh's Bedrooms at the Art Institute of Chicago in 2016. The exhibition featured related works as well as a digital reconstruction of his bedroom.
-
-    ## Arles
-
-    **Arles** is a coastal city and commune in the South of France, a subprefecture in the Bouches-du-Rhône department of the Provence-Alpes-Côte d'Azur region, in the former province of Provence.
-
-    Many artists have lived and worked in this area because of the southern light, including Pablo Picasso, Paul Gauguin, Jacques Réattu, and Peter Brown. The Dutch post-Impressionist painter Vincent van Gogh lived in Arles from 1888 to 1889, and produced over 300 paintings and drawings during his time there. These are in internationally known museums and private collections around the world.
+    - This is **a bolded text**
+    - This is _italicized text_
+    - This is ***a bolded and italicized text***
+    - This is a [link](https://some-url.net)
 
 </ve-snippet>
 
@@ -209,141 +153,40 @@ Adding a footnote reference to essay text is accomplished by appending a simple 
 
 Footnote content must start with the label followed by a colon and at least one space. The label used to define the content must exactly match the label used in the text (including capitalization and white space).
 
-In this next iteration of our sample essay references and footnotes have been added, using the same citations from the [source Wikipedia text](https://en.wikipedia.org/wiki/Bedroom_in_Arles)
+<ve-snippet collapsible label="Basic footnotes example">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[^1]
 
-<ve-snippet collapsible label="'Bedroom in Arles' sample essay with footnotes added">
-    # Bedroom in Arles
-
-    **Bedroom in Arles** (French: _La Chambre à Arles_; Dutch: _Slaapkamer te Arles_) is the title given to each of three similar paintings by 19th-century Dutch Post-Impressionist painter Vincent van Gogh.
-
-    Van Gogh's own title for this composition was simply **The Bedroom** (French: _La Chambre à coucher_). There are three authentic versions described in his letters, easily distinguishable from one another by the pictures on the wall to the right.[^1]
-
-    ## The Paintings
-
-    The painting depicts van Gogh's bedroom at 2, Place Lamartine in Arles, Bouches-du-Rhône, France, known as the Yellow House. The door to the right opened on to the upper floor and the staircase; the door to the left was that of the guest room he held prepared for Gauguin; the window in the front wall looked on to Place Lamartine and its public gardens. This room was not rectangular but trapezoid with an obtuse angle in the left hand corner of the front wall and an acute angle at the right.
-
-    ### First Version
-
-    Van Gogh started the first version during mid October 1888 while staying in Arles, and explained his aims and means to his brother Theo:
-
-    > "This time it simply reproduces my bedroom; but colour must be abundant in this part, its simplification adding a rank of grandee to the style applied to the objects, getting to suggest a certain rest or dream. Well, I have thought that on watching the composition we stop thinking and imagining. I have painted the walls pale violet. The ground with checked material. The wooden bed and the chairs, yellow like fresh butter; the sheet and the pillows, lemon light green. The bedspread, scarlet coloured. The window, green. The washbasin, orangey; the tank, blue. The doors, lilac. And, that is all. There is not anything else in this room with closed shutters. The square pieces of furniture must express unswerving rest; also the portraits on the wall, the mirror, the bottle, and some costumes. The white colour has not been applied to the picture, so its frame will be white, aimed to get me even with the compulsory rest recommended for me. I have depicted no type of shade or shadow; I have only applied simple plain colours, like those in crêpes."[^2]
-
-    Van Gogh included sketches of the composition in this letter as well as in a letter to Gauguin, written slightly later.[^3] In the letter, van Gogh explained that the painting had come out of a sickness that left him bedridden for days.[^4] This version has on the wall to the right miniatures of van Gogh's portraits of his friends Eugène Boch and Paul-Eugène Milliet. The portrait of Eugène Boch is called The Poet and the portrait of Paul Eugène Milliet is called The Lover.[^5][^6]
-
-    ### Second Version
-
-    In April 1889, van Gogh sent the initial version to his brother regretting that it had been damaged by the flood of the Rhône while he was interned at the Old Hospital in Arles. Theo proposed to have it relined and sent back to him in order to copy it. This "repetition" in original scale (Van Gogh's term was "répetition") was executed in September 1889. Both paintings were then sent back to Theo.[^7][^8][^9]
-
-    ### Third version
-
-    In summer, 1889, Van Gogh finally decided to redo some of his "best" compositions in a smaller size (the term he used was réductions) for his mother and his sister Wil, The Bedroom was among the subjects he chose.[^10] These réductions, finished late in September 1889, are not exact copies.
-
-    In The Bedroom, the miniature portrait to the left recalls van Gogh's Peasant of Zundert self-portrait. The one to the right cannot be linked convincingly to any existing painting by van Gogh.
-
-    ### Provenance
-
-    - The first version never left the artist's estate. Since 1962, it has been in the possession of the Vincent van Gogh Foundation, established by Vincent Willem van Gogh, the artist's nephew, and on permanent loan to the [Van Gogh Museum](https://en.wikipedia.org/wiki/Van_Gogh_Museum), Amsterdam.
-    - The second version has, since 1926, been the possession of the [Art Institute of Chicago](https://en.wikipedia.org/wiki/Art_Institute_of_Chicago) as part of the [Helen Birch Bartlett Memorial Collection](https://en.wikipedia.org/wiki/Helen_Birch_Bartlett_Memorial_Collection).
-    - The third version, formerly in the possession of Van Gogh's sister Wil and later acquired by Prince [Matsukata](https://en.wikipedia.org/wiki/Matsukata_Masayoshi), entered the French national collections in 1959, following the French-Japanese peace settlement, and is on permanent display in the [Musée d'Orsay](https://en.wikipedia.org/wiki/Mus%C3%A9e_d%27Orsay), Paris.
-    - All three versions of the Bedroom were brought together for an exhibition entitled Van Gogh's Bedrooms at the Art Institute of Chicago in 2016. The exhibition featured related works as well as a digital reconstruction of his bedroom.[^11] [^12]
-
-    ## Arles
-
-    **Arles** is a coastal city and commune in the South of France, a subprefecture in the Bouches-du-Rhône department of the Provence-Alpes-Côte d'Azur region, in the former province of Provence.
-
-    Many artists have lived and worked in this area because of the southern light, including Pablo Picasso, Paul Gauguin, Jacques Réattu, and Peter Brown. The Dutch post-Impressionist painter Vincent van Gogh lived in Arles from 1888 to 1889, and produced over 300 paintings and drawings during his time there. These are in internationally known museums and private collections around the world.
-
-    [^1]: Though the building was damaged in an air-raid, June 25, 1944, and laid down afterwards, floor plans by Lèon Ramser, an Arlesian architect, dating from the 1920s have survived and supply most of the essential information, see: Roland Dorn, "Décoration": Vincent van Goghs Werkreihe für das Gelbe Haus in Arles, Georg Olms Verlag, Hildesheim, Zürich & New York, 1990
-    [^2]: ["Vincent van Gogh to Theo van Gogh : 16 October 1888"](https://www.webexhibits.org//vangogh/letter/18/554.htm). webexhibits.org.
-    [^3]: ["Vincent van Gogh to Paul Gauguin : 17 October 1888"](https://www.webexhibits.org//vangogh/letter/18/B22.htm). webexhibits.org.
-    [^4]: ["706"](https://web.archive.org/web/20160929173955/http://vangoghletters.org/vg/letters/let706/letter.html). vangoghletters.org. Archived from [the original](https://vangoghletters.org/vg/letters/let706/letter.html) on 2016-09-29. Retrieved 2014-04-16.
-    [^5]: ["De minnaar (portret van luitenant Milliet) – Kröller-Müller Museum"](https://web.archive.org/web/20120418063608/http://www.kmm.nl/object/KM%20102.392/The-lover-portrait-of-Lieutenant-Milliet). kmm.nl. Archived from the original on 2012-04-18.
-    [^6]:  ["Eugene Boch – Impressionist and friend of Vincent van Gogh"](https://eugeneboch.com/). eugeneboch.com.
-    [^7]:  ["Vincent van Gogh to Theo van Gogh : 22 May 1889"](https://www.webexhibits.org//vangogh/letter/20/592.htm). webexhibits.org.
-    [^8]:  ["Theo van Gogh to Vincent van Gogh : 16 June 1889"](https://www.webexhibits.org//vangogh/letter/20/T10.htm). webexhibits.org.
-    [^9]:  ["Vincent van Gogh to Theo van Gogh : 5 or 6 September 1889"](https://www.webexhibits.org//vangogh/letter/20/604.htm). webexhibits.org.
-    [^10]: ["Vincent van Gogh to Theo van Gogh : 28 September 1889"](https://www.webexhibits.org//vangogh/letter/20/608.htm). webexhibits.org.
-    [^11]:  ["Van Gogh's Bedrooms"](https://www.artic.edu/exhibitions/1865/van-gogh-s-bedrooms). The Art Institute of Chicago.
-    [^12]:  ["The Bedroom"](https://www.artic.edu/artworks/28560/the-bedroom). The Art Institute of Chicago.
+    [^1]: Lorem ipsum text obtained from [https://loremipsum.io/#generator](https://loremipsum.io/#generator)
 </ve-snippet>
 
 ## Add Entity Popovers
 
-It can be useful to add information popups to text that references entities (people, locations, etc) that may be unfamiliar to the reader.  The information popover provides a short description and image (when available) with a top-level overview of a referenced entity.  The popover will also include a link to the relevant Wikipedia page where the reader can go to learn more.  Using entity popovers can be an effective way for providing context to a reader without disrupting the flow of the narrative.  More information on add entity information popovers can be found [here](/entity-popovers).
+It can be useful to add information popups to text that references entities (people, locations, etc) that may be unfamiliar to the reader.  The information popover provides a short description and image (when available) with a short overview of the referenced entity.  The popover will also include a link to the relevant Wikipedia page where the reader can go to learn more.  Using entity popovers can be an effective way for providing context to a reader without disrupting the flow of the narrative.  More information on using entity information popovers can be found [here](/entity-popovers).
 
-Juncture tagging is provided for creating an information popover for passages in the text portion of an essay.  The passage may be a single word or multi-word phrase.  The passage will typically be associated with an entity such as a person, location, organization, plant, animal, etc.
-
-The information popover is created from open data and text retrieved from Wikipedia and [Wikidata](https://www.wikidata.org).  Wikidata is an open database containing entries for more than 100 million entities.  Each of these entities is associated with a unique identifier, also know as a `QID` since each identifier starts with the capital letter `Q` follow by a number.  As an example, the Wikidata identifier for Vincent van Gogh is [Q5582](https://www.wikidata.org/wiki/Q5582).
+The information popover is created from data and text retrieved from Wikipedia and [Wikidata](https://www.wikidata.org).  Wikidata is an open database containing entries for more than 100 million entities.  Each of these entities is associated with a unique identifier, also know as a `QID` since each identifier starts with the capital letter `Q` follow by a number.  As an example, the Wikidata identifier for Vincent van Gogh is [Q5582](https://www.wikidata.org/wiki/Q5582).
 
 More background on Wikidata and how Juncture uses it can be found [here](/wikidata). 
 
 An entity tag is created by enclosing the entity text in double equal signs and appending an attribute block with the associated QID.  For example, `==Vincent van Gogh=={Q5582}`.
 
-This version of our sample essay now includes a number of entity tags for people, places and works mentioned in the text.
-
-<ve-snippet collapsible label="'Bedroom in Arles' sample essay with entity popovers">
-    # Bedroom in Arles
-
-    **Bedroom in Arles** (French: _La Chambre à Arles_; Dutch: _Slaapkamer te Arles_) is the title given to each of three similar paintings by 19th-century Dutch Post-Impressionist painter ==Vincent van Gogh=={Q5582}.
-
-    Van Gogh's own title for this composition was simply **The Bedroom** (French: _La Chambre à coucher_). There are three authentic versions described in his letters, easily distinguishable from one another by the pictures on the wall to the right.[^1]
-
-    ## The Paintings
-
-    The painting depicts van Gogh's bedroom at 2, Place Lamartine in ==Arles=={Q48292}, Bouches-du-Rhône, France, known as the ==Yellow House=={Q2200610}. The door to the right opened on to the upper floor and the staircase; the door to the left was that of the guest room he held prepared for Gauguin; the window in the front wall looked on to Place Lamartine and its public gardens. This room was not rectangular but trapezoid with an obtuse angle in the left hand corner of the front wall and an acute angle at the right.
-
-    ### First Version
-
-    Van Gogh started the first version during mid October 1888 while staying in Arles, and explained his aims and means to his brother Theo:
-
-    > "This time it simply reproduces my bedroom; but colour must be abundant in this part, its simplification adding a rank of grandee to the style applied to the objects, getting to suggest a certain rest or dream. Well, I have thought that on watching the composition we stop thinking and imagining. I have painted the walls pale violet. The ground with checked material. The wooden bed and the chairs, yellow like fresh butter; the sheet and the pillows, lemon light green. The bedspread, scarlet coloured. The window, green. The washbasin, orangey; the tank, blue. The doors, lilac. And, that is all. There is not anything else in this room with closed shutters. The square pieces of furniture must express unswerving rest; also the portraits on the wall, the mirror, the bottle, and some costumes. The white colour has not been applied to the picture, so its frame will be white, aimed to get me even with the compulsory rest recommended for me. I have depicted no type of shade or shadow; I have only applied simple plain colours, like those in crêpes."[^2]
-
-    Van Gogh included sketches of the composition in this letter as well as in a letter to Gauguin, written slightly later.[^3] In the letter, van Gogh explained that the painting had come out of a sickness that left him bedridden for days.[^4] This version has on the wall to the right miniatures of van Gogh's portraits of his friends Eugène Boch and Paul-Eugène Milliet. The portrait of ==Eugène Boch=={Q1373445} is called The Poet and the portrait of ==Paul Eugène Milliet=={Q7232361} is called The Lover.[^5] [^6]
-
-    ### Second Version
-
-    In April 1889, van Gogh sent the initial version to his brother regretting that it had been damaged by the flood of the Rhône while he was interned at the Old Hospital in Arles. Theo proposed to have it relined and sent back to him in order to copy it. This "repetition" in original scale (Van Gogh's term was "répetition") was executed in September 1889. Both paintings were then sent back to ==Theo=={Q317188}.[^7] [^8] [^9]
-
-    ### Third version
-
-    In summer, 1889, Van Gogh finally decided to redo some of his "best" compositions in a smaller size (the term he used was réductions) for his mother and his sister Wil, The Bedroom was among the subjects he chose.[^10] These réductions, finished late in September 1889, are not exact copies.
-
-    In The Bedroom, the miniature portrait to the left recalls van Gogh's Peasant of Zundert self-portrait. The one to the right cannot be linked convincingly to any existing painting by van Gogh.
-
-    ### Provenance
-
-    - The first version never left the artist's estate. Since 1962, it has been in the possession of the Vincent van Gogh Foundation, established by Vincent Willem van Gogh, the artist's nephew, and on permanent loan to the [Van Gogh Museum](https://en.wikipedia.org/wiki/Van_Gogh_Museum), Amsterdam.
-    - The second version has, since 1926, been the possession of the [Art Institute of Chicago](https://en.wikipedia.org/wiki/Art_Institute_of_Chicago) as part of the [Helen Birch Bartlett Memorial Collection](https://en.wikipedia.org/wiki/Helen_Birch_Bartlett_Memorial_Collection).
-    - The third version, formerly in the possession of Van Gogh's sister Wil and later acquired by Prince [Matsukata](https://en.wikipedia.org/wiki/Matsukata_Masayoshi), entered the French national collections in 1959, following the French-Japanese peace settlement, and is on permanent display in the [Musée d'Orsay](https://en.wikipedia.org/wiki/Mus%C3%A9e_d%27Orsay), Paris.
-    - All three versions of the Bedroom were brought together for an exhibition entitled Van Gogh's Bedrooms at the Art Institute of Chicago in 2016. The exhibition featured related works as well as a digital reconstruction of his bedroom.[^11] [^12]
-
-    ## Arles
-
-    **Arles** is a coastal city and commune in the South of France, a subprefecture in the Bouches-du-Rhône department of the Provence-Alpes-Côte d'Azur region, in the former province of Provence.
-
-    Many artists have lived and worked in this area because of the southern light, including ==Pablo Picasso=={Q5593}, ==Paul Gauguin=={Q37693}, ==Jacques Réattu=={Q3159943}, and ==Peter Brown=={Q7172987}. The Dutch post-Impressionist painter Vincent van Gogh lived in Arles from 1888 to 1889, and produced over 300 paintings and drawings during his time there. These are in internationally known museums and private collections around the world.
-
-    [^1]: Though the building was damaged in an air-raid, June 25, 1944, and laid down afterwards, floor plans by Lèon Ramser, an Arlesian architect, dating from the 1920s have survived and supply most of the essential information, see: Roland Dorn, "Décoration": Vincent van Goghs Werkreihe für das Gelbe Haus in Arles, Georg Olms Verlag, Hildesheim, Zürich & New York, 1990
-    [^2]: ["Vincent van Gogh to Theo van Gogh : 16 October 1888"](https://www.webexhibits.org//vangogh/letter/18/554.htm). webexhibits.org.
-    [^3]: ["Vincent van Gogh to Paul Gauguin : 17 October 1888"](https://www.webexhibits.org//vangogh/letter/18/B22.htm). webexhibits.org.
-    [^4]: ["706"](https://web.archive.org/web/20160929173955/http://vangoghletters.org/vg/letters/let706/letter.html). vangoghletters.org. Archived from [the original](https://vangoghletters.org/vg/letters/let706/letter.html) on 2016-09-29. Retrieved 2014-04-16.
-    [^5]: ["De minnaar (portret van luitenant Milliet) – Kröller-Müller Museum"](https://web.archive.org/web/20120418063608/http://www.kmm.nl/object/KM%20102.392/The-lover-portrait-of-Lieutenant-Milliet). kmm.nl. Archived from the original on 2012-04-18.
-    [^6]:  ["Eugene Boch – Impressionist and friend of Vincent van Gogh"](https://eugeneboch.com/). eugeneboch.com.
-    [^7]:  ["Vincent van Gogh to Theo van Gogh : 22 May 1889"](https://www.webexhibits.org//vangogh/letter/20/592.htm). webexhibits.org.
-    [^8]:  ["Theo van Gogh to Vincent van Gogh : 16 June 1889"](https://www.webexhibits.org//vangogh/letter/20/T10.htm). webexhibits.org.
-    [^9]:  ["Vincent van Gogh to Theo van Gogh : 5 or 6 September 1889"](https://www.webexhibits.org//vangogh/letter/20/604.htm). webexhibits.org.
-    [^10]: ["Vincent van Gogh to Theo van Gogh : 28 September 1889"](https://www.webexhibits.org//vangogh/letter/20/608.htm). webexhibits.org.
-    [^11]:  ["Van Gogh's Bedrooms"](https://www.artic.edu/exhibitions/1865/van-gogh-s-bedrooms). The Art Institute of Chicago.
-    [^12]:  ["The Bedroom"](https://www.artic.edu/artworks/28560/the-bedroom). The Art Institute of Chicago.
-</ve-snippet>
-
 ## Add Juncture Viewer Tags
 
 This is where a text narrative starts to become an interactive and engaging visual essay.  High resolution images, maps, videos, and other visualizations can bring a text narrative to life while also providing details and context that can often be difficult to convey in text alone.  Juncture's media viewer is great at providing visual appeal, especially when using high resolution images.  Videos and interactive maps are other visualizations often used in a visual essay.
 
-Juncture tags are used to add viewers to an essay.  The media and map viewers are a couple that are commonly used.  Others are available and more will be added in future versions.  Juncture tags include a `.ve-` prefix and must be located at the beginning of a new line in the essay.  One or more additional attributes will often be required after the tag.  These attributes can be expressed as single values or as key-value pairs, for instance `fit=cover` is an attribute used by the Juncture `.ve-media` tag.  The key in this string is `fit` and the value is `cover`.  This is an attribute that tells the media viewer how to display an image that has a different aspect ratio than the viewers.  Many attributes can be expressed as single values as Juncture can usually infer the purpose of the attribute by its position in the tag string or the value itself.  
+Juncture tags are used to add viewers to an essay.  The media ([ve-media](/components/media)) and map ([ve-map](/components/map)) viewers are two of most commonly used.  Others are available and more will be added in future versions of Juncture.  
 
-?> Note that in the HTML version of the tag seen in the snippet above, the `src` key has been added by the Markdown-to-HTML conversion that Juncture performs.  The Markdown versions of the Juncture tags are easier to write but the Markdown is ultimately are converted to HTML for use by the browser.  The HTML version of the Juncture tags are provided in the snippets in the Juncture documentation.  These are provided as a convenience for users that may be using Juncture viewers in web pages not rendered by Juncture -- for instance, in a vanilla HTML document or in WordPress site.  The HTML version of the tag could be used in the essay text file Juncture Editor but the Markdown version is always more concise and readable.
+Juncture tags include a `.ve-` prefix and must be located at the beginning of a new line in the essay.  One or more attributes will often be required after the tag.  These attributes can be expressed as single values or as key-value pairs, for instance `fit=cover` is an attribute used by the Juncture `.ve-media` tag.  The key in this string is `fit` and the value is `cover`.  This is an attribute that tells the media viewer how to display an image that has a different aspect ratio than the viewer.  Many attributes can be expressed as single values as Juncture can usually infer the purpose of the attribute by its position in the tag string or the value itself.  
+
+<ve-snippet collapsible label="Juncture media tag example">
+    .ve-media wc:Sunflower_sky_backdrop.jpg
+</ve-snippet>
+
+?> Note that in the HTML version of the tag seen in the snippet above, the `src` key has been added by the Markdown-to-HTML conversion that Juncture performs.  The Markdown versions of the Juncture tags are easier to write but the Juncture tags are ultimately converted into HTML for use by the browser.  The HTML version of the Juncture tags are provided in the snippets as a convenience for users that may be using Juncture viewers in web pages not rendered by Juncture -- for instance, in a vanilla HTML document or in WordPress site.  The HTML version of the tag could be used in essay text file but the Markdown version is always more concise and readable.
+
+<ve-snippet collapsible label="Juncture media tag with positioning attribute">
+    .ve-media wc:Sunflower_sky_backdrop.jpg right
+    This example adds the `right` positioning attribute to the `.ve-media` tag to position the media viewer on the right side of the page.  The width is set to 50% of the essay size and the height will be automatically calculated to preserve the aspect ratio of the source item.
+</ve-snippet>
 
 ## Add Viewer Interactions
 

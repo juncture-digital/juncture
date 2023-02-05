@@ -14,7 +14,7 @@ The painting depicts van Gogh's bedroom at 2, Place Lamartine in ==Arles=={Q4829
 
 Van Gogh started the first version during mid October 1888 while staying in Arles, and explained his aims and means to his brother Theo:
 
-.ve-media compare right caption="Comparing Sketch and Painting"
+.ve-media compare right caption="Comparing van Gogh's sketch and painting"
     - wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg right
     - wc:Vincent_van_Gogh_-_Vincent's_Bedroom_-_Lettersketch_17_October_1888.jpg
 

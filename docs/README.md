@@ -69,9 +69,7 @@ This version of Juncture represents the second generation of the Juncture concep
 
 In its current form Juncture is still well-suited for the type of digital story telling emphasized in version 1 but can now be more easily used for generating web pages that are less text-centric, such as an image exhibition.
 
-A few examples are provided to help explain what Juncture is.  Press any of the buttons below for a quick demo.
-
-<ve-modal button-label="Hello, Juncture" src="juncture-digital/juncture/examples/hello-juncture"></ve-modal> <ve-modal button-label="Bedroom in Arles" src="juncture-digital/juncture/examples/bedroom-in-arles"></ve-modal>
+This [demo essay](https://dev.juncture-digital.org/examples/bedroom-in-arles) provides a example of what is possible in a Juncture essay.  This essay includes multiple high-res images, a YouTube video, an interactive map, and a number of text-to-viewer interactions.  The essay also includes a number of information popovers for entities (people, places, works, etc) mentioned in the text.
 
 # What problem does this solve?
 

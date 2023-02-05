@@ -1,2 +1,2 @@
-# Editor
+# Juncture Editor Overview
 

@@ -42,7 +42,7 @@ API_ENDPOINT = 'https://api.juncture-digital.org'
 WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
 WC_VERSION = '2.0.0-beta.2'
 
-PREFIX = 'juncture-digital/essays' # Prefix for site content, typically Github username/repo
+PREFIX = 'juncture-digital/juncture' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)
 LOCAL_CONTENT_ROOT = None
 
@@ -129,8 +129,8 @@ def _get_html(path, base_url, ref=REF, host=None, **kwargs):
       html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/css\/', 'https://juncture-digital.github.io/web-components/css/', html)
       html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/css\/', 'https://juncture-digital.github.io/web-components/css/', html)
     elif host == 'dev.juncture-digital.org':
-      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/', 'https://juncture-digital.github.io/web-components/', html)
-      html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/', 'https://juncture-digital.github.io/web-components/')
+      # html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/', 'https://juncture-digital.github.io/web-components/')
+      html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/', 'https://juncture-digital.github.io/web-components/', html)
   return status_code, html
 
 @app.route('/favicon.ico')
@@ -161,12 +161,13 @@ def css(path):
 @app.route('/<path:path>')
 @app.route('/<path:path>/')
 def render_html(path=None):
+  host = request.host.split(':')[0]
   start = now()
   qargs = dict([(k, request.args.get(k)) for k in request.args])
   base_url = f'/{"/".join(request.base_url.split("/")[3:])}'
   if base_url != '/' and not base_url.endswith('/'): base_url += '/'
   path = f'/{path}' if path else '/'
-  status, html = _get_html(path, base_url, host=request.host, **qargs)
+  status, html = _get_html(path, base_url, host=host, **qargs)
   if status == 200:
     html = _customize_response(html)
   logger.info(f'render: api_endpoint={API_ENDPOINT} base_url={base_url} prefix={PREFIX} path={path} status={status} elapsed={round(now()-start, 3)}')
