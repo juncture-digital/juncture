@@ -4,6 +4,7 @@ The `.ve-mermaid` tag uses the [Mermaid.js](https://mermaid.js.org/) JavaScript 
 
 # example
 
+<ve-modal>
 .ve-mermaid
     flowchart TD
         A[Start] --> B{Is it?}
@@ -11,3 +12,4 @@ The `.ve-mermaid` tag uses the [Mermaid.js](https://mermaid.js.org/) JavaScript 
         C --> D[Rethink]
         D --> B
         B ---->|No| E[End]
+<ve-modal>
