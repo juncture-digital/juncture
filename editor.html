@@ -32,8 +32,8 @@
     .cm-s-easymde .cm-header-6{font-size: calc(1rem + .5vw);}
     .editor-toolbar {display: flex;}
     .preview .editor-toolbar {display: none;}
-    button.preview, #help, #save, #launch, #copy {font-size: 1.5rem; color:#5B152E;}
-    button.preview i, #mde #help i, #mde #save i, #mde #launch i, #mde #copy i {font-size: 1.4rem;}
+    button.preview, #help, #save, #share, #copy {font-size: 1.5rem; color:#5B152E;}
+    button.preview i, #mde #help i, #mde #save i, #mde #share i, #mde #copy i {font-size: 1.4rem;}
     button#save {margin-left:auto;}
     #save:disabled {color: #ddd;}
     ve-header ul { display: none; }
@@ -338,7 +338,7 @@
               {
               class: 'save',
                 action: () => {this.saveFile()},
-                className: 'fa fa-save',
+                className: 'fa fa-download',
                 title: 'Save file',
                 attributes: {id: 'save'}
               }, {
@@ -350,11 +350,11 @@
                 attributes: {id: 'copy'}
               }, { 
               */
-                class: 'launch',
-                action: () => {this.launch()},
-                className: 'fa fa-external-link',
-                title: 'Launch',
-                attributes: {id: 'launch'}
+                class: 'Share',
+                action: () => {this.share()},
+                className: 'fa fa-share',
+                title: 'Share',
+                attributes: {id: 'share'}
               }
             ]
           ]
@@ -390,7 +390,7 @@
         navigator.clipboard.writeText(this.easyMDE.value())
       },
 
-      launch() {
+      share() {
         window.open(this.link, '_blank')
       },
 

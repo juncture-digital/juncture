@@ -77,30 +77,38 @@ Juncture's primary goal is to make the use of modern web technology (deep-zoom a
 
 If you're looking for a set of easy-to-use tools for quickly creating web pages with engaging and interactive content with minimal setup and zero ongoing administration, Juncture might be exactly what you need.
 
-# Juncture design principles
+# Some Juncture uses
 
-In developing Juncture we were guided by a few key principles.
+1. **Education**. Juncture is able to support a range of teaching and learning use cases, including:
+    - Use by instructors in the development of resources for classroom or remote instruction.  The [Hypothes.is](https://web.hypothes.is/) annotation tool can be easily added to any essay for class discussion or other uses. 
+    - Use by students for individual or group projects.  Juncture can be used as tool for simple essay development or as tool for building broader skills in the use of digital technologies for information creation and sharing.
 
-1. **Juncture will not store user data.** **  We just want to make it easier for you to use it to create and share great web content.
-    - Many web hosting services store a copy of the source files used to render a web page or site.  Juncture does not.  It is principally an HTML rendering engine and set of authoring tools.  Content is stored in a Github repository that is user-owned and managed.  Juncture only requires read access to the Github repository to access the files for rendering.
-    - The Juncture tool suite includes an optional browser-based editor that may be used to create and modify user files in Github.  When using the Juncture editor a user will first need to authorize the editor to perform Github file updates on their behalf.  This authorization can be easily revoked by a user at any time.
-    - ** The only caveat to the "Juncture does not retain user data" principle is that an optimized copy of user-hosted image files used in a rendered page is cached by the Juncture image server for a fixed period of time for performance reasons.
-2. **Juncture will use open and non-proprietary tools and data where possible.**  This includes:
-    - Markdown (with a few Juncture extensions) for visual essay definitions
-    - The International Image Interoperability Framework (IIIF) for media (image, video, audio) rendering
-    - GeoJSON for map features and overlays
-    - Various data and services provided by the Wikimedia Foundation, including text from Wikipedia, Linked Open Data (LOD) from Wikidata, and images and other media from Wikimedia Commons
-3. **Support and promote the responsible use of web resources**  All resources used in a visual essay include attribution when required and clearly define reuse rights. 
-3. **Minimal setup and administration by a user.**  Some initial work is needed by a user to create a home for the content to be rendered by Juncture.  That's where Github comes in.  To get started a user must signup for a Github account and link it to the Juncture editor.  For many users, that's it.  There is no ongoing administration required of a user.  No cloud infrastructure provisioning, no server management, nothing of that sort. A user can focus time and energy on creating great content. The only exception to this would be the setup of a custom domain for a Juncture website if that was desired.  A step-by-step build is provided for custom domain setup. It would typically require no more than a few minutes.   
+2. **Simple blog or travelogue**.  The ability to quickly create a web page with text and images makes Juncture a convenient tool for blog style content authoring.  With the addition of interactive maps, connected with text and images, Juncture is well-suited for creating rich and engaging travelogues.  Images, with geolocation data when available, can easily be transferred from a smartphone into a Juncture essay.
 
-The Juncture tools and services are designed to work together to provide an integrated and easy-to-use workflow for web page definition and rendering.  These tools are based on web standards and may also be used separately.
+3. **Creation of full website with themed essays**.  Multiple Juncture essays can be easily aggregated and linked to create full websites, with a custom domain if desired.  Examples of themed websites created with Juncture include [Plant Humanities Lab](https://lab.plant-humanities.org/) and [Kent Maps Online](https://kent-maps.online/).
 
-The definition of a Juncture web page is performed using plain text.
+4. **Many others**.  As a general-purpose tool there are any number of interesting ways in which Juncture could be applied. We'd love to hear how you use Juncture.  Please connect with us from our [Contact](/contact) page if you come up with some innovative or interesting use of Juncture that we could share with others.  You might also consider submitting essays for inclusion on the Juncture Showcase site.
 
-- Web page creation and hosting
-- IIIF services
+# About Juncture and IIIF
 
-Uses of Juncture include:
+Juncture is built using many great technologies and tools, many of which can be seen on the Juncture [attribution](/attribution) page.  A cornerstone in the Juncture design and value proposition is IIIF.  The [International Image Interoperability Framework](https://iiif.io/) (IIIF, spoken as 'triple-I-eff') defines several APIs (Application Programming Interfaces) that define a standardized method of describing and delivering media over the web.  IIIF is arguably the most important technology used by Juncture.  Understanding what IIIF is and how it is used will be useful background before diving into the creation of an essay, especially those incorporating images, audio, and video.  
 
-- Creation of a website containing themed essay
-- 
+The [IIIF Get Started](https://iiif.io/get-started/) page is the best place to start for good understanding of IIIF.  In this section a top-level overview is provided.  Much of the information provided consist of excerpts from the official IIIF site.  Users interested in learning more are encouraged to visit the IIIF site.
+
+## Why IIIF?
+
+The benefits of using IIIF include:
+
+- **Rich image delivery**.  Fast, rich zoom & pan delivery of images via the Internet, with options for size, scale, region of interest, rotation, quality and format.
+- **Plug and play software**.  Use any IIIF-compatible software for viewing, comparing and manipulating images from any IIIF-compatible image site, regardless of the back-end server. Swap parts of the stack at any time, or run multiple components in parallel at once.
+-**Publish once, reuse often**.  Deliver images from your own site for many uses; host a single copy and embed in other sites. No need to transfer images to others for them to locally load and use them for one off analysis or republishing.
+-**Remix content**.  Assemble and reuse IIIF resources from across the Web, regardless of source. Compare pages, import into tools, build exhibits, or view items served from different sites in one place.
+-**Annotate**.  IIIF has native compatibility with the [W3C Web Annotation model](https://www.w3.org/TR/2017/REC-annotation-model-20170223/), which supports annotating content on the Web. Comment on, transcribe, and mark up resources using the Web’s inherent architecture–even for Audiovisual resources.
+-**Cite and share**.  IIIF APIs give portable views onto images or any of its regions, and provide incentive for URIs that persist through image server migrations. Cite an image with a stable URI, or share it for reference by others–or yourself in a different environment.
+-**Support for attribution and access control**.  Built in API calls support attribution and access control: the Authentication API (http://iiif.io/api/auth/), is integral and consistent with the IIIF conception.
+
+## IIIF use in Juncture
+
+The "Why IIIF?" list of benefits provides a compelling case for using IIIF over standard images, audio, and video.  The benefits provided by IIIF support for interoperability, annotation, and its ability to clearly articulate reuse rights and attribution are especially important capabilities leveraged by Juncture.
+
+It's hard to argue against the benefits of using IIIF.  Unfortunately, for most users the technology has been out of reach as the tools and infrastructure needed are often not available or are hard or confusing to use.  That's where Juncture comes in.  It can deliver the IIIF benefits with minimal effort.  If fact, using IIIF can often be as simple as dragging an image into the Juncture editor.  If the image is not a native IIIF image Juncture can often turn it into one automatically and transparently.
