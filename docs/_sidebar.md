@@ -70,3 +70,4 @@
   - [Contact Us](/contact)
   - [Submit a bug report or feature request](/issues)
   - [Discussion](/discussion)
+  - [Attribution](/attribution)
