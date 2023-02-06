@@ -12,4 +12,4 @@ The `.ve-mermaid` tag uses the [Mermaid.js](https://mermaid.js.org/) JavaScript 
         C --> D[Rethink]
         D --> B
         B ---->|No| E[End]
-<ve-modal>
+</ve-modal>
