@@ -124,5 +124,26 @@
     },
     "@context": "http://www.w3.org/ns/anno.jsonld",
     "id": "0e305489"
+  },
+  {
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "Viewer tag",
+        "purpose": "commenting"
+      }
+    ],
+    "target": {
+      "source": "https://iiif-image.juncture-digital.org/iiif/2/50ae2d63e3bc3496df935a3d23f4c63a7cae7de1bbed0e218171d179cbbc252a",
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:7.623304843902588,555.96240234375,432.3924117088318,39.12347412109375"
+      },
+      "id": "50ae2d63"
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "3f63ff16"
   }
 ]
