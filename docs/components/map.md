@@ -39,7 +39,7 @@ The `.ve-map` tag creates a map viewer that displays a base map with optional ma
 
 **[right](/styling/viewer-positioning)** (_boolean_):  Position the viewer in the right half of the viewport and scale the width proportionally. Text will wrap around the viewer unless the _sticky_ attribute is included.
 
-**[full](/styling/viewer-positioning)** (_boolean_):  Use the fill width of browser viewport for the image.  Scale the image height proportional to the source image.  By default the image will be auto-sized such that its height is not more than 40% of the viewport height.
+**[full](/styling/viewer-positioning)** (_boolean_):  Use the fill width of the browser viewport for the image.  Scale the image height proportional to the source image.  By default, the image will be auto-sized such that its height is not more than 40% of the viewport height.
 
 **[sticky](/styling/viewer-positioning)** (_boolean_):  The _sticky_ attribute causes the viewer to "stick" to the top of the viewing area when the essay text is scrolled.  The viewer will stick in position until all content in the enclosing section has scrolled through the viewing area.
 

@@ -1,6 +1,6 @@
 # Juncture Quick Start
 
-In this Quick Start guide you'll create your own version of the `Hello, Juncture` demo essay.  This quick start consists of 5 easy steps and should only require a couple minutes to complete if you already have a Github account.  A few minutes more if not.
+In this Quick Start guide you'll create your own version of the `Hello, Juncture` demo essay.  This quick start consists of 5 easy steps and should only require a couple of minutes to complete if you already have a Github account.  A few minutes more if not.
 
 ?> After completing this quick start, visiting the more comprehensive [Getting Started](/getting-started) guide would be a great next step in becoming acquainted with Juncture features and use.  The Getting Started guide provides more information and many helpful examples.
 
@@ -8,7 +8,7 @@ Click this button to see what we're going to create. <ve-modal button-label="Hel
 
 While this is a simple essay it illustrates the basic steps in creating an essay.  The generated essay could also be used as a starting point for more involved essays.
 
-?> **Show me** buttons - Some of the steps in this guide include a "Show me" button below the step's instruction text.  Clicking this button will open a popup with a short animation demonstrating the actions to be performed.  Clicking this button is optional, but can often be helpful in clarifying something that may not be clear from the text alone.
+?> **Show me** buttons - Some of the steps in this guide include a "Show me" button below the step's instruction text.  Clicking this button will open a popup with a short animation demonstrating the actions to be performed.  Clicking this button is optional, but can often help clarify something that may not be clear from the text alone.
 
 ### 1. First things, first...
 
@@ -27,9 +27,9 @@ After the initial login has been performed, the login/logout process is a single
 
 Once you've successfully logged in with Github (and authorized Juncture access), open the Github Editor in a new window. <ve-window href="/editor" button-label="Open the Juncture Editor" button-icon="pencil"></ve-window>
 
-### 3. Create a new essay file in Github
+### 3. Create a new essay file on Github
 
-In the Github navigation toolbar at the top of the Editor window (located just below the header), select the `Add File` icon and enter the name of the essay to be created (for example, `hello-juncture`) in the input dialog that appears.  Press the `Add` button to create the new essay.  
+In the Github navigation toolbar at the top of the Editor window (located just below the header), select the `Add File` icon and enter the name of the essay to be created (for example, `hello-juncture`) in the input dialog that appears.  Press the `Add` button to create a new essay.  
 
 ?> When a file extension (such as `.md`) is not included in the name, a folder with the specified name is created with a single child file named `README.md`.  **README.md** is the Github convention for naming index files in a folder.  While we could have used the file name `hello-juncture.md` for our new essay (which would have worked perfectly fine), creating a parent folder for the essay has advantages and is generally recommended.  The main benefit is that is folder provides a convenient location for storing other files that may eventually be associated with the essay.  This could include annotation files and map overlays, among others.
 
@@ -39,11 +39,11 @@ In the Github navigation toolbar at the top of the Editor window (located just b
 
 ### 4. Add some content
 
-Now that we have an essay file created we're ready to add some content.  For this quick start we'll just copy (or drag) some prepared text into the editor.  
+Now that we have an essay file created we're ready to add some content.  For this quick start, we'll just copy (or drag) some prepared text into the editor.  
 
 Before we add our new text delete any existing text found in the editor pane.  This should be the placeholder `# README.md` header text.
 
-The text we're going to add can be found in the snippet viewer below.  The text can be copied into the clipboard by clicking on the `Copy` button that appears at the top-right corner when hovering over the snippet viewer.  You can also click-and-drag the window into the editor.  In either case ensure the snippet viewer is showing the Markdown formatted text.
+The text we're going to add can be found in the snippet viewer below.  The text can be copied into the clipboard by clicking on the `Copy` button that appears at the top-right corner when hovering over the snippet viewer.  You can also click-and-drag the window into the editor.  In either case, ensure the snippet viewer is showing the Markdown formatted text.
 
 <ve-modal label="Add Content (using drag-n-drop)" button-icon="play-circle" >
 .ve-media gh:juncture-digital/media/videos/Add_Content.gif no-caption no-info-icon
@@ -52,7 +52,7 @@ The text we're going to add can be found in the snippet viewer below.  The text 
 <ve-snippet label="Code snippet">
     # Hello, Juncture
 
-    This Juncture essay illustrates the use of a few Markdown formatting tags and the incorporation of an image and a map into a Juncture  essay.
+    This Juncture essay illustrates the use of a few Markdown formatting tags and the incorporation of an image and a map into a Juncture essay.
 
     ## Aulacophora indica
 
@@ -62,9 +62,9 @@ The text we're going to add can be found in the snippet viewer below.  The text 
 
     This image is hosted on [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:The_Bug_Peek.jpg) and was runner-up for Wikimedia Commons Picture of the Year for 2021.
 
-    Image controls are located in the top-left corner of the image and can be seen when hovering over the image.  These controls support image zoom, rotation, full-screen viewing, and repositioning to start position.  Panning can be performed with keyboard arrow keys or by mouse click-and-drag.
+    Image controls are located in the top-left corner of the image and can be seen when hovering over the image.  These controls support image zoom, rotation, full-screen viewing, and repositioning to the start position.  Panning can be performed with keyboard arrow keys or by mouse click-and-drag.
 
-    Image information can be seen when hovering the cursor over the info icon located in the top-right corner of the image.  The Image information popover includes image title, description, attribution statement, and reuse rights.
+    Image information can be seen when hovering the cursor over the info icon located in the top-right corner of the image.  The Image information popover includes the image title, description, attribution statement, and reuse rights.
 
     ## Chitwan National Park, Nepal
 
@@ -81,7 +81,7 @@ The text we're going to add can be found in the snippet viewer below.  The text 
 
 After copying (or drag-and-dropping) the text into the editor pane, click the `Preview` icon in the tool panel located near the top-right corner of the editor window.  This will display the rendered version of the essay.
 
-Next, click the `Save` icon in the tool panel to save the updated contents of out new essay file to our Github repository.
+Next, click the `Save` icon in the tool panel to save the updated contents of our new essay file to our Github repository.
 
 ?> Note that previewing an essay from the editor does not require that it is first saved to Github.  The preview and save actions may be performed in any order.  When previewing an in-process essay the text used for the preview comes from the editor directly, not from Github.
 
