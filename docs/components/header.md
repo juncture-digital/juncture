@@ -1,4 +1,21 @@
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markdown.min.js"></script>
+<style> 
+    .markdown-section h2 ~ p > strong > a { color: crimson; font-size: 110%; text-decoration: none; }
+    .markdown-section table { 
+        margin-left:3rem; 
+        width: calc(100% - 6rem); 
+        border:1px solid #555;
+    }
+    .markdown-section td, .markdown-section th {
+        border:1px solid #555;
+        padding: 8px;
+        line-height: 1.2;
+    }
+    .markdown-section th {
+        background-color:#E2F0F7;
+        font-weight:bold !important;
+        text-align:center !important;
+    }
+</style>
 
 # ve-header
 
@@ -8,46 +25,82 @@ The `.ve-header` tag is used to define an optional header that appears at the st
 - Display a banner image
 - Create a navigation menu for linking to sections within the current essay, to other essays, or to arbitrary web pages
 
-As with the images displayed by the `.ve-image` tag, the banner image used by the `.ve-header` tag is a IIIF image and can be cropped or otherwise manipulated when displayed in the header.
+As with the images displayed by the `.ve-media` tag, the banner image used by the `.ve-header` tag is a IIIF image and can be cropped or otherwise manipulated when displayed in the header.
 
-## .ve-header Attributes
+## Attributes
 
-| Syntax         | Type                              | Description                                                                                                                                                                                                                                     |
-|----------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **label**      | text string                       | The text to use for the essay title.                                                                                                                                                                                                            |
-| **subtitle**   | text string                       | The text to use for the essay subtitle.                                                                                                                                                                                                         |
-| **height**     | height in pixels                  | The height of the header (before collapsing when in _sticky_ mode).                                                                                                                                                                             |
-| **background** | IIIF manifest URL                 | The URL to the IIIF manifest for the image to display as a banner image in the header.                                                                                                                                                          |
-| **logo**           | logo image URL                    | A URL to a logo image.                                                                                                                                                                                                                          |
-| **url**            | URL associated with logo image    | The URL that is invoked when the logo image is clicked.                                                                                                                                                                                         |
-| **options**        | IIIF image options                | The options attribute is used to define the [IIIF image request parameters](https://iiif.io/api/image/2.1/#image-request-parameters) for an image. This attribute is most commonly used to define a coordinates for displaying an image region. |
-| **position**       | _"top"_, _"center"_ or _"bottom"_ | The portion of a cropped banner image to display. The default is _center_. Other recognized values are _top_ and _bottom_.                                                                                                                      |
-| **sticky**         | _"true"_ or _"false"_             | If set to _"true"_ the header will collapse into a condensed form and remain fixed at the top of the page.                                                                                                                                      |
+**[label](#basic)** (_string_):  Essay title.
 
+**[subtitle](#basic)** (_string_):  Essay subtitle, tagline, author name(s), etc.  The subtitle is displayed below the label attribute in a smaller font.
+
+**[background](#background)** (_string_):  Either a color (name or code) or an IIIF image URL to be used for the header background.
+
+**[options](#basic)** (_string_):  The options attribute is used to define the [IIIF image request parameters](https://iiif.io/api/image/2.1/#image-request-parameters) for the background banner image. This attribute is most commonly used to define a coordinates for displaying a cropped image region.
+
+**[logo](#logo)** (_url_):  URL to an image to use for a logo in the navigation bar.
+
+**[url](#logo)** (_url_):   Optional URL to associate with the logo.
+
+**[contact](#contact)** (_string_):  Email address used in the contact form.  The display of the contact form is triggered by clicking an a menu item that includes the text `contact` or a `/contact` URL if the menu item is defined as link.
+
+**[searchDomain](#search)** (_string_):  The domain name used in Google site search results that are displayed from a search menu embedded in the navigation bar,
+
+**[sticky](#sticky-header)** (_boolean__):  If set, the header will collapse into a condensed form and remain fixed at the top of the page.
+
+**[height](#basic)** (_number__):  Header height in pixels.
+
+**[position](#basic)** (_string_):  The portion of a cropped banner image to display. The default is _center_. Other recognized values are _top_ and _bottom_. 
+
+## Defining Menu items
+
+Menu items are defined in a Markdown list of links following the `.ve-header` tag.  The links in the menu are used for navigating to internal pages or external sites.  If the URL for a menu item link includes the text `contact` the contact form will be displayed if accompanied with a `contact` attribute defining the destination email address.
 
 ## Examples
 
-### Basic header
+### Basic
 
-A basic header with a title.
-
-<ve-snippet>
+<ve-snippet collapsible label="A basic header with a title">
     .ve-header "Essay Title"
 </ve-snippet>
 
-### Basic header with custom color
+### Logo
 
-This examples shows the use of a basic header with a title and custom background color.  In this example the custom background color `LightCoral` is used.  Any valid HTML color name or hex code may be used for a background color.  HTML supports 140 [standard color names](https://www.w3schools.com/colors/colors_names.asp).  The full range of colors can be at a number of online sites, including  [https://htmlcolorcodes.com](https://htmlcolorcodes.com/)
+<ve-snippet collapsible label="Header with a logo, url and custom background color">
+    .ve-header "Essay Title" logo=https://raw.githubusercontent.com/juncture-digital/juncture/main/static/images/juncture-logo.png url=# background=#5B152E
+</ve-snippet>
 
-<ve-snippet>
+### Contact
+
+<ve-snippet collapsible label="Header with a contact form" height=10rem>
+    .ve-header Example background=#5B152E contact=someone@example.net
+        - Contact Us
+</ve-snippet>
+
+### Search
+
+<ve-snippet collapsible label="Header with a search form">
+    .ve-header Example background=#5B152E search-domain=kent-maps.online
+        - [Home](/home)
+        - [About](/about)
+</ve-snippet>
+
+### Background
+
+This example shows the use of a basic header with a title and custom background color.  In this example the custom background color `LightCoral` is used.  Any valid HTML color name or hex code may be used for a background color.  HTML supports 140 [standard color names](https://www.w3schools.com/colors/colors_names.asp).  The full range of colors can be at a number of online sites, including  [https://htmlcolorcodes.com](https://htmlcolorcodes.com/)
+
+<ve-snippet collapsible label="A basic header with a custom background color">
     .ve-header "Essay Title" background=LightCoral
+</ve-snippet>
+
+<ve-snippet collapsible label="A header with a background image">
+    .ve-header "Essay Title" wc:Zelfportret_met_strohoed_-_s0164V1962_-_Van_Gogh_Museum.jpg
 </ve-snippet>
 
 ### Sticky header
 
 A sticky header defined with positional attributes and navigation menu options in a nested Markdown list.
 
-<ve-snippet fill>
+<ve-snippet collapsible fill label="A sticky header with a cropped background image and menu">
     .ve-header "Essay Title" wc:Zelfportret_met_strohoed_-_s0164V1962_-_Van_Gogh_Museum.jpg "Essay subtitle" pct:3,23,80,20 center sticky
         - [Home](/)
         - [About](/about)
