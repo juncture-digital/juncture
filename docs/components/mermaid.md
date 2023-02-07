@@ -13,7 +13,7 @@ To create your visualization using `.ve-mermaid`, write a diagram or chart follo
 - [Pie Chart Syntax](https://mermaid.js.org/syntax/pie.html)
 
 ### Examples
-<ve-snippet collapsible label="Juncture mermaid example">
+<ve-snippet label="Juncture mermaid example">
     .ve-mermaid
         flowchart TD
             A[Start] --> B{Is it?}
