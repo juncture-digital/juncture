@@ -21,7 +21,7 @@ Like some other components, you can position the diagram or chart using the belo
 
 ### Examples
 Below is an example of a flowchart
-<ve-snippet label="Juncture mermaid example">
+<ve-snippet label="Mermaid Flowchart example">
     .ve-mermaid
         flowchart TD
             A[Start] --> B{Is it?}
@@ -29,4 +29,13 @@ Below is an example of a flowchart
             C --> D[Rethink]
             D --> B
             B ---->|No| E[End]
+</ve-snippet>
+
+Below is an example of a pie chart
+<ve-snippet label="Mermaid Pie Chart example">
+    .ve-mermaid
+        pie title Pets adopted by volunteers
+            "Dogs" : 386
+            "Cats" : 85
+            "Rats" : 15
 </ve-snippet>
