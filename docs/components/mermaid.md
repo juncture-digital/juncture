@@ -11,6 +11,7 @@ To create your visualization using `.ve-mermaid`, write a diagram or chart follo
 - [Class Diagram Syntax](https://mermaid.js.org/syntax/classDiagram.html)
 - [State Diagram Syntax](https://mermaid.js.org/syntax/stateDiagram.html)
 - [Pie Chart Syntax](https://mermaid.js.org/syntax/pie.html)
+- [Mind Map Syntax](https://mermaid.js.org/syntax/mindmap.html)
 
 ### Viewer positioning attributes
 Like some other components, you can position the diagram or chart using the below positioning attributes.
@@ -38,4 +39,14 @@ Below is an example of a pie chart
             "Dogs" : 386
             "Cats" : 85
             "Rats" : 15
+</ve-snippet>
+
+Below is an example of a mind map
+<ve-snippet label="Mermaid Mind Map example">
+    .ve-mermaid
+        mindmap
+            Root
+                A
+                  B
+                  C
 </ve-snippet>
