@@ -47,6 +47,6 @@ Below is an example of a mind map
         mindmap
         Root
             A
-              B
-              C
+                B
+                C
 </ve-snippet>
