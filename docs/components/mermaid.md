@@ -45,7 +45,7 @@ Below is an example of a mind map
 <ve-snippet label="Mermaid Mind Map example">
     .ve-mermaid
         mindmap
-            Root
+        Root
                 A
                     B
                     C
