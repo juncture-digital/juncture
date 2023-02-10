@@ -180,7 +180,6 @@ def render_html(path=None):
 @app.route('/media/')
 @app.route('/editor')
 @app.route('/media')
-@app.route('/')
 def render_app(path=None):
   qargs = dict([(k, request.args.get(k)) for k in request.args])
   refresh = qargs.get('refresh','false').lower() in ('true', '')
@@ -212,6 +211,16 @@ def render_app(path=None):
   else:
     html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs/', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs/')
   return html
+
+@app.route('/')
+def root():
+  global PREFIX
+  host = request.host.split(':')[0]
+  if host.endswith('plant-humanities.org'):
+    PREFIX = 'jstor-labs/plant-humanities'
+    return render_html()
+  else:
+    return render_app()
 
 @app.route('/search')
 def search():
