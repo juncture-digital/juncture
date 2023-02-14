@@ -1,61 +1,53 @@
 # Setting up a Personal Media Collection
 
-# Using Github as an IIIF Image Repository
+This guide describes an approach for hosting IIIF media content in a Github repository.  In this approach media files and IIIF properties files are stored in a Github repository. Juncture services are able to dynamically generate IIIF presentation manifests and serve IIIF image tiles for this content.
 
-This document describes an approach for hosting IIIF media content in a Github repository.  In this approach media files and IIIF properties files are stored in a Github repository and served by an external service that dynamically generates IIIF presentation manifests and serves IIIF image tiles from the Github content.
+?> Where possible, users are encouraged to use a purpose-built sharing site for hosting and sharing media files.  [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page) is one such (free to use) site for hosting and sharing media files.  While Wikimedia Commons (and some other file sharing sites) do not yet support IIIF, the same Juncture services that are used to generate IIIF manifests and serve images from Github repositories also works with many of these sites.  More information finding and using IIIF media resources can be found [here](/howto-find-images)
 
-Where possible, users are encouraged to use a purpose-built sharing site for hosting and sharing media files.  [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page) is one such (free to use) site for hosting and sharing media files.  While Wikimedia Commons (and some other file sharing sites) do not yet support IIIF, the same service that is used to generate IIIF manifests and serve images from Github repositories also works with many of these sites.  The advantage of using images from a site like Wikimedia Commons is that IIIF manifests can be automatically generated using metadata obtained from Application Programming Interfaces (APIs) provided by the sites.  As an example, an IIIF manifest for the [https://commons.wikimedia.org/wiki/File:White-cheeked_Honeyeater_-_Maddens_Plains.jpg](https://commons.wikimedia.org/wiki/File:White-cheeked_Honeyeater_-_Maddens_Plains.jpg) image hosted by Wikimedia Commons is automatically generated using the URL [https://iiif.juncture-digital.org/wc:White-cheeked_Honeyeater_-_Maddens_Plains.jpg/manifest.json](https://iiif.juncture-digital.org/wc:White-cheeked_Honeyeater_-_Maddens_Plains.jpg/manifest.json).  Using the auto-generated IIIF manifest the image can easily be viewed in an IIIF compatible viewer or used by any IIIF-enabled tool.  The White-cheeked Honeyeater image can be seen in the Juncture media viewer at [https://iiif.juncture-digital.org/#wc:White-cheeked_Honeyeater_-_Maddens_Plains.jpg](https://iiif.juncture-digital.org/wc:White-cheeked_Honeyeater_-_Maddens_Plains.jpg)
+# Using Github as an IIIF Media Repository
 
-In many cases a minimal set of IIIF required metadata for a single image can be inferred from site-wide default values and image-specific metadata that can be inferred from the image file name (such as the image title and reuse rights).
+The Juncture IIIF services are able to serve IIIF media from files stored in Github.  In many cases all that is required is a plain media file (image, audio, or video) stored in a public Github repository, where the file name conforms to a few simple naming conventions.  In cases where more descriptive metadata is needed a simple key-value properties file can be associated with a single file or a group of files located in a Github folder.
 
-In situations where more descriptive metadata is needed a simple key-value properties file can be associated with a single image or a group of images located in a folder.
+In the simplest case, 
 
-# Options for image and/or metadata hosting
+- A IIIF label property is created from the Github file name
+- The IIIF reuse rights property defaults to http://creativecommons.org/licenses/by/4.0/ with an auto-generated attribution statement that uses the Github username associated with the Github repository hosting the file
+- Other IIIF properties, such as a thumbnail URL, are automatically created by Juncture
 
-## Image only
+# Options for managing a media collection
 
-The easiest method for hosting a file is to simply upload the image file in this repository using a file name that can be used to generate the image label (caption) and can optionally includes a reuse rights code.
+## Using the Juncture Media Tool
 
-When using this method the image file name represents the image label and an optional segment that consists of a reuse rights code.  The label and rights code segments are separated by the first `-` character in the file name.  All spaces in the label segment of the file name must be converted to underscore (`_`) characters.  A double underscore (`__`) can be used to signify the end of a title.  This can be useful if multiple images in a folder will use the same label.  For instance, `Some_label__1-CC0.jpg` and `Some_label__2-CC0.jpg`.  In this example both image files have a unique file name but can be associated with the same label and rights code.
+The Juncture Media tool is convenient for browsing Github hosted media collections.  It can also be used to upload media files to Github and define some custom metadata that cannot be inferred by Juncture.  When used from a smartphone, the media tool provides a convenient way to upload photos to Github.
 
-The reuse rights for an image is defined by appending a Creative Commons or Rights Statements code to the end of the file name (but before the file extension).  The reuse rights code is one of the [Creative Commons](https://creativecommons.org/licenses/) or [RightsStatements.org](https://rightsstatements.org/page/1.0/) codes defined in [Reuse Rights](#reuse-rights) section below.  If a rights code is not provided in the file name a default value is used.  The default value is obtained from properties files found in the folder hierarchy in which the image file is located.  If rights metadata is available in multiple properties files the value in the file that is closest to the image takes precedence.  For instance, if a properties file at the root of the repository defined the reuse rights as `CC BY` and then another properties file in a parent/ancestor folder of the image defined the reuse rights as `CC BY-SA`, the `CC BY SA` value would take precedence and would be used in the generated IIIF manifest.
+## Uploading files to Github
 
-### Examples
+### Image only
 
-- The file name for the image [Fallstaff_Hotel_and_Westgate_Towers,_Canterbury-CC0.jpg](Fallstaff_Hotel_and_Westgate_Towers,_Canterbury-CC0.jpg) is formatted to enable a label and rights statement to be extracted without the need for a separate properties file.
-  - The IIIF manifest generated for this image can be seen at [https://iiif.juncture-digital.org/gh:kent-map/images/Fallstaff_Hotel_and_Westgate_Towers,_Canterbury-CC0.jpg/manifest.json](https://iiif.juncture-digital.org/gh:kent-map/images/Fallstaff_Hotel_and_Westgate_Towers,_Canterbury-CC0.jpg/manifest.json).
-  - This manifest can then be used in any IIIF viewer to view the image.  For instance, using the Juncture viewer [https://iiif.juncture-digital.org/gh:kent-map/images/Fallstaff_Hotel_and_Westgate_Towers,_Canterbury-CC0.jpg](https://iiif.juncture-digital.org/gh:kent-map/images/Fallstaff_Hotel_and_Westgate_Towers,_Canterbury-CC0.jpg).
+The easiest method for hosting an IIIF media file is to simply upload the file to a Github repository using a file name that can be used to generate the image label.  In cases where something other than the default license (`CC-BY`) is needed, the file name can be augmented with a reuse rights code, for instance, `CC0`.
 
-## Image and properties file
+The convention for file naming when used for IIIF media serving by Juncture is:
+
+- The file name will be converted to an IIIF label and can optionally include a rights code.
+- Underscore characters (`_`) in the file name are converted to spaces in the IIIF label.
+- The label and optional rights code are separated using `--` in the file name. For instance, an image file named `A_Shared_Image--CC0.jpg` would result in a IIIF manifest label of `A Shared Image` and a reuse rights code of `CC0` (Public Domain Dedication).
+- A double underscore (`__`) can be used to signify the end of a label in a Github file name.  This can be useful if multiple images in a Github folder will use the same label.  For instance, `A_Shared_Image__1--CC0.jpg` and `A_Shared_Image__2--CC0.jpg`.  In this example both image files have a unique Github file name but can be associated with the same label.
+
+The reuse rights for a file is defined by appending a Creative Commons or Rights Statements code to the end of the file name (but before the file extension).  The reuse rights code is one of the [Creative Commons](https://creativecommons.org/licenses/) or [RightsStatements.org](https://rightsstatements.org/page/1.0/) codes defined in [Reuse Rights](#reuse-rights) section below.  If a rights code is not provided in the file name a default value is used.  The default value is obtained from properties files found in the folder hierarchy in which the image file is located.  If rights metadata is available in multiple properties files the value in the file that is closest to the image takes precedence.  For instance, if a properties file at the root of the repository defined the reuse rights as `CC BY` and then another properties file in a parent/ancestor folder of the image defined the reuse rights as `CC BY-SA`, the `CC BY SA` value would take precedence and would be used in the generated IIIF manifest.
+
+### Media and properties file
 
 In situations where it is desired to associate richer metadata with an image a supplemental properties file may be used.
 
-### Examples
-
-- The image [Dane_John_Park.jpg](Dane_John_Park.jpg) is accompanied with the [Dane_John_Park.yaml](Dane_John_Park.yaml) properties file which includes a summary, date, and Wikidata QID (in the `depicts` metadata field).
-  - The IIIF manifest for this image can be seen at [https://iiif.juncture-digital.org/gh:kent-map/images/Dane_John_Park.jpg/manifest.json](https://iiif.juncture-digital.org/gh:kent-map/images/Dane_John_Park/manifest.json).
-  - The image can be viewed in the Juncture media viewer at [https://iiif.juncture-digital.org/gh:kent-map/images/Dane_John_Park.jpg](https://iiif.juncture-digital.org/gh:kent-map/images/Dane_John_Park.jpg).
-
-> Where possible, it is recommended to include the `depicts` metadata property to identify entities depicted in the image.  In this example the included Wikidata QID ([Q16988443](https://www.wikidata.org/wiki/Q16988443)) indicates that the [Dane John Mound](https://en.wikipedia.org/wiki/Dane_John_Mound) is depicted in the image.
-
-## Properties file only
+### Properties file only
 
 In situations where an image is hosted on another web site that does not provide a IIIF manifest a properties file is used to define the IIIF metadata in a generated IIIF manifest.  When using this method the URL to the externally hosted image is included in the properties file in addition to the usual IIIF metadata properties.
 
-### Examples
-
-- [Canterbury_Cathedral_2021.yaml](Canterbury_Cathedral_2021.yaml)
-  - Generated manifest: [https://iiif.juncture-digital.org/gh:kent-map/images/Canterbury_Cathedral_2021/manifest.json](https://iiif.juncture-digital.org/gh:kent-map/images/Canterbury_Cathedral_2021/manifest.json)
-  - Image viewer URL: [https://iiif.juncture-digital.org/gh:kent-map/images/Canterbury_Cathedral_2021](https://iiif.juncture-digital.org/gh:kent-map/images/Canterbury_Cathedral_2021)
-- [Canterbury_Cathedral_circa_1905.yaml](Canterbury_Cathedral_circa_1905.yaml)
-  - Generated manifest: [https://iiif.juncture-digital.org/gh:kent-map/images/Canterbury_Cathedral_circa_1905/manifest.json](https://iiif.juncture-digital.org/gh:kent-map/images/Canterbury_Cathedral_circa_1905/manifest.json)
-  - Image viewer URL: [https://iiif.juncture-digital.org/gh:kent-map/images/Canterbury_Cathedral_circa_1905](https://iiif.juncture-digital.org/gh:kent-map/images/Canterbury_Cathedral_circa_1905)
-
 # Reuse Rights
 
-The IIIF Presentation Manifests provide a flexible approach for explicitly defining the reuse rights for an image and any attribution (or other) statements that must be displayed when the image is used.
+The IIIF Presentation Manifests provide a flexible approach for asserting the reuse rights for an image and any attribution (or other) statements that must be displayed when the image is used.
 
-`Rights` refers string that identifies a license or rights statement that applies to the content of the resource, such as the JSON of a Manifest or the pixels of an image. The value must be drawn from the set of [Creative Commons](https://creativecommons.org/licenses/) license URIs or [RightsStatements.org](https://rightsstatements.org/page/1.0/) rights statement URIs
+`Rights` refers string that identifies a license or rights statement that applies to the content of the resource, such as the JSON of a Manifest or the pixels of an image. The value must be drawn from the set of [Creative Commons](https://creativecommons.org/licenses/) license URIs or [RightsStatements.org](https://rightsstatements.org/page/1.0/) rights statement URIs.
 
 ## Creative Commons Licenses
 

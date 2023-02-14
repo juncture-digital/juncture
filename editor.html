@@ -166,7 +166,6 @@
     },
     created() {
       this.inIframe = window.location !== window.parent.location
-      console.log(`inIframe=${this.inIframe}`)
       this.ghAuthToken = localStorage.getItem('gh-auth-token')
       window.addEventListener('storage', (evt) => this.ghAuthToken = localStorage.getItem('gh-auth-token'))
     },

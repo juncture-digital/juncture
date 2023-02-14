@@ -19,7 +19,7 @@
 
   <div id="app">
   
-    <ve-header
+    <ve-header v-if="!inIframe"
       v-cloak
       label="Media Tool"
       background="#5B152E"
@@ -73,6 +73,7 @@
     el: '#app',
     data: () => ({
       contentPath: null,
+      inIframe: false,
       root: '',
       pathRoot: '/',
       ghAuthToken: null,
@@ -91,17 +92,18 @@
       }
     },
     created() {
-      console.log('media.created')
+      this.inIframe = window.location !== window.parent.location
       this.ghAuthToken = localStorage.getItem('gh-auth-token')
       window.addEventListener('storage', (evt) => { this.ghAuthToken = localStorage.getItem('gh-auth-token') })
     },
     mounted() {
       let pathElems = window.location.href.slice(window.origin.length+1).split('/').filter(pe => pe)
       if (pathElems.length > 0 && pathElems[0] === 'media') {
-        this.pathRoot = `/${pathElems[0]}/`
+        this.pathRoot = '/media/'
         pathElems = pathElems.slice(1)
       }
-      this.contentPath = pathElems.join('/')
+      this.contentPath = pathElems.length >= 2 ? pathElems.join('/') : (localStorage.getItem('media-path') || '')
+      console.log(`media: contentPath=${this.contentPath}`)
       this.$nextTick(() => {
         document.getElementById('contentSelector')?.addEventListener('contentPathChanged', async (evt) => this.parseContentPath(evt.detail[0]))
         document.getElementById('contentSelector')?.addEventListener('addMediaResource', this.addMediaResource)
@@ -119,6 +121,7 @@
         console.log(`parseContentPath: acct=${this.acct} repo=${this.repo} contentPath=${contentPath} filePath=${filePath} writeable=${this.userCanUpdate}`)
         this.contentPath = contentPath
         window.history.replaceState({}, null, `${this.pathRoot}${contentSpec}`)
+        localStorage.setItem('media-path', contentPath)
         this.dirList = document.getElementById('contentSelector')?._instance.exposed.getDirList().map(item => {item.root = root; return item})
       },
 
