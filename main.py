@@ -40,7 +40,7 @@ CONFIG = yaml.load(open(f'{SCRIPT_DIR}/config.yaml', 'r').read(), Loader=yaml.Fu
 
 API_ENDPOINT = 'https://api.juncture-digital.org'
 WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
-WC_VERSION = '2.0.0-beta.6'
+WC_VERSION = '2.0.0-beta.7'
 
 PREFIX = 'juncture-digital/juncture' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)
@@ -123,7 +123,8 @@ def _get_html(path, base_url, ref=REF, host=None, **kwargs):
     resp = requests.get(api_url)
     status_code, html =  resp.status_code, resp.text if resp.status_code == 200 else ''
   if status_code == 200:
-    if host == 'localhost:8080':
+    logger.info(host)
+    if host == 'localhost':
       html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/js\/index\.js', WC_ENDPOINT, html)
       html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/dist\/assets\/js\/index\.js', WC_ENDPOINT, html)
       html = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital.*\/docs\/css\/', 'https://juncture-digital.github.io/web-components/css/', html)
