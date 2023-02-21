@@ -121,3 +121,7 @@ The following attributes are passed through to the native `iframe` element.  The
 <ve-snippet collapsible label="Wikimedia Commons picture of the day">
 .ve-iframe https://commons.wikimedia.org/wiki/Commons:Picture_of_the_day/Today
 </ve-snippet>
+
+<ve-snippet collapsible label="Embedding a Book from Internet Archive">
+.ve-iframe https://archive.org/embed/slaveryinunit00ballcha/page/172/mode/1up
+</ve-snippet>
