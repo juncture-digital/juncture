@@ -2,7 +2,7 @@
 
 # Making Scents of Music
 
-.ve-media wc:Sir_Lawrence_Alma-Tadema_-_The_Meeting_of_Antony_and_Cleopatra.jpg height=400px cover 4d3e808b4d3e808b4d3e808b right
+.ve-media wc:Sir_Lawrence_Alma-Tadema_-_The_Meeting_of_Antony_and_Cleopatra.jpg height=400px fit=cover 4d3e808b4d3e808b4d3e808b right
 
 Perfumes have been around for thousands of years. ==Mesopotamians=={Q8807346} had incense and engaged in ritualistic uses of fragrance as early as 4000 BCE. Upper-class families in Ancient China wore scented beads and carried perfumed pouches. Cleopatra was said to have ==tantalized Marc Antony with Mendesian perfume=={zoomto:14,1199,2000,1640,cc591b94}, a concoction originating in the ancient city of ==Mendes=={Q1427162} made from desert date oil, myrrh, cinnamon, and pine resin.[^1] During these early periods, the two primary methods used to extract and preserve fragrance were ==*distillation*=={Q101017} and ==*enfleurage*=={Q900621}, processes which capture the essential oils of natural objects by heating the fragrant materials in water (*distillation*) or using fat, grease, oil, and butter to absorb the target scent (*enfleurage*). 
 
