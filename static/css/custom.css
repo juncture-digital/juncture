@@ -265,7 +265,7 @@ strong {
 .markdown-section h5,
 .markdown-section h6 {
   font-weight: var(--sl-font-weight-normal);
-  margin: 0 0 1em 0;
+  margin: 0;
 }
 
 .markdown-section h1 {

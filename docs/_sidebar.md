@@ -1,18 +1,15 @@
   - 
     - <ve-auth></ve-auth>
-    - <ve-button label="Open editor in new window" icon="pencil" href="/editor" target="_blank" auth-required></ve-button>
 
   - Juncture
     - [Home](/)
     - [Quick Start](/quick-start)
-    - [**Editor**](/tools/editor)
-      - [Getting started](/tools/editor)
-      - [Open Editor](/embedded-editor)
-    - [**Media Tool**](/tools/media-tool)
-      - [Getting started](/tools/media-tool)
-      - [Open Media Tool](/embedded-media)
-    - [**Showcase**](/showcase)
+    - [Showcase](/showcase)
 
+  - Tools
+    - [Editor](/embedded-editor)
+    - [Media Tool](/embedded-media)
+  
 - Getting Started
   - [Using the Juncture Documentation](/getting-started)
   - [Juncture Essay Rendering](/getting-started?id=juncture-essay-rendering)
