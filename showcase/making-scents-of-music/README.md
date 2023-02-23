@@ -1,6 +1,8 @@
-.ve-header "Making Scents of Music" wc:Romantic_days_in_old_Boston;_the_story_of_the_city_and_of_its_people_during_the_nineteenth_century_(1922)_(14776271662).jpg "Smell, Synaesthesia, and Why We Talk About Fragrance 'Notes' Today" sticky
+.ve-header "Making Scents of Music" wc:Romantic_days_in_old_Boston;_the_story_of_the_city_and_of_its_people_during_the_nineteenth_century_(1922)_(14776271662).jpg "Pallas Riedler" sticky
 
 # Making Scents of Music
+
+### _Smell, Synaesthesia, and Why We Talk About Fragrance 'Notes' Today_
 
 .ve-media wc:Sir_Lawrence_Alma-Tadema_-_The_Meeting_of_Antony_and_Cleopatra.jpg height=400px fit=cover 4d3e808b4d3e808b4d3e808b right
 

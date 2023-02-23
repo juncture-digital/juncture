@@ -12,7 +12,7 @@
     An essay about one of Vincent van Gogh's most famous works, "Bedroom in Arles".  The painting was created in 1888 while he was living at 2 Place Lamartine in Arles, France, in what would come to be known as the "Yellow House".
 
 
-    ### Making Scents of Music {href=/showcase/making-scents-of-music}
+    ### Making Scents of Music {href=/showcase/making-scents-of-music target=_blank}
 
     ![](https://iiif.juncture-digital.org/thumbnail/gh:juncture-digital/juncture/showcase/making-scents-of-music/Showcase.jpg?region=pct:20,20,55,59.5&width=300)
 

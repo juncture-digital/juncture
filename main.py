@@ -128,7 +128,7 @@ def _get_html(path, base_url, ref=REF, host=None, **kwargs):
     if host == 'localhost':
       if WC_ENDPOINT != DEFAULT_WC_ENDPOINT:
         html = html.replace(DEFAULT_WC_ENDPOINT, WC_ENDPOINT)
-        html = re.sub(r'.*https:\/\/raw\.githubusercontent\.com\/juncture-digital\/web-components\/main\/docs\/css\/index\.css.*', '', html)
+        html = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', html)
     elif host == 'dev.juncture-digital.org':
       html = html.replace(DEFAULT_WC_ENDPOINT, 'https://juncture-digital.github.io/web-components/js/index.js')
   return status_code, html
