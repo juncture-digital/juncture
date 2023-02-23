@@ -18,12 +18,14 @@
 
   <div id="app"></div>
   <script>
-    console.log(location)
+    let basePath = location.hostname === 'localhost'
+      ? '/docs/'
+      : `https://raw.githubusercontent.com/juncture-digital/juncture/${location.hostname === 'dev.juncture-digital.org' ? 'dev' : 'main'}/docs/`
     window.$docsify = {
       alias: { '.*/_sidebar.md': '/_sidebar.md' },
       autoHeader: false,
       auto2top: true,
-      basePath: `https://raw.githubusercontent.com/juncture-digital/juncture/${location.hostname === 'dev.juncture-digital.org' ? 'dev' : 'main'}/docs/`,
+      basePath,
       // coverpage: true,
       homepage: 'README.md',
       loadNavbar: false,
