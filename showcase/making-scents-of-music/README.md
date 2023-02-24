@@ -16,7 +16,7 @@ While these two methods of scent extraction are still used today, they have nota
 
 The foundations for this transformation were laid in 1828, when Friedrich Wöhler, a German chemist, synthesized ==urea=={Q48318} by evaporating a solution of ammonium cyanate, thereby establishing that organic compounds could be synthesized from inorganic substances. By the 1870s, chemists were developing artificial scents like piperonal (which smells like ==heliotrope=={Q158082} flowers), ==coumarin=={Q111812} (the scent of freshly mown hay), vanillin (vanilla), and musk, first in smaller amounts in the lab and then in industrial bulk quantities in the 1880s. 
 
-.ve-map 23.241,62.226 2 right
+.ve-map 23.241,62.226 2 right sticky
     - Q928
     - Q25396403
     - Q262

@@ -108,7 +108,8 @@ def _get_local_content(path):
       return open(_path, 'r').read()
   logger.warn(f'Local content not found: path={path}')
   
-def _get_html(path, base_url, ref=REF, host=None, **kwargs):
+def _get_html(path, base_url, ref=None, host=None, **kwargs):
+  ref = ref or ('dev' if host == 'dev.juncture-digital.org' else '')
   logger.info(f'_get_html: path=={path} base_url=={base_url} ref={ref} prefix={PREFIX} host={host}')
   html = ''
   status_code = 404
