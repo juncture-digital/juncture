@@ -75,4 +75,15 @@ Map overlays are defined in a Markdown list following the `.ve-map` tag.
     .ve-map Q60 8
 </ve-snippet>
 
+<ve-snippet collapsible label="Map with image as marker">
+    .ve-map Q223969 5 right
+        - wc:Double-O-Arch_Arches_National_Park_2.jpg
+
+    This example uses [an image from Wikimedia commons](https://commons.wikimedia.org/wiki/File:Double-O-Arch_Arches_National_Park_2.jpg) for a marker.  The image used in this example includes embedded Exif (Exchangeable image file format) data with geographic coordinates.
+
+    Hover over the marker or click here to see the image.
+
+    ==The marker image will also appear when hovering over this text.  Clicking on this text will also cause the map to zoom in on the marker location.=={flyto=wc:Double-O-Arch_Arches_National_Park_2.jpg,14}
+</ve-snippet>
+
 ### Overlays
