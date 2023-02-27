@@ -4,3 +4,9 @@ This guide will walk through using the [AllMaps](https://allmaps.org/) editor on
 
 ## Creating an AllMaps ID
 In order for your image to be placed in the right location on a map, there must be georeference points that indicate where the image should be overlayed. This can be done using the [AllMaps Editor](https://editor.allmaps.org/#/). To use this, you need a IIIF Manifest URL. Enter it into the input box and once it is loaded in AllMaps, navigate to the 'Georeference' tab. 
+
+<ve-media src="gh:juncture-digital/media/videos/Using_AllMaps1.gif" no-caption no-info-icon right></ve-media>
+
+Once in the 'Georeference' tab, zoom into the map on the right to the place where you would like the image overlay. Note that clicking on the map will place a marker but you can delete any accidental or unwanted markers from the list icon at the bottom of the map. Once the map is in position, add pins to the image and it's corresponding place on the map, as shown below.
+
+<ve-media src="gh:juncture-digital/media/videos/Using_AllMaps2.gif" no-caption no-info-icon width="60%"></ve-media>
