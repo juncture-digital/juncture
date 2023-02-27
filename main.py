@@ -41,7 +41,7 @@ CONFIG = yaml.load(open(f'{SCRIPT_DIR}/config.yaml', 'r').read(), Loader=yaml.Fu
 API_ENDPOINT = 'https://api.juncture-digital.org'
 DEFAULT_WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
 WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
-WC_VERSION = '2.0.0-beta.11'
+WC_VERSION = '2.0.0-beta.14'
 
 PREFIX = 'juncture-digital/juncture' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)
@@ -125,13 +125,15 @@ def _get_html(path, base_url, ref=None, host=None, **kwargs):
     resp = requests.get(api_url)
     status_code, html =  resp.status_code, resp.text if resp.status_code == 200 else ''
   if status_code == 200:
-    logger.info(host)
     if host == 'localhost':
       if WC_ENDPOINT != DEFAULT_WC_ENDPOINT:
         html = html.replace(DEFAULT_WC_ENDPOINT, WC_ENDPOINT)
         html = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', html)
     elif host == 'dev.juncture-digital.org':
       html = html.replace(DEFAULT_WC_ENDPOINT, 'https://juncture-digital.github.io/web-components/js/index.js')
+    else:
+      html = html.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs')
+
   return status_code, html
 
 @app.route('/favicon.ico')
