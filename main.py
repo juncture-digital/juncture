@@ -41,7 +41,7 @@ CONFIG = yaml.load(open(f'{SCRIPT_DIR}/config.yaml', 'r').read(), Loader=yaml.Fu
 API_ENDPOINT = 'https://api.juncture-digital.org'
 DEFAULT_WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
 WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
-WC_VERSION = '2.0.0-beta.8'
+WC_VERSION = '2.0.0-beta.11'
 
 PREFIX = 'juncture-digital/juncture' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)

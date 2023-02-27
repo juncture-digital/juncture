@@ -1,3 +1,5 @@
+Version: <ve-version></ve-version>
+
   - 
     - <ve-auth></ve-auth>
 
