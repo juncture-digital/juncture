@@ -1,6 +1,8 @@
-.ve-header "Making Scents of Music" wc:Romantic_days_in_old_Boston;_the_story_of_the_city_and_of_its_people_during_the_nineteenth_century_(1922)_(14776271662).jpg "Smell, Synaesthesia, and Why We Talk About Fragrance 'Notes' Today" sticky
+.ve-header "Making Scents of Music" wc:Romantic_days_in_old_Boston;_the_story_of_the_city_and_of_its_people_during_the_nineteenth_century_(1922)_(14776271662).jpg "Pallas Catenella" sticky
 
 # Making Scents of Music
+
+### _Smell, Synaesthesia, and Why We Talk About Fragrance 'Notes' Today_
 
 .ve-media wc:Sir_Lawrence_Alma-Tadema_-_The_Meeting_of_Antony_and_Cleopatra.jpg height=400px fit=cover 4d3e808b4d3e808b4d3e808b right
 
@@ -14,7 +16,7 @@ While these two methods of scent extraction are still used today, they have nota
 
 The foundations for this transformation were laid in 1828, when Friedrich Wöhler, a German chemist, synthesized ==urea=={Q48318} by evaporating a solution of ammonium cyanate, thereby establishing that organic compounds could be synthesized from inorganic substances. By the 1870s, chemists were developing artificial scents like piperonal (which smells like ==heliotrope=={Q158082} flowers), ==coumarin=={Q111812} (the scent of freshly mown hay), vanillin (vanilla), and musk, first in smaller amounts in the lab and then in industrial bulk quantities in the 1880s. 
 
-.ve-map 23.241,62.226 2 right
+.ve-map 23.241,62.226 2 right sticky
     - Q928
     - Q25396403
     - Q262

@@ -41,7 +41,7 @@ CONFIG = yaml.load(open(f'{SCRIPT_DIR}/config.yaml', 'r').read(), Loader=yaml.Fu
 API_ENDPOINT = 'https://api.juncture-digital.org'
 DEFAULT_WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
 WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
-WC_VERSION = '2.0.0-beta.8'
+WC_VERSION = '2.0.0-beta.11'
 
 PREFIX = 'juncture-digital/juncture' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)
@@ -108,7 +108,8 @@ def _get_local_content(path):
       return open(_path, 'r').read()
   logger.warn(f'Local content not found: path={path}')
   
-def _get_html(path, base_url, ref=REF, host=None, **kwargs):
+def _get_html(path, base_url, ref=None, host=None, **kwargs):
+  ref = ref or ('dev' if host == 'dev.juncture-digital.org' else '')
   logger.info(f'_get_html: path=={path} base_url=={base_url} ref={ref} prefix={PREFIX} host={host}')
   html = ''
   status_code = 404
@@ -128,7 +129,7 @@ def _get_html(path, base_url, ref=REF, host=None, **kwargs):
     if host == 'localhost':
       if WC_ENDPOINT != DEFAULT_WC_ENDPOINT:
         html = html.replace(DEFAULT_WC_ENDPOINT, WC_ENDPOINT)
-        html = re.sub(r'.*https:\/\/raw\.githubusercontent\.com\/juncture-digital\/web-components\/main\/docs\/css\/index\.css.*', '', html)
+        html = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', html)
     elif host == 'dev.juncture-digital.org':
       html = html.replace(DEFAULT_WC_ENDPOINT, 'https://juncture-digital.github.io/web-components/js/index.js')
   return status_code, html
