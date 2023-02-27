@@ -1,4 +1,4 @@
-.ve-header "King in the Wilderness" flickr:7034493803 "Joan Baez interview" options=pct:0,10,100,50 sticky
+.ve-header "King in the Wilderness" flickr:7034493803 "Joan Baez interview" options=pct:0,0,90,80 position=top sticky
 
 # King in the Wilderness - Joan Baez interview
 
@@ -7,18 +7,6 @@
 Documentarians are only often able to use only a small percentage of the interviews they capture. In collaboration with [Kunhardt Film Foundation](https://www.kunhardtfilmfoundation.org/), JSTOR Labs explored making full video interviews with historically significant figures available for educational purposes.  The output of that [exploratory project](https://labs.jstor.org/projects/interview-archive/) was an [interactive application](https://labs.jstor.org/interview/mlk) that connected the interview, video and transcripts to Wikidata entities and other relevant content.  This Juncture essay uses the [Joan Baez interview](https://labs.jstor.org/interview/mlk/interview/baez) to demonstrate how video and text narrative (the interview transcript) can be linked and synchronized with Wikidata entities and other relevant resources in a similar way.
 
 ## Interview {.video-text .show-active}
-
-### {.right}
-
----
-
-- ==Joan Baez=={Q131725}
-- Musician and Activist
-- Interviewed by ==Trey Ellis=={Q15458944}
-- July 27, 2017
-- Total Running Time: 38 minutes
-
----
 
 ### {.right .sticky .clear}
 
@@ -32,6 +20,12 @@ Documentarians are only often able to use only a small percentage of the intervi
 
 #### Transcript for Joan Baez's interview
 
+----
+- ==Joan Baez=={Q131725}
+- Musician and Activist
+- Interviewed by ==Trey Ellis=={Q15458944}
+- July 27, 2017
+- Total Running Time: 38 minutes
 ----
 
 00:00:00:00	TREY ELLIS:
