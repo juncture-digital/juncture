@@ -1,9 +1,3 @@
-<style>
-    #juncture {
-        max-width: 1200px;
-    }
-</style>
-
 .ve-header "King in the Wilderness" flickr:7034493803 "Joan Baez interview" options=pct:0,0,90,80 position=top sticky
 
 # King in the Wilderness - Joan Baez interview
