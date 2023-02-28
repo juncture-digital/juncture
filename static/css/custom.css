@@ -276,6 +276,7 @@ strong {
   font-size: var(--sl-font-size-x-large);
   border-bottom: solid 1px var(--sl-color-neutral-200);
   margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .markdown-section h3 {

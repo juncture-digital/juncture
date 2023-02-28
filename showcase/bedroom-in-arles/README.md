@@ -75,7 +75,7 @@ Vincent van Gogh lived in Arles from 1888 to 1889, and produced over 300 paintin
 - =="The Yellow House"=={Q2200610}, and
 -  the first in Van Gogh's series of =="Sunflowers"=={Q157541} paintings
 
-### The Yellow House
+## The Yellow House
 
 The house was the right wing of ==2 Place Lamartine, Arles, France=={43.68217,4.63251,18}, where, on May 1, 1888, van Gogh rented four rooms. 
 

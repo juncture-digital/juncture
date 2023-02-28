@@ -36,9 +36,9 @@ The primary function performed by Juncture is to turn a plain text file stored i
 
 As an example, consider a Juncture user with the Github username of **snagsby**.  Snagsby has created a Juncture visual essay in his essays repository about his favorite Dickens novel, "Bleak House".  The text for the essay has been created in a file named "bleak-house/README.md" located at the root of his Github essays repository.
 - The Github URL for snagsby's essay file is https://github.com/snagsby/essays/blob/main/bleak-house/README.md
-- The URL for rendered Juncture essay would be https://beta.juncture-digital.org/snagsby/essays/bleak-house
+- The URL for rendered Juncture essay would be https://juncture-digital.org/snagsby/essays/bleak-house
 
-All Juncture essays are associated with a URL of the form `https://beta.juncture-digital.org/<USERNAME>/<REPOSITORY>/<PATH><ESSAY-ID>`, where:
+All Juncture essays are associated with a URL of the form `https://juncture-digital.org/<USERNAME>/<REPOSITORY>/<PATH><ESSAY-ID>`, where:
 - `<USERNAME>` and `<REPOSITORY>` is the Github username and repository hosting the file.
 - `<PATH>` is an optional path to a Github folder that contains the essay folder or file.  This is not used for essays stored at the root of a repository.
 - `<ESSAY-ID>` is an identifier associated with the essay.  By convention, this identifier is lower-case text (characters or numbers) without punctuation, using dash characters (`-`) to replace spaces. 
