@@ -2,6 +2,8 @@
 <pre>
 
     # Juncture Showcase
+
+    This Juncture Showcase highlights essays that use Juncture features in various ways.  These essays have interesting content but also provide working examples of Juncture features with Markdown that can easily be copied and reused.  To see the Markdown for an essay click on the <sl-icon name="markdown" style="font-size:30px;margin-bottom:-8px;color:blue"></sl-icon> button found in the essay footer.  
     
     ## {.cards}
 
@@ -9,7 +11,7 @@
 
     ![](https://iiif.juncture-digital.org/thumbnail/wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg?height=300)
 
-    An essay about one of Vincent van Gogh's most famous works, "Bedroom in Arles".  The painting was created in 1888 while he was living at 2 Place Lamartine in Arles, France, in what would come to be known as the "Yellow House".
+    An essay about one of Vincent van Gogh's most famous works, "Bedroom in Arles".  The painting was created in 1888 while he was living at 2 Place Lamartine in Arles, France, in what would come to be known as the "Yellow House".  This essay demonstrates the use of images, video, maps and annotations.
 
 
     ### Making Scents of Music {href=/showcase/making-scents-of-music target=_blank}
@@ -24,7 +26,7 @@
 
     ![](https://iiif.juncture-digital.org/thumbnail/wc:Joan_Baez_1966.jpg?width=300)
 
-    Joan Baez interview used in the King in the Wilderness documentary.
+    Joan Baez interview used in the King in the Wilderness documentary.  This essay demonstrates the synchronization of video with text and other Juncture visualizations.
 
 </pre>
 </ve-essay>

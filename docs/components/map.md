@@ -68,7 +68,7 @@ Map overlays are defined in a Markdown list following the `.ve-map` tag.
 </ve-snippet>
 
 <ve-snippet collapsible label="Basic map with center defined using lat/lng coordinates">
-    .ve-map 55.4,6.7 2
+    .ve-map 42.281,-83.748 9
 </ve-snippet>
 
 <ve-snippet collapsible label="Basic map with center defined using the Wikidata QID for New York City">
