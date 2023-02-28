@@ -10,3 +10,5 @@ In order for your image to be placed in the right location on a map, there must 
 Once in the 'Georeference' tab, zoom into the map on the right to the place where you would like the image overlay. Note that clicking on the map will place a marker but you can delete any accidental or unwanted markers from the list icon at the bottom of the map. Once the map is in position, add pins to the image and it's corresponding place on the map, as shown below.
 
 <ve-media src="gh:juncture-digital/media/videos/Using_AllMaps2.gif" no-caption no-info-icon width="60%"></ve-media>
+
+After the reference points have been added, you will need the AllMaps ID to include in the markdown for your Juncture essay. To locate the AllMaps ID, navigate to the 'Results' tab at the top of the AllMaps Editor. On that page you will find the template URL to your map that will look something like `https://allmaps.xyz/maps/911e307b5cecc423/{z}/{x}/{y}.png`. Copy the ID that follows `/maps/` in the URL. In this case, the AllMaps ID is `911e307b5cecc423`.
