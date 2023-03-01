@@ -1,10 +1,13 @@
-# Sensing Ancient Greek Processions {style="text-align:center;"}
+# 
+
+**Sensing Ancient Greek Processions**
+{style="text-align:center; font-size:2.5rem; margin-bottom:3rem;"}
 
 **Written by [Natalie M. Susmann, PhD](https://www.researchgate.net/profile/Natalie-Susmann)**
-{style="text-align:center;"}
+{style="text-align:center; font-size:1.8rem;"}
 
 **Brandeis University**
-{style="text-align:center;"}
+{style="text-align:center; font-size:1.8rem; margin-bottom:4rem;"}
 
 ## Ancient Greek Processions
 
