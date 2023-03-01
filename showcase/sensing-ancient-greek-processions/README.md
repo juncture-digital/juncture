@@ -21,8 +21,8 @@ Without a wide range of perspectives represented, it is difficult to address sen
 
 Try and immerse yourself into the processional scenes below. Think about specific sensory experiences you might encounter, based on the different objects, people, animals, and scenery:
 
-.ve-media wc:Kantharos_with_sacrificial_procession,_AM_Nafplio,_Naum36.jpg left
-.ve-media wc:Greekreligion-animalsacrifice-corinth-6C-BCE.jpg right
+.ve-media wc:Kantharos_with_sacrificial_procession,_AM_Nafplio,_Naum36.jpg left caption="Boeotian Kantharos c. 6th - 5th c BCE"
+.ve-media wc:Greekreligion-animalsacrifice-corinth-6C-BCE.jpg right caption="Pitsa Panel no. 1, c. 540 - 530 BCE"
 
 ##
 
@@ -52,25 +52,34 @@ Around 12 PM, I arrived at Our Lady Help of Christians Church. Society members w
 
 They adorn her with necklaces, strung with money and prayer cards; they put a crown on her head. A small group of girls watched, alongside older relatives and friends. The girls excitedly compared their summer dresses and waved their carnations in the air.</p
 
-.ve-media gh:nsusmann/media/SaintMaryCarmen/Statue.jpg caption="Saint Mary of Carmen Society setting up the statue" width=75%
+.ve-media gh:nsusmann/media/SaintMaryCarmen/Statue.jpg caption="Setting up the La Madonna del Carmine statue before the procession" width=75%
 
 Statue in-tow, this small group walked around to the rear parking lot. A comparatively larger, noisier crowd was already starting to assemble. There was a marching band, police escort, and some firemen carrying POW MIA flags. There were local political representatives and elected school officials wearing their swag and carrying signs. Relatives of society members –decked in red, green, and white “The Lake” gear – were cheerfully socializing, organizing, and setting up. Some of them climbed into the back of a pickup truck, rigged with a bell.
 
-.ve-media gh:nsusmann/media/SaintMaryCarmen/BellTruck.jpg caption="Nonantum's Alderman bell" width=75%
+.ve-media gh:nsusmann/media/SaintMaryCarmen/BellTruck.jpg caption="The town alderman bell, pulled by a pickup truck in the procession." width=75%
 
 I waited to hear someone call out instructions, but there were none. Suddenly, the music began, the bell began chiming, and the loud crowd began to walk. Certain groups – the band, the bell truck, the statue bearers – stuck together. Society members carrying donation buckets spread out. Everyone else in the procession – the campaigners, relatives, etc. – filled spaces in-between. It was emotive and festive – just like an ancient Greek procession.
 
 In these first few moments, it was easy to distinguish spectators from participants. The street was a like a stage, and spectators waved and cheered to us from the sidewalk. They were loud; the band and bells were louder.
 
-.ve-media gh:nsusmann/media/SaintMaryCarmen/Procession.jpg caption="Saint Mary of Carmen procession" width=75%
+.ve-media gh:nsusmann/media/SaintMaryCarmen/Procession.jpg no-caption width=75%
 
-.ve-media gh:nsusmann/media/SaintMaryCarmen/Tapestry.jpg caption="Saint Mary of Carmen procession" width=75%
+_At the beginning of the procession, participants are on the street and spectators watch from the sidewalk_
+{style="text-align:center; margin:-6px 0 24px 0"}
+
+.ve-media gh:nsusmann/media/SaintMaryCarmen/Tapestry.jpg caption="Society members carrying banners." width=75%
 
 About 1/3 of the way down the street, I noticed a change. Speakers boomed from the sidewalks; complicated firecracker displays were lit in driveways. Spectators were everywhere: walking alongside the procession, on the sidewalk, and across lawns. There were no divisions separating spectators and participants. Spectators walked up to the Society members to donate money, snap photos, and take prayer cards. Society members hopped out of the procession to take breaks, accept food, or greet friends and family.
 
-.ve-media gh:nsusmann/media/SaintMaryCarmen/exchange.jpg caption="Saint Mary of Carmen procession, showing exchange of gifts at statue" width=75%
+.ve-media gh:nsusmann/media/SaintMaryCarmen/exchange.jpg no-caption width=75%
 
-.ve-media gh:nsusmann/media/SaintMaryCarmen/Crowds.jpg caption="Saint Mary of Carmen procession, showing crowds" width=75%
+_Society members greet spectators at the Madonna Del Carmine statue. Spectators can offer donations and the society will gift prayer cards in exchange._
+{style="text-align:center; margin:-6px 0 24px 0"}
+
+.ve-media gh:nsusmann/media/SaintMaryCarmen/Crowds.jpg no-caption width=75%
+
+_For most of the event, there is no distinction between spectator and participant space. Everyone mixes together in the street and it's a loud, moving celebration._
+{style="text-align:center; margin:-6px 0 24px 0"}
 
 Ancient Greek artists rarely showed spectators in processional imagery. The Parthenon frieze is one exception; a small group of elite-looking men lean on their walking sticks and casually watch the parade pass by. On the one hand, excluding spectators helped to reduce distractions and sharpened the image. On the other hand, further distanced these scenes from reality. Spectators were a critical part of the event. A massive crowd helped convey reverence to the god; they represented the community’s collective piety.[^13]
 
