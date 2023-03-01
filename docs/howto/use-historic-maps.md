@@ -12,3 +12,11 @@ Once in the 'Georeference' tab, zoom into the map on the right to the place wher
 <ve-media src="gh:juncture-digital/media/videos/Using_AllMaps2.gif" no-caption no-info-icon width="60%"></ve-media>
 
 After the reference points have been added, you will need the AllMaps ID to include in the markdown for your Juncture essay. To locate the AllMaps ID, navigate to the 'Results' tab at the top of the AllMaps Editor. On that page you will find the template URL to your map that will look something like `https://allmaps.xyz/maps/911e307b5cecc423/{z}/{x}/{y}.png`. Copy the ID that follows `/maps/` in the URL. In this case, the AllMaps ID is `911e307b5cecc423`.
+
+## Adding the Historic Overlay to Your Map
+To add the image overlay to your map, list the AllMaps ID under the `.ve-map` tag using the syntax `- allmaps=XXX` as shown below in the code example. Note that the list must be indented once to the right.
+
+<ve-snippet label="Map with AllMaps Overlay and WikiData QID">
+  .ve-map Q507517 9
+    - allmaps=911e307b5cecc423
+</ve-snippet>
