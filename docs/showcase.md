@@ -22,11 +22,28 @@
 
     In the past, perfumes were reserved for the wealthy elite. As new strategies of chemical synthesis were developed in the nineteenth century, more affordable fragrances became available to the masses and perfume transformed into a popular luxury item. In this essay, learn more about the history of perfume, its surprisingly musical foundations, and the answer to the question: Why do we refer to fragrance “notes” today?
 
+
     ### King in the Wilderness: Joan Baez Interview {href=/showcase/kitw-baez target=_blank}
 
     ![](https://iiif.juncture-digital.org/thumbnail/wc:Joan_Baez_1966.jpg?width=300)
 
     Joan Baez interview used in the King in the Wilderness documentary.  This essay demonstrates the synchronization of video with text and other Juncture visualizations.
+
+
+    ### Top US National Parks {href=/showcase/top-us-national-parks target=_blank}
+
+    ![](https://iiif.juncture-digital.org/thumbnail/wc:Arches_National_Park_(51019110938).jpg?width=300)
+
+    Top US National Parks.
+
+
+    ### Sensing Ancient Greek Processions {href=/showcase/sensing-ancient-greek-processions target=_blank}
+
+    - [Natalie Susmann, PhD](https://www.researchgate.net/profile/Natalie-Susmann)
+
+    ![](https://iiif.juncture-digital.org/thumbnail/wc:Greekreligion-animalsacrifice-corinth-6C-BCE.jpg?width=300)
+
+    Ancient Greeks often displayed their piety via performance: creating and maintain sanctuaries, sacrifices, festivals, etc. Religious processions were perhaps the biggest spectacle, and a highly anticipated event on every ancient Greek’s calendar.
 
 </pre>
 </ve-essay>

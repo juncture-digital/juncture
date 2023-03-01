@@ -17,8 +17,8 @@ If you haven't already done so, you'll need to,
 - [Signup for a Free Github account](https://github.com/join), and 
 - **Login to Github from Juncture**.  There's a login button at the top left of this page that can be used to login to Github.  In the initial login you will be asked to authorize Juncture to make changes on your behalf (via the Juncture Editor tool).  
 
-<ve-modal label="Initial Github Login" button-icon="play-circle" style="margin-left:1rem;">
-.ve-media gh:juncture-digital/media/videos/Initial_Github_Login.gif no-caption no-info-icon
+<ve-modal label="Initial Github Login" button-icon="play-circle" style="margin-left:1rem;" width="640px">
+.ve-media gh:juncture-digital/media/videos/Login.gif no-caption no-info-icon
 </ve-modal>
 
 After the initial login has been performed, the login/logout process is a single button click.  Note that You will remain logged-in between sessions unless an explicit logout is performed.

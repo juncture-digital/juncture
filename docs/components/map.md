@@ -59,6 +59,8 @@ Map overlays are defined in a Markdown list following the `.ve-map` tag.
 
 **[label](/styling/overlays)** (_string_):  Optional label for marker or GeoJSON overlay. 
 
+**[historic map]** (_string_): An AllMaps ID to display a historic map image overlay.
+
 ## Examples
 
 ### Basic
@@ -75,6 +77,8 @@ Map overlays are defined in a Markdown list following the `.ve-map` tag.
     .ve-map Q60 8
 </ve-snippet>
 
+### Overlays
+
 <ve-snippet collapsible label="Map with image as marker">
     .ve-map Q223969 5 right
         - wc:Double-O-Arch_Arches_National_Park_2.jpg
@@ -86,4 +90,9 @@ Map overlays are defined in a Markdown list following the `.ve-map` tag.
     ==The marker image will also appear when hovering over this text.  Clicking on this text will also cause the map to zoom in on the marker location.=={flyto=wc:Double-O-Arch_Arches_National_Park_2.jpg,14}
 </ve-snippet>
 
-### Overlays
+<ve-snippet collapsible label="Map with a historic map overlay">
+    .ve-map Q507517 13
+        - allmaps=911e307b5cecc423
+    
+    This example uses an image of a historic map of the town of Rochester to overlay on top of the map in Juncture. In order to create a georeferenced image to overlay on top of your map, use the [AllMaps Editor](https://editor.allmaps.org/). You can also refere to [this how-to guide on how to use Historic Map Overlays](/howto/use-historic-maps).
+</ve-snippet>
