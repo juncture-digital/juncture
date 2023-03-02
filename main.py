@@ -109,7 +109,7 @@ def _get_local_content(path):
   logger.warn(f'Local content not found: path={path}')
   
 def _get_html(path, base_url, ref=None, host=None, **kwargs):
-  ref = ref or ('dev' if host == 'dev.juncture-digital.org' else '')
+  ref = ref or ('dev' if host == 'dev.juncture-digital.org' and PREFIX != 'juncture-digital/juncture' else '')
   logger.info(f'_get_html: path=={path} base_url=={base_url} ref={ref} prefix={PREFIX} host={host}')
   html = ''
   status_code = 404
@@ -179,6 +179,7 @@ def render_html(path=None):
     html = _customize_response(html)
   logger.info(f'render: api_endpoint={API_ENDPOINT} base_url={base_url} prefix={PREFIX} path={path} status={status} elapsed={round(now()-start, 3)}')
   return html, status
+  # return f'api_endpoint={API_ENDPOINT} host={host} base_url={base_url} prefix={PREFIX} path={path} status={status}', 200
 
 @app.route('/annotator/<path:path>')
 @app.route('/editor/<path:path>')

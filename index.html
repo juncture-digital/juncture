@@ -44,6 +44,24 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRHNQSMN5Y" type="text/javascript"></script>
   <script>
     
+    const referrerUrl = document.referrer
+    if (referrerUrl) {
+      const referrer = new URL(referrerUrl)
+      console.log('referrer', referrer)
+      if (referrer.host === 'github.com' && referrer.pathname.indexOf('/jstor-labs/juncture/wiki') < 0) {
+        const referrerPath = referrer.pathname.slice(1).split('/')
+        const ghAcct = referrerPath[0]
+        const ghRepo = referrerPath[1]
+        const ghBranch = referrerPath.length > 3 ? referrerPath[3] : 'main'
+        const pathStart = 4
+        const pathEnd = referrerPath[referrerPath.length-1] === 'README.md' || referrerPath[referrerPath.length-1] === 'index.md' ? referrerPath.length-1 : referrerPath.length
+        const ghPath = referrerPath.slice(pathStart, pathEnd).join('/').replace(/\.md$/, '')
+        const redirect = `${window.location.origin}/${ghAcct}/${ghRepo}/${ghPath}${ghBranch === 'master' || ghBranch === 'main' ? '' : '?ref=' + ghBranch}`
+        console.log(`referrerUrl=${referrerUrl} redirect=${redirect}`)
+        window.location = redirect
+      }
+    }
+
     // Google Analytics
     if (location.hostname !== 'localhost' && location.hostname !== 'dev.juncture-digital.org') {
       window.dataLayer = window.dataLayer || []
