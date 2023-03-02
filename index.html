@@ -60,7 +60,7 @@
         const ghPath = referrerPath.slice(pathStart, pathEnd).join('/').replace(/\.md$/, '')
         const redirect = `${window.location.origin}/${ghAcct}/${ghRepo}/${ghPath}${ghBranch === 'master' || ghBranch === 'main' ? '' : '?ref=' + ghBranch}`
         console.log(`referrerUrl=${referrerUrl} redirect=${redirect}`)
-        // window.location = redirect
+        window.location = redirect
       }
     }
 
