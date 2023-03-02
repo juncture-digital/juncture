@@ -34,8 +34,7 @@
 
     ![](https://iiif.juncture-digital.org/thumbnail/wc:Arches_National_Park_(51019110938).jpg?width=300)
 
-    Top US National Parks.
-
+    Top US National Parks.  This essay demonstrates the synchronization of map locations with paragraph text and an image gallery.
 
     ### Sensing Ancient Greek Processions {href=/showcase/sensing-ancient-greek-processions target=_blank}
 
