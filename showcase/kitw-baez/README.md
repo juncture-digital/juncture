@@ -16,7 +16,7 @@ Documentarians are only often able to use only a small percentage of the intervi
 
 ###
 
-.ve-video https://www.youtube.com/watch?v=W4LT8-dEhJg sticky
+.ve-media https://www.youtube.com/watch?v=W4LT8-dEhJg sticky
 
 #### Transcript for Joan Baez's interview
 

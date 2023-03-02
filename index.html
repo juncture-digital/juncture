@@ -6,7 +6,7 @@
   <link href="https://juncture-digital.github.io/juncture/static/images/favicon.svg" rel="icon" type="image/svg+xml"/>
   <link href="https://juncture-digital.github.io/juncture/images/favicon.png" rel="icon" type="image/png"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
+  <meta name="description" content="Juncture is a free to use suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/pure.css" />
@@ -45,11 +45,19 @@
   <script>
     
     // Google Analytics
-    if (location.hostname !== 'localhost') {
+    if (location.hostname !== 'localhost' && location.hostname !== 'dev.juncture-digital.org') {
       window.dataLayer = window.dataLayer || []
       function gtag(){dataLayer.push(arguments)}
       gtag('js', new Date())
       gtag('config', 'G-DRHNQSMN5Y')
+    }
+
+    if (location.hostname !== 'dev.juncture-digital.org') {
+      let metaRobots = document.createElement('meta')
+      metaRobots.name = 'robots'
+      metaRobots.content = 'noindex, nofollow'
+      let metaTags = document.getElementsByTagName('meta')
+      metaTags[metaTags.length-1].insertAdjacentElement("afterend", metaRobots)
     }
 
     function toggleSidebar() { document.body.classList.toggle('close') }

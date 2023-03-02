@@ -17,7 +17,7 @@ After the reference points have been added, you will need the AllMaps ID to incl
 ## Adding the Historic Overlay to Your Map
 To add the image overlay to your map, list the AllMaps ID under the `.ve-map` tag using the syntax `- allmaps=XXX` as shown below in the code example. Note that the list must be indented once to the right.
 
-<ve-snippet label="Map with AllMaps Overlay and WikiData QID">
-  .ve-map Q507517 9
-    - allmaps=911e307b5cecc423
+<ve-snippet label="Map with AllMaps Overlay and WikiData QID" disable-drag>
+  .ve-map Q507517 15
+      - allmaps=911e307b5cecc423
 </ve-snippet>
