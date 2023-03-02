@@ -52,7 +52,8 @@
       gtag('config', 'G-DRHNQSMN5Y')
     }
 
-    if (location.hostname !== 'dev.juncture-digital.org') {
+    if (location.hostname === 'dev.juncture-digital.org') {
+      console.log('add meta robots tag')
       let metaRobots = document.createElement('meta')
       metaRobots.name = 'robots'
       metaRobots.content = 'noindex, nofollow'
