@@ -44,12 +44,10 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRHNQSMN5Y" type="text/javascript"></script>
   <script>
     
-    console.log(`referrerUrl=${document.referrer}`)
-
     const referrerUrl = document.referrer
     if (referrerUrl) {
       const referrer = new URL(referrerUrl)
-      console.log(referrer)
+      console.log('referrer', referrer)
       if (referrer.host === 'github.com' && referrer.pathname.indexOf('/jstor-labs/juncture/wiki') < 0) {
         const referrerPath = referrer.pathname.slice(1).split('/')
         const ghAcct = referrerPath[0]
