@@ -15,7 +15,7 @@ import os, re
 SCRIPT_DIR = os.path.abspath(os.path.dirname(__file__))
 
 from time import time as now
-from flask import Flask, request, send_from_directory
+from flask import Flask, redirect, request, send_from_directory
 from flask_cors import CORS
 import argparse
 import yaml
@@ -160,6 +160,10 @@ def pwa_manifest():
 def css(path):
   # logger.info(f'{os.path.join(app.root_path, "static", "css")}/{path}')
   return send_from_directory(os.path.join(app.root_path, 'static', 'css'), path, mimetype='text/css')
+
+@app.route('/images/<path:path>')
+def images(path):
+  return redirect(f'https://juncture-digital.github.io/juncture/static/images/{path}')
 
 @app.route('/<path:path>')
 @app.route('/<path:path>/')

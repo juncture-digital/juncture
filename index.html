@@ -55,7 +55,7 @@
     if (location.hostname === 'dev.juncture-digital.org') {
       let metaRobots = document.createElement('meta')
       metaRobots.name = 'robots'
-      metaRobots.content = 'noindex, nofollow'
+      metaRobots.content = 'noindex'
       let metaTags = document.getElementsByTagName('meta')
       metaTags[metaTags.length-1].insertAdjacentElement("afterend", metaRobots)
     }
