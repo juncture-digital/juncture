@@ -74,21 +74,6 @@ In its current form, Juncture is still well-suited for the type of digital story
 
 This [demo essay](/showcase/bedroom-in-arles) provides an example of what is possible in a Juncture essay.  This essay includes multiple high-res images, a YouTube video, an interactive map, and some text-to-viewer interactions.  The essay also includes many information popovers for entities (people, places, works, etc) mentioned in the text.  Other examples may be found in the [Juncture Showcase](/showcase).
 
-# How does it work?
-
-## Essays are written using Markdown
-
-<ve-media src="gh:juncture-digital/media/images/Juncture_Editor.png" right static caption="Rendered Juncture Essay"></ve-media>
-
-Juncture essays are authored using an extended version of Markdown.
-
-- List item 
-- List item
-
-## Juncture renders the essay as an interactive web page
-
-<ve-media src="gh:juncture-digital/media/images/Sunflower_Essay_Example.png" right static caption="Rendered Juncture Essay"></ve-media>
-
 # What problem does this solve?
 
 Juncture's primary goal is to make the use of modern web technology (deep-zoom and panning for high-resolution images, interactive maps, etc) accessible to anyone with an interest in sharing something on the web, regardless of background or technical skills. In the [Quick Start guide](/quick-start), you can give it try and see for yourself. All that is required for this quick start (and to use Juncture generally) is an active Github account. If you already have one the "hard" part is done. If not, you'll need to take a couple of minutes to signup with Github. Signing up for a Github account is free and painless.

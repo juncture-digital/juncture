@@ -52,7 +52,7 @@
 
     ![](https://iiif.juncture-digital.org/thumbnail/jstor:community.27234954?width=300)
 
-    To be added.
+    Games and gambling have mystical origins rooted in early cultures' attempts to predict the future, to appeal to the gods, and to discover hidden aspects of reality. Fortune tellers threw knucklebones, shot arrows, and dealt cards as a way to uncover the hidden forces shaping our lives. The modern components of board games evolved from these early practices and artifacts.
 
 </pre>
 </ve-essay>
