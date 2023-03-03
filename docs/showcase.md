@@ -36,13 +36,23 @@
 
     Top US National Parks.  This essay demonstrates the synchronization of map locations with paragraph text and an image gallery.
 
+
     ### Sensing Ancient Greek Processions {href=/showcase/sensing-ancient-greek-processions target=_blank}
 
     - [Natalie Susmann, PhD](https://www.researchgate.net/profile/Natalie-Susmann)
 
     ![](https://iiif.juncture-digital.org/thumbnail/wc:Greekreligion-animalsacrifice-corinth-6C-BCE.jpg?width=300)
 
-    Ancient Greeks often displayed their piety via performance: creating and maintain sanctuaries, sacrifices, festivals, etc. Religious processions were perhaps the biggest spectacle, and a highly anticipated event on every ancient Greek’s calendar.
+    Ancient Greeks celebrated their gods with lively processions. We have a ton of archaeological and textual data to learn from, but it's difficult to imagine all of the different smells, tastes, sights, noises, and textures. This essay uses a modern religious festival in Massachusetts to explain why ancient processions were such spectacles. We discover that ancient Greek processional participants and spectators came together to shape this sensory experience.
+
+
+    ### The Mystical Origins of Modern Games {href=/showcase/mystical-origins-of-modern-games target=_blank}
+
+    - [Basem Aly](https://github.com/basemaly)
+
+    ![](https://iiif.juncture-digital.org/thumbnail/jstor:community.27234954?width=300)
+
+    To be added.
 
 </pre>
 </ve-essay>
