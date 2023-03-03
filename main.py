@@ -47,7 +47,6 @@ PREFIX = 'juncture-digital/juncture' # Prefix for site content, typically Github
 REF = ''                         # Github ref (branch)
 LOCAL_CONTENT_ROOT = None
 
-PAGE_CACHE = ExpiringDict(max_len=1000, max_age_seconds=24 * 60 * 60)
 SEARCH_CACHE = ExpiringDict(max_len=1000, max_age_seconds=24 * 60 * 60)
 
 def _add_link(soup, href, attrs=None):
@@ -178,8 +177,10 @@ def render_html(path=None):
   if status == 200:
     html = _customize_response(html)
   logger.info(f'render: api_endpoint={API_ENDPOINT} base_url={base_url} prefix={PREFIX} path={path} status={status} elapsed={round(now()-start, 3)}')
-  return html, status
-  # return f'api_endpoint={API_ENDPOINT} host={host} base_url={base_url} prefix={PREFIX} path={path} status={status}', 200
+  if status == 404:
+    return redirect(f'/#{path}')
+  else:
+    return html, status
 
 @app.route('/annotator/<path:path>')
 @app.route('/editor/<path:path>')
@@ -189,24 +190,14 @@ def render_html(path=None):
 @app.route('/editor')
 @app.route('/media')
 def render_app(path=None):
-  qargs = dict([(k, request.args.get(k)) for k in request.args])
-  refresh = qargs.get('refresh','false').lower() in ('true', '')
   host = request.host.split(':')[0]
-  route = request.path.split('/')[1] or 'index'
-  branch = 'main'
-  logger.info(f'host={host} route={route} path={path} refresh={refresh}')
-  if route not in PAGE_CACHE or refresh:
-    if host == 'localhost':
-      html = open(f'{app.root_path}/{route}.html', 'r').read()
-    else:
-      if host == 'dev.juncture-digital.org': branch = 'dev'
-      resp = requests.get(f'https://raw.githubusercontent.com/juncture-digital/juncture/{branch}/{route}.html')
-      if resp.status_code == 200:
-        html = resp.text
-        PAGE_CACHE[route] = html
-      else: return '', resp.status_code
+  route = path.split('/')[0] if path else request.path.split('/')[1] or 'index'
+  logger.debug(f'host={host} route={route} path={path}')
+  if host == 'localhost':
+    html = open(f'{app.root_path}/{route}.html', 'r').read()
   else:
-    html = PAGE_CACHE[route]
+    html = open(f'{app.root_path}/{route}.html', 'r').read()
+
   if host == 'localhost':
     html = html.replace('https://api.juncture-digital.org', API_ENDPOINT)
     html = html.replace(DEFAULT_WC_ENDPOINT, WC_ENDPOINT)

@@ -33,7 +33,7 @@
       logo: 'https://juncture-digital.github.io/juncture/static/images/favicon.svg',
       name: 'Juncture',
       // repo: 'https://github.com/juncture-digital/juncture',
-      routerMode: 'hash', // or history
+      routerMode: 'history', // hash or history
       // themeColor: '#5B152E',
     }
   </script>
@@ -43,8 +43,7 @@
   <script src="https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js" type="module"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRHNQSMN5Y" type="text/javascript"></script>
   <script>
-    
-    console.log(`document.referrer=${document.referrer}`)
+
     const referrerUrl = document.referrer
     if (referrerUrl) {
       const referrer = new URL(referrerUrl)
