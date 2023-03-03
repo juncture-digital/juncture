@@ -178,7 +178,10 @@ def render_html(path=None):
   if status == 200:
     html = _customize_response(html)
   logger.info(f'render: api_endpoint={API_ENDPOINT} base_url={base_url} prefix={PREFIX} path={path} status={status} elapsed={round(now()-start, 3)}')
-  return html, status
+  if status == 404:
+    return render_app('index')
+  else:
+    return html, status
   # return f'api_endpoint={API_ENDPOINT} host={host} base_url={base_url} prefix={PREFIX} path={path} status={status}', 200
 
 @app.route('/annotator/<path:path>')
@@ -189,10 +192,12 @@ def render_html(path=None):
 @app.route('/editor')
 @app.route('/media')
 def render_app(path=None):
+  logger.info(f'render_app: path={path}')
   qargs = dict([(k, request.args.get(k)) for k in request.args])
   refresh = qargs.get('refresh','false').lower() in ('true', '')
   host = request.host.split(':')[0]
-  route = request.path.split('/')[1] or 'index'
+  # route = request.path.split('/')[1] or 'index'
+  route = path.split('/')[0] if path else request.path.split('/')[1] or 'index'
   branch = 'main'
   logger.info(f'host={host} route={route} path={path} refresh={refresh}')
   if route not in PAGE_CACHE or refresh:
