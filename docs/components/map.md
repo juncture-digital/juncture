@@ -19,9 +19,11 @@
     }
 </style>
 
-The `.ve-map` tag creates a map viewer that displays a base map with optional map layers.  The map supports zooming and panning.  The base map defaults to [OpenStreetMap](https://www.openstreetmap.org/) but can easily be set to a number of [others](#baselayers).  The base map can be augmented with one or more optional map layers. Juncture supports 3 types of layers:
+The `.ve-map` tag creates a map viewer that displays a base map with optional map layers.  The map viewer supports zooming and panning.  The base map defaults to [OpenStreetMap](https://www.openstreetmap.org/) but can easily be set to a number of [others](#baselayers).  
 
-- **Marker layer** - A marker layer contains all of the individual markers defined for a map.  Markers are defined in a list following the _.ve-map_ tag.  Markers may defined with explicit geographic coordinates, a Wikidata entity ID that corresponds to a location, or an IIIF image that contains geographic coordinates in the manifest metadata.  An IIIF manifest created by Juncture will include geographic coordinates if they are found in the [Exif](https://en.wikipedia.org/wiki/Exif) metadata embedded in the source image.
+The base map can be augmented with one or more optional map layers. Juncture supports 3 types of layers:
+
+- **Location layer** - A location layer contains all of the individual locations defined for a map.  Locations are defined in a list following the _.ve-map_ tag.  Locations may defined with explicit geographic coordinates, a Wikidata entity ID that corresponds to a location, or an IIIF image that contains geographic coordinates in the manifest metadata.  An IIIF manifest created by Juncture will include geographic coordinates if they are found in the [Exif](https://en.wikipedia.org/wiki/Exif) metadata embedded in the source image.  Locations are displayed as map pins.  If the location is specified using a Wikidata ID and the Wikidata entity associated with the location links to a GeoJSON resource the corresponding shape may be displayed instead of the pin by including the `prefer-geojson` attribute in the list item.  By default, all locations are aggregated into a single layer.  the `layer` attribute may be used to organize locations into separate layers.
 - **GeoJSON layer** - [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) is an open standard format designed for representing simple geographical features, along with their non-spatial attributes. It is based on the JSON format.  A GeoJSON layer is added by including a URL to a GeoJSON file in the list following the _.ve-map_ tag.
 - **Georeferenced image** - A georeferenced image may also be used as a map layer.  [Georeferencing](https://en.wikipedia.org/wiki/Georeferencing) is a type of coordinate transformation that binds a digital image that represents a geographic space (often a scanned map or aerial photograph) to a spatial reference system, thus locating the digital data in the real world.  One common use of a georeferenced image layer is to create an historic map overlay. Juncture supports the use of georeferenced IIIF images created by [allmaps](https://allmaps.org/).  Adding an allmaps georeferenced image to a Juncture map is accomplished by including the text `allmaps=<ALLMAPS ID>` in a list item following the _.ve-map_ tag.
 
@@ -29,15 +31,23 @@ The `.ve-map` tag creates a map viewer that displays a base map with optional ma
 
 ### Core attributes 
 
-**[center](#basic)** (_string_):  Defines the initial center of the rendered map.  This can be defined using latitude and longitude coordinates or with a Wikidata QID.
-
-**[zoom](#basic)** (_number_):  Defines the initial zoom level of the rendered map.
-
-**[marker](#basic)** (_boolean_):  If true a Marker will be added to the map center point.
-
-**[caption](#basic)** (_string_):  A caption to use in the viewer caption bar.
-
 **[basemaps](#basemaps)** (_string_):  The name of an optional base map to be used.  A list of supported base maps can be seen [below](#basemaps)
+
+**[caption](#basic-map-examples)** (_string_):  A caption to use in the viewer caption bar.
+
+**[center](#basic-map-examples)** (_string_):  Defines the initial center of the rendered map.  This can be defined using latitude and longitude coordinates or with a Wikidata QID.
+
+**[marker](#basic-map-examples)** (_boolean_):  If true a Marker will be added to the map center point.
+
+**[popup-on-hover](#basic-map-examples)** (_boolean_):  Show location popup when hovering over the location (marker pin or GeoJSON shape).  The default behavior is to show the popup when clicking on the location.
+
+**[prefer-geojson](#basic-map-examples)** (_boolean_):  Display a GeoJSON shape rather than a pin marker when available.
+
+**[scroll-wheel-zoom](#basic-map-examples)** (_boolean_):  Enable map zoom behavior when scrolling over a map.  This is disabled be default.
+
+**[zoom](#basic-map-examples)** (_number_):  Defines the initial zoom level of the rendered map.
+
+**[zoom-on-click](#basic-map-examples)** (_boolean_):  Increase zoom level on a location after clicking on a location marker pin or shape. 
 
 ### Viewer positioning attributes
 
@@ -52,6 +62,34 @@ The `.ve-map` tag creates a map viewer that displays a base map with optional ma
 **[height](/styling/viewer-positioning)** (_string_):  A requested size for the  viewer height.  The default behavior is to use the full width of the available window and scale the viewer height to retain the aspect ratio of the source item (image or video).
 
 **[width](/styling/viewer-positioning)** (_string_):  A requested size for the  viewer width.  The default behavior is to use the full width of the available window.
+
+### Layer attributes
+
+**[allmaps](#layer-examples)** (_string_):  Allmaps ID of a georeferenced image.
+
+**[coords](#layer-examples)** (_string_):  Location coordinates.
+
+**[description](#layer-examples)** (_string_):  Location description used in a popup.
+
+**[disabled](#layer-examples)** (_boolean_):  Location is not displayed initially.  This attribute must be used in conjunction with the `layer` attribute.
+
+**[geojson](#layer-examples)** (_string_):  URL to a GeoJSON file.
+
+**[iiif](#layer-examples)** (_string_):  IIIF manifest URL containing geographic coordinates.
+
+**[image](#layer-examples)** (_string_):  Location image used in a popup thumbnail.
+
+**[label](#layer-examples)** (_string_):  Location label used in a popup.
+
+**[layer](#layer-examples)** (_string_):  Layer name to associate with the location.  Multiple locations can use the same layer name.  When a layer name is specified the layer may be hidden when the map is initially rendered by including the `disabled` attribute on one of the layer locations.
+
+**[marker-type](#layer-examples)** (_string_):  Type of marker to render.  Recognized values are 'circle'.
+
+**[prefer-geojson](#layer-examples)** (_boolean_):  When using a Wikidata ID to define a location a GeoJSON shape may be used rather than a pin marker when available.
+
+**[qid](#layer-examples)** (_string_):  Wikidata entity ID of a location.
+
+**[zoom](#layer-examples)** (_number_):  Location zoom level when `zoom-on-click` behavior is enabled.
 
 ## Layers
 
@@ -73,56 +111,95 @@ A GeoJSON layer is defined by including a URL to a GeoJSON file in a .ve-map lay
 
 A Georeferenced image layer is defined by including an allmaps ID in a .ve-map layer list item. 
 
+##
+
 ## Examples
 
 ### Basic map examples
 
 <ve-snippet collapsible label="Basic map with default center and zoom">
-    .ve-map
+    .ve-map width=50%
 </ve-snippet>
 
 <ve-snippet collapsible label="Basic map with center defined using lat/lng coordinates">
-    .ve-map 42.281,-83.748 9
+    .ve-map 42.281,-83.748 9 width=50%
 </ve-snippet>
 
 <ve-snippet collapsible label="Basic map with center defined using the Wikidata QID for New York City">
-    .ve-map Q60 8
+    .ve-map Q60 8 width=50%
 </ve-snippet>
 
-### Map layer examples
+<ve-snippet collapsible label="Map center defined using a Wikidata QID with marker attribute">
+    .ve-map Q60 8 marker width=50%
+</ve-snippet>
 
-#### Marker layer
+### Layer examples
 
-<ve-snippet collapsible label="Marker defined with coordinates and label">
+<ve-snippet collapsible label="Location defined with coordinates">
+    .ve-map 42.281,-83.748 9 width=50%
+        - Q12439
+</ve-snippet>
+
+
+<ve-snippet collapsible label="Location defined with coordinates">
+    .ve-map 42.281,-83.748 9 width=50%
+        - Q12439
+</ve-snippet>
+
+<ve-snippet collapsible label="Location defined with coordinates and label">
     .ve-map 42.281,-83.748 10 width=50%
         - 42.281,-83.748 "Ann Arbor, Michigan"
 </ve-snippet>
 
-<ve-snippet collapsible label="Marker defined with Wikidata ID">
+<ve-snippet collapsible label="Location defined with coordinates, label, and description">
+    .ve-map 42.281,-83.748 9 width=50%
+        - 42.281,-83.748 "Ann Arbor, Michigan" "Ann Arbor is a city in the U.S. state of Michigan and the county seat of Washtenaw County."
+        - Q12439
+</ve-snippet>
+
+<ve-snippet collapsible label="Location defined with Wikidata ID">
     .ve-map 42.281,-83.748 10 width=50%
         - Q485172
 </ve-snippet>
 
-<ve-snippet collapsible label="Marker defined with Wikidata ID">
+<ve-snippet collapsible label="Location defined with Wikidata ID">
     .ve-map 42.281,-83.748 10 width=50% prefer-geojson
         - Q485172
 </ve-snippet>
 
-<ve-snippet collapsible label="Multiple markers">
-    .ve-map 32.20234,-80.99121 10 width=50% basemaps=OpenStreetMap,Esri_WorldTopoMap
-        - Q83813 layer="Big Cities" prefer-geojson
-        - Q47716 layer="Big Cities" prefer-geojson
-        - Q813376 layer="Small Cities" prefer-geojson
-        - Q3243593 layer="Small Cities" prefer-geojson
-        - Q1001134 layer="Hilton Head Island" prefer-geojson
-        - 32.28769,-80.96527 "Sun City" layer="Sun City"
-        - https://raw.githubusercontent.com/rsnyder/media/main/geojson/Sun_City,_Hilton_Head.geojson layer="Sun City" wc:Dell_Webb_Sun_City_Hilton_Head.jpg fillColor=red color=red weight=2 fillOpacity=0.4
-        - allmaps=3a88f7c6d07ff99e
-        - 32.32366,-80.97063
-
+<ve-snippet collapsible label="Multiple basemaps">
+    .ve-map 37.16032,-79.45313 5 width=50% basemaps=OpenStreetMap,Esri_WorldPhysical,Stamen_Watercolor
 </ve-snippet>
 
-        - allmaps=396f953ae99496b8
+This example includes a terrain basemap with multiple markers for cities and national parks.  Each location is defined using a Wikidata ID.
+
+<ve-snippet collapsible label="Terrain basemap with multiple locations">
+    .ve-map 37.84,-108.92 6 basemaps=Esri_WorldPhysical width=50%
+        - Q16554
+        - Q49258
+        - Q23337
+        - Q79842
+        - Q777183
+        - Q220289
+        - Q205325
+        - Q219562
+        - Q223969
+</ve-snippet>
+
+This builds on the previous example by organizing the location markers into two layers, a "Cities" layer and a "National Parks" layer.  The layers may be toggled on and off using the layer control located at the top-right of the map.
+
+<ve-snippet collapsible label="Multiple locations organized into layers">
+    .ve-map 37.84,-108.92 6 basemaps=Esri_WorldPhysical width=50%
+        - Q16554 layer=Cities
+        - Q49258 layer=Cities
+        - Q23337 layer=Cities
+        - Q79842 layer=Cities
+        - Q777183 layer="National Parks"
+        - Q220289 layer="National Parks"
+        - Q205325 layer="National Parks"
+        - Q219562 layer="National Parks"
+        - Q223969 layer="National Parks"
+</ve-snippet>
 
 <ve-snippet collapsible label="IIIF image as marker">
     .ve-map Q223969 5 right

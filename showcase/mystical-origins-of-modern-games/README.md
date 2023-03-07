@@ -12,7 +12,7 @@ The earliest examples of dice and playing cards were tools of divination. They r
 
 Going from divination to gambling was a short leap, as people ascribed random events to divine will. If a good harvest can be predicted by casting knucklebones, then one's immediate fortune could be made by betting on specific outcomes such as a die's facing, or a sequence of cards. Both the harvest and the winning hand were products of "Fortuna's wheel."
 
-.ve-media jstor:community.27234954 caption="Ancient gaming pieces"
+.ve-media jstor:community.27234954 caption="Ancient gaming pieces" width=75%
 
 **FROM KNUCKLEBONES TO DICE**
 
@@ -27,7 +27,7 @@ Each variation of a knucklebone/ dice game reflected different social hierarchie
 
 Archeologists believe games associated with knucklebones originated in Egypt or Lydia, subsequently spreading throughout Greek and Roman antiquity. Abundant archeological evidence shows It was among the first "viral" games, spreading like wildfire among all classes and ages of people, and frequently depicted in works of art, often in alligorical themes such as "dicing with fate." Eventually primitive knucklebones where refined and stylized and manufactured into smoother and more regular shapes, becoming the objects of stochastic fascination we know today. The 20-sided polyhedral die we see below is familiar to any player of modern Dungeons & Dragons, but were found in ancient Egyptian archeological sites from the Ptolomaic period. 
 
-.ve-media compare
+.ve-media compare width=75%
     - jstor:community.18691039
     - jstor:community.18302595
 
@@ -48,7 +48,7 @@ At some point these tools of divination were used for more prosaic purposes whil
 
 European references to playing cards date from the 1370's from Catalonia, Florence, Sienna, and Germany. Although none survive, we know from other accounts that they were luxury items, richly illuminated "in gold and various colors" similar to the fine manuscripts circulating at that time. Much of the earliest decks borrowed from Islamic themes, reflecting Spain's Moorish culture. Eventually as demand grew, cheaper to produce woodcut and paper card decks appeared as these games grew in popularity. 
 
-.ve-media compare
+.ve-media compare width=75%
     - jstor:community.28536451
     - jstor:community.24858450
 

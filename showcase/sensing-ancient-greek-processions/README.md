@@ -75,10 +75,10 @@ About 1/3 of the way down the street, I noticed a change. Speakers boomed from t
 Ancient Greek artists rarely showed spectators in processional imagery. The Parthenon frieze is one exception; a small group of elite-looking men lean on their walking sticks and casually watch the parade pass by. On the one hand, excluding spectators helped to reduce distractions and sharpened the image. On the other hand, further distanced these scenes from reality. Spectators were a critical part of the event. A massive crowd helped convey reverence to the god; they represented the community’s collective piety.[^13]
 
 ## Sensing Ancient and Modern Processions
-In ancient Greece, religious processions were, in essence, performances. When artists depicted these performances, they fixated on the role of spectator. The procession happens on a stage; we are spectators, and not enfolded amongst the participants. 
+In ancient Greece, religious processions were, in essence, performances. When artists depicted these performances, they fixated on the role of spectator. The procession happens on a stage; we are spectators, and not enfolded amongst the participants.
+Nonantum makes us wonder about ancient Greek processions, and how spectators and participants equally shaped the sensory experience.
 
-Nonantum makes us wonder about ancient Greek processions, and how spectators and participants equally shaped the sensory experience. In ancient Greek art, spectators are largely invisible. Watching a procession in person, I could see spectators in action. 
-They shouted, laughed, talked; hugged; cooked food and made backyard fires; played music and set off firecrackers; felt and reacted to the summer heat. At the Saint Mary of Carmen procession, spectators were an integral part of the spectacle, and their behaviors mixed in with the participants to create a celebratory sensory experience. 
+In ancient Greek art, spectators are largely invisible. Watching a procession in person, I could see spectators in action. They shouted, laughed, talked; hugged; cooked food and made backyard fires; played music and set off firecrackers; felt and reacted to the summer heat. At the Saint Mary of Carmen procession, spectators were an integral part of the spectacle, and their behaviors mixed in with the participants to create a celebratory sensory experience.
 
 [^1]: [Vlassopoulos 2015, 262](https://worldcat.org/en/title/987423652)
 [^2]: [Connelly 2007, 167](https://worldcat.org/en/title/67728101)
@@ -92,7 +92,7 @@ They shouted, laughed, talked; hugged; cooked food and made backyard fires; play
 [^10]: [Kubatzki 2018, 140](https://worldcat.org/en/title/1046675090)
 [^11]: [Clemente 2023](https://www.stmaryofcarmen.org/about-us/); [Alano 2004, 147-150](https://worldcat.org/en/title/5543311686); [Ferraiuolo 2006](https://worldcat.org/en/title/5548251915); [Ferraiuolo 2009](https://worldcat.org/en/title/298467758)
 [^12]: I observed the Festa over the course of several days in July 2019, including setup/take down days. Following the festa, I circulated an anonymous online survey targeting attendees/participants (from any year) aged 18+. I interviewed four St Mary of Carmen Society Members (either via phone or Zoom). Their identities will remain anonymous. This research was approved by the Institutional Review Board at the College of the Holy Cross in Worcester, Massachusetts. 
-[^13]:  [Jenkins 2007, 43](https://worldcat.org/en/title/123767321); [Warford 2019, 26](https://worldcat.org/en/title/1113875159); [Kubatzki 2018, 135(https://worldcat.org/en/title/1046675090)
+[^13]:  [Jenkins 2007, 43](https://worldcat.org/en/title/123767321); [Warford 2019, 26](https://worldcat.org/en/title/1113875159); [Kubatzki 2018, 135](https://worldcat.org/en/title/1046675090)
 
 ### Acknowledgements
 I would like to thank the Saint Mary of Carmen Society for their help and cooperation, as well as community members who participated in the survey. For more information about the Saint Mary of Carmen Society and their upcoming 2024 Festa, please visit https://www.stmaryofcarmen.org/about-us/

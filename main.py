@@ -41,7 +41,7 @@ CONFIG = yaml.load(open(f'{SCRIPT_DIR}/config.yaml', 'r').read(), Loader=yaml.Fu
 API_ENDPOINT = 'https://api.juncture-digital.org'
 DEFAULT_WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
 WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
-WC_VERSION = '2.0.0-beta.18'
+WC_VERSION = '2.0.0-beta.19'
 
 PREFIX = 'juncture-digital/juncture' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)
@@ -106,10 +106,12 @@ def _get_local_content(path):
     if os.path.exists(_path):
       return open(_path, 'r').read()
   logger.warn(f'Local content not found: path={path}')
-  
+
+juncture_path_roots = set('docs examples showcase'.split())
+logger.info(juncture_path_roots)
 def _get_html(path, base_url, ref=None, host=None, **kwargs):
-  # ref = ref or ('dev' if host == 'dev.juncture-digital.org' and PREFIX == 'juncture-digital/juncture' else '')
-  logger.info(f'_get_html: path=={path} base_url=={base_url} ref={ref} prefix={PREFIX} host={host}')
+  ref = ref or ('dev' if host in ('dev.juncture-digital.org', 'localhost') and path.split('/')[1] in juncture_path_roots else '')
+  logger.info(f'_get_html: path=={path} base_url=={base_url} ref={ref} prefix={PREFIX} is_juncture_path_root={path.split("/")[1] in juncture_path_roots} host={host}')
   html = ''
   status_code = 404
   if LOCAL_CONTENT_ROOT:
@@ -121,6 +123,7 @@ def _get_html(path, base_url, ref=None, host=None, **kwargs):
   else:
     api_url = f'{API_ENDPOINT}/html{path}?prefix={PREFIX}&base={base_url}'
     if ref: api_url += f'&ref={ref}'
+    logger.info(api_url)
     resp = requests.get(api_url)
     status_code, html =  resp.status_code, resp.text if resp.status_code == 200 else ''
   if status_code == 200:
