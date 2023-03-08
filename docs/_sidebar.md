@@ -67,4 +67,5 @@
 
 - Misc
   - [Contacting Us](/contact)
+  - [Problem reporting and feature requests](/issues)
   - [Attribution](/attribution)
