@@ -7,10 +7,35 @@
         width: calc(100% - 6rem); 
         border:1px solid #555;
     }
+    @media (max-width: 480px) {
+        .markdown-section table { 
+            margin-left: 0;
+            width: 100%;
+        }
+    }
+
     .markdown-section td, .markdown-section th {
         border:1px solid #555;
         padding: 8px;
         line-height: 1.2;
+        line-height: 1.4;
+        color: #444;
+
+        /* These are technically the same, but use both */
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+
+        -ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        word-break: break-all;
+        /* Instead use this non-standard one: */
+        word-break: break-word;
+
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
     }
     .markdown-section th {
         background-color:#E2F0F7;
@@ -31,7 +56,7 @@ The base map can be augmented with one or more optional map layers. Juncture sup
 
 ### Core attributes 
 
-**[basemaps](#basemaps)** (_string_):  The name of an optional base map to be used.  A list of supported base maps can be seen [below](#basemaps)
+**[basemaps](/components/basemaps)** (_string_):  The name of an optional base map to be used.  A list of supported base maps can be seen [here](/components/basemaps)
 
 **[caption](#basic-map-examples)** (_string_):  A caption to use in the viewer caption bar.
 
@@ -215,219 +240,23 @@ This builds on the previous example by organizing the location markers into two 
         - allmaps=911e307b5cecc423
 </ve-snippet>
 
-### Basemaps
+<ve-snippet collapsible label="Using paragraph position as an action trigger" height="600px">
+    # {.show-active}
+    
+    .ve-map Q60 8 sticky right
+        - Q60
+        - Q90
+        - Q84
 
-The table below lists the basemaps recognized by Juncture.  To use these basemaps add the `basemaps=<NAMES>` attribute to the `.ve-map` tag.  Tne basemaps value is one or more basemap names.  Multiple names are comma delimited.  The first name will be the default basemap.
+    **New York**, often called New York City or NYC, is the most populous city in the United States. With a 2020 population of 8,804,190 distributed over 300.46 square miles (778.2 km2), New York City is also the most densely populated major city in the United States and is more than twice as populous as second-place Los Angeles. New York City lies at the southern tip of New York State and constitutes the geographical and demographic center of both the Northeast megalopolis and the New York metropolitan area, the largest metropolitan area in the United States both by population and by urban landmass. 
+    {enter=flyto:Q60}
 
-| Name | Min Zoom | Max Zoom |
-| --------| -------- | -------- |
-| CartoDB_DarkMatter |  | 20 |
-| CartoDB_DarkMatterNoLabels |  | 20 |
-| CartoDB_DarkMatterOnlyLabels |  | 20 |
-| CartoDB_Positron |  | 20 |
-| CartoDB_PositronNoLabels |  | 20 |
-| CartoDB_PositronOnlyLabels |  | 20 |
-| CartoDB_Voyager |  | 20 |
-| CartoDB_VoyagerNoLabels |  | 20 |
-| CartoDB_VoyagerOnlyLabels |  | 20 |
-| CartoDB_VoyagerLabelsUnder |  | 20 |
-| Esri_DeLorme | 1 | 11 |
-| Esri_NatGeoWorldMap |  | 16 |
-| Esri_OceanBasemap |  | 13 |
-| Esri_WorldImagery |  |  |
-| Esri_WorldPhysical |  | 8 |
-| Esri_WorldShadedRelief |  | 13 |
-| Esri_WorldStreetMap |  |  |
-| Esri_WorldTerrain |  | 13 |
-| Esri_WorldTopoMap |  |  |
-| MtbMap |  |  |
-| OpenStreetMap |  | 18 |
-| OpenStreetMap_DE |  | 18 |
-| OpenStreetMap_France |  | 18 |
-| OpenStreetMap_HOT |  | 19 |
-| OpenStreetMap_Mapnik |  | 19 |
-| OpenTopoMap |  | 17 |
-| OPNVKarte |  | 18 |
-| Stadia_AlidadeSmooth |  | 20 |
-| Stadia_AlidadeSmoothDark |  | 20 |
-| Stadia_OSMBright |  | 20 |
-| Stadia_Outdoors |  | 20 |
-| Stamen_Terrain | 0 | 18 |
-| Stamen_TerrainBackground | 0 | 18 |
-| Stamen_TerrainLabels | 0 | 18 |
-| Stamen_Toner | 0 | 20 |
-| Stamen_TonerBackground | 0 | 20 |
-| Stamen_TonerLite | 0 | 20 |
-| Stamen_Watercolor | 1 | 16 |
-| USGS_USTopo |  | 20 |
-| USGS_USImagery |  | 20 |
-| USGS_USImageryTopo |  | 20 |
+    **Paris** is the capital and most populous city of France, with an estimated population of 2,165,423 residents in 2019 in an area of more than 105 km² (41 sq mi), making it the 30th most densely populated city in the world in 2020. Since the 17th century, Paris has been one of the world's major centres of finance, diplomacy, commerce, fashion, gastronomy, and science. For its leading role in the arts and sciences, as well as its very early system of street lighting, in the 19th century it became known as "the City of Light". Like London, prior to the Second World War, it was also sometimes called the capital of the world.
+    {enter=flyto:Q90}
 
-<ve-snippet collapsible label="CartoDB_DarkMatter">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_DarkMatter
+    **London** is the capital and largest city of England and the United Kingdom, with a population of just under 9 million. It stands on the River Thames in southeast England at the head of a 50-mile (80 km) estuary down to the North Sea, and has been a major settlement for two millennia. The City of London, its ancient core and financial centre, was founded by the Romans as Londinium and retains its medieval boundaries.[note 1] The City of Westminster, to the west of the City of London, has for centuries hosted the national government and parliament. Since the 19th century, the name "London" has also referred to the metropolis around this core, historically split between the counties of Middlesex, Essex, Surrey, Kent, and Hertfordshire, which since 1965 has largely comprised Greater London, which is governed by 33 local authorities and the Greater London Authority.
+    {enter=flyto:Q84}
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 </ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_DarkMatterNoLabels">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_DarkMatterNoLabels
-</ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_DarkMatterOnlyLabels">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_DarkMatterOnlyLabels
-</ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_Positron">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_Positron
-</ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_PositronNoLabels">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_PositronNoLabels
-</ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_PositronOnlyLabels">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_PositronOnlyLabels
-</ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_Voyager">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_Voyager
-</ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_VoyagerNoLabels">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_VoyagerNoLabels
-</ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_VoyagerOnlyLabels">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_VoyagerOnlyLabels
-</ve-snippet>
-
-<ve-snippet collapsible label="CartoDB_VoyagerLabelsUnder">
-    .ve-map Q192517 12 width=50% basemaps=CartoDB_VoyagerLabelsUnder
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_DeLorme">
-    .ve-map Q192517 12 width=50% basemaps=Esri_DeLorme
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_NatGeoWorldMap">
-    .ve-map Q192517 12 width=50% basemaps=Esri_NatGeoWorldMap
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_OceanBasemap">
-    .ve-map Q192517 12 width=50% basemaps=Esri_OceanBasemap
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_WorldGrayCanvas">
-    .ve-map Q192517 12 width=50% basemaps=Esri_WorldGrayCanvas
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_WorldImagery">
-    .ve-map Q192517 12 width=50% basemaps=Esri_WorldImagery
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_WorldPhysical">
-    .ve-map Q192517 12 width=50% basemaps=Esri_WorldPhysical
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_WorldShadedRelief">
-    .ve-map Q192517 12 width=50% basemaps=Esri_WorldShadedRelief
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_WorldStreetMap">
-    .ve-map Q192517 12 width=50% basemaps=Esri_WorldStreetMap
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_WorldTerrain">
-    .ve-map Q192517 12 width=50% basemaps=Esri_WorldTerrain
-</ve-snippet>
-
-<ve-snippet collapsible label="Esri_WorldTopoMap">
-    .ve-map Q192517 12 width=50% basemaps=Esri_WorldTopoMap
-</ve-snippet>
-
-<ve-snippet collapsible label="MtbMap">
-    .ve-map Q192517 12 width=50% basemaps=MtbMap
-</ve-snippet>
-
-<ve-snippet collapsible label="OpenStreetMap">
-    .ve-map Q192517 12 width=50% basemaps=OpenStreetMap
-</ve-snippet>
-
-<ve-snippet collapsible label="OpenStreetMap_DE">
-    .ve-map Q192517 12 width=50% basemaps=OpenStreetMap_DE
-</ve-snippet>
-
-<ve-snippet collapsible label="OpenStreetMap_France">
-    .ve-map Q192517 12 width=50% basemaps=OpenStreetMap_France
-</ve-snippet>
-
-<ve-snippet collapsible label="OpenStreetMap_HOT">
-    .ve-map Q192517 12 width=50% basemaps=OpenStreetMap_HOT
-</ve-snippet>
-
-<ve-snippet collapsible label="OpenStreetMap_Mapnik">
-    .ve-map Q192517 12 width=50% basemaps=OpenStreetMap_Mapnik
-</ve-snippet>
-
-<ve-snippet collapsible label="OpenTopoMap">
-    .ve-map Q192517 12 width=50% basemaps=OpenTopoMap
-</ve-snippet>
-
-<ve-snippet collapsible label="OPNVKarte">
-    .ve-map Q192517 12 width=50% basemaps=OPNVKarte
-</ve-snippet>
-
-<ve-snippet collapsible label="Stadia_AlidadeSmooth">
-    .ve-map Q192517 12 width=50% basemaps=Stadia_AlidadeSmooth
-</ve-snippet>
-
-<ve-snippet collapsible label="Stadia_AlidadeSmoothDark">
-    .ve-map Q192517 12 width=50% basemaps=Stadia_AlidadeSmoothDark
-</ve-snippet>
-
-<ve-snippet collapsible label="Stadia_OSMBright">
-    .ve-map Q192517 12 width=50% basemaps=Stadia_OSMBright
-</ve-snippet>
-
-<ve-snippet collapsible label="Stadia_Outdoors">
-    .ve-map Q192517 12 width=50% basemaps=Stadia_Outdoors
-</ve-snippet>
-
-<ve-snippet collapsible label="Stamen_Terrain">
-    .ve-map Q192517 12 width=50% basemaps=Stamen_Terrain
-</ve-snippet>
-
-<ve-snippet collapsible label="Stamen_TerrainBackground">
-    .ve-map Q192517 12 width=50% basemaps=Stamen_TerrainBackground
-</ve-snippet>
-
-<ve-snippet collapsible label="Stamen_TerrainLabels">
-    .ve-map Q192517 12 width=50% basemaps=Stamen_TerrainLabels
-</ve-snippet>
-
-<ve-snippet collapsible label="Stamen_Toner">
-    .ve-map Q192517 12 width=50% basemaps=Stamen_Toner
-</ve-snippet>
-
-<ve-snippet collapsible label="Stamen_TonerBackground">
-    .ve-map Q192517 12 width=50% basemaps=Stamen_TonerBackground
-</ve-snippet>
-
-<ve-snippet collapsible label="Stamen_TonerLite">
-    .ve-map Q192517 12 width=50% basemaps=Stamen_TonerLite
-</ve-snippet>
-
-<ve-snippet collapsible label="Stamen_Watercolor">
-    .ve-map Q192517 12 width=50% basemaps=Stamen_Watercolor
-</ve-snippet>
-
-<ve-snippet collapsible label="USGS_USTopo">
-    .ve-map Q192517 12 width=50% basemaps=USGS_USTopo
-</ve-snippet>
-
-<ve-snippet collapsible label="USGS_USImagery">
-    .ve-map Q192517 12 width=50% basemaps=USGS_USImagery
-</ve-snippet>
-
-<ve-snippet collapsible label="USGS_USImageryTopo">
-    .ve-map Q192517 12 width=50% basemaps=USGS_USImageryTopo
-</ve-snippet>
-

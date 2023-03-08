@@ -8,7 +8,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Juncture is a free to use suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/pure.css" />
   <link rel="stylesheet" href="/static/css/custom.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/juncture-digital/docs/css/index.css">
@@ -47,7 +46,6 @@
     const referrerUrl = document.referrer
     if (referrerUrl) {
       const referrer = new URL(referrerUrl)
-      console.log('referrer', referrer)
       if (referrer.host === 'github.com' && referrer.pathname.indexOf('/jstor-labs/juncture/wiki') < 0) {
         const referrerPath = referrer.pathname.slice(1).split('/')
         const ghAcct = referrerPath[0]

@@ -63,9 +63,12 @@ A paragraph is "marked" by appending an attributes block to the paragraph.  The 
 In the example below a map and 3 paragraphs are defined.  Each of the paragraphs corresponds to a location - New York, Paris, and London.  As each of these paragraphs is scrolled into the "active" portion of the browser window a `flyto` action is triggered to reposition the map to the associated location.  In this example, the `show-active` class is added to the section containing the sticky map and text paragraphs.  The `show-active` class adds a gray border to the left side of the active paragraph as a visual indicator.  The example also uses Wikidata QIDs for the `flyto` actions.  Lat/Lng coordinates could have also been used.
 
 <ve-snippet collapsible label="Using paragraph position as an action trigger" height="600px">
-    # Using paragraph position as an action trigger {.show-active}
-
+    # {.show-active}
+    
     .ve-map Q60 8 sticky right
+        - Q60
+        - Q90
+        - Q84
 
     **New York**, often called New York City or NYC, is the most populous city in the United States. With a 2020 population of 8,804,190 distributed over 300.46 square miles (778.2 km2), New York City is also the most densely populated major city in the United States and is more than twice as populous as second-place Los Angeles. New York City lies at the southern tip of New York State and constitutes the geographical and demographic center of both the Northeast megalopolis and the New York metropolitan area, the largest metropolitan area in the United States both by population and by urban landmass. 
     {enter=flyto:Q60}
@@ -77,6 +80,7 @@ In the example below a map and 3 paragraphs are defined.  Each of the paragraphs
     {enter=flyto:Q84}
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 </ve-snippet>
 
 ### Getting action values

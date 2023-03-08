@@ -1,4 +1,4 @@
-Version: <ve-version></ve-version>
+[Version: <ve-version></ve-version>](https://github.com/juncture-digital/juncture/discussions/2)
 
   - 
     - <ve-auth></ve-auth>
@@ -66,7 +66,5 @@ Version: <ve-version></ve-version>
   - [GeoJSON](/resources/geojson)
 
 - Misc
-  - [Contact Us](/contact)
-  - [Submit a bug report or feature request](/issues)
-  - [Discussion](/discussion)
+  - [Contacting Us](/contact)
   - [Attribution](/attribution)
