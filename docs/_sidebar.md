@@ -1,4 +1,4 @@
-[Version: <ve-version></ve-version>](https://github.com/juncture-digital/juncture/discussions/2)
+[Version: <ve-version></ve-version>](https://github.com/orgs/juncture-digital/discussions/1)
 
   - 
     - <ve-auth></ve-auth>

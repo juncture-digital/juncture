@@ -80,7 +80,7 @@ def _add_default_footer(soup):
     footer = soup.new_tag('ve-footer')
     footer.append(BeautifulSoup('''
       <ul>
-        <li><a href="https://dev.juncture-digital.org">Powered by: <img alt="" src="https://juncture-digital.github.io/juncture/static/images/juncture-logo.png"/></a></li>
+        <li><a href="https://juncture-digital.org">Powered by: <img alt="" src="https://juncture-digital.github.io/juncture/static/images/juncture-logo.png"/></a></li>
         <li>view-code</li>
       </ul>''', 
     'html5lib'))

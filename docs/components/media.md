@@ -167,7 +167,7 @@ These attributes are applicable when multiple images are defined in a Markdown l
 
 The example below includes 2 .ve-image viewers displaying the same image from Wikimedia Commons.  The first viewer uses the full manifest URL.  The second uses the short-form support by the Juncture IIIF server. 
 
-<ve-snippet collapsible label="Images with full and short-form URLs">
+<ve-snippet collapsible label="Images with full and short-form IIIF URLs">
 .ve-media https://iiif.juncture-digital.org/wc:Sunflower.jpg/manifest.json left
 .ve-media wc:Sunflower.jpg right
 </ve-snippet>
