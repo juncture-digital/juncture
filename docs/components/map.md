@@ -137,13 +137,7 @@ A Georeferenced image layer is defined by including an allmaps ID in a .ve-map l
 
 <ve-snippet collapsible label="Location defined with coordinates">
     .ve-map 42.281,-83.748 9 width=50%
-        - Q12439
-</ve-snippet>
-
-
-<ve-snippet collapsible label="Location defined with coordinates">
-    .ve-map 42.281,-83.748 9 width=50%
-        - Q12439
+        - 42.281,-83.748
 </ve-snippet>
 
 <ve-snippet collapsible label="Location defined with coordinates and label">
@@ -154,7 +148,11 @@ A Georeferenced image layer is defined by including an allmaps ID in a .ve-map l
 <ve-snippet collapsible label="Location defined with coordinates, label, and description">
     .ve-map 42.281,-83.748 9 width=50%
         - 42.281,-83.748 "Ann Arbor, Michigan" "Ann Arbor is a city in the U.S. state of Michigan and the county seat of Washtenaw County."
-        - Q12439
+</ve-snippet>
+
+<ve-snippet collapsible label="Location defined with coordinates, label, description, and image">
+    .ve-map 42.281,-83.748 9 width=50%
+        - 42.281,-83.748 "Ann Arbor, Michigan" "Ann Arbor is a city in the U.S. state of Michigan and the county seat of Washtenaw County." wc:Ann_Arbor_sunset_2018.jpg
 </ve-snippet>
 
 <ve-snippet collapsible label="Location defined with Wikidata ID">
@@ -162,12 +160,7 @@ A Georeferenced image layer is defined by including an allmaps ID in a .ve-map l
         - Q485172
 </ve-snippet>
 
-<ve-snippet collapsible label="Location defined with Wikidata ID">
-    .ve-map 42.281,-83.748 10 width=50% prefer-geojson
-        - Q485172
-</ve-snippet>
-
-<ve-snippet collapsible label="Multiple basemaps">
+<ve-snippet collapsible label="Map with multiple basemaps">
     .ve-map 37.16032,-79.45313 5 width=50% basemaps=OpenStreetMap,Esri_WorldPhysical,Stamen_Watercolor
 </ve-snippet>
 
@@ -212,13 +205,14 @@ This builds on the previous example by organizing the location markers into two 
     ==The marker image will also appear when hovering over this text.  Clicking on this text will also cause the map to zoom in on the marker location.=={flyto=wc:Double-O-Arch_Arches_National_Park_2.jpg,14}
 </ve-snippet>
 
-#### Georeferenced image layer
+<ve-snippet collapsible label="Map with a GeoJSON overlay">
+    .ve-map 44.50434,-85.39673 7
+        - geojson=https://raw.githubusercontent.com/glynnbird/usstatesgeojson/master/michigan.geojson layer="State of Michigan"
+</ve-snippet>
 
-<ve-snippet collapsible label="Map with a historic map overlay">
-    .ve-map Q507517 13
+<ve-snippet collapsible label="Map with a historic map overlay" disable-drag>
+    .ve-map 51.39257,0.50752 14 width=50%
         - allmaps=911e307b5cecc423
-    
-    This example uses an image of a historic map of the town of Rochester to overlay on top of the map in Juncture. In order to create a georeferenced image to overlay on top of your map, use the [AllMaps Editor](https://editor.allmaps.org/). You can also refere to [this how-to guide on how to use Historic Map Overlays](/howto/use-historic-maps).
 </ve-snippet>
 
 ### Basemaps

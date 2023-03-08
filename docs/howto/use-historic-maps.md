@@ -19,5 +19,5 @@ To add the image overlay to your map, list the AllMaps ID under the `.ve-map` ta
 
 <ve-snippet label="Map with AllMaps Overlay and WikiData QID" disable-drag>
   .ve-map Q507517 15
-      - allmaps=911e307b5cecc423
+      - allmaps=911e307b5cecc423 layer="Dickensland Map"
 </ve-snippet>
