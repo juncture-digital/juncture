@@ -39,6 +39,7 @@ Below is an example of a pie chart
             "Dogs" : 386
             "Cats" : 85
             "Rats" : 15
+            
 </ve-snippet>
 
 Below is an example of a mind map

@@ -93,15 +93,14 @@ This example shows the use of a basic header with a title and custom background 
 </ve-snippet>
 
 <ve-snippet collapsible label="A header with a background image">
-    .ve-header "Essay Title" wc:Zelfportret_met_strohoed_-_s0164V1962_-_Van_Gogh_Museum.jpg
+    .ve-header "Essay Title" wc:Sunflower.jpg
 </ve-snippet>
-
 ### Sticky header
 
 A sticky header defined with positional attributes and navigation menu options in a nested Markdown list.
 
 <ve-snippet collapsible fill label="A sticky header with a cropped background image and menu">
-    .ve-header "Essay Title" wc:Zelfportret_met_strohoed_-_s0164V1962_-_Van_Gogh_Museum.jpg "Essay subtitle" pct:3,23,80,20 center sticky
+    .ve-header "Essay Title" wc:Sunflower.jpg "Essay subtitle" pct:10,25,80,60 center sticky
         - [Home](/)
         - [About](/about)
 </ve-snippet>

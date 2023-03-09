@@ -34,6 +34,7 @@ The `flyto` action performed by the map viewer works similarly.  Instead of spec
 
 <ve-snippet>
     .ve-map right
+        - 25.783,-80.217 Miami
     In the map at the right, "fly to" ==Miami=={flyto=25.783,-80.217,10}
 </ve-snippet>
 
@@ -178,11 +179,13 @@ Start playing video at ==time=={10}
 
 <ve-snippet collapsible label="Fly to a location using lat/lng coordinates">
 .ve-map Q60 8 right
+    - 48.857,2.352 Paris
 Fly to ==Paris=={flyto:48.857,2.352}
 </ve-snippet>
 
 <ve-snippet collapsible label="Fly to a location using Wikidata ID">
 .ve-map Q60 8 right
+    - Q90
 Fly to ==Paris=={flyto:Q90}
 </ve-snippet>
 
