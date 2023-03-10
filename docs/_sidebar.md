@@ -55,13 +55,12 @@
   - [Annotating images](/howto/annotate-images)
   - [Setting up a media collection](/howto/setup-media-collection)
   - [Use a historical map overlay](/howto/use-historic-maps)
+  - [Use a GeoJSON map overlay](/howto/geojson-overlay)
   - [Configuring a custom domain](/howto/configure-custom-domain)
   - [Using Juncture with WordPress](/howto/use-juncture-with-wordpress)
 
 - Resources
   - [Background Information](/resources/background)
-    - [IIIF](/resources/background?id=iiif)
-    - [GeoJSON](/resources/background?id=iiif)
   - [IIIF](/resources/iiif)
   - [GeoJSON](/resources/geojson)
 
