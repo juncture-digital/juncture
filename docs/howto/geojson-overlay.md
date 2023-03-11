@@ -22,6 +22,6 @@ To add your GeoJSON file to a map in Juncture, add the following code as a list 
 Here is an example of the GeoJSON file that was created in the videos above.
 
 <ve-snippet collapsible label="Map with a GeoJSON overlay">
-    .ve-map 44.50434,-85.39673 7
+    .ve-map 39.7392 104.9903 5
         - geojson=https://raw.githubusercontent.com/juncture-digital/juncture/dev/examples/hundred-flowers-newspaper/demo_map.geojson layer="Demo GeoJSON Overlay"
 </ve-snippet>
