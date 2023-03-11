@@ -14,3 +14,14 @@ Once you have added and edited your data, download the JSON file by navigating t
 <ve-media src="gh:juncture-digital/media/videos/geojson_save.gif" no-caption no-info-icon width="60%"></ve-media>
 
 ## Implementing GeoJSON into Juncture
+To add your GeoJSON file to a map in Juncture, add the following code as a list item under the `.ve-map` tag, relacing `URL` for the URL to your GeoJSON file:
+``` markdown
+    - geojson=URL layer="Label for Layer"
+```
+
+Here is an example of the GeoJSON file that was created in the videos above.
+
+<ve-snippet collapsible label="Map with a GeoJSON overlay">
+    .ve-map 44.50434,-85.39673 7
+        - geojson=https://raw.githubusercontent.com/juncture-digital/juncture/dev/examples/hundred-flowers-newspaper/demo_map.geojson layer="Demo GeoJSON Overlay"
+</ve-snippet>
