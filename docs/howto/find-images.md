@@ -86,17 +86,76 @@ JSTOR IIIF URLs are formed by combining the `jstor:` prefix with the JSTOR conte
 
 ### ![](https://upload.wikimedia.org/wikipedia/commons/9/93/Internet_Archive_logotype.png) Internet Archive
 
-The [Internet Archive](https://archive.org/) ...
+The [Internet Archive](https://archive.org/) is a digital library with the stated mission of "universal access to all knowledge." It provides free public access to collections of digitized materials, including websites, software applications/games, music, movies/videos, moving images, and millions of books. 
 
+The Internet Archive provides both IIIF presentation manifests and an IIIF image server.  IIIF links are not exposed or easily found but can easily be created using the item identifier.  For instance, the item identifier for associated with the Interview Archive URL https://archive.org/details/sunflowergirlwithdog would be `sunflowergirlwithdog`.  Internet Archive IIIF URLs use the structure `https://iiif.archivelab.org/iiif/<IDENTIFIER>/manifest.json`.
 
-[MET]()
+Using our example the IIIF URL for this item would be https://iiif.archivelab.org/iiif/sunflowergirlwithdog/manifest.json.  When adding an Internet Archive item to a Juncture essay editor using drang-and-drop or copy-paste the correct IIIF URL is automatically created, a manual conversion is not required.
 
-[OpenVerse]()
+<ve-snippet collapsible label="Internet Archive - image">
+    .ve-media https://iiif.archivelab.org/iiif/sunflowergirlwithdog/manifest.json right
 
-[Wikidata]()
+    [Sunflower Girl With Dog (1907)](https://archive.org/details/sunflowergirlwithdog)
+</ve-snippet>
 
-[Edison Papers]()
+<ve-snippet collapsible label="Internet Archive - Journal article">
+    .ve-media https://iiif.archivelab.org/iiif/jstor-457078/manifest.json right
 
+    [_The Theme of Paradise Lost_](https://archive.org/details/jstor-457078) an article from PMLA, Volume 29.
+</ve-snippet>
+
+### ![](https://seeklogo.com/images/M/metropolitan-art-museum-logo-3B8686F789-seeklogo.com.png) The Metropolitan Museum of Art 
+
+The Metropolitan Museum of Art in New York City, colloquially "the Met", is the largest art museum in the Americas and the most-visited museum in the Western Hemisphere. Its permanent collection contains over two million works, divided among 17 curatorial departments.
+
+In 2017, The Metropolitan Museum of Art implemented [a new policy known as Open Access](https://www.metmuseum.org/about-the-met/policies-and-documents/image-resources), which makes images of artworks it believes to be in the public domain widely and freely available for unrestricted use, and at no cost, in accordance with the Creative Commons Zero (CC0) designation and the Terms and Conditions of this website.
+
+MET IIIF URLs are formed by combining the `met:` prefix with the MET content ID.  For example, the image found at [https://www.metmuseum.org/art/collection/search/435809](https://www.metmuseum.org/art/collection/search/435809) has the content ID "435809".  In this example the resulting IIIF URL would be [https://iiif.juncture-digital.org/met:435809/manifest.json](https://iiif.juncture-digital.org/met:435809/manifest.json).  The short-form IIIF URL for use in Juncture essays would be `met:435809` 
+
+<ve-snippet collapsible label="MET Image">
+    .ve-media met:435809 right
+
+    [The Harvesters](https://iiif.juncture-digital.org/met:435809/manifest.json)
+</ve-snippet>
+
+### ![](https://i0.wp.com/wordpressfoundation.org/content/uploads/2022/02/openverse.jpeg) OpenVerse
+
+[Openverse](https://openverse.org/) searches across more than 300 million images from open APIs and the [Common Crawl dataset](https://commoncrawl.org/). It aggregates results across multiple public repositories into a single catalog, and facilitates reuse through features like machine-generated tags and one-click attribution.
+
+OpenVerse URLs are formed by combining the `cc:` prefix with the OpenVerse content ID.  For example, the image found at [https://openverse.org/image/91d578af-785e-4e8c-924b-b511f48ea873]https://openverse.org/image/91d578af-785e-4e8c-924b-b511f48ea873) has the content ID "91d578af-785e-4e8c-924b-b511f48ea873".  In this example the resulting IIIF URL would be [https://iiif.juncture-digital.org/cc:91d578af-785e-4e8c-924b-b511f48ea873/manifest.json](https://iiif.juncture-digital.org/cc:91d578af-785e-4e8c-924b-b511f48ea873/manifest.json).  The short-form IIIF URL for use in Juncture essays would be `cc:91d578af-785e-4e8c-924b-b511f48ea873` 
+
+<ve-snippet collapsible label="OpenVerse Image">
+    .ve-media cc:91d578af-785e-4e8c-924b-b511f48ea873 right
+
+    [Sunflower 'Strawberry Blonde'](https://openverse.org/image/91d578af-785e-4e8c-924b-b511f48ea873)
+</ve-snippet>
+
+### ![](https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Wikidata-logo.svg/320px-Wikidata-logo.svg.png) Wikidata
+
+[Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page) is a free and open knowledge base that can be read and edited by both humans and machines.
+Wikidata acts as central storage for the structured data of its Wikimedia sister projects including Wikipedia, Wikivoyage, Wiktionary, Wikisource, and others.
+
+Wikidata URLs are formed by combining the `wd:` prefix with the Wikidata entity ID (aka "Q" ID).  For example, the Wikidata entity for the earth is 'Q2'.  In this example the resulting IIIF URL would be [https://iiif.juncture-digital.org/wd:Q2/manifest.json](https://iiif.juncture-digital.org/wd:Q2/manifest.json).  The short-form IIIF URL for use in Juncture essays would be `wd:Q2` 
+
+Note that images associated with Wikidata entities are hosted in Wikimedia Commons.  Each image returned by a Wikidata QID is actually mapped to a Wikimedia Commons file.  The associated Wikimedia Commons file URL can be seen in the generated IIIF manifest by hovering over the info icon located at the top-right corner of the image.
+
+<ve-snippet collapsible label="Wikidata Image">
+    .ve-media wd:Q2 right
+
+    The [Earth](https://www.wikidata.org/wiki/Q2)
+</ve-snippet>
+
+### ![](https://edison.rutgers.edu/templates/sas-red/images/rutgers/sas_red_header_MOBILE.png) Edison Papers
+
+The [Thomas A. Edison Papers Project](https://edison.rutgers.edu/), a research center at Rutgers School of Arts and Sciences, is one of the most ambitious editing projects ever undertaken by an American university. For decades, the 5 million pages of documents that chronicle the extraordinary life and achievements of Thomas Alva Edison remained hidden and inaccessible to members of the general public. Since the massive project began in 1978, a team of editors/scholars has been turning this incomparable trove of Edisonia into a premier educational and research resource.
+
+Edison Papers provides both IIIF presentation manifests and an IIIF image server.  Where available, IIIF links for Edison Papers content are easily found on the item page.
+
+<ve-snippet collapsible label="Edison Papers Image">
+    .ve-media https://edisondigital.rutgers.edu/iiif/SB178C right
+
+    [Publication, Edison and Murray, 1874](https://edisondigital.rutgers.edu/document/SB178C)
+</ve-snippet>
 
 ### Personal Images and Github Repositories
 
