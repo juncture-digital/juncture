@@ -1,9 +1,11 @@
 <style>
+    .markdown-section h2 span,
     .markdown-section h3 span {
         display: flex;
         align-items: center;
         gap: 12px;
     }
+    .markdown-section h2 span img,
     .markdown-section h3 span img {
         height: 40px;
     }
