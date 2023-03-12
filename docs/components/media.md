@@ -23,6 +23,8 @@ The `.ve-media` tag is the most commonly used essay tag.  The tag creates a view
 
 The Media viewer covers a lot of needs and can display images, video (including streaming video from YouTube and Vimeo), and audio.  The Media viewer exclusively uses IIIF resources for images, audio, and non-streaming video.
 
+The [Media Resources](/resources/media) page provides information for finding and using media content from a variety of sources.  This includes links to sites that expose IIIF content directly, sites for which Juncture is able to dynamically create IIIF wrappers for hosted resources, and information on creating and using personal media collections hosted in Github.
+
 ## IIIF Manifest URLs
 
 With the exception of YouTube and Vimeo streaming video sources, all resource URLs must reference an IIIF presentation manifest that is compliant with version 2.x or version 3.0 of the IIIF Presentation Standard.  Many websites provide IIIF manifest URLs that can be used directly in a `src` attribute or image list ([in multi-image mode](#multiple-images-mode)).  For some other popular hosting sites, Juncture can automatically create IIIF manifests.  The automatic manifest generation occurs when Juncture encounters a short-form URL with a recognized source prefix.  While a short-form resource URL can be manually entered into the Juncture essay definition text file, this is more easily accomplished when using copy-paste or drag-and-drop to copy a resource from a supported hosting site into the Juncture editor.  The page [IIIF Resources](/iiif-resources) page provides more information on locating and using IIIF resources. 

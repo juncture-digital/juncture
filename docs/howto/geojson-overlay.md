@@ -13,4 +13,4 @@ Once you have added and edited your data, download the JSON file by navigating t
 
 <ve-media src="gh:juncture-digital/media/videos/geojson_save.gif" no-caption no-info-icon width="60%"></ve-media>
 
-## Implementing GeoJSON into Juncture
+## Adding a GeoJSON overlay to a map

@@ -1,12 +1,12 @@
 # Setting up a Personal Media Collection
 
-This guide describes an approach for hosting IIIF media content in a Github repository.  In this approach media files and IIIF properties files are stored in a Github repository. Juncture services are able to dynamically generate IIIF presentation manifests and serve IIIF image tiles for this content.
+This guide describes an approach for hosting IIIF media content in a Github repository.  In this approach media files and IIIF properties files are stored in a Github repository. Juncture is able to dynamically generate IIIF presentation manifests and serve IIIF image tiles for this content.
 
-?> Where possible, users are encouraged to use a purpose-built sharing site for hosting and sharing media files.  [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page) is one such (free to use) site for hosting and sharing media files.  While Wikimedia Commons (and some other file sharing sites) do not yet support IIIF, the same Juncture services that are used to generate IIIF manifests and serve images from Github repositories also works with many of these sites.  More information finding and using IIIF media resources can be found [here](/howto-find-images)
+?> Where possible, users are encouraged to use a purpose-built sharing site for hosting and sharing media files.  [Wikimedia Commons](https://commons.wikimedia.org/wiki/Main_Page) is one such (free to use) site for hosting and sharing media files.  While Wikimedia Commons (and some other file sharing sites) do not yet support IIIF, the same Juncture services that are used to generate IIIF manifests and serve images from Github repositories also works with many of these sites.  More information finding and using IIIF media resources can be found [here](/resources/media)
 
 # Using Github as an IIIF Media Repository
 
-The Juncture IIIF services are able to serve IIIF media from files stored in Github.  In many cases all that is required is a plain media file (image, audio, or video) stored in a public Github repository, where the file name conforms to a few simple naming conventions.  In cases where more descriptive metadata is needed a simple key-value properties file can be associated with a single file or a group of files located in a Github folder.
+The Juncture IIIF services are able to serve IIIF media from files stored in Github.  In many cases all that is required is a media file (image, audio, or video) stored in a public Github repository, where the file name conforms to a few simple naming conventions.  In cases where more descriptive metadata is needed a simple key-value properties file can be associated with a single file or a group of files located in a Github folder.
 
 In the simplest case, 
 

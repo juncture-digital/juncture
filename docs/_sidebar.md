@@ -51,7 +51,6 @@
   - [Examples](/actions?id=examples)
 
 - How To Guides
-  - [Finding images](/howto/find-images)
   - [Annotating images](/howto/annotate-images)
   - [Setting up a media collection](/howto/setup-media-collection)
   - [Use a historical map overlay](/howto/use-historic-maps)
@@ -60,9 +59,10 @@
   - [Using Juncture with WordPress](/howto/use-juncture-with-wordpress)
 
 - Resources
+  - [Media providers](/resources/media)
   - [Background Information](/resources/background)
-  - [IIIF](/resources/iiif)
-  - [GeoJSON](/resources/geojson)
+    - [IIIF](/resources/background?id=iiif)
+    - [GeoJSON](/resources/background?id=geojson)
 
 - Misc
   - [Contacting Us](/contact)
