@@ -116,6 +116,18 @@ The base map can be augmented with one or more optional map layers. Juncture sup
 
 **[zoom](#layer-examples)** (_number_):  Location zoom level when `zoom-on-click` behavior is enabled.
 
+### Geojson styling attributes
+
+**[color](#geojson-examples)** (_string_): Line color
+
+**[weight](#geojson-examples)** (_number_): Line weight
+
+**[opacity](#geojson-examples)** (_number_): Line opacity level (0-1)
+
+**[fillColor](#geojson-examples)** (_string_):  Fill color
+
+**[fillOpacity](#geojson-examples)** (_number_): Opacity level (0-1) of the fill color.
+
 ## Layers
 
 Map layers are defined in a Markdown list following the `.ve-map` tag.  Items in the layer list may define markers, GeoJSON file URLs or [allmaps](https://allmaps.org/) IDs for georeferenced images.
@@ -130,7 +142,10 @@ A single marker layer is created by aggregating all of the ve-map list items tha
 
 ### GeoJSON layer
 
-A GeoJSON layer is defined by including a URL to a GeoJSON file in a .ve-map layer list item. 
+A GeoJSON layer is defined by including a URL to a GeoJSON file in a .ve-map layer list item.  The URL to the GeoJSON file can be defined in 3 ways:
+- **An absolute URL** - This would be a URL to any web-accessible GeoJSON file, such as https://data.whosonfirst.org/147/772/818/1/1477728181.geojson
+- **A URL relative to the essay** - This is a relative URL path from the referencing essay file.  For example, if the file `my-overlay.geojson` was located in the same Github folder as the essay file the URL would simply be `my-overlay.geojson`.
+- **A Github path** - In this notation the relative URL consists of the Github account, repository, and path to the GeoJSON file.  For instance, `/juncture-digital/juncture/examples/geojson/demo-map.geojson`
 
 ### Georeferenced Image layer
 
@@ -259,4 +274,16 @@ This builds on the previous example by organizing the location markers into two 
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+</ve-snippet>
+
+### Geojson examples
+
+<ve-snippet collapsible label="Custom GeoJSON fill color">
+    .ve-map 44.50434,-85.39673 7
+        - geojson=https://raw.githubusercontent.com/glynnbird/usstatesgeojson/master/michigan.geojson layer="State of Michigan" fillColor=red
+</ve-snippet>
+
+<ve-snippet collapsible label="Custom GeoJSON with outline only">
+    .ve-map 44.50434,-85.39673 7
+        - geojson=https://raw.githubusercontent.com/glynnbird/usstatesgeojson/master/michigan.geojson layer="State of Michigan" color=blue weight=3 fillOpacity=0
 </ve-snippet>
