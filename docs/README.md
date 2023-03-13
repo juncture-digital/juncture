@@ -76,7 +76,7 @@ This [demo essay](https://www.juncture-digital.org/showcase/bedroom-in-arles) pr
 
 # What problem does this solve?
 
-Juncture's primary goal is to make the use of modern web technology (deep-zoom and panning for high-resolution images, interactive maps, etc) accessible to anyone with an interest in sharing something on the web, regardless of background or technical skills. In the [Quick Start guide](/quick-start), you can give it try and see for yourself. All that is required for this quick start (and to use Juncture generally) is an active Github account. If you already have one the "hard" part is done. If not, you'll need to take a couple of minutes to signup with Github. Signing up for a Github account is free and painless.
+Juncture's primary goal is to make the use of modern web technology (deep-zoom and panning for high-resolution images, interactive maps, etc) accessible to anyone with an interest in sharing something on the web, regardless of background or technical skills. In the [Quick Start guide](/quick-start), you can give it a try and see for yourself. All that is required for this quick start (and to use Juncture generally) is an active Github account. If you already have one, the "hard" part is done. If not, you'll need to take a couple of minutes to signup with Github. Signing up for a Github account is free and painless.
 
 If you're looking for a set of easy-to-use tools for quickly creating web pages with engaging and interactive content with minimal setup and zero ongoing administration, Juncture might be exactly what you need.
 
