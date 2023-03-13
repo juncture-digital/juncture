@@ -169,6 +169,10 @@ More background on Wikidata and how Juncture uses it can be found [here](/wikida
 
 An entity tag is created by enclosing the entity text in double equal signs and appending an attribute block with the associated QID.  For example, `==Vincent van Gogh=={Q5582}`.
 
+<ve-snippet collapsible label="Basic Entity Popover Example">
+    **Bedroom in Arles** (French: _La Chambre à Arles_; Dutch: _Slaapkamer te Arles_) is the title given to each of three similar paintings by 19th-century Dutch Post-Impressionist painter ==Vincent van Gogh=={Q5582}.
+</ve-snippet>
+
 ## Add Juncture Viewer Tags
 
 This is where a text narrative starts to become an interactive and engaging visual essay.  High-resolution images, maps, videos, and other visualizations can bring a text narrative to life while also providing details and context that can often be difficult to convey in text alone.  Juncture's media viewer is great at providing visual appeal, especially when using high-resolution images.  Videos and interactive maps are other visualizations often used in a visual essay.
