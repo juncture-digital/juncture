@@ -521,8 +521,11 @@
 
       paste(e) {
         let pastedText = e.clipboardData?.getData('Text') || ''
-        if (this.isGeoCoords(pastedText)) this.addMap(pastedText.replace(/\s/,''))
-        else this.easyMDE.codemirror.replaceSelection(this.cleanText(pastedText))
+        // if (this.isGeoCoords(pastedText)) this.addMap(pastedText.replace(/\s/,''))
+        // else this.easyMDE.codemirror.replaceSelection(this.cleanText(pastedText))
+        let text = this.cleanText(pastedText)
+        if (text.indexOf('https://iiif.juncture-digital.org/') === 0) text = text.replace(/https:\/\/iiif\.juncture-digital\.org\//, '').replace(/\/manifest\.json/, '')
+        this.easyMDE.codemirror.replaceSelection(text)
       },
 
       cleanText(text) {

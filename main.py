@@ -194,8 +194,8 @@ def render_html(path=None):
 @app.route('/media')
 def render_app(path=None):
   host = request.host.split(':')[0]
-  route = path.split('/')[0] if path else request.path.split('/')[1] or 'index'
-  logger.debug(f'host={host} route={route} path={path}')
+  route = request.path.split('/')[1] if path else (request.path.split('/')[1] or 'index')
+  logger.info(f'host={host} route={route} path={path} request.path={request.path}')
   if host == 'localhost':
     html = open(f'{app.root_path}/{route}.html', 'r').read()
   else:

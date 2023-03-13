@@ -14,3 +14,4 @@ The tools listed below were used in the development of Juncture.
 - Markdown parsing performed with [python-markdown](https://python-markdown.github.io/)
 - The Juncture IIIF presentation server, API server, and web server implemented with [FastAPI](https://fastapi.tiangolo.com/) and [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 - Juncture home page and documentation built with [Docsify](https://docsify.js.org/#/)
+- Juncture editor powered by [EasyMDE](https://github.com/Ionaru/easy-markdown-editor)

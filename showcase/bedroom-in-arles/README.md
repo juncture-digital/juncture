@@ -62,7 +62,7 @@ This episode of "Anatomy of an Artwork" (YouTube video uploaded by [Sotheby's](h
 
 .ve-map Q48292 5 right
     - Q48292
-    - 43.68217,4.63251
+    - 43.68217,4.63251 "The Yellow House" wc:Vincent_van_Gogh_-_The_yellow_house_('The_street').jpg
 
 **Arles** is a coastal city and commune in the South of France, a subprefecture in the Bouches-du-Rhône department of the Provence-Alpes-Côte d'Azur region, in the former province of Provence.
 
