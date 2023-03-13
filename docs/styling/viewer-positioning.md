@@ -59,7 +59,7 @@ To see this behavior, select the `Rendered` tab in the snippet viewer below and 
 
 In this next example the `sticky` attribute is used with a full-width viewer.  In this mode the text scrolls behind the viewer until all text in the containing section has been seen.
 
-<ve-snippet collapsible label="Full width with sticky viewer" height="600px">
+<ve-snippet collapsible label="Full width with sticky viewer" height="800px">
     .ve-media wc:The_Bug_Peek.jpg sticky
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
