@@ -542,16 +542,20 @@
         let imageId = manifestUrl.indexOf('iiif.juncture-digital.org') > 0 && manifestUrl.indexOf('manifest.json') === manifestUrl.length - 13
           ? manifestUrl.split('/').slice(3,-1).join('/')
           : manifestUrl
+        
+        let tagItems = this.getTagItems(pos)
+
         let text = pos.line === 0
-          ? `.ve-header "Essay Title" ${imageId}\n\n`
-          : `\n.ve-media ${imageId}\n`
-        let imagesList = this.getTagItems(pos, '.ve-media')
-        if (imagesList.length > 0) {
-          let merged = imagesList.length === 1
-            ? `.ve-media\n    - ${imagesList[0].slice(10)}\n`
-            : imagesList.join('\n') + '\n'
-          merged += `    - ${text.split(/\s/).filter(x => x).slice(1).join(' ')}`
-          this.easyMDE.codemirror.setSelection({line:pos.line-imagesList.length+1,ch:0}, {line:pos.line})
+          ? `.ve-header "Essay Title" ${imageId}\n`
+          : `.ve-media ${tagItems.items[0].split(/\s/).slice(2).join(' ')}\n`
+        
+        if (tagItems.items.length > 0) {
+          let merged = tagItems.tag !== '.ve-map' && tagItems.items.length === 1
+            ? `${text}    - ${tagItems.items[0].split(/\s/)[1]}\n`
+            : tagItems.items.join('\n') + '\n'
+          merged += `    - ${imageId}`
+          let line = tagItems.line
+          this.easyMDE.codemirror.setSelection({line,ch:0}, {line:line+tagItems.items.length-1})
           this.easyMDE.codemirror.replaceSelection(merged)
         } else {
           pos.ch = 0
@@ -618,15 +622,29 @@
         return await resp.text()
       },
   
-      getTagItems(pos, tag) {
+      getTagItems(pos) {
+        let tag
         let lines = []
-        let line = pos.line
-        lines.push(this.easyMDE.codemirror.getLine(line))
-        while (line > 0 && lines[lines.length-1].trim() !== '' && lines[lines.length-1].indexOf(tag) === -1) {
-          line = --line
-          lines.push(this.easyMDE.codemirror.getLine(line))
+        let lineNo = pos.line
+
+        let line = this.easyMDE.codemirror.getLine(lineNo)
+        while (line.trim()) {
+          line = this.easyMDE.codemirror.getLine(lineNo+1).trim()
+          if (!line) break
+          ++lineNo
         }
-        return lines[lines.length-1].indexOf(tag) === 0 ? lines.reverse() : []
+
+        line = this.easyMDE.codemirror.getLine(lineNo)
+        lines.push(line)
+        while (lineNo > 0) {
+          line = this.easyMDE.codemirror.getLine(--lineNo)
+          if (line.trim()) lines.push(line)
+          else break
+        }
+
+        let items = lines[lines.length-1].indexOf('.ve-') === 0 ? lines.reverse() : []
+        let obj = {tag: items.length > 0 ? items[0].split(' ')[0] : '', line:lineNo+1, items}
+        return obj
       },
 
     },

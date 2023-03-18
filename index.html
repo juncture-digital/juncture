@@ -47,16 +47,18 @@
     if (referrerUrl) {
       const referrer = new URL(referrerUrl)
       if (referrer.host === 'github.com' && referrer.pathname.indexOf('/jstor-labs/juncture/wiki') < 0 && referrer.pathname.indexOf('/juncture-digital/juncture/issues') < 0) {
-        const referrerPath = referrer.pathname.slice(1).split('/')
-        const ghAcct = referrerPath[0]
-        const ghRepo = referrerPath[1]
-        const ghBranch = referrerPath.length > 3 ? referrerPath[3] : 'main'
-        const pathStart = 4
-        const pathEnd = referrerPath[referrerPath.length-1] === 'README.md' || referrerPath[referrerPath.length-1] === 'index.md' ? referrerPath.length-1 : referrerPath.length
-        const ghPath = referrerPath.slice(pathStart, pathEnd).join('/').replace(/\.md$/, '')
-        const redirect = `${window.location.origin}/${ghAcct}/${ghRepo}/${ghPath}${ghBranch === 'master' || ghBranch === 'main' ? '' : '?ref=' + ghBranch}`
-        console.log(`referrerUrl=${referrerUrl} redirect=${redirect}`)
-        window.location = redirect
+        const referrerPath = referrer.pathname.slice(1).split('/').filter(pe => pe)
+        if (referrerPath.length > 0) {
+          const ghAcct = referrerPath[0]
+          const ghRepo = referrerPath[1]
+          const ghBranch = referrerPath.length > 3 ? referrerPath[3] : 'main'
+          const pathStart = 4
+          const pathEnd = referrerPath[referrerPath.length-1] === 'README.md' || referrerPath[referrerPath.length-1] === 'index.md' ? referrerPath.length-1 : referrerPath.length
+          const ghPath = referrerPath.slice(pathStart, pathEnd).join('/').replace(/\.md$/, '')
+          const redirect = `${window.location.origin}/${ghAcct}/${ghRepo}/${ghPath}${ghBranch === 'master' || ghBranch === 'main' ? '' : '?ref=' + ghBranch}`
+          console.log(`referrerUrl=${referrerUrl} redirect=${redirect}`)
+          window.location = redirect
+        }
       }
     }
 
