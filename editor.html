@@ -544,10 +544,11 @@
           : manifestUrl
         
         let tagItems = this.getTagItems(pos)
-
-        let text = pos.line === 0
-          ? `.ve-header "Essay Title" ${imageId}\n`
-          : `.ve-media ${tagItems.items[0].split(/\s/).slice(2).join(' ')}\n`
+        let text = tagItems.items.length > 0
+          ? pos.line === 0
+            ? `.ve-header "Essay Title" ${imageId}\n`
+            : `.ve-media ${tagItems.items[0].split(/\s/).slice(2).join(' ')}\n`
+          : `.ve-media ${imageId}\n`
         
         if (tagItems.items.length > 0) {
           let merged = tagItems.tag !== '.ve-map' && tagItems.items.length === 1
@@ -572,11 +573,11 @@
 
       addMap(text, pos) {
         if (pos) {
-          let tagList = this.getTagItems(pos, '.ve-map')
-          if (tagList.length > 0) {
-            let merged = tagList.join('\n') + '\n'
+          let tagItems = this.getTagItems(pos)
+          if (tagItems.items.length > 0) {
+            let merged = tagItems.items.join('\n') + '\n'
             merged += `    - ${text}\n`
-            this.easyMDE.codemirror.setSelection({line:pos.line-tagList.length+1,ch:0}, {line:pos.line})
+            this.easyMDE.codemirror.setSelection({line:pos.line-tagItems.items.length+1,ch:0}, {line:pos.line})
             this.easyMDE.codemirror.replaceSelection(merged)
           }
   

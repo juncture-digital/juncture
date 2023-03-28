@@ -41,7 +41,7 @@ CONFIG = yaml.load(open(f'{SCRIPT_DIR}/config.yaml', 'r').read(), Loader=yaml.Fu
 API_ENDPOINT = 'https://api.juncture-digital.org'
 DEFAULT_WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
 WC_ENDPOINT = 'https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js'
-WC_VERSION = '2.0.0-beta.25'
+WC_VERSION = '2.0.0-beta.27'
 
 PREFIX = 'juncture-digital/juncture' # Prefix for site content, typically Github username/repo
 REF = ''                         # Github ref (branch)
@@ -108,7 +108,6 @@ def _get_local_content(path):
   logger.warn(f'Local content not found: path={path}')
 
 juncture_path_roots = set('docs examples showcase'.split())
-logger.info(juncture_path_roots)
 def _get_html(path, base_url, ref=None, host=None, **kwargs):
   ref = ref or ('dev' if host in ('dev.juncture-digital.org', 'localhost') and path.split('/')[1] in juncture_path_roots else '')
   logger.info(f'_get_html: path=={path} base_url=={base_url} ref={ref} prefix={PREFIX} is_juncture_path_root={path.split("/")[1] in juncture_path_roots} host={host}')
@@ -123,11 +122,11 @@ def _get_html(path, base_url, ref=None, host=None, **kwargs):
   else:
     api_url = f'{API_ENDPOINT}/html{path}?prefix={PREFIX}&base={base_url}'
     if ref: api_url += f'&ref={ref}'
-    logger.info(api_url)
     resp = requests.get(api_url)
     status_code, html =  resp.status_code, resp.text if resp.status_code == 200 else ''
   if status_code == 200:
-    if host == 'localhost':
+    if host == 'localhost' or host.startswith('192.168'):
+      logger.info('here')
       if WC_ENDPOINT != DEFAULT_WC_ENDPOINT:
         html = html.replace(DEFAULT_WC_ENDPOINT, WC_ENDPOINT)
         html = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', html)
@@ -143,16 +142,16 @@ def favicon():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/robots.txt')
-def pwa_sw():
-  return send_from_directory(os.path.join(app.root_path, 'static'), 'robots.txt', mimetype='text/plain')
-
-@app.route('/sw.js')
 def robots_txt():
-  return send_from_directory(os.path.join(app.root_path), 'sw.js', mimetype='text/javascript')
+  return send_from_directory(os.path.join(app.root_path, 'static'), 'robots.txt', mimetype='text/plain')
 
 @app.route('/sitemap.txt')
 def sitemap_txt():
   return send_from_directory(os.path.join(app.root_path, 'static'), 'sitemap.txt', mimetype='text/plain')
+
+@app.route('/sw.js')
+def pwa_sw():
+  return send_from_directory(os.path.join(app.root_path), 'sw.js', mimetype='text/javascript')
 
 @app.route('/manifest.json')
 def pwa_manifest():
@@ -160,7 +159,6 @@ def pwa_manifest():
 
 @app.route('/static/css/<path:path>')
 def css(path):
-  # logger.info(f'{os.path.join(app.root_path, "static", "css")}/{path}')
   return send_from_directory(os.path.join(app.root_path, 'static', 'css'), path, mimetype='text/css')
 
 @app.route('/images/<path:path>')
