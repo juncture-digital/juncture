@@ -10,6 +10,7 @@ Juncture tags provide an extension to Markdown for defining visualizations or to
 - [.ve-footer](/components/footer) - The `.ve-footer` tag is used to override the default footer that Juncture automatically adds to a rendered essay.
 - [.ve-iframe](/components/iframe) - The `.ve-iframe` allows arbitrary web pages to be embedded in an essay.
 - [.ve-mermaid](/components/mermaid) - The `.ve-mermaid` tag uses the [Mermaid.js](https://mermaid.js.org/) JavaScript library to create diagram visualizations.
+- [.ve-plant-specimen](/components/plant-specimen) - The `.ve-plant-specimen` tag is used to display one or more plant specimens obtained from [JSTOR Global Plants](https://plants.jstor.org/).
 
 ## Other Tags
 

@@ -32,6 +32,7 @@
     - [ve-map](/components/map)
     - [ve-iframe](/components/iframe)
     - [ve-mermaid](/components/mermaid)
+    - [ve-plant-specimen](/components/plant-specimen)
     - [ve-header](/components/header)
     - [ve-footer](/components/footer)
   - [Other Tags](/components/overview?id=other-tags)
