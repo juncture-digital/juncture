@@ -130,7 +130,7 @@ The base map can be augmented with one or more optional map layers. Juncture sup
 
 ## Layers
 
-Map layers are defined in a Markdown list following the `.ve-map` tag.  Items in the layer list may define markers, GeoJSON file URLs or [allmaps](https://allmaps.org/) IDs for georeferenced images.
+Map layers are defined in a Markdown list following the `.ve-map` tag.  Items in the layer list may define markers, GeoJSON file URLs or [allmaps](https://allmaps.org/) IDs for georeferenced images. Note that a blank space must be present between the `-` in the Markdown list and the layer item. Please view the examples at the bottom of the page for clarification if needed. 
 
 ### Marker layer
 
