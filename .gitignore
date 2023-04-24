@@ -1,6 +1,7 @@
 .venv
-venv
+.vercel
 creds.yaml
 config.yaml
 .DS_Store
 aws/build
+local

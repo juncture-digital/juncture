@@ -15,10 +15,8 @@ WORKDIR $APP_HOME
 
 RUN python3 -m pip install awslambdaric
 
-RUN set -e; pip install bs4 expiringdict Flask Flask-Cors html5lib PyYAML requests serverless_wsgi
-
-COPY main.py config.yaml manifest.json sw.js index.html editor.html media.html ./
-COPY static ./static
+RUN pip install bs4 expiringdict fastapi html5lib lxml mangum Markdown==3.3.6 mdx-breakless-lists prependnewline pymdown-extensions PyYAML requests uvicorn git+https://github.com/rdsnyder/mdx_outline.git git+https://github.com/rdsnyder/markdown-customblocks.git
+COPY main.py .
 
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
 CMD ["main.handler"]
