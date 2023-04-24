@@ -825,10 +825,15 @@ async def serve(
 
 @app.post('/html/')
 async def convert_md_to_html(request: Request):
+  if ENV:
+    env = ENV
+  else:
+    env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
+
   payload = await request.body()
   payload = json.loads(payload)
-  ref = payload.get('ref', ENV == 'dev' and 'dev' or 'main')
-  html = j2_md_to_html(payload['markdown'], ref=ref, env=ENV)
+  ref = payload.get('ref', env == 'dev' and 'dev' or 'main')
+  html = j2_md_to_html(payload['markdown'], ref=ref, env=env)
   return Response(status_code=200, content=html, media_type='text/html')
 
 @app.post('/sendmail/')
