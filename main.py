@@ -120,7 +120,7 @@ def customblocks_default(ctx, *args, **kwargs):
 
 _cache = ExpiringDict(max_len=1000, max_age_seconds=24 * 60 * 60)
 def get_gh_file(url, ref='main', refresh=False, **kwargs):
-  logger.info(f'get_gh_file {url} refresh={refresh}')
+  logger.info(f'get_gh_file {url} ref={ref} refresh={refresh}')
   if not refresh and url in _cache:
     return _cache[url]
   content = None
@@ -476,6 +476,7 @@ def j1_md_to_html(src, **args):
   ref = args.pop('ref', 'main')
   path = args.pop('path', None)
   env = args.pop('env', 'prod')
+  refresh = args.pop('refresh', False)
   
   logger.info(f'j1_md_to_html: base_url={base_url} ghp={ghp} acct={acct} repo={repo} ref={ref} path={path} env={env}')
 
@@ -486,7 +487,7 @@ def j1_md_to_html(src, **args):
     template = open(f'{BASEDIR}/static/v1.html', 'r').read()
     template = re.sub(r'https:\/\/juncture-digital\.github\.io\/juncture', '', template)
   else:
-    template = get_gh_file('juncture-digital/juncture/static/v1.html', **args)
+    template = get_gh_file('juncture-digital/juncture/static/v1.html', ref=ref, refresh=refresh)
   template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
   template = template.replace('window.IS_JUNCTURE = null', f"window.IS_JUNCTURE = {'true' if PREFIX == 'juncture-digital/juncture' else 'false'};")
   if ref: template = template.replace('window.REF = null', f"window.REF = '{ref}';")
@@ -530,6 +531,7 @@ def j2_md_to_html(src, **args):
   ref = args.pop('ref', 'main')
   path = args.pop('path', None)
   env = args.pop('env', 'prod')
+  refresh = args.pop('refresh', False)
   prefix = ''
   
   logger.info(f'j2_md_to_html: base_url={base_url}, ghp={ghp}, acct={acct}, repo={repo}, ref={ref}, path={path}, env={env} PREFIX={PREFIX}')
@@ -551,7 +553,7 @@ def j2_md_to_html(src, **args):
       template = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/js\/index\.js', 'http://localhost:5173/src/main.ts', template)
       # template = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', template)
   else:
-    template = get_gh_file('juncture-digital/juncture/static/v2.html', **args)
+    template = get_gh_file('juncture-digital/juncture/static/v2.html', ref=ref, refresh=refresh)
     if env == 'dev':
       template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', 'https://juncture-digital.github.io/web-components')
     else: # prod
@@ -568,7 +570,7 @@ def j2_md_to_html(src, **args):
     if css_href:
       if not css_href.startswith('http'):
         _path = f'{prefix}/{path}{css_href[1:]}'
-        content = get_gh_file(_path, **args)
+        content = get_gh_file(_path, ref=ref, refresh=refresh)
         if content:
           css = content.markdown
 
@@ -744,7 +746,7 @@ async def gh_token(code: Optional[str] = None, hostname: Optional[str] = None):
 async def serve(
     request: Request,
     path: Optional[str] = None,
-    ref: Optional[str] = 'main',
+    ref: Optional[str] = None,
     fmt: Optional[str] = 'html',
     refresh: Optional[bool] = False
   ):
@@ -753,7 +755,8 @@ async def serve(
     env = ENV
   else:
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
-
+  ref = ref if ref else 'dev' if env == 'dev' else 'main'
+  
   if PREFIX == 'juncture-digital/juncture':
     path_root = path_elems[0] if path_elems else 'index'
     logger.info(f'path_root: {path_root} env: {env} ref: {ref}') 
@@ -761,10 +764,7 @@ async def serve(
       if env == 'local':
         content = open(f'{BASEDIR}/static/{path_root}.html', 'r').read()
       else:
-        content = get_gh_file(
-          f'juncture-digital/juncture/static/{path_root}.html', 
-          ref='dev' if request.url.hostname == 'dev.juncture-digital.org' else 'main', 
-          refresh=refresh)
+        content = get_gh_file(f'juncture-digital/juncture/static/{path_root}.html', ref=ref, refresh=refresh)
 
       if env == 'local':
         if LOCAL_WC:
@@ -827,7 +827,8 @@ async def serve(
 async def convert_md_to_html(request: Request):
   payload = await request.body()
   payload = json.loads(payload)
-  html = j2_md_to_html(payload['markdown'])
+  ref = payload.get('ref', ENV == 'dev' and 'dev' or 'main')
+  html = j2_md_to_html(payload['markdown'], ref=ref, env=ENV)
   return Response(status_code=200, content=html, media_type='text/html')
 
 @app.post('/sendmail/')
