@@ -14,11 +14,12 @@ logger.setLevel(logging.INFO)
 WC_VERSION = '2.0.0-beta.30'
 
 import argparse, json, os, re, sys, traceback
+from datetime import datetime
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(BASEDIR)
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment
 import markdown
 from expiringdict import ExpiringDict
 
@@ -179,8 +180,8 @@ def _sendmail(**kwargs):
       data = json.dumps(data))
   return resp.content, resp.status_code
 
-def convert_urls(soup, base, acct, repo, ref, ghp=False):
-  logger.info(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} ghp={ghp}')
+def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
+  logger.info(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
 
   # convert absolute links
   for elem in soup.find_all(href=True):
@@ -198,10 +199,10 @@ def convert_urls(soup, base, acct, repo, ref, ghp=False):
         else:
           base = '/'
         '''
-        if acct and repo:
-          base = f'/{acct}/{repo}/'
-        else:
+        if f'{acct}/{repo}' == prefix:
           base = '/'
+        else:
+          base = f'/{acct}/{repo}/'
       converted = base + elem.attrs['href'][1:] + (f'?ref={ref}' if ref != 'main' else '')
       elem.attrs['href'] = converted
     else:
@@ -376,8 +377,8 @@ def set_entities(soup):
           if child.name.startswith('ve-'):
             child.attrs['entities'] = ' '.join(qids)
 
-def parse_md(md, base_url, acct, repo, ref, ghp):
-  logger.info(f'Parsing {base_url}/{acct}/{repo}/{ref}')
+def parse_md(md, base_url, acct, repo, ref, prefix, ghp):
+  logger.info(f'Parsing {base_url}/{acct}/{repo}/{ref} prefix={prefix} ghp={ghp}')
 
   def replace_empty_headings(match):
     return re.sub(r'(#+)(.*)', r'\1 &nbsp;\2', match.group(0))
@@ -420,8 +421,7 @@ def parse_md(md, base_url, acct, repo, ref, ghp):
     if 've-button.png' in img.attrs['src']:
       img.parent.decompose()
   
-  if PREFIX == 'juncture-digital/juncture':
-    convert_urls(soup, base_url, acct, repo, ref, ghp)
+  convert_urls(soup, base_url, acct, repo, ref, prefix, ghp)
 
   for el in soup.findAll(re.compile("^ve-.+")):
     el.attrs = dict([(k,v if v != 'true' else None) for k,v in el.attrs.items()])
@@ -477,17 +477,18 @@ def j1_md_to_html(src, **args):
   path = args.pop('path', None)
   env = args.pop('env', 'prod')
   refresh = args.pop('refresh', False)
-  
-  logger.info(f'j1_md_to_html: base_url={base_url} ghp={ghp} acct={acct} repo={repo} ref={ref} path={path} env={env}')
+  prefix = args.pop('prefix', PREFIX)
 
-  soup = parse_md(src, base_url, acct, repo, ref, ghp)
+  logger.info(f'j1_md_to_html: base_url={base_url} ghp={ghp} acct={acct} repo={repo} ref={ref} path={path} env={env} prefix={prefix}')
+
+  soup = parse_md(src, base_url, acct, repo, ref, prefix, ghp)
   first_heading = soup.find(re.compile('^h[1-6]$'))
   
   if env == 'local':
     template = open(f'{BASEDIR}/static/v1.html', 'r').read()
     template = re.sub(r'https:\/\/juncture-digital\.github\.io\/juncture', '', template)
   else:
-    template = get_gh_file('juncture-digital/juncture/static/v1.html', ref=ref, refresh=refresh)
+    template = get_gh_file('juncture-digital/juncture/static/v1.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
   template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
   template = template.replace('window.IS_JUNCTURE = null', f"window.IS_JUNCTURE = {'true' if PREFIX == 'juncture-digital/juncture' else 'false'};")
   if ref: template = template.replace('window.REF = null', f"window.REF = '{ref}';")
@@ -532,11 +533,11 @@ def j2_md_to_html(src, **args):
   path = args.pop('path', None)
   env = args.pop('env', 'prod')
   refresh = args.pop('refresh', False)
-  prefix = ''
+  prefix = args.pop('prefix', PREFIX)
   
-  logger.info(f'j2_md_to_html: base_url={base_url}, ghp={ghp}, acct={acct}, repo={repo}, ref={ref}, path={path}, env={env} PREFIX={PREFIX}')
+  logger.info(f'j2_md_to_html: base_url={base_url}, ghp={ghp}, acct={acct}, repo={repo}, ref={ref}, path={path}, env={env} prefix={prefix} PREFIX={PREFIX}')
 
-  soup = parse_md(src, base_url, acct, repo, ref, ghp)
+  soup = parse_md(src, base_url, acct, repo, ref, prefix, ghp)
 
   css = ''
   meta = soup.find('ve-meta')
@@ -553,7 +554,7 @@ def j2_md_to_html(src, **args):
       template = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/js\/index\.js', 'http://localhost:5173/src/main.ts', template)
       # template = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', template)
   else:
-    template = get_gh_file('juncture-digital/juncture/static/v2.html', ref=ref, refresh=refresh)
+    template = get_gh_file('juncture-digital/juncture/static/v2.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
     if env == 'dev':
       template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', 'https://juncture-digital.github.io/web-components')
     else: # prod
@@ -621,9 +622,64 @@ def j2_md_to_html(src, **args):
   
   return html
 
-def html_to_wp(src):
-  """Convert J1 HTML to WordPress"""
-  return ''
+wxr_prefix = '''<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wp="http://wordpress.org/export/1.2/"
+>
+  <channel>
+    <wp:wxr_version>1.2</wp:wxr_version>
+    <item>
+
+      <title><![CDATA[%s]]></title>
+      <dc:creator><![CDATA[{%s]]></dc:creator>
+      <wp:post_type><![CDATA[post]]></wp:post_type>
+      <wp:status><![CDATA[publish]]></wp:status>
+      <wp:post_date><![CDATA[%s]]></wp:post_date> <!-- Needs to be unique for each post -->
+      <category domain="category" nicename="%s"><![CDATA[%s]]></category>
+
+      <content:encoded><![CDATA[
+'''
+
+wxr_suffix = '''
+]]></content:encoded>		
+    </item>
+	</channel>
+</rss>
+'''
+
+def html_to_wp(html, **kwargs):
+  """Convert HTML to WordPress"""
+  soup = BeautifulSoup(html, 'html5lib').body
+  
+  title = kwargs.get('title', 'Imported')
+  creator = kwargs.get('creator', 'Unknown')
+  post_date = kwargs.get('date', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+  category = kwargs.get('category', 'Unknown')
+
+  wxr_wrappers = [
+    # {'tags': ['section', 'div'], 'before': 'wp:group {"layout":{"type":"constrained"}}', 'after': '/wp:group'},
+    {'tags': ['section', 'div'], 'before': 'wp:group', 'after': '/wp:group'},
+    {'tags': ['h1','h2','h3','h4','h5','h6'], 'before': 'wp:heading', 'after': '/wp:heading'},
+    {'tags': ['p'], 'before': 'wp:paragraph', 'after': '/wp:paragraph'},
+    {'tags': ['ul'], 'before': 'wp:list', 'after': '/wp:list'},
+    {'tags': ['li'], 'before': 'wp:list-item', 'after': '/wp:list-item'},
+  ]
+  for wrapper in wxr_wrappers:
+    for tag in wrapper['tags']:
+      for el in soup.find_all(tag):
+        el.insert_before(Comment(f' {wrapper["before"]} '))
+        el.insert_after(Comment(f' {wrapper["after"]} '))
+    
+  for el in soup.findAll(re.compile("^ve-.+")):
+    el.insert_before(Comment(' wp:html '))
+    el.insert_after(Comment(f' /wp:html '))
+
+  prefix = wxr_prefix % (title, creator, post_date, category, category)
+  return prefix + soup.prettify().replace('<body>\n','').replace('\n</body>','') + wxr_suffix
 
 def detect_format(src):
   """Detect format of source file"""
@@ -632,15 +688,18 @@ def detect_format(src):
 
 def read(src):
   """Read source file"""
-  # logger.info(f'read: {src}')
+  logger.info(f'read: {src}')
   if src.startswith('https://raw.githubusercontent.com'):
-    url = src if src.endswith('.md') else src + '.md'
+    if src.endswith('/'):
+      url = src + 'README.md'
+    else:
+      url = src if src.endswith('.md') else src + '.md'
     resp = requests.get(url)
-    # logger.info(f'GET {url} ({resp.status_code})')
-    if (resp.status_code == 404):
+    logger.info(f'GET {url} ({resp.status_code})')
+    if (resp.status_code == 404) and not src.endswith('/'):
       url = src + '/README.md'
       resp = requests.get(url)
-      # logger.info(f'GET {url} ({resp.status_code})')
+      logger.info(f'GET {url} ({resp.status_code})')
       if resp.status_code == 404: return None
     return resp.text
   else:
@@ -654,7 +713,6 @@ def read(src):
 
 def convert(src, fmt, env, **args):
   """Convert source file to specified format"""
-  # logger.info(f'convert: {src} ({fmt})')
   if src.startswith('https://raw.githubusercontent.com'):
     path_elems = src.split('/')[3:]
     acct, repo, ref, *path_elems = path_elems
@@ -742,29 +800,31 @@ async def gh_token(code: Optional[str] = None, hostname: Optional[str] = None):
       token = token_obj['access_token'] if status_code == 200 else ''
   return Response(status_code=status_code, content=token, media_type='text/plain')
 
+@app.get('/html/{path:path}')
 @app.get('/{path:path}')
 async def serve(
     request: Request,
     path: Optional[str] = None,
-    ref: Optional[str] = None,
+    ref: Optional[str] = 'main',
     fmt: Optional[str] = 'html',
+    prefix: Optional[str] = None,
     refresh: Optional[bool] = False
-  ):
+  ):  
   path_elems = [elem for elem in request.url.path.split('/') if elem]
+  path_elems = path_elems[1:] if len(path_elems) > 0 and path_elems[0] == 'html' else path_elems
   if ENV:
     env = ENV
   else:
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
-  ref = ref if ref else 'dev' if env == 'dev' else 'main'
+  logger.info(f'path={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
   
   if PREFIX == 'juncture-digital/juncture':
     path_root = path_elems[0] if path_elems else 'index'
-    logger.info(f'path_root: {path_root} env: {env} ref: {ref}') 
     if path_root in ('index', 'editor', 'media'):
       if env == 'local':
         content = open(f'{BASEDIR}/static/{path_root}.html', 'r').read()
       else:
-        content = get_gh_file(f'juncture-digital/juncture/static/{path_root}.html', ref=ref, refresh=refresh)
+        content = get_gh_file(f'juncture-digital/juncture/static/{path_root}.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
 
       if env == 'local':
         if LOCAL_WC:
@@ -779,7 +839,7 @@ async def serve(
     else:
       if path_root in ['docs', 'examples', 'showcase'] or len(path_elems) < 2:
         path_elems = ['juncture-digital', 'juncture'] + path_elems
-
+        ref = 'dev' if env == 'dev' else 'main'
       try:
         acct, repo, *path_elems = path_elems
         file_path = '/'.join(path_elems) 
@@ -800,12 +860,18 @@ async def serve(
         if path_root == 'docs':
           content = read(src)
         else:
-          content = convert(src=src, fmt=fmt, env=env, refresh=refresh)
+          content = convert(src=src, fmt=fmt, env=env, prefix=prefix, refresh=refresh)
       except:
         logger.error(traceback.format_exc())
         content = None
       if content:
-        media_type = 'text/html' if fmt.startswith('html') else 'text/markdown' if fmt.startswith('md') else 'text/plain' # ?? what mime type for wp?
+        logger.info(request.url.path)
+        if fmt.startswith('html') and not request.url.path.startswith('//html'):
+          media_type = 'text/html'
+        elif fmt.startswith('md'):
+          media_type = 'text/markdown'
+        else:
+          media_type = 'text/plain' #
         return Response(status_code=200, content=content, media_type=media_type)
       else:
         return RedirectResponse(url=f'/#/{path}')
@@ -818,7 +884,8 @@ async def serve(
         src = f'{LOCAL_CONTENT_ROOT}/{path}'
       else:
         src = f'https://raw.githubusercontent.com/{PREFIX}/{ref}/{path}'
-      content = convert(src=src, fmt=fmt, refresh=refresh, **args)    
+      logger.info(src)
+      content = convert(src=src, fmt=fmt, refresh=refresh, prefix=prefix, **args)    
       if content:
         media_type = 'text/html' if fmt.startswith('html') else 'text/markdown' if fmt.startswith('md') else 'text/plain'
         return Response(status_code=200, content=content, media_type=media_type)
@@ -829,12 +896,24 @@ async def convert_md_to_html(request: Request):
     env = ENV
   else:
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
-
   payload = await request.body()
   payload = json.loads(payload)
   ref = payload.get('ref', env == 'dev' and 'dev' or 'main')
   html = j2_md_to_html(payload['markdown'], ref=ref, env=env)
   return Response(status_code=200, content=html, media_type='text/html')
+
+@app.post('/wxr/')
+@app.post('/wp/')
+async def convert_html_to_wxr(request: Request):
+  if ENV:
+    env = ENV
+  else:
+    env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
+  payload = await request.body()
+  payload = json.loads(payload)
+  ref = payload.get('ref', env == 'dev' and 'dev' or 'main')
+  wxr = html_to_wp(payload['html'], ref=ref, env=env)
+  return Response(status_code=200, content=wxr, media_type='text/xml')
 
 @app.post('/sendmail/')
 async def sendmail(request: Request):
