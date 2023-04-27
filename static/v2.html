@@ -14,20 +14,20 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DRHNQSMN5Y" type="text/javascript"></script>
   <script src="https://cdn.jsdelivr.net/npm/juncture-digital/docs/js/index.js" type="module"></script>
   <script>
-    const PREFIX = null
-    const REF = null
+    window.PREFIX = null
+    window.REF = null
 
     const junctureDomains = new Set(['juncture-digital.org', 'www.juncture-digital.org', 'beta.juncture-digital.org', 'dev.juncture-digital.org', 'editor.juncture-digital.org', 'localhost:8080'])
     const isJuncture = junctureDomains.has(location.host)
 
-    console.log(`PREFIX=${PREFIX} REF=${REF} host=${location.host} isJuncture=${isJuncture}`)
+    console.log(`PREFIX=${window.PREFIX} REF=${window.REF} host=${location.host} isJuncture=${isJuncture}`)
 
     // Remove ref query argument from browser URL if same as REF
     if (!isJuncture) {
-      let re = new RegExp(`^\/${PREFIX}`)
+      let re = new RegExp(`^\/${window.PREFIX}`)
       let browserPath = `${location.origin}${location.pathname.replace(re,'')}`
       let qargsRef = (new URL(document.location)).searchParams.get('ref')
-      if (qargsRef && qargsRef !== REF) browserPath += `?ref=${qargsRef}`
+      if (qargsRef && qargsRef !== window.REF) browserPath += `?ref=${qargsRef}`
       window.history.replaceState({}, document.title, browserPath)
     }
 

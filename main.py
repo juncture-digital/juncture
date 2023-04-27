@@ -13,7 +13,7 @@ logger.setLevel(logging.INFO)
 
 WC_VERSION = '2.0.0-beta.30'
 
-import argparse, json, os, re, sys, traceback
+import argparse, base64, json, os, re, sys, traceback
 from datetime import datetime
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
@@ -131,22 +131,26 @@ def get_gh_file(url, ref='main', refresh=False, **kwargs):
       content = resp.text
   else:  
     acct, repo, *path_elems = url.split('/')
-    '''
     url = f'https://api.github.com/repos/{acct}/{repo}/contents/{"/".join(path_elems)}?ref={ref}'
     resp = requests.get(url, headers={
-        # 'Authorization': f'Token {GH_ACCESS_TOKEN}',
+        'Authorization': f'Token {CREDS.get("gh_unscoped_token")}',
         'Accept': 'application/vnd.github.v3+json',
         'User-agent': 'JSTOR Labs visual essays client'
     })
     if resp.status_code == 200:
       resp = resp.json()
-      content = base64.b64decode(resp['content']).decode('utf-8')
+      content = base64.b64decode(resp['content'])
+      try:
+        content = content.decode('utf-8')
+      except:
+        pass
     '''
     url = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{"/".join(path_elems)}'
     resp = requests.get(url)
     logger.info(f'{url} {resp.status_code}')
     if resp.status_code == 200:
       content = resp.text
+    '''
   if content:
     _cache[url] = content
   return content
@@ -560,8 +564,8 @@ def j2_md_to_html(src, **args):
     else: # prod
       template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs')
 
-  template = template.replace('const PREFIX = null', f"const PREFIX = '{acct}/{repo}';")
-  if ref: template = template.replace('const REF = null', f"const REF = '{ref}';")
+  template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
+  template = template.replace('window.REF = null', f"window.REF = '{ref}';")
   template = BeautifulSoup(template, 'html5lib')
   template.body.insert(0, soup.html.body.main)
   
@@ -800,6 +804,32 @@ async def gh_token(code: Optional[str] = None, hostname: Optional[str] = None):
       token = token_obj['access_token'] if status_code == 200 else ''
   return Response(status_code=status_code, content=token, media_type='text/plain')
 
+media_types = {
+  'md': 'text/markdown',
+  'jpg': 'image/jpeg',
+  'jpeg': 'image/jpeg',
+  'png': 'image/png',
+  'html': 'text/html',
+  'txt': 'text/plain',
+  'css': 'text/css',
+  'js': 'text/javascript',
+  'json': 'application/json',
+  'yaml': 'application/x-yaml'
+}
+@app.get('/gh-file/{path:path}')
+async def gh_file(
+    path: Optional[str] = None,
+    ref: Optional[str] = 'main',
+  ):
+  acct, repo, *path_elems = path.split('/')
+  gh_path = '/'.join(path_elems)
+  media_type = media_types[gh_path.split('.')[-1]]
+  logger.info(f'gh_file: {acct} {repo} {ref} {gh_path} {media_type}')
+  if media_type.split('/')[0] == 'image':
+    return RedirectResponse(url=f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{gh_path}')
+  else:
+    return Response(status_code=200, content=get_gh_file(path, ref), media_type=media_type)
+
 @app.get('/html/{path:path}')
 @app.get('/{path:path}')
 async def serve(
@@ -809,7 +839,7 @@ async def serve(
     fmt: Optional[str] = 'html',
     prefix: Optional[str] = None,
     refresh: Optional[bool] = False
-  ):  
+  ):
   path_elems = [elem for elem in request.url.path.split('/') if elem]
   path_elems = path_elems[1:] if len(path_elems) > 0 and path_elems[0] == 'html' else path_elems
   if ENV:
