@@ -19,5 +19,5 @@ The [Juncture Github discussion page](https://github.com/orgs/juncture-digital/d
 
 ## By email
 
-The Juncture team may also be reached by email using this <ve-contact contact="labs@ithaka.org" title="Contact the Juncture Team" subject="Juncture Contact Form">contact form link</ve-contact>.
+The Juncture team may also be reached by email using this <ve-contact contact="ron.snyder@ithaka.org" title="Contact the Dev Juncture Team" subject="Juncture Dev Contact Form">contact form link</ve-contact>.
 

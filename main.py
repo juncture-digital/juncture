@@ -949,8 +949,9 @@ async def convert_html_to_wxr(request: Request):
 async def sendmail(request: Request):
   referrer = request.headers.get('referer')
   body = await request.body()
-  content, status_code = _sendmail(**{**json.loads(body), **{'referrer': referrer}})
-  return Response(status_code=status_code, content=content) 
+  args = json.loads(body)
+  content, status_code = _sendmail(**{**args, **{'referrer': referrer}})
+  return Response(status_code=status_code, content=content)
 
 if __name__ == '__main__':
   logger.setLevel(logging.INFO)
