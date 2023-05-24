@@ -65,7 +65,7 @@ positional_defaults = {
   've-meta': ['title', 'description'],
   've-spacer': ['height'],
   've-plant-specimen': ['qid', 'max'],
-  've-style': ['href'],
+  've-style': ['src'],
   've-video': ['src', 'caption'],
 }
 
@@ -121,7 +121,7 @@ def customblocks_default(ctx, *args, **kwargs):
 
 _cache = ExpiringDict(max_len=1000, max_age_seconds=24 * 60 * 60)
 def get_gh_file(url, ref='main', refresh=False, **kwargs):
-  logger.info(f'get_gh_file {url} ref={ref} refresh={refresh}')
+  logger.debug(f'get_gh_file {url} ref={ref} refresh={refresh}')
   if not refresh and url in _cache:
     return _cache[url]
   content = None
@@ -185,7 +185,7 @@ def _sendmail(**kwargs):
   return resp.content, resp.status_code
 
 def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
-  logger.info(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
+  logger.debug(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
 
   # convert absolute links
   for elem in soup.find_all(href=True):
@@ -382,7 +382,7 @@ def set_entities(soup):
             child.attrs['entities'] = ' '.join(qids)
 
 def parse_md(md, base_url, acct, repo, ref, prefix, ghp):
-  logger.info(f'Parsing {base_url}/{acct}/{repo}/{ref} prefix={prefix} ghp={ghp}')
+  logger.debug(f'Parsing {base_url}/{acct}/{repo}/{ref} prefix={prefix} ghp={ghp}')
 
   def replace_empty_headings(match):
     return re.sub(r'(#+)(.*)', r'\1 &nbsp;\2', match.group(0))
@@ -546,6 +546,20 @@ def j2_md_to_html(src, **args):
   css = ''
   meta = soup.find('ve-meta')
 
+  custom_style = soup.find('ve-style')
+  if custom_style:
+    css_src = custom_style.attrs.get('src')
+    if css_src:
+      if css_src.startswith('http'):
+        css = requests.get(css_src).text
+      else:
+        if css_src.startswith('/'):
+          gh_path = css_src[1:]
+        else:
+          gh_path = f'{acct}/{repo}{path}/{css_src.replace("./","")}'
+        css = get_gh_file(gh_path, ref=ref, refresh=refresh)
+    custom_style.decompose()
+
   for el in soup.find_all('ve-media'):
     el.attrs['anno-base'] = f'{acct}/{repo}{path}'
   for el in soup.find_all('ve-map'):
@@ -568,18 +582,6 @@ def j2_md_to_html(src, **args):
   template = template.replace('window.REF = null', f"window.REF = '{ref}';")
   template = BeautifulSoup(template, 'html5lib')
   template.body.insert(0, soup.html.body.main)
-  
-  custom_style = soup.find('ve-style')
-  if custom_style:
-    css_href = custom_style.attrs.get('href')
-    if css_href:
-      if not css_href.startswith('http'):
-        _path = f'{prefix}/{path}{css_href[1:]}'
-        content = get_gh_file(_path, ref=ref, refresh=refresh)
-        if content:
-          css = content.markdown
-
-    custom_style.decompose()
   
   add_hypothesis = soup.find('ve-add-hypothesis') or soup.find('ve-annotate')
   if add_hypothesis:
@@ -692,20 +694,26 @@ def detect_format(src):
 
 def read(src):
   """Read source file"""
-  logger.info(f'read: {src}')
   if src.startswith('https://raw.githubusercontent.com'):
     if src.endswith('/'):
       url = src + 'README.md'
     else:
       url = src if src.endswith('.md') else src + '.md'
-    resp = requests.get(url)
-    logger.info(f'GET {url} ({resp.status_code})')
-    if (resp.status_code == 404) and not src.endswith('/'):
+    acct, repo, ref, *path = url.split('/')[3:]
+    content = get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref)
+    # resp = requests.get(url)
+    # logger.info(f'GET {url} ({resp.status_code})')
+    # if (resp.status_code == 404) and not src.endswith('/'):
+    if content is None and not src.endswith('/'):
       url = src + '/README.md'
-      resp = requests.get(url)
-      logger.info(f'GET {url} ({resp.status_code})')
-      if resp.status_code == 404: return None
-    return resp.text
+      acct, repo, ref, *path = url.split('/')[3:]
+      content = get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref)
+      # logger.info(get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref))
+      # resp = requests.get(url)
+      # logger.info(f'GET {url} ({resp.status_code})')
+      # if resp.status_code == 404: return None
+    # return resp.text
+    return content
   else:
     src = src[:-1] if src.endswith('/') else src
     for ext in ('', '.md', '/README.md'):
@@ -725,8 +733,6 @@ def convert(src, fmt, env, **args):
   else:
     args = {**args, 'env': env}
   
-  logger.info(f'convert: {src} {fmt} {env} {args}')
-
   content = read(src)
   if not content: return None
 
@@ -736,8 +742,6 @@ def convert(src, fmt, env, **args):
   if out_fmt in ('html', 'md', 'wp'):
     out_fmt += f'_j{in_fmt[-1]}'
   
-  logger.info(f'Converting {src} from {in_fmt} to {out_fmt}')
-
   if in_fmt == 'md_j1':
     if out_fmt.endswith('_j2'):
       content = j1_to_j2_md(content)
@@ -824,7 +828,6 @@ async def gh_file(
   acct, repo, *path_elems = path.split('/')
   gh_path = '/'.join(path_elems)
   media_type = media_types[gh_path.split('.')[-1]]
-  logger.info(f'gh_file: {acct} {repo} {ref} {gh_path} {media_type}')
   if media_type.split('/')[0] == 'image':
     return RedirectResponse(url=f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{gh_path}')
   else:
@@ -846,7 +849,7 @@ async def serve(
     env = ENV
   else:
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
-  logger.info(f'path={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
+  logger.debug(f'path={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
   
   if PREFIX == 'juncture-digital/juncture':
     path_root = path_elems[0] if path_elems else 'index'
@@ -873,7 +876,6 @@ async def serve(
       try:
         acct, repo, *path_elems = path_elems
         file_path = '/'.join(path_elems) 
-        logger.info(f'acct: {acct} repo: {repo} ref: {ref} path: {file_path}')
         if env == 'local':
           if LOCAL_CONTENT_ROOT:
             src = f'{LOCAL_CONTENT_ROOT}/{path}'
@@ -886,7 +888,6 @@ async def serve(
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{"main" if env == "prod" else "dev"}/{file_path}'
           else:
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{file_path}'
-        logger.info(src)
         if path_root == 'docs':
           content = read(src)
         else:
@@ -895,7 +896,6 @@ async def serve(
         logger.error(traceback.format_exc())
         content = None
       if content:
-        logger.info(request.url.path)
         if fmt.startswith('html') and not request.url.path.startswith('//html'):
           media_type = 'text/html'
         elif fmt.startswith('md'):
@@ -914,7 +914,6 @@ async def serve(
         src = f'{LOCAL_CONTENT_ROOT}/{path}'
       else:
         src = f'https://raw.githubusercontent.com/{PREFIX}/{ref}/{path}'
-      logger.info(src)
       content = convert(src=src, fmt=fmt, refresh=refresh, prefix=prefix, **args)    
       if content:
         media_type = 'text/html' if fmt.startswith('html') else 'text/markdown' if fmt.startswith('md') else 'text/plain'
