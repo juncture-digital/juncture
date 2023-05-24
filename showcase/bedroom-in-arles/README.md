@@ -1,4 +1,4 @@
-.ve-header "Bedroom in Arles" wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg position=top sticky
+.ve-header "Bedroom in Arles" wc:Bedroom_of_Van_Gogh_in_Arles.jpg position=top sticky
 
 # Bedroom in Arles
 
@@ -15,7 +15,7 @@ The painting depicts van Gogh's bedroom at 2, Place Lamartine in ==Arles=={Q4829
 Van Gogh started the first version during mid October 1888 while staying in Arles, and explained his aims and means to his brother Theo:
 
 .ve-media compare right caption="Comparing van Gogh's sketch and painting"
-    - wc:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg right
+    - wc:Bedroom_of_Van_Gogh_in_Arles.jpg right
     - wc:Vincent_van_Gogh_-_Vincent's_Bedroom_-_Lettersketch_17_October_1888.jpg
 
 > "This time it simply reproduces my bedroom; but colour must be abundant in this part, its simplification adding a rank of grandee to the style applied to the objects, getting to suggest a certain rest or dream. Well, I have thought that on watching the composition we stop thinking and imagining. I have painted the walls pale violet. The ground with checked material. The wooden bed and the chairs, yellow like fresh butter; the sheet and the pillows, lemon light green. The bedspread, scarlet coloured. The window, green. The washbasin, orangey; the tank, blue. The doors, lilac. And, that is all. There is not anything else in this room with closed shutters. The square pieces of furniture must express unswerving rest; also the portraits on the wall, the mirror, the bottle, and some costumes. The white colour has not been applied to the picture, so its frame will be white, aimed to get me even with the compulsory rest recommended for me. I have depicted no type of shade or shadow; I have only applied simple plain colours, like those in crêpes."[^2]
