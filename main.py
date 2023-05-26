@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s : %(filename)s : %(levelname)s : %(messa
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-WC_VERSION = '2.0.0-beta.32'
+WC_VERSION = '2.0.0-beta.35'
 
 import argparse, base64, json, os, re, sys, traceback
 from datetime import datetime
@@ -185,35 +185,36 @@ def _sendmail(**kwargs):
   return resp.content, resp.status_code
 
 def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
-  logger.debug(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
+  logger.info(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
 
   # convert absolute links
   for elem in soup.find_all(href=True):
     if elem.attrs['href'].startswith('http'):
       elem.attrs['target'] = '_blank'
-    orig = elem.attrs['href']
-    if elem.attrs['href'].startswith('/'):
-      if ghp:
-        base = f'/{repo}/'
+    elif acct and repo:
+      orig = elem.attrs['href']
+      if elem.attrs['href'].startswith('/'):
+        if ghp:
+          base = f'/{repo}/'
+        else:
+          '''
+          base_elems = [elem for elem in base.split('/') if elem]
+          if len(base_elems) >= 2 and base_elems[0] == acct and base_elems[1] == repo:
+            base = f'/{acct}/{repo}/'
+          else:
+            base = '/'
+          '''
+          if f'{acct}/{repo}' == prefix:
+            base = '/'
+          else:
+            base = f'/{acct}/{repo}/'
+        converted = base + elem.attrs['href'][1:] + (f'?ref={ref}' if ref != 'main' else '')
+        elem.attrs['href'] = converted
       else:
-        '''
-        base_elems = [elem for elem in base.split('/') if elem]
-        if len(base_elems) >= 2 and base_elems[0] == acct and base_elems[1] == repo:
-          base = f'/{acct}/{repo}/'
-        else:
-          base = '/'
-        '''
-        if f'{acct}/{repo}' == prefix:
-          base = '/'
-        else:
-          base = f'/{acct}/{repo}/'
-      converted = base + elem.attrs['href'][1:] + (f'?ref={ref}' if ref != 'main' else '')
-      elem.attrs['href'] = converted
-    else:
-      elem.attrs['href'] = f'/{acct}/{repo}/{elem.attrs["href"]}'
-      if ref != 'main':
-        elem.attrs['href'] += f'?ref={ref}'
-    logger.debug(f'orig={orig} base={base} converted={elem.attrs["href"]}')
+        elem.attrs['href'] = f'/{acct}/{repo}/{elem.attrs["href"]}'
+        if ref != 'main':
+          elem.attrs['href'] += f'?ref={ref}'
+      logger.debug(f'orig={orig} base={base} converted={elem.attrs["href"]}')
   
   # convert image URLs
   for elem in soup.find_all(src=True):

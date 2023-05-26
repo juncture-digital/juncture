@@ -72,8 +72,8 @@ Menu items are defined in a Markdown list of links following the `.ve-header` ta
 ### Contact
 
 <ve-snippet collapsible label="Header with a contact form" height=10rem>
-    .ve-header Example background=#5B152E contact=someone@example.net
-        - Contact Us
+    .ve-header Example background=#5B152E contact-form-title="Contact form for Some Site" contact-subject="Contact form for Some Site" contact=someone@somesite.org
+        - [Contact Us](contact)
 </ve-snippet>
 
 ### Search
