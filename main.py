@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s : %(filename)s : %(levelname)s : %(messa
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-WC_VERSION = '2.0.0-beta.35'
+WC_VERSION = '2.0.0-beta.36'
 
 import argparse, base64, json, os, re, sys, traceback
 from datetime import datetime
