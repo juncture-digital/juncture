@@ -117,7 +117,7 @@ The example below shows the use of a `zoomto` action using both percent and abso
 
 #### Image annotation ID
 
-After an image has been annotated (as described in [this tutorial](tutorials/annotating-images)) the annotation ID can be obtained by clicking on the annotation.  When clicking on the annotation the annotation ID is copied onto the clipboard.  Once that has been accomplished the value can then be pasted into the essay text directly or by using the `Mark text` helper located in the editor formatting toolbar. 
+After an image has been annotated (as described in [this tutorial](howto/annotate-images)) the annotation ID can be obtained by clicking on the annotation.  When clicking on the annotation the annotation ID is copied onto the clipboard.  Once that has been accomplished the value can then be pasted into the essay text directly or by using the `Mark text` helper located in the editor formatting toolbar. 
 
 #### Map coordinates
 

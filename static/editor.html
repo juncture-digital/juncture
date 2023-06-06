@@ -423,7 +423,7 @@
           // window.previewInit()  // Forces some reinitialization when previewing
           this.isPreviewActive = true
           document.getElementById('mde').classList.add('preview')
-          let body = {prefix: `${this.acct}/${this.repo}`, path: this.contentPath.split('/').slice(2,-1).join('/'), markdown}
+          let body = {acct:this.acct, repo:this.repo, prefix: `${this.acct}/${this.repo}`, path: `/${this.contentPath.split('/').slice(2,-1).join('/')}`, markdown}
           fetch('/html/?inline=true', {method: 'POST', body: JSON.stringify(body)})
             .then(resp => resp.text())
             .then(html => {

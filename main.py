@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s : %(filename)s : %(levelname)s : %(messa
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-WC_VERSION = '2.0.0-beta.36'
+WC_VERSION = '2.0.0-beta.37'
 
 import argparse, base64, json, os, re, sys, traceback
 from datetime import datetime
@@ -529,7 +529,6 @@ def j1_md_to_html(src, **args):
 
 def j2_md_to_html(src, **args):
   """Convert Juncture version 2 markdown to HTML"""
-  
   base_url = args.pop('base', '')
   ghp = args.pop('ghp', False)
   acct = args.pop('acct', None)
@@ -926,10 +925,12 @@ async def convert_md_to_html(request: Request):
     env = ENV
   else:
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
-  payload = await request.body()
-  payload = json.loads(payload)
-  ref = payload.get('ref', env == 'dev' and 'dev' or 'main')
-  html = j2_md_to_html(payload['markdown'], ref=ref, env=env)
+  args = await request.body()
+  args = json.loads(args)
+  args['src'] = args.pop('markdown')
+  args['ref'] = args.get('ref', env == 'dev' and 'dev' or 'main')
+  args['env'] = env
+  html = j2_md_to_html(**args)
   return Response(status_code=200, content=html, media_type='text/html')
 
 @app.post('/wxr/')
