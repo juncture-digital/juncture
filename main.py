@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s : %(filename)s : %(levelname)s : %(messa
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-WC_VERSION = '2.0.0-beta.38'
+WC_VERSION = '2.0.0-beta.39'
 
 import argparse, base64, json, os, re, sys, traceback
 from datetime import datetime
@@ -545,8 +545,9 @@ def j2_md_to_html(src, **args):
 
   css = ''
   meta = soup.find('ve-meta')
-
+  add_hypothesis = soup.find('ve-add-hypothesis') or soup.find('ve-annotate')
   custom_style = soup.find('ve-style')
+  
   if custom_style:
     css_src = custom_style.attrs.get('src')
     if css_src:
@@ -583,7 +584,6 @@ def j2_md_to_html(src, **args):
   template = BeautifulSoup(template, 'html5lib')
   template.body.insert(0, soup.html.body.main)
   
-  add_hypothesis = soup.find('ve-add-hypothesis') or soup.find('ve-annotate')
   if add_hypothesis:
     add_hypothesis.decompose()
     add_script(template, 'https://hypothes.is/embed.js', {'async': 'true'})
