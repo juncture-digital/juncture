@@ -69,6 +69,7 @@ let _vue = new Vue({
     active: null,
     anchor: null,
     authenticatedUser: null,
+    userCanEdit: false,
     availableViewers,
     componentsList,
     contentSource,
@@ -105,8 +106,8 @@ let _vue = new Vue({
     mainComponent() { return this.essayConfig && this.essayConfig.main ? `${componentPrefix}${this.essayConfig.main.toLowerCase()}` : null},
     footerComponent() { return this.essayConfig ? `${componentPrefix}${this.essayConfig.footer || 'footer'}` : null},
     isAdminUser() {
-      console.log(`isAdminUser: userAcct=${this.authenticatedUser?.acct} sourceAcct=${this.contentSource?.acct}`)
-      return this.authenticatedUser !== null && (this.authenticatedUser.isAdmin || this.contentSource.acct === this.authenticatedUser.acct) 
+      console.log(`isAdminUser: isAdmin=${this.authenticatedUser?.isAdmin || false} userAcct=${this.authenticatedUser?.acct} sourceAcct=${this.contentSource?.acct}`)
+      return this.authenticatedUser?.isAdmin || this.contentSource.acct === this.authenticatedUser?.acct
     },
     // ghToken() { return oauthAccessToken || ghUnscopedToken },
     viewerStyle() { return { 
@@ -155,7 +156,17 @@ let _vue = new Vue({
     document.body.classList.add('visible')
     let ghUser = localStorage.getItem('gh-username')
     if (ghUser) {
-      this.authenticatedUser = {'acct': ghUser}
+      this.authenticatedUser = {'acct': ghUser, 'isAdmin': false}
+      fetch('https://api.github.com/user/orgs', {
+        headers: {
+          Accept: 'application/vnd.github+json',
+          Authorization: `token ${this.ghToken}`
+        }
+      }).then(resp => resp.json())
+        .then(orgs => orgs.map(org => org.login))
+        .then(orgs => {
+          if (orgs.indexOf(this.authenticatedUser.acct) >= 0) this.authenticatedUser.isAdmin = true
+        })
     }
   },
   methods: {
