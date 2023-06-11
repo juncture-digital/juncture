@@ -104,7 +104,10 @@ let _vue = new Vue({
     headerComponent() { return this.essayConfig ? `${componentPrefix}${this.essayConfig.header || 'header'}` : null},
     mainComponent() { return this.essayConfig && this.essayConfig.main ? `${componentPrefix}${this.essayConfig.main.toLowerCase()}` : null},
     footerComponent() { return this.essayConfig ? `${componentPrefix}${this.essayConfig.footer || 'footer'}` : null},
-    isAdminUser() { return this.authenticatedUser !== null && (this.authenticatedUser.isAdmin || contentSource.acct === this.authenticatedUser.acct) },
+    isAdminUser() {
+      console.log(`isAdminUser: userAcct=${this.authenticatedUser?.acct} sourceAcct=${this.contentSource?.acct}`)
+      return this.authenticatedUser !== null && (this.authenticatedUser.isAdmin || this.contentSource.acct === this.authenticatedUser.acct) 
+    },
     // ghToken() { return oauthAccessToken || ghUnscopedToken },
     viewerStyle() { return { 
       height: this.viewerIsOpen
@@ -152,7 +155,7 @@ let _vue = new Vue({
     document.body.classList.add('visible')
     let ghUser = localStorage.getItem('gh-username')
     if (ghUser) {
-      this.authenticatedUser = {'acct': ghUser, 'isAdmin': false}
+      this.authenticatedUser = {'acct': ghUser}
     }
   },
   methods: {
