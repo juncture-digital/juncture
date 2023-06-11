@@ -464,7 +464,7 @@
           let elArgs = {tag: 'script'}
           if (srcEl.type) elArgs.type = srcEl.type
           // if (srcEl.src) elArgs.src = srcEl.src.replace(/https:\/\/unpkg\.com\/juncture-digital\/dist\/juncture-digital/, wcEndpoint)
-          if (srcEl.src) elArgs.src = srcEl.src
+          if (srcEl.src) elArgs.src = `${srcEl.src}?cachebuster=${new Date().getTime()}`
           else elArgs.text = srcEl.text
           e = addEl(elArgs)
           this.loadedDependencies.push(e)

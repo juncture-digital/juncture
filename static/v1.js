@@ -4,7 +4,7 @@ let REF = window.REF
 let IS_JUNCTURE = window.IS_JUNCTURE
 console.log(`PREFIX=${PREFIX} REF=${REF} host=${location.host} IS_JUNCTURE=${IS_JUNCTURE}`)
 
-const ghToken = atob('Z2hwX0RJdFlxdWtoNzgxSE5jdFI3bHVSQ01tYVQwTmJ5VzBnOTh3TQ==')
+const ghToken = localStorage.getItem('gh-auth-token') || localStorage.getItem('gh-unscoped-token')
 const qargs = window.location.href.indexOf('?') > 0 ? parseQueryString(window.location.href.split('?')[1]) : {}
 const componentPrefix = 've1-'
 const dirCache = {}
@@ -150,6 +150,10 @@ let _vue = new Vue({
     this.parseEssay()
     document.body.classList.remove('hidden')
     document.body.classList.add('visible')
+    let ghUser = localStorage.getItem('gh-username')
+    if (ghUser) {
+      this.authenticatedUser = {'acct': ghUser, 'isAdmin': false}
+    }
   },
   methods: {
     authenticate() {
@@ -721,6 +725,7 @@ Vue.mixin({
     },
 
     async putFile(path, content, acct, repo, branch, message) {
+      console.log(`putFile: path=${path} acct=${acct} repo=${repo} branch=${branch} message=${message}`)
       acct = acct || this.contentSource.acct
       repo = repo || this.contentSource.repo
       branch = branch || this.contentSource.ref

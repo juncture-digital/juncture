@@ -452,17 +452,19 @@ def parse_md(md, base_url, acct, repo, ref, prefix, ghp):
     footnotes.name = 'section'
     contents.append(footnotes)
 
-  footer = soup.find('ve-footer')
-  if not footer:
-    # default footer
-    footer = soup.new_tag('ve-footer')
-    footer.append(BeautifulSoup('''
-      <ul>
-        <li><a href="https://juncture-digital.org">Powered by: <img alt="" src="https://juncture-digital.github.io/juncture/static/images/juncture-logo.png"/></a></li>
-        <li>view-code</li>
-      </ul>''', 
-    'html5lib'))
-  main.append(footer)
+  is_v2 = soup.find('param') is None
+  if is_v2:
+    footer = soup.find('ve-footer')
+    if not footer:
+      # default footer
+      footer = soup.new_tag('ve-footer')
+      footer.append(BeautifulSoup('''
+        <ul>
+          <li><a href="https://juncture-digital.org">Powered by: <img alt="" src="https://juncture-digital.github.io/juncture/static/images/juncture-logo.png"/></a></li>
+          <li>view-code</li>
+        </ul>''', 
+      'html5lib'))
+    main.append(footer)
 
   set_entities(soup)
   
@@ -930,7 +932,9 @@ async def convert_md_to_html(request: Request):
   args['src'] = args.pop('markdown')
   args['ref'] = args.get('ref', env == 'dev' and 'dev' or 'main')
   args['env'] = env
-  html = j2_md_to_html(**args)
+  is_v1 = re.search(r'<param', args['src'])
+  logger.info(is_v1)
+  html = j1_md_to_html(**args) if is_v1 else j2_md_to_html(**args)
   return Response(status_code=200, content=html, media_type='text/html')
 
 @app.post('/wxr/')
