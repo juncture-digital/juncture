@@ -197,20 +197,13 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
         if ghp:
           base = f'/{repo}/'
         else:
-          '''
-          base_elems = [elem for elem in base.split('/') if elem]
-          if len(base_elems) >= 2 and base_elems[0] == acct and base_elems[1] == repo:
-            base = f'/{acct}/{repo}/'
-          else:
-            base = '/'
-          '''
           if f'{acct}/{repo}' == prefix:
             base = '/'
           else:
             base = f'/{acct}/{repo}/'
         converted = base + elem.attrs['href'][1:] + (f'?ref={ref}' if ref != 'main' else '')
         elem.attrs['href'] = converted
-      else:
+      elif not elem.attrs['href'].startswith('#'):
         elem.attrs['href'] = f'/{acct}/{repo}/{elem.attrs["href"]}'
         if ref != 'main':
           elem.attrs['href'] += f'?ref={ref}'
@@ -559,7 +552,11 @@ def j2_md_to_html(src, **args):
         if css_src.startswith('/'):
           gh_path = css_src[1:]
         else:
-          gh_path = f'{acct}/{repo}{path}/{css_src.replace("./","")}'
+          gh_path_elems = [pe for pe in path.split('/') if pe]
+          css_path_elems = [pe for pe in css_src.split('/') if pe and pe != '.']
+          pop = len([pe for pe in css_path_elems if pe == '..'])
+          path_elems = gh_path_elems[pop:] + css_path_elems[pop:]
+          gh_path = f'{acct}/{repo}/{"/".join(path_elems)}'
         css = get_gh_file(gh_path, ref=ref, refresh=refresh)
     custom_style.decompose()
 
@@ -851,7 +848,7 @@ async def serve(
     env = ENV
   else:
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
-  logger.debug(f'path={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
+  logger.info(f'path={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
   
   if PREFIX == 'juncture-digital/juncture':
     path_root = path_elems[0] if path_elems else 'index'
@@ -893,6 +890,7 @@ async def serve(
         if path_root == 'docs':
           content = read(src)
         else:
+          logger.info(f'path={path} src={src}')
           content = convert(src=src, fmt=fmt, env=env, prefix=prefix, refresh=refresh)
       except:
         logger.error(traceback.format_exc())
