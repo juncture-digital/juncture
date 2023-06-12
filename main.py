@@ -700,19 +700,11 @@ def read(src):
       url = src if src.endswith('.md') else src + '.md'
     acct, repo, ref, *path = url.split('/')[3:]
     content = get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref)
-    # resp = requests.get(url)
-    # logger.info(f'GET {url} ({resp.status_code})')
-    # if (resp.status_code == 404) and not src.endswith('/'):
     if content is None and not src.endswith('/'):
       url = src + '/README.md'
       acct, repo, ref, *path = url.split('/')[3:]
       content = get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref)
-      # logger.info(get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref))
-      # resp = requests.get(url)
-      # logger.info(f'GET {url} ({resp.status_code})')
-      # if resp.status_code == 404: return None
-    # return resp.text
-    return content
+    return '/'.join(path[:-1]), content
   else:
     src = src[:-1] if src.endswith('/') else src
     for ext in ('', '.md', '/README.md'):
@@ -720,19 +712,17 @@ def read(src):
       # logger.info(f'read: {path} {os.path.isfile(path)}')
       if os.path.isfile(path):
         with open(path, 'r') as f:
-          return f.read()
+          return path, f.read()
 
-def convert(src, fmt, env, **args):
+def convert(src, fmt='html', env='prod', **args):
   """Convert source file to specified format"""
   if src.startswith('https://raw.githubusercontent.com'):
-    path_elems = src.split('/')[3:]
-    acct, repo, ref, *path_elems = path_elems
-    path = '/' + '/'.join(path_elems)
-    args = {**args, 'acct': acct, 'repo': repo, 'ref': ref, 'path': path, 'env': env}
+    acct, repo, ref, *_ = src.split('/')[3:]
+    args = {**args, 'acct': acct, 'repo': repo, 'ref': ref, 'env': env}
   else:
     args = {**args, 'env': env}
   
-  content = read(src)
+  args['path'], content = read(src)
   if not content: return None
 
   in_fmt = detect_format(content)
@@ -890,7 +880,7 @@ async def serve(
         if path_root == 'docs':
           content = read(src)
         else:
-          logger.info(f'path={path} src={src}')
+          logger.debug(f'path={path} src={src} file_path={file_path}')
           content = convert(src=src, fmt=fmt, env=env, prefix=prefix, refresh=refresh)
       except:
         logger.error(traceback.format_exc())
@@ -914,7 +904,7 @@ async def serve(
         src = f'{LOCAL_CONTENT_ROOT}/{path}'
       else:
         src = f'https://raw.githubusercontent.com/{PREFIX}/{ref}/{path}'
-      content = convert(src=src, fmt=fmt, refresh=refresh, prefix=prefix, **args)    
+      content = convert(src=src, fmt=fmt, refresh=refresh, prefix=prefix, **args)
       if content:
         media_type = 'text/html' if fmt.startswith('html') else 'text/markdown' if fmt.startswith('md') else 'text/plain'
         return Response(status_code=200, content=content, media_type=media_type)
@@ -931,7 +921,6 @@ async def convert_md_to_html(request: Request):
   args['ref'] = args.get('ref', env == 'dev' and 'dev' or 'main')
   args['env'] = env
   is_v1 = re.search(r'<param', args['src'])
-  logger.info(is_v1)
   html = j1_md_to_html(**args) if is_v1 else j2_md_to_html(**args)
   return Response(status_code=200, content=html, media_type='text/html')
 
