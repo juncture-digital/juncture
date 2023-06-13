@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s : %(filename)s : %(levelname)s : %(messa
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-WC_VERSION = '2.0.0-beta.39'
+WC_VERSION = '2.0.0-beta.40'
 
 import argparse, base64, json, os, re, sys, traceback
 from datetime import datetime
@@ -878,7 +878,7 @@ async def serve(
           else:
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{file_path}'
         if path_root == 'docs':
-          content = read(src)
+          _, content = read(src)
         else:
           logger.debug(f'path={path} src={src} file_path={file_path}')
           content = convert(src=src, fmt=fmt, env=env, prefix=prefix, refresh=refresh)

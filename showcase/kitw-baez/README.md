@@ -105,11 +105,11 @@ https://www.youtube.com/watch?v=qtLfWEk0Nko
 We’ll jump to the Penn Center. Remember the strategy sessions in South Carolina?
 Q7163219
 
-JOAN BAEZ:
+00:09:10:00 JOAN BAEZ:
 I hated them. Penn Center, I don't remember where the different conferences were.
 Q7163219
 
-TREY ELLIS:
+00:09:20:00 TREY ELLIS:
 We'll talk about Penn Center, and then Airlie House later. In Penn Center, well, Taylor Branch talks about it being that the SCLC was very divided then in South Carolina, and there were sort of fights. Were you privy to that? Did you have a feeling that these internal divisions of where to go next, and what to do?
 Q7163219 Q30106103
 
@@ -155,12 +155,12 @@ And how did you feel when you read- and you heard that speech or read about it?
 Q16209479
 https://www.youtube.com/watch?v=AJhgXKGldUk
 
-JOAN BAEZ:
+00:14:50:00	JOAN BAEZ:
 I still listen to it, and I'm a mess. I just weep through the whole thing, but I wasn't there, but, um…
 Q16209479
 https://www.youtube.com/watch?v=AJhgXKGldUk
 
-TREY ELLIS:
+00:14:55:00	TREY ELLIS:
 Did you have a feeling of about time? I mean, did you feel like it was a year or two too late? Did you feel that he'd finally come around?
 Q16209479
 https://www.youtube.com/watch?v=AJhgXKGldUk
@@ -209,11 +209,11 @@ Q7228810 Q8027
 Yeah. What would he have done, you mean, if he…
 Q8027
 
-TREY ELLIS:
+00:19:23:00	TREY ELLIS:
 Yeah.
 Q8027
 
-JOAN BAEZ:
+00:19:25:00	JOAN BAEZ:
 ... When he had to reorganize himself after Chicago? I don't know. At the end of Gandhi's career, when everything starting falling apart between India and Pakistan, he said he would take his shoes off and just walk and start over again, everywhere, just go on what he always did. So, maybe that would be what Doctor King would do. Be hard to imagine him deciding, you know, he wanted to quit, or retire, or go into teaching. He was- he did what he did.
 Q8027 Q1001
 
@@ -229,11 +229,11 @@ Q1128871 Q8027
 Right. There's just, there was time back then when they said ... Where, I guess, he told somebody like, "I don't want to do this anymore. I just want to be, like, a little country preacher."
 Q8027
 
-JOAN BAEZ:
+00:20:46:00	JOAN BAEZ:
 Yeah. I remember that. Yeah.
 Q8027
 
-TREY ELLIS:
+00:20:48:00	TREY ELLIS:
 Was that to you?
 Q8027
 
@@ -269,15 +269,15 @@ Q605130 Q8027
 You’re with Andy, and everybody. You're having a talk, and he’s- you're just watching him getting drunker, and drunker?
 Q959635
 
-JOAN BAEZ:
+00:23:25:00	JOAN BAEZ:
 He was in another room. King wasn’t even- he was in the other room. We heard him, you know.
 Q8027
 
-TREY ELLIS:
+00:23:30:00	TREY ELLIS:
 And what did it sound like in the other room?
 Q8027
 
-JOAN BAEZ:
+00:23:35:00	JOAN BAEZ:
 It sounded like a drunk guy.
 Q8027
 
@@ -313,7 +313,7 @@ Q8027 Q131725
 Doctor King is one the most important people who moved me beyond being a student of nonviolence, or being a practitioner, beyond just whatever stubbornness I was showing at home. I refused to stand up and salute the flag, and all that. By the way, King and I always had this fight over the state of America because the war was going on, and I thought this place was pretty decadent and he would give his speech about wanting “their share of the American pie.” And I would say, "And our pie is really not very tasty right now." And we'd always have this fight about it because that was part of his speech. I can't remember what the questions was.
 Q8027
 
-TREY ELLIS:
+00:27:30:00	TREY ELLIS:
 Oh, just saying how he changed the course of your life.
 Q8027 Q131725
 
@@ -345,7 +345,7 @@ Q214959 Q206466
 I never, I never knew whether King had ... what, what in the entertainment world really interested him. I'm not sure he had much time for it.
 Q8027
 
-TREY ELLIS:
+00:30:00:00	TREY ELLIS:
 But he knew that strategically it was one of the- it was a really smart use of-
 Q8027
 
@@ -361,15 +361,15 @@ Q8027
 I saw him one night at one of the conferences, SCLC conference, and somebody wanted to know about where the finances stood, and either he didn't know, or he didn't want to talk about it, so he started preaching about everything else, everything else until everybody was all riled up, and singing, and clapping. And he got away with- he got away with it because he was so charismatic and lovable, you know.
 Q8027 Q605130
 
-TREY ELLIS:
+00:31:40:00	TREY ELLIS:
 So, he was tricky.
 Q8027
 
-JOAN BAEZ:
+00:31:43:00	JOAN BAEZ:
 Sorry?
 Q8027
 
-TREY ELLIS:
+00:31:45:00	TREY ELLIS:
 He was tricky.
 Q8027
 
@@ -389,11 +389,11 @@ Q76611
 Yeah, I was wondering about, yeah, personally we can't even understand. We live in interesting times right now, of course-
 Q8027
 
-JOAN BAEZ:
+00:33:35:00 J OAN BAEZ:
 Oh, that's a lovely way to say it.
 Q8027
 
-TREY ELLIS:
+00:33:40:00 TREY ELLIS:
 But the violence, the assassinations, even before the JFK assassinations, the rioting, and Watts, and Detroit, the antiwar war movement and Kent State. There's a world of violence, then here's this message of nonviolence. Can we just personally- how did you feel when you wake up in the morning? People talk about- Clarence Jones talked about how he felt, like, people don't understand how close the country was to breaking apart. Or did you feel that?
 Q757963 Q193484 Q377682 Q482635 Q5126400 Q768155
 
@@ -407,10 +407,10 @@ Certainly, people of your generation of younger than King, many of them were pul
 00:35:10:05	JOAN BAEZ:
 Whether I ever had any ...
 
-TREY ELLIS:
+00:35:13:00	TREY ELLIS:
 ... second thoughts?
 
-JOAN BAEZ:
+00:35:15:00 JOAN BAEZ:
 ... second thoughts about nonviolence, organized or otherwise? I don't think so. I mean, I when Tom Hayden and Jane Fonda, you know, spoke out against some nonviolent stand that I had taken, it never- I mean, I just thought that they didn't get it. They probably didn't. So, no, maybe I was dumb, but I just blithefully went on my way. And that was my belief system and it never- I mean, it wasn't as though something came along to challenge it that looked like a really whole better way to do things.
 Q76611 Q352953 Q41142
 
