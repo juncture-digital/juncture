@@ -560,11 +560,12 @@ def j2_md_to_html(src, **args):
         css = get_gh_file(gh_path, ref=ref, refresh=refresh)
     custom_style.decompose()
 
+  path_elems = [pe for pe in path.split('/') if pe] if path else []
   for el in soup.find_all('ve-media'):
-    el.attrs['anno-base'] = f'{acct}/{repo}{path}'
+    el.attrs['anno-base'] = f'{acct}/{repo}/{"/".join(path_elems)}'
   for el in soup.find_all('ve-map'):
     if prefix:
-      el.attrs['essay-base'] = f'{acct}/{repo}{path}'
+      el.attrs['essay-base'] = f'{acct}/{repo}/{"/".join(path_elems)}'
   
   if env == 'local':
     template = open(f'{BASEDIR}/static/v2.html', 'r').read()
