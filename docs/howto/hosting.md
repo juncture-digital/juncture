@@ -18,7 +18,7 @@ By default the root URL for a Github Pages hosted site is `https://GH_USERNAME/g
 
 In the second strategy a simple web server is self-hosted.  There are any number of approaches for doing this.  A few are described [below](#using-a-self-hosted-web-server).  The key advantage of a self-hosted solution is improved SEO.  This is the recommended strategy if search engine indexing of site content is important.
 
-## Hosting with Github Pages
+### Hosting with Github Pages
 
 Configuring a Github repository as a Github Pages hosted website is accomplished by copying a few files to the root of the repository to be used for the site content and activating the Github Pages option in the repository settings.
 
@@ -38,7 +38,7 @@ Configuring a Github repository as a Github Pages hosted website is accomplished
 
 That's it!  The repository is now configured for use as Github Pages hosted web site.  Note, that it can often take a few minutes for the site to become active after configuring it.
 
-## Using a self-hosted web server
+### Using a self-hosted web server
 
 There are a variety of ways to host a Juncture web server, including Google Cloud, Amazon Web Services, pythonanywhere, and many more.  In this section instructions for hosting with [pythonanywehre](https://www.pythonanywhere.com/) are provided as it is probably the easiest to setup and is relatively inexpensive ($5/mo as of June 2023) to operate.
 
@@ -53,4 +53,14 @@ There are a variety of ways to host a Juncture web server, including Google Clou
 1. From the Files page press the **mysite** entry in the **Directories** list.  In the next page press the **flask_app.py** entry in the **Files** list.
 1. In the editor that is opened for the **flask_app.py** file, replace the current content with the contents of the [main.py](https://raw.githubusercontent.com/juncture-digital/hosting/main/main.py) file found in the [juncture-digital/hosting](https://github.com/juncture-digital/hosting) repository and save the file by clicking the **Save** button at the top of the page.
 1. After saving **flask_app.py** press the **Reload** icon located in the toolbar menu.  This will restart the web server with the new code that was just added to the **flask_app.py** file.
-1. The web site should now be live at the domain name entered in the first **Add a mew web app** form.  This domain name can also be seen by selecting the **Dashboard** entry from the menu located at the top-right of the page.  On the Dashboard page the site domain/URL will be listed in the **Web apps** list.  
+1. The web site should now be live at the domain name entered in the first **Add a mew web app** form.  This domain name can also be seen by selecting the **Dashboard** entry from the menu located at the top-right of the page.  On the Dashboard page the site domain/URL will be listed in the **Web apps** list.
+
+## Using a custom domain name
+
+A custom domain name may easily be associated with the configured website using either the Github Pages or self-hosted strategy.  Below are links to pages providing detailed instructions.
+
+- [Setting up a custom domain on a Github Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
+- [Setting up a custom domain on PythonAnywhere](https://help.pythonanywhere.com/pages/CustomDomains)
+
+
+
