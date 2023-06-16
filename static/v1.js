@@ -1,4 +1,3 @@
-const junctureDomains = new Set(['juncture-digital.org', 'www.juncture-digital.org', 'beta.juncture-digital.org', 'dev.juncture-digital.org', 'localhost:8080'])
 let PREFIX = window.PREFIX
 let REF = window.REF
 let IS_JUNCTURE = window.IS_JUNCTURE
@@ -156,7 +155,7 @@ let _vue = new Vue({
     document.body.classList.add('visible')
     let ghUser = localStorage.getItem('gh-username')
     if (ghUser) {
-      this.authenticatedUser = {'acct': ghUser, 'isAdmin': false}
+      this.authenticatedUser = {'acct': ghUser, 'isAdmin': ghUser === contentSource.acct}
       fetch('https://api.github.com/user/orgs', {
         headers: {
           Accept: 'application/vnd.github+json',
@@ -723,7 +722,9 @@ Vue.mixin({
       // let ghToken = oauthAccessToken || ghUnscopedToken
       // console.log(`getFile: path=${path} acct=${acct} repo=${repo} ref=${ref} ghToken=${ghToken}`)
       if (repo) {
-        let url = `https://api.github.com/repos/${acct}/${repo}/contents${path}?ref=${ref}`
+        let pathElems = path.split('/').filter(pe => pe)
+        if (pathElems.length > 2 && pathElems[0] === acct && pathElems[1] === repo) pathElems = pathElems.slice(2)
+        let url = `https://api.github.com/repos/${acct}/${repo}/contents/${pathElems.join('/')}?ref=${ref}`
         let resp = await fetch(url, ghToken ? {headers: {Authorization:`Token ${ghToken}`}} : {})
         if (resp.ok) {
           resp = await resp.json()
@@ -739,16 +740,18 @@ Vue.mixin({
     },
 
     async putFile(path, content, acct, repo, branch, message) {
-      console.log(`putFile: path=${path} acct=${acct} repo=${repo} branch=${branch} message=${message}`)
       acct = acct || this.contentSource.acct
       repo = repo || this.contentSource.repo
       branch = branch || this.contentSource.ref
+      // console.log(`putFile: acct=${acct} repo=${repo} branch=${branch} path=${path} message=${message}`)
       message = message || 'API Commit'
       if (acct) {
         let existing = await this.getFile(path, acct, repo, branch)
         let payload = { message, branch, content: btoa(content) }
         if (existing) payload.sha = existing.sha
-        let url = `https://api.github.com/repos/${acct}/${repo}/contents${path}?ref=${branch}`
+        let pathElems = path.split('/').filter(pe => pe)
+        if (pathElems.length > 2 && pathElems[0] === acct && pathElems[1] === repo) pathElems = pathElems.slice(2)
+        let url = `https://api.github.com/repos/${acct}/${repo}/contents/${pathElems.join('/')}?ref=${branch}`
         let resp = await fetch(url, { method: 'PUT', body: JSON.stringify(payload), headers: {Authorization: `Token ${ghToken}`} })
         resp = await resp.json()
       } else {
@@ -819,6 +822,7 @@ async function getSiteConfig() {
 }
 
 async function getContentSource() {
+  console.log('getContentSource')
   let contentSource = {}
   let pathElems
   let ghRepoInfo

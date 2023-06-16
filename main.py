@@ -11,7 +11,7 @@ logging.basicConfig(format='%(asctime)s : %(filename)s : %(levelname)s : %(messa
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-WC_VERSION = '2.0.0-beta.40'
+WC_VERSION = '2.0.0-beta.41'
 
 import argparse, base64, json, os, re, sys, traceback
 from datetime import datetime
@@ -191,7 +191,7 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
   for elem in soup.find_all(href=True):
     if elem.attrs['href'].startswith('http'):
       elem.attrs['target'] = '_blank'
-    elif acct and repo:
+    elif acct and repo and f'{acct}/{repo}' != prefix:
       orig = elem.attrs['href']
       if elem.attrs['href'].startswith('/'):
         if ghp:
@@ -382,7 +382,8 @@ def parse_md(md, base_url, acct, repo, ref, prefix, ghp):
     return re.sub(r'(#+)(.*)', r'\1 &nbsp;\2', match.group(0))
   
   md = re.sub(r'^#{1,6}(\s+)(\{.*\}\s*)?$', replace_empty_headings, md, flags=re.M)
-    
+  
+  # md = md.replace('&', '&amp;')
   html = markdown.markdown(
     md,
     extensions=[
@@ -490,7 +491,7 @@ def j1_md_to_html(src, **args):
   else:
     template = get_gh_file('juncture-digital/juncture/static/v1.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
   template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
-  template = template.replace('window.IS_JUNCTURE = null', f"window.IS_JUNCTURE = {'true' if PREFIX == 'juncture-digital/juncture' else 'false'};")
+  template = template.replace('window.IS_JUNCTURE = null', f"window.IS_JUNCTURE = {'true' if prefix == 'juncture-digital/juncture' else 'false'};")
   if ref: template = template.replace('window.REF = null', f"window.REF = '{ref}';")
   template = BeautifulSoup(template, 'html5lib')
   
@@ -776,6 +777,10 @@ async def environ():
   return Response(status_code=200, content=json.dumps(dict(os.environ)), media_type='application/json')
 '''
 
+@app.get('/healthcheck')
+async def healthcheck():
+  return Response(status_code=200, content='OK', media_type='text/plain')
+
 @app.get('/gh-token')
 async def gh_token(code: Optional[str] = None, hostname: Optional[str] = None):
   token = CREDS['gh_unscoped_token']
@@ -830,7 +835,7 @@ async def serve(
     path: Optional[str] = None,
     ref: Optional[str] = 'main',
     fmt: Optional[str] = 'html',
-    prefix: Optional[str] = None,
+    prefix: Optional[str] = PREFIX,
     refresh: Optional[bool] = False
   ):
   path_elems = [elem for elem in request.url.path.split('/') if elem]
@@ -841,7 +846,7 @@ async def serve(
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
   logger.info(f'path={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
   
-  if PREFIX == 'juncture-digital/juncture':
+  if prefix == 'juncture-digital/juncture':
     path_root = path_elems[0] if path_elems else 'index'
     if path_root in ('index', 'editor', 'media'):
       if env == 'local':
@@ -898,17 +903,17 @@ async def serve(
         return RedirectResponse(url=f'/#/{path}')
 
   else:
-    if env == 'local':
-      acct, repo = PREFIX.split('/')
-      args = {'acct': acct, 'repo': repo, 'path': path, 'env': env}
-      if LOCAL_CONTENT_ROOT:
-        src = f'{LOCAL_CONTENT_ROOT}/{path}'
-      else:
-        src = f'https://raw.githubusercontent.com/{PREFIX}/{ref}/{path}'
-      content = convert(src=src, fmt=fmt, refresh=refresh, prefix=prefix, **args)
-      if content:
-        media_type = 'text/html' if fmt.startswith('html') else 'text/markdown' if fmt.startswith('md') else 'text/plain'
-        return Response(status_code=200, content=content, media_type=media_type)
+    acct, repo = prefix.split('/')
+    args = {'acct': acct, 'repo': repo, 'path': path, 'env': env}
+    if LOCAL_CONTENT_ROOT:
+      src = f'{LOCAL_CONTENT_ROOT}/{path}'
+    else:
+      if len(path_elems) >= 2 and '/'.join(path_elems[:2]) == prefix: path_elems = path_elems[2:]
+      src = f'https://raw.githubusercontent.com/{prefix}/{ref}/{"/".join(path_elems)}'
+    content = convert(src=src, fmt=fmt, refresh=refresh, prefix=prefix, **args)
+    if content:
+      media_type = 'text/html' if fmt.startswith('html') else 'text/markdown' if fmt.startswith('md') else 'text/plain'
+      return Response(status_code=200, content=content, media_type=media_type)
 
 @app.post('/html/')
 async def convert_md_to_html(request: Request):
