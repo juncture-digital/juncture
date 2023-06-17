@@ -51,7 +51,9 @@ There are a variety of ways to host a Juncture web server, including Google Clou
     - In the "Quickstart new Flask project" from use the default Path value
 1. Select the **Files** option from the toolbar menu located at the top of the page.
 1. From the Files page press the **mysite** entry in the **Directories** list.  In the next page press the **flask_app.py** entry in the **Files** list.
-1. In the editor that is opened for the **flask_app.py** file, replace the current content with the contents of the [main.py](https://raw.githubusercontent.com/juncture-digital/hosting/main/main.py) file found in the [juncture-digital/hosting](https://github.com/juncture-digital/hosting) repository and save the file by clicking the **Save** button at the top of the page.
+1. In the editor that is opened for the **flask_app.py** file, replace the current content with the contents of the [main.py](https://raw.githubusercontent.com/juncture-digital/hosting/main/main.py) file found in the [juncture-digital/hosting](https://github.com/juncture-digital/hosting) repository. 
+1. In the replaced text, find the **CONTENT** variable located near the top of the file and replace the value with the Github username and repository that contains the content for the website.
+1. Save the modified file by clicking the **Save** button at the top of the page.
 1. After saving **flask_app.py** press the **Reload** icon located in the toolbar menu.  This will restart the web server with the new code that was just added to the **flask_app.py** file.
 1. The web site should now be live at the domain name entered in the first **Add a mew web app** form.  This domain name can also be seen by selecting the **Dashboard** entry from the menu located at the top-right of the page.  On the Dashboard page the site domain/URL will be listed in the **Web apps** list.
 
@@ -61,6 +63,3 @@ A custom domain name may easily be associated with the configured website using 
 
 - [Setting up a custom domain on a Github Pages site](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)
 - [Setting up a custom domain on PythonAnywhere](https://help.pythonanywhere.com/pages/CustomDomains)
-
-
-

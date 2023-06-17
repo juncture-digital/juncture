@@ -57,7 +57,6 @@
   - [Use a historical map overlay](/howto/use-historic-maps)
   - [Use a GeoJSON map overlay](/howto/geojson-overlay)
   - [Hosting a Juncture website](/howto/hosting)
-  - [Configuring a custom domain](/howto/configure-custom-domain)
   - [Using Juncture with WordPress](/howto/use-juncture-with-wordpress)
 
 - Resources

@@ -186,12 +186,13 @@ def _sendmail(**kwargs):
 
 def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
   logger.info(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
-
+  path_elems = [pe for pe in base.split('/') if pe]
+  if len(path_elems) >= 2 and '/'.join(path_elems[:2]) == prefix: path_elems = path_elems[2:]
   # convert absolute links
   for elem in soup.find_all(href=True):
     if elem.attrs['href'].startswith('http'):
       elem.attrs['target'] = '_blank'
-    elif acct and repo and f'{acct}/{repo}' != prefix:
+    else:
       orig = elem.attrs['href']
       if elem.attrs['href'].startswith('/'):
         if ghp:
@@ -204,7 +205,10 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
         converted = base + elem.attrs['href'][1:] + (f'?ref={ref}' if ref != 'main' else '')
         elem.attrs['href'] = converted
       elif not elem.attrs['href'].startswith('#'):
-        elem.attrs['href'] = f'/{acct}/{repo}/{elem.attrs["href"]}'
+        if len(path_elems) > 0:
+          elem.attrs['href'] = f'/{"/".join(path_elems)}/{elem.attrs["href"]}'
+        else:
+          elem.attrs['href'] = f'/{elem.attrs["href"]}'
         if ref != 'main':
           elem.attrs['href'] += f'?ref={ref}'
       logger.debug(f'orig={orig} base={base} converted={elem.attrs["href"]}')
@@ -375,8 +379,7 @@ def set_entities(soup):
           if child.name.startswith('ve-'):
             child.attrs['entities'] = ' '.join(qids)
 
-def parse_md(md, base_url, acct, repo, ref, prefix, ghp):
-  logger.debug(f'Parsing {base_url}/{acct}/{repo}/{ref} prefix={prefix} ghp={ghp}')
+def parse_md(md, acct, repo, ref, path, prefix, ghp):
 
   def replace_empty_headings(match):
     return re.sub(r'(#+)(.*)', r'\1 &nbsp;\2', match.group(0))
@@ -420,7 +423,7 @@ def parse_md(md, base_url, acct, repo, ref, prefix, ghp):
     if 've-button.png' in img.attrs['src']:
       img.parent.decompose()
   
-  convert_urls(soup, base_url, acct, repo, ref, prefix, ghp)
+  convert_urls(soup, path, acct, repo, ref, prefix, ghp)
 
   for el in soup.findAll(re.compile("^ve-.+")):
     el.attrs = dict([(k,v if v != 'true' else None) for k,v in el.attrs.items()])
@@ -470,7 +473,6 @@ def j1_to_j2_md(src):
 
 def j1_md_to_html(src, **args):
   """Convert Juncture version 1 markdown to HTML"""
-  base_url = args.pop('base', '')
   ghp = args.pop('ghp', False)
   acct = args.pop('acct', None)
   repo = args.pop('repo', None)
@@ -480,14 +482,17 @@ def j1_md_to_html(src, **args):
   refresh = args.pop('refresh', False)
   prefix = args.pop('prefix', PREFIX)
 
-  logger.info(f'j1_md_to_html: base_url={base_url} ghp={ghp} acct={acct} repo={repo} ref={ref} path={path} env={env} prefix={prefix}')
+  logger.info(f'j1_md_to_html: ghp={ghp} acct={acct} repo={repo} ref={ref} path={path} env={env} prefix={prefix}')
 
-  soup = parse_md(src, base_url, acct, repo, ref, prefix, ghp)
+  path = f'{acct}/{repo}/{path}' if prefix == 'juncture-digital/juncture' else path
+  soup = parse_md(src, acct, repo, ref, path, prefix, ghp)
+
   first_heading = soup.find(re.compile('^h[1-6]$'))
   
   if env == 'local':
     template = open(f'{BASEDIR}/static/v1.html', 'r').read()
-    template = re.sub(r'https:\/\/juncture-digital\.github\.io\/juncture', '', template)
+    if LOCAL_WC:
+      template = re.sub(r'https:\/\/juncture-digital\.github\.io\/juncture', '', template)
   else:
     template = get_gh_file('juncture-digital/juncture/static/v1.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
   template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
@@ -525,7 +530,6 @@ def j1_md_to_html(src, **args):
 
 def j2_md_to_html(src, **args):
   """Convert Juncture version 2 markdown to HTML"""
-  base_url = args.pop('base', '')
   ghp = args.pop('ghp', False)
   acct = args.pop('acct', None)
   repo = args.pop('repo', None)
@@ -535,9 +539,10 @@ def j2_md_to_html(src, **args):
   refresh = args.pop('refresh', False)
   prefix = args.pop('prefix', PREFIX)
   
-  logger.info(f'j2_md_to_html: base_url={base_url}, ghp={ghp}, acct={acct}, repo={repo}, ref={ref}, path={path}, env={env} prefix={prefix} PREFIX={PREFIX}')
+  logger.info(f'j2_md_to_html: ghp={ghp}, acct={acct}, repo={repo}, ref={ref}, path={path}, env={env} prefix={prefix} PREFIX={PREFIX}')
 
-  soup = parse_md(src, base_url, acct, repo, ref, prefix, ghp)
+  path = f'{acct}/{repo}/{path}' if prefix == 'juncture-digital/juncture' else path
+  soup = parse_md(src, acct, repo, ref, path, prefix, ghp)
 
   css = ''
   meta = soup.find('ve-meta')
@@ -591,10 +596,6 @@ def j2_md_to_html(src, **args):
     
   if soup.head.style:
     template.body.insert(0, soup.head.style)
-
-  base = template.find('base')
-  if base:
-    base.attrs['href'] = base_url
   
   if css:
     # add css as style tag
@@ -844,7 +845,7 @@ async def serve(
     env = ENV
   else:
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
-  logger.info(f'path={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
+  logger.info(f'path_elems={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
   
   if prefix == 'juncture-digital/juncture':
     path_root = path_elems[0] if path_elems else 'index'
@@ -953,15 +954,7 @@ async def sendmail(request: Request):
 
 if __name__ == '__main__':
   logger.setLevel(logging.INFO)
-  parser = argparse.ArgumentParser(description='Juncture content converters')
-  # parser.add_argument('--src', help=f'Path to source file')
-  # parser.add_argument('--fmt', default='html', help='Output format')
-  # parser.add_argument('--ghp', type=bool, default=False, help='Hosted on Github Pages')
-  # parser.add_argument('--acct', help='Github account')
-  # parser.add_argument('--repo', help='Github repo')
-  # parser.add_argument('--ref', help='Github ref')
-  # parser.add_argument('--path', help='Github path')
-  
+  parser = argparse.ArgumentParser(description='Juncture content converters')  
   parser.add_argument('--env', type=str, help='Environment')
   parser.add_argument('--localwc', type=bool, default=False, help='Use local web components')
   parser.add_argument('--prefix', default='juncture-digital/juncture', help='Github path')
