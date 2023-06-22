@@ -186,7 +186,9 @@ def _sendmail(**kwargs):
 
 def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
   logger.info(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
-  path_elems = [pe for pe in base.split('/') if pe]
+  path_elems = [pe for pe in base.split('/') if pe] if base else []
+  if ghp:
+    path_elems = [repo] + path_elems
   if len(path_elems) >= 2 and '/'.join(path_elems[:2]) == prefix: path_elems = path_elems[2:]
   # convert absolute links
   for elem in soup.find_all(href=True):
@@ -214,13 +216,14 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
       logger.debug(f'orig={orig} base={base} converted={elem.attrs["href"]}')
   
   # convert image URLs
-  for elem in soup.find_all(src=True):
-    if elem.attrs['src'].startswith('http') or elem.name.startswith('ve-'): continue
-    base_elems = base.split('/')[6:-1]
-    src_elems = [pe for pe in re.sub(r'^\.\/', '', elem.attrs['src']).split('/') if pe]
+  for elem in soup.find_all(url=True) + soup.find_all(src=True):
+    attr_name = 'url' if 'url' in elem.attrs else 'src'
+    if elem.attrs[attr_name].startswith('http') or elem.name.startswith('ve-'): continue
+    base_elems = base.split('/')[6:-1] if base else []
+    src_elems = [pe for pe in re.sub(r'^\.\/', '', elem.attrs[attr_name]).split('/') if pe]
     up = src_elems.count('..')
     gh_path = '/'.join(base_elems[:-up] + src_elems[up:])
-    elem.attrs['src'] = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{gh_path}'
+    elem.attrs[attr_name] = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{gh_path}'
 
 def _config_tabs(soup):
   for el in soup.find_all('section', class_='tabs'):
@@ -484,6 +487,8 @@ def j1_md_to_html(src, **args):
 
   logger.info(f'j1_md_to_html: ghp={ghp} acct={acct} repo={repo} ref={ref} path={path} env={env} prefix={prefix}')
 
+  if not acct and prefix:
+    acct, repo = prefix.split('/')
   path = f'{acct}/{repo}/{path}' if prefix == 'juncture-digital/juncture' else path
   soup = parse_md(src, acct, repo, ref, path, prefix, ghp)
 
@@ -833,10 +838,12 @@ async def gh_file(
 @app.get('/{path:path}')
 async def serve(
     request: Request,
+    base: Optional[str] = None,
     path: Optional[str] = None,
     ref: Optional[str] = 'main',
     fmt: Optional[str] = 'html',
     prefix: Optional[str] = PREFIX,
+    ghp: Optional[bool] = False,
     refresh: Optional[bool] = False
   ):
   path_elems = [elem for elem in request.url.path.split('/') if elem]
@@ -845,7 +852,7 @@ async def serve(
     env = ENV
   else:
     env = 'local' if request.url.hostname == 'localhost' else 'dev' if request.url.hostname == 'dev.juncture-digital.org' else 'prod'
-  logger.info(f'path_elems={path_elems} env={env} ref={ref} fmt={fmt} prefix={prefix} refresh={refresh}')
+  logger.info(f'path_elems={path_elems} base={base} env={env} ref={ref} fmt={fmt} prefix={prefix} ghp={ghp} refresh={refresh}')
   
   if prefix == 'juncture-digital/juncture':
     path_root = path_elems[0] if path_elems else 'index'
@@ -905,7 +912,7 @@ async def serve(
 
   else:
     acct, repo = prefix.split('/')
-    args = {'acct': acct, 'repo': repo, 'path': path, 'env': env}
+    args = {'acct': acct, 'repo': repo, 'path': base, 'env': env, 'ghp': ghp}
     if LOCAL_CONTENT_ROOT:
       src = f'{LOCAL_CONTENT_ROOT}/{path}'
     else:
@@ -927,6 +934,8 @@ async def convert_md_to_html(request: Request):
   args['src'] = args.pop('markdown')
   args['ref'] = args.get('ref', env == 'dev' and 'dev' or 'main')
   args['env'] = env
+  if 'acct' not in args and 'prefix' in args:
+    args['acct'], args['repo'] = args['prefix'].split('/')
   is_v1 = re.search(r'<param', args['src'])
   html = j1_md_to_html(**args) if is_v1 else j2_md_to_html(**args)
   return Response(status_code=200, content=html, media_type='text/html')

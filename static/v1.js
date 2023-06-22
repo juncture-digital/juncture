@@ -822,7 +822,6 @@ async function getSiteConfig() {
 }
 
 async function getContentSource() {
-  console.log('getContentSource')
   let contentSource = {}
   let pathElems
   let ghRepoInfo
@@ -901,7 +900,7 @@ async function getComponentsList() {
   let componentsList = contentSource.source === 'github'
     ? [
         ...Object.values(await dir('/custom/components', contentSource)),
-        ...Object.values(await dir('/components', contentSource))
+        // ...Object.values(await dir('/components', contentSource))
       ]
     : []
   componentsList = [
