@@ -572,6 +572,7 @@ def j2_md_to_html(src, **args):
     custom_style.decompose()
 
   path_elems = [pe for pe in path.split('/') if pe] if path else []
+  if len(path_elems) >= 2 and '/'.join(path_elems[:2]) == f'{acct}/{repo}': path_elems = path_elems[2:]
   for el in soup.find_all('ve-media'):
     el.attrs['anno-base'] = f'{acct}/{repo}/{"/".join(path_elems)}'
   for el in soup.find_all('ve-map'):
