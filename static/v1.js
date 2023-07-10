@@ -1,7 +1,8 @@
 let PREFIX = window.PREFIX
 let REF = window.REF
 let IS_JUNCTURE = window.IS_JUNCTURE
-console.log(`PREFIX=${PREFIX} REF=${REF} host=${location.host} IS_JUNCTURE=${IS_JUNCTURE}`)
+let ESSAY_BASE = window.ESSAY_BASE
+console.log(`PREFIX=${PREFIX} REF=${REF} ESSAY_BASE=${ESSAY_BASE} host=${location.host} IS_JUNCTURE=${IS_JUNCTURE}`)
 
 const ghToken = localStorage.getItem('gh-auth-token') || localStorage.getItem('gh-unscoped-token') || atob('Z2hwX0RJdFlxdWtoNzgxSE5jdFI3bHVSQ01tYVQwTmJ5VzBnOTh3TQ==')
 const qargs = window.location.href.indexOf('?') > 0 ? parseQueryString(window.location.href.split('?')[1]) : {}
@@ -85,7 +86,7 @@ let _vue = new Vue({
     layouts: ['visual-essay vertical'],
     markdown: null,
     markdownViewer: null,
-    mdDir: '/',
+    mdDir: ESSAY_BASE,
     mdPath: '',
     oauthCredsFound: false,
     params: [],
@@ -105,7 +106,7 @@ let _vue = new Vue({
     mainComponent() { return this.essayConfig && this.essayConfig.main ? `${componentPrefix}${this.essayConfig.main.toLowerCase()}` : null},
     footerComponent() { return this.essayConfig ? `${componentPrefix}${this.essayConfig.footer || 'footer'}` : null},
     isAdminUser() {
-      console.log(`isAdminUser: isAdmin=${this.authenticatedUser?.isAdmin || false} userAcct=${this.authenticatedUser?.acct} sourceAcct=${this.contentSource?.acct}`)
+      // console.log(`isAdminUser: isAdmin=${this.authenticatedUser?.isAdmin || false} userAcct=${this.authenticatedUser?.acct} sourceAcct=${this.contentSource?.acct}`)
       return this.authenticatedUser?.isAdmin || this.contentSource.acct === this.authenticatedUser?.acct
     },
     // ghToken() { return oauthAccessToken || ghUnscopedToken },
@@ -135,11 +136,11 @@ let _vue = new Vue({
     }
     this.path = path
     let pathIsDir = this.contentSource.source === 'github' ? await isDir(path, this.contentSource) : false
-    this.mdDir = pathIsDir ? path : `/${path.split('/').filter(elem => elem).slice(0,-1).join('/')}`
+    // this.mdDir = pathIsDir ? path : `/${path.split('/').filter(elem => elem).slice(0,-1).join('/')}`
     this.mdPath = pathIsDir ? path === '/' ? '/README.md' : `${path}/README.md` : `${path}.md`
     // console.log(`mdDir=${this.mdDir} mdPath=${this.mdPath}`)
     // Initialize Markdown source viewer
-    this.markdown = await getGhFile(this.mdPath)
+    // this.markdown = await getGhFile(this.mdPath)
     this.markdownViewer = tippy(this.$refs.header, {
       trigger: 'manual', 
       theme: 'light-border',
@@ -523,7 +524,7 @@ let _vue = new Vue({
 
   },
   watch: {
-    
+
     scrollTop: {
       handler: function (scrollTop) { 
         if (this.$refs.viewer) this.viewerHeight = this.$refs.viewer.clientHeight
@@ -687,6 +688,7 @@ Vue.mixin({
     },
 
     async dir(root, ghSource) {
+      // console.log(`dir: root=${root} ghSource:`, ghSource)
       let cacheKey = ghSource ? `${ghSource.acct}/${ghSource.repo}/${ghSource.hash || ghSource.ref}${root}` : root
       if (!this.dirCache[cacheKey]) {
         let files = {}
@@ -720,7 +722,7 @@ Vue.mixin({
       repo = repo || this.contentSource.repo
       ref = ref || this.contentSource.ref
       // let ghToken = oauthAccessToken || ghUnscopedToken
-      // console.log(`getFile: path=${path} acct=${acct} repo=${repo} ref=${ref} ghToken=${ghToken}`)
+      // console.log(`getFile: path=${path} acct=${acct} repo=${repo} ref=${ref}`)
       if (repo) {
         let pathElems = path.split('/').filter(pe => pe)
         if (pathElems.length > 2 && pathElems[0] === acct && pathElems[1] === repo) pathElems = pathElems.slice(2)

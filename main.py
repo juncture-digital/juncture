@@ -13,7 +13,7 @@ logger.setLevel(logging.INFO)
 
 WC_VERSION = '2.0.0-beta.42'
 
-import argparse, base64, json, os, re, sys, traceback
+import argparse, base64, json, os, re, sys, time, traceback
 from datetime import datetime
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
@@ -494,14 +494,19 @@ def j1_md_to_html(src, **args):
 
   first_heading = soup.find(re.compile('^h[1-6]$'))
   
+  path_elems = [pe for pe in path.split('/') if pe] if path else []
+  if len(path_elems) >= 2 and '/'.join(path_elems[:2]) == f'{acct}/{repo}': path_elems = path_elems[2:]
+  essay_base = '/' + '/'.join(path_elems)
+  logger.info(f'essay_base={essay_base}')
+  
   if env == 'local':
     template = open(f'{BASEDIR}/static/v1.html', 'r').read()
-    if LOCAL_WC:
-      template = re.sub(r'https:\/\/juncture-digital\.github\.io\/juncture', '', template)
+    template = template.replace('https://juncture-digital.github.io/juncture/static/v1.js', f'/static/v1.js?cachebuster={time.time()}')
   else:
     template = get_gh_file('juncture-digital/juncture/static/v1.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
   template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
   template = template.replace('window.IS_JUNCTURE = null', f"window.IS_JUNCTURE = {'true' if prefix == 'juncture-digital/juncture' else 'false'};")
+  template = template.replace('window.ESSAY_BASE = null', f"window.ESSAY_BASE = '{essay_base}';")
   if ref: template = template.replace('window.REF = null', f"window.REF = '{ref}';")
   template = BeautifulSoup(template, 'html5lib')
   
@@ -564,6 +569,7 @@ def j2_md_to_html(src, **args):
           gh_path = css_src[1:]
         else:
           gh_path_elems = [pe for pe in path.split('/') if pe]
+          if len(gh_path_elems) >= 2 and '/'.join(gh_path_elems[:2]) == f'{acct}/{repo}': gh_path_elems = gh_path_elems[2:]
           css_path_elems = [pe for pe in css_src.split('/') if pe and pe != '.']
           pop = len([pe for pe in css_path_elems if pe == '..'])
           path_elems = gh_path_elems[pop:] + css_path_elems[pop:]
@@ -935,7 +941,7 @@ async def convert_md_to_html(request: Request):
   args['src'] = args.pop('markdown')
   args['ref'] = args.get('ref', env == 'dev' and 'dev' or 'main')
   args['env'] = env
-  if 'acct' not in args and 'prefix' in args:
+  if 'acct' not in args and args.get('prefix'):
     args['acct'], args['repo'] = args['prefix'].split('/')
   is_v1 = re.search(r'<param', args['src'])
   html = j1_md_to_html(**args) if is_v1 else j2_md_to_html(**args)
