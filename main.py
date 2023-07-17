@@ -202,7 +202,7 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
         else:
           if f'{acct}/{repo}' == prefix:
             base = '/'
-          else:
+          elif acct and repo:
             base = f'/{acct}/{repo}/'
         converted = base + elem.attrs['href'][1:] + (f'?ref={ref}' if ref != 'main' else '')
         elem.attrs['href'] = converted
@@ -213,7 +213,7 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
           elem.attrs['href'] = f'/{elem.attrs["href"]}'
         if ref != 'main':
           elem.attrs['href'] += f'?ref={ref}'
-      logger.debug(f'orig={orig} base={base} converted={elem.attrs["href"]}')
+      logger.info(f'orig={orig} base={base} converted={elem.attrs["href"]}')
   
   # convert image URLs
   for elem in soup.find_all(url=True) + soup.find_all(src=True):
@@ -383,7 +383,6 @@ def set_entities(soup):
             child.attrs['entities'] = ' '.join(qids)
 
 def parse_md(md, acct, repo, ref, path, prefix, ghp):
-
   def replace_empty_headings(match):
     return re.sub(r'(#+)(.*)', r'\1 &nbsp;\2', match.group(0))
   
