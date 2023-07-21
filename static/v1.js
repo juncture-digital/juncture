@@ -816,10 +816,9 @@ Vue.mixin({
 
 function convertLinks(root) {
   root.querySelectorAll('a').forEach(link => {
-    if ((!link.href && link.dataset.target) || link.href.indexOf(window.location.host) > 0) {
+    if ((!link.href && link.dataset.target) || link.href.indexOf(window.location.host) > 0 || link.href.indexOf('#') >= 0) {
       // If internal link
       let target = link.dataset.target
-
       if (!target) { 
         const parsedUrl = parseUrl(link.href)
         let pathElems = parsedUrl.pathname.split('/').filter(elem => elem !== '')
@@ -830,22 +829,24 @@ function convertLinks(root) {
         }
         target = parsedUrl.hash === '' ? `/${pathElems.join('/')}${pathElems.length > 0 ? '/' : ''}` : parsedUrl.hash.split('?')[0]
       }
-      link.removeAttribute('href')
-      link.setAttribute('data-target', target)
+      if (target[0] === '#') {
+        link.removeAttribute('href')
+        link.setAttribute('data-target', target)
 
-      // Add click handler for internal links
-      link.addEventListener('click', (e) => {
+        // Add click handler for internal links
+        link.addEventListener('click', (e) => {
 
-        let target = e.target
-        while (!target.dataset.target && target.parentElement) { target = target.parentElement }
-        let path = target.dataset.target
-        if (path[0] === '#') {
-          let anchorElem = document.getElementById(path.slice(1))
-          if (anchorElem) anchorElem.scrollIntoView()
-        } else {
-          this.$emit('do-action', 'load-page', path)
-        }
-      })
+          let target = e.target
+          while (!target.dataset.target && target.parentElement) { target = target.parentElement }
+          let path = target.dataset.target
+          if (path[0] === '#') {
+            let anchorElem = document.getElementById(path.slice(1))
+            if (anchorElem) anchorElem.scrollIntoView()
+          } else {
+            this.$emit('do-action', 'load-page', path)
+          }
+        })
+      }
     } else {
       // If external link, add external link icon to text and force opening in new tab
       link.innerHTML += '<sup><i class="fa fa-external-link-square-alt" style="margin-left:3px;margin-right:2px;font-size:0.7em;color:#219653;"></i></sup>'
