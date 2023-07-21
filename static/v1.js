@@ -169,6 +169,9 @@ let _vue = new Vue({
         })
     }
   },
+  updated() {
+    convertLinks(this.$refs.essay)
+  },
   methods: {
     authenticate() {
       let provider = new firebase.auth.GithubAuthProvider()
@@ -323,6 +326,7 @@ let _vue = new Vue({
       })
       this.entities = await this.getEntityData(this.findEntities(tmp, this.params))
       this.html = tmp.outerHTML
+
       let essayConfig = this.params.find(param => param['ve-config']) || {}
       if (essayConfig.banner) essayConfig.banner = convertURL(essayConfig.banner, this.mdDir)
       essayConfig.header = essayConfig.header || 'header'
@@ -530,6 +534,12 @@ let _vue = new Vue({
         if (this.$refs.viewer) this.viewerHeight = this.$refs.viewer.clientHeight
       },
       immediate: false
+    },
+
+    html() {
+      if (this.$refs.essay) {
+        // setTimeout(() => { convertLinks(this.$refs.essay)}, 1)
+      }
     },
 
     // Set app classes using essay config (ve-config) attributes, if present
@@ -803,6 +813,46 @@ Vue.mixin({
   }
 })
 
+
+function convertLinks(root) {
+  root.querySelectorAll('a').forEach(link => {
+    if ((!link.href && link.dataset.target) || link.href.indexOf(window.location.host) > 0) {
+      // If internal link
+      let target = link.dataset.target
+
+      if (!target) { 
+        const parsedUrl = parseUrl(link.href)
+        let pathElems = parsedUrl.pathname.split('/').filter(elem => elem !== '')
+        if (contentSource.isGhpSite) {
+          if (pathElems[0] === contentSource.repo) pathElems = pathElems.slice(1)
+        } else {
+          if (pathElems[0] === contentSource.acct && pathElems[1] === contentSource.repo) pathElems = pathElems.slice(2)
+        }
+        target = parsedUrl.hash === '' ? `/${pathElems.join('/')}${pathElems.length > 0 ? '/' : ''}` : parsedUrl.hash.split('?')[0]
+      }
+      link.removeAttribute('href')
+      link.setAttribute('data-target', target)
+
+      // Add click handler for internal links
+      link.addEventListener('click', (e) => {
+
+        let target = e.target
+        while (!target.dataset.target && target.parentElement) { target = target.parentElement }
+        let path = target.dataset.target
+        if (path[0] === '#') {
+          let anchorElem = document.getElementById(path.slice(1))
+          if (anchorElem) anchorElem.scrollIntoView()
+        } else {
+          this.$emit('do-action', 'load-page', path)
+        }
+      })
+    } else {
+      // If external link, add external link icon to text and force opening in new tab
+      link.innerHTML += '<sup><i class="fa fa-external-link-square-alt" style="margin-left:3px;margin-right:2px;font-size:0.7em;color:#219653;"></i></sup>'
+      link.setAttribute('target', '_blank')
+    }
+  })
+}
 
 // Gets site config
 async function getSiteConfig() {
