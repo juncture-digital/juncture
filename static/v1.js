@@ -849,8 +849,10 @@ function convertLinks(root) {
       }
     } else {
       // If external link, add external link icon to text and force opening in new tab
-      link.innerHTML += '<sup><i class="fa fa-external-link-square-alt" style="margin-left:3px;margin-right:2px;font-size:0.7em;color:#219653;"></i></sup>'
       link.setAttribute('target', '_blank')
+      if (link.innerHTML.indexOf('<sup>') < 0) {
+        link.innerHTML += '<sup><i class="fa fa-external-link-square-alt" style="margin-left:3px;margin-right:2px;font-size:0.7em;color:#219653;"></i></sup>'
+      }
     }
   })
 }
