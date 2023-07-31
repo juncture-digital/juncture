@@ -72,7 +72,7 @@ This version of Juncture represents the second generation of the Juncture concep
 
 In its current form, Juncture is still well-suited for the type of digital storytelling emphasized in version 1 but can now be more easily used for generating web pages that are less text-centric, such as an image exhibition.
 
-This [demo essay](https://www.juncture-digital.org/showcase/bedroom-in-arles) provides an example of what is possible in a Juncture essay.  This essay includes multiple high-res images, a YouTube video, an interactive map, and some text-to-viewer interactions.  The essay also includes many information popovers for entities (people, places, works, etc) mentioned in the text.  Other examples may be found in the [Juncture Showcase](/showcase).
+This [demo essay](/showcase/bedroom-in-arles) provides an example of what is possible in a Juncture essay.  This essay includes multiple high-res images, a YouTube video, an interactive map, and some text-to-viewer interactions.  The essay also includes many information popovers for entities (people, places, works, etc) mentioned in the text.  Other examples may be found in the [Juncture Showcase](/showcase).
 
 # What problem does this solve?
 

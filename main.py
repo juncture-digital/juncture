@@ -213,7 +213,7 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
           elem.attrs['href'] = f'/{elem.attrs["href"]}'
         if ref != 'main':
           elem.attrs['href'] += f'?ref={ref}'
-      logger.info(f'orig={orig} base={base} converted={elem.attrs["href"]}')
+      logger.debug(f'orig={orig} base={base} converted={elem.attrs["href"]}')
   
   # convert image URLs
   for elem in soup.find_all(url=True) + soup.find_all(src=True):
@@ -852,7 +852,7 @@ async def serve(
     ghp: Optional[bool] = False,
     refresh: Optional[bool] = False
   ):
-  path_elems = [elem for elem in request.url.path.split('/') if elem]
+  path_elems = [elem for elem in request.url.path.replace('/docs/showcase','/showcase').split('/') if elem]
   path_elems = path_elems[1:] if len(path_elems) > 0 and path_elems[0] == 'html' else path_elems
   if ENV:
     env = ENV
@@ -884,12 +884,12 @@ async def serve(
         ref = 'dev' if env == 'dev' else 'main'
       try:
         acct, repo, *path_elems = path_elems
-        file_path = '/'.join(path_elems) 
+        file_path = '/'.join(path_elems).replace('/docs/showcase', '/showcase')
         if env == 'local':
           if LOCAL_CONTENT_ROOT:
             src = f'{LOCAL_CONTENT_ROOT}/{path}'
           elif path_root in ['docs', 'examples', 'showcase']:
-            src = f'{BASEDIR}/{path}'
+            src = f'{BASEDIR}/{file_path}'
           else:
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{file_path}'
         else:
@@ -897,7 +897,7 @@ async def serve(
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{"main" if env == "prod" else "dev"}/{file_path}'
           else:
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{file_path}'
-        if path_root == 'docs':
+        if path_root in ('docs', 'showcase'):
           _, content = read(src)
         else:
           logger.debug(f'path={path} src={src} file_path={file_path}')
