@@ -206,7 +206,10 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
             base = f'/{acct}/{repo}/'
         converted = base + elem.attrs['href'][1:] + (f'?ref={ref}' if ref != 'main' else '')
         elem.attrs['href'] = converted
-      elif not elem.attrs['href'].startswith('#'):
+      if elem.attrs['href'].startswith('#'):
+        # elem.attrs['href'] = f'http://localhost:8080/showcase/bedroom-in-arles{elem.attrs["href"]}'
+        elem.attrs['href'] = f'{base.replace(prefix, "")}{elem.attrs["href"]}'
+      else:
         if len(path_elems) > 0:
           elem.attrs['href'] = f'/{"/".join(path_elems)}/{elem.attrs["href"]}'
         else:
@@ -708,22 +711,20 @@ def detect_format(src):
 def read(src):
   """Read source file"""
   if src.startswith('https://raw.githubusercontent.com'):
-    if src.endswith('/'):
-      url = src + 'README.md'
-    else:
-      url = src if src.endswith('.md') else src + '.md'
-    acct, repo, ref, *path = url.split('/')[3:]
+    acct, repo, ref, *path = [pe for pe in src.split('/')[3:] if pe != '']
+    if not src.endswith('.md'):
+      path += ['README.md']
     content = get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref)
-    if content is None and not src.endswith('/'):
-      url = src + '/README.md'
-      acct, repo, ref, *path = url.split('/')[3:]
+    if content is None and not src.endswith('.md'):
+      path = path[:-1]
+      path[-1] += '.md'
       content = get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref)
     return '/'.join(path[:-1]), content
   else:
     src = src[:-1] if src.endswith('/') else src
+    src = src[:-3] if src.endswith('.md') else src
     for ext in ('', '.md', '/README.md'):
       path = f'{src}{ext}'
-      # logger.info(f'read: {path} {os.path.isfile(path)}')
       if os.path.isfile(path):
         with open(path, 'r') as f:
           return path, f.read()
@@ -852,8 +853,14 @@ async def serve(
     ghp: Optional[bool] = False,
     refresh: Optional[bool] = False
   ):
-  path_elems = [elem for elem in request.url.path.replace('/docs/showcase','/showcase').split('/') if elem]
+  url_path = request.url.path
+  path_elems = [elem for elem in url_path.split('/') if elem]
   path_elems = path_elems[1:] if len(path_elems) > 0 and path_elems[0] == 'html' else path_elems
+  '''
+  if len(path_elems) > 1 and path_elems[-2] == 'showcase':
+    path_elems = path_elems[:-2] + path_elems[-1:]
+    RedirectResponse(url=f'/{"/".join(path_elems)}')
+  '''
   if ENV:
     env = ENV
   else:
@@ -884,12 +891,12 @@ async def serve(
         ref = 'dev' if env == 'dev' else 'main'
       try:
         acct, repo, *path_elems = path_elems
-        file_path = '/'.join(path_elems).replace('/docs/showcase', '/showcase')
+        file_path = '/'.join(path_elems)
         if env == 'local':
           if LOCAL_CONTENT_ROOT:
             src = f'{LOCAL_CONTENT_ROOT}/{path}'
           elif path_root in ['docs', 'examples', 'showcase']:
-            src = f'{BASEDIR}/{file_path}'
+            src = f'{BASEDIR}/{path.replace("docs/showcase", "showcase")}' if not path.endswith('showcase.md') else f'{BASEDIR}/{path}'
           else:
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{file_path}'
         else:
@@ -897,8 +904,11 @@ async def serve(
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{"main" if env == "prod" else "dev"}/{file_path}'
           else:
             src = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{file_path}'
-        if path_root in ('docs', 'showcase'):
-          _, content = read(src)
+        if path_root in ['docs']:
+          if len(path_elems) >= 2 and path_elems[1] == 'showcase':
+            content = convert(src=src, fmt=fmt, env=env, prefix=prefix, refresh=refresh)
+          else:
+            _, content = read(src)
         else:
           logger.debug(f'path={path} src={src} file_path={file_path}')
           content = convert(src=src, fmt=fmt, env=env, prefix=prefix, refresh=refresh)
@@ -915,6 +925,7 @@ async def serve(
         return Response(status_code=200, content=content, media_type=media_type)
       else:
         return RedirectResponse(url=f'/#/{path}')
+        # return Response(status_code=200, content=path, media_type='text/plain')
 
   else:
     acct, repo = prefix.split('/')
