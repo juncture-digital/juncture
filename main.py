@@ -121,7 +121,7 @@ def customblocks_default(ctx, *args, **kwargs):
 
 _cache = ExpiringDict(max_len=1000, max_age_seconds=24 * 60 * 60)
 def get_gh_file(url, ref='main', refresh=False, **kwargs):
-  logger.debug(f'get_gh_file {url} ref={ref} refresh={refresh}')
+  logger.info(f'get_gh_file {url} ref={ref} refresh={refresh} token={CREDS.get("gh_unscoped_token")}')
   if not refresh and url in _cache:
     return _cache[url]
   content = None
@@ -144,6 +144,8 @@ def get_gh_file(url, ref='main', refresh=False, **kwargs):
         content = content.decode('utf-8')
       except:
         pass
+    else:
+      logger.error(f'Error {resp.status_code} fetching {url}')
     '''
     url = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{"/".join(path_elems)}'
     resp = requests.get(url)

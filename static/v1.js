@@ -4,7 +4,7 @@ let IS_JUNCTURE = window.IS_JUNCTURE
 let ESSAY_BASE = window.ESSAY_BASE
 console.log(`PREFIX=${PREFIX} REF=${REF} ESSAY_BASE=${ESSAY_BASE} host=${location.host} IS_JUNCTURE=${IS_JUNCTURE}`)
 
-const ghToken = localStorage.getItem('gh-auth-token') || localStorage.getItem('gh-unscoped-token') || atob('Z2hwX0RJdFlxdWtoNzgxSE5jdFI3bHVSQ01tYVQwTmJ5VzBnOTh3TQ==')
+const ghToken = await getGhUnscopedToken()
 const qargs = window.location.href.indexOf('?') > 0 ? parseQueryString(window.location.href.split('?')[1]) : {}
 const componentPrefix = 've1-'
 const dirCache = {}
@@ -29,6 +29,13 @@ if (!IS_JUNCTURE) {
   if (qargs.ref && qargs.ref !== REF) browserPath += `?ref=${qargs.ref}`
   console.log('replace:', location.pathname, re, browserPath)
   window.history.replaceState({}, document.title, browserPath)
+}
+
+async function getGhUnscopedToken() {
+  let ghToken = localStorage.getItem('gh-auth-token')
+  if (ghToken) return ghToken
+  let resp = await fetch('https://api.juncture-digital.org/gh-token')
+  if (resp.ok) return await resp.text()
 }
 
 componentsList.forEach(componentUrl => {
