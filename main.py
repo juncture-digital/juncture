@@ -208,7 +208,7 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
             base = f'/{acct}/{repo}/'
         converted = base + elem.attrs['href'][1:] + (f'?ref={ref}' if ref != 'main' else '')
         elem.attrs['href'] = converted
-      if elem.attrs['href'].startswith('#'):
+      elif elem.attrs['href'].startswith('#'):
         # elem.attrs['href'] = f'http://localhost:8080/showcase/bedroom-in-arles{elem.attrs["href"]}'
         elem.attrs['href'] = f'{base.replace(prefix, "")}{elem.attrs["href"]}'
       else:
@@ -218,7 +218,7 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
           elem.attrs['href'] = f'/{elem.attrs["href"]}'
         if ref != 'main':
           elem.attrs['href'] += f'?ref={ref}'
-      logger.debug(f'orig={orig} base={base} converted={elem.attrs["href"]}')
+      logger.info(f'orig={orig} base={base} converted={elem.attrs["href"]}')
   
   # convert image URLs
   for elem in soup.find_all(url=True) + soup.find_all(src=True):

@@ -116,7 +116,6 @@ let _vue = new Vue({
       // console.log(`isAdminUser: isAdmin=${this.authenticatedUser?.isAdmin || false} userAcct=${this.authenticatedUser?.acct} sourceAcct=${this.contentSource?.acct}`)
       return this.authenticatedUser?.isAdmin || this.contentSource.acct === this.authenticatedUser?.acct
     },
-    // ghToken() { return oauthAccessToken || ghUnscopedToken },
     viewerStyle() { return { 
       height: this.viewerIsOpen
         ? this.isVerticalLayout 
@@ -738,7 +737,6 @@ Vue.mixin({
       acct = acct || this.contentSource.acct
       repo = repo || this.contentSource.repo
       ref = ref || this.contentSource.ref
-      // let ghToken = oauthAccessToken || ghUnscopedToken
       // console.log(`getFile: path=${path} acct=${acct} repo=${repo} ref=${ref}`)
       if (repo) {
         let pathElems = path.split('/').filter(pe => pe)
