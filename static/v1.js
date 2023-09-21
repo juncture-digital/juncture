@@ -32,8 +32,8 @@ if (!IS_JUNCTURE) {
 }
 
 async function getGhUnscopedToken() {
-  let ghToken = localStorage.getItem('gh-auth-token')
-  if (ghToken) return ghToken
+  // let ghToken = localStorage.getItem('gh-auth-token')
+  // if (ghToken) return ghToken
   let resp = await fetch('https://api.juncture-digital.org/gh-token')
   if (resp.ok) return await resp.text()
 }
@@ -1080,6 +1080,6 @@ function convertURL(current, base) {
     pathElems = pathElems.slice(1)
   }
   let converted = `${contentSource.assetsBaseUrl || contentSource.baseUrl}/${pathElems.join('/')}`
-  // console.log(`IS_JUNCTURE=${IS_JUNCTURE} convertURL: current=${current} converted=${converted} path=${path} pathElems=${pathElems}`)
+  console.log(`IS_JUNCTURE=${IS_JUNCTURE} convertURL: current=${current} converted=${converted} pathElems=${pathElems}`)
   return converted
 }

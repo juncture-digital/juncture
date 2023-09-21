@@ -50,7 +50,8 @@ logging.getLogger('requests').setLevel(logging.INFO)
 PREFIX = os.environ.get('JUNCTURE_PREFIX', 'juncture-digital/juncture')
 LOCAL_CONTENT_ROOT = os.environ.get('LOCAL_CONTENT_ROOT')
 LOCAL_WC = os.environ.get('LOCAL_WC', 'false').lower() == 'true'
-CREDS = json.loads(os.environ.get('JUNCTURE_CREDS', '{}'))
+GH_UNSCOPED_TOKEN = os.environ.get('gh_unscoped_token')
+GH_AUTH_TOKEN = os.environ.get('gh_auth_token')
 ENV = os.environ.get('ENV')
 
 ### Customblocks Config ###
@@ -121,7 +122,7 @@ def customblocks_default(ctx, *args, **kwargs):
 
 _cache = ExpiringDict(max_len=1000, max_age_seconds=24 * 60 * 60)
 def get_gh_file(url, ref='main', refresh=False, **kwargs):
-  logger.info(f'get_gh_file {url} ref={ref} refresh={refresh} token={CREDS.get("gh_unscoped_token")}')
+  logger.info(f'get_gh_file {url} ref={ref} refresh={refresh} token={GH_UNSCOPED_TOKEN}')
   if not refresh and url in _cache:
     return _cache[url]
   content = None
@@ -133,7 +134,7 @@ def get_gh_file(url, ref='main', refresh=False, **kwargs):
     acct, repo, *path_elems = url.split('/')
     url = f'https://api.github.com/repos/{acct}/{repo}/contents/{"/".join(path_elems)}?ref={ref}'
     resp = requests.get(url, headers={
-        'Authorization': f'Token {CREDS.get("gh_unscoped_token")}',
+        'Authorization': f'Token {GH_UNSCOPED_TOKEN}',
         'Accept': 'application/vnd.github.v3+json',
         'User-agent': 'JSTOR Labs visual essays client'
     })
@@ -162,7 +163,7 @@ def parse_email(s):
     return {'name': s.split('<')[0].strip(), 'email': match.group(1)} if match else {'email': s.strip()}
 
 def _sendmail(**kwargs):
-  api_token = CREDS['sendinblue_api_token']
+  api_token = os.environ.get('sendinblue_api_token')
   '''
   referrer_whitelist = set(CREDS['referrer_whitelist'])
   referrer = '.'.join(urllib.parse.urlparse(kwargs['referrer']).netloc.split('.')[-2:]) if 'referrer' in kwargs else None
@@ -798,24 +799,27 @@ async def healthcheck():
 
 @app.get('/gh-token')
 async def gh_token(code: Optional[str] = None, hostname: Optional[str] = None):
-  token = CREDS['gh_unscoped_token']
+  token = GH_UNSCOPED_TOKEN
   status_code = 200
   if code:
     if hostname in ('127.0.0.1','localhost') or hostname.startswith('192.168.'):
-      token = CREDS['gh_auth_token']
-    elif hostname in CREDS['gh_secrets']:
-      resp = requests.post(
-        'https://github.com/login/oauth/access_token',
-        headers={'Accept': 'application/json'},
-        data={
-          'client_id': CREDS['gh_secrets'][hostname]['gh_client_id'],
-          'client_secret': CREDS['gh_secrets'][hostname]['gh_client_secret'],
-          'code': code
-        }
-      )
-      status_code = resp.status_code
-      token_obj = resp.json()
-      token = token_obj['access_token'] if status_code == 200 else ''
+      token = GH_AUTH_TOKEN
+    else:
+      gh_client_id = os.environ.get(f'{hostname.replace(".","_").replace("-","_")}_gh_client_id')
+      if gh_client_id:
+        gh_client_secret = os.environ.get(f'{hostname.replace(".","_").replace("-","_")}_gh_client_secret')
+        resp = requests.post(
+          'https://github.com/login/oauth/access_token',
+          headers={'Accept': 'application/json'},
+          data={
+            'client_id': gh_client_id,
+            'client_secret': gh_client_secret,
+            'code': code
+          }
+        )
+        status_code = resp.status_code
+        token_obj = resp.json()
+        token = token_obj['access_token'] if status_code == 200 else ''
   return Response(status_code=status_code, content=token, media_type='text/plain')
 
 media_types = {
