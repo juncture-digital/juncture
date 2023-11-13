@@ -1031,3 +1031,7 @@ if __name__ == '__main__':
   
   print(f'\nENV: {os.environ.get("ENV")}\nPREFIX: {os.environ["JUNCTURE_PREFIX"]}\nLOCAL_CONTENT_ROOT: {os.environ.get("LOCAL_CONTENT_ROOT")}\nLOCAL_WC: {os.environ.get("LOCAL_WC")}\nRELOAD: {args["reload"]}\n')
   uvicorn.run('serve:app', port=args['port'], log_level='info', reload=args['reload'])
+  
+else:
+  from mangum import Mangum
+  handler = Mangum(app)
