@@ -3,7 +3,7 @@
 
 '''
 Python app for Juncture site.
-Dependencies: bs4 expiringdict fastapi html5lib lxml mangum Markdown==3.3.6 mdx-breakless-lists prependnewline pymdown-extensions PyYAML requests uvicorn git+https://github.com/rdsnyder/mdx_outline.git git+https://github.com/rdsnyder/markdown-customblocks.git
+Dependencies: bs4 expiringdict fastapi html5lib lxml mangum Markdown==3.3.6 mdx-breakless-lists prependnewline pymdown-extensions PyYAML requests uvicorn git+https://github.com/juncture-digital/mdx_outline.git git+https://github.com/juncture-digital/markdown-customblocks.git
 '''
 
 import logging
@@ -121,40 +121,46 @@ def customblocks_default(ctx, *args, **kwargs):
 ### End Customblocks Config ###
 
 _cache = ExpiringDict(max_len=1000, max_age_seconds=24 * 60 * 60)
+
+def _get_gh_file_raw(acct, repo, ref, path):
+  url = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{path}'
+  resp = requests.get(url)
+  if resp.status_code == 200:
+    return resp.text
+
+def _get_gh_file_api(acct, repo, ref, path):
+  url = f'https://api.github.com/repos/{acct}/{repo}/contents/{path}?ref={ref}'
+  resp = requests.get(url, headers={
+      'Authorization': f'Token {GH_UNSCOPED_TOKEN}',
+      'Accept': 'application/vnd.github.v3+json',
+      'User-agent': 'JSTOR Labs visual essays client'
+  })
+  if resp.status_code == 200:
+    resp = resp.json()
+    content = base64.b64decode(resp['content'])
+    try:
+      content = content.decode('utf-8')
+    except:
+      pass
+  else:
+    logger.error(f'Error {resp.status_code} fetching {url}')
+  return content
+
 def get_gh_file(url, ref='main', refresh=False, **kwargs):
   logger.info(f'get_gh_file {url} ref={ref} refresh={refresh} token={GH_UNSCOPED_TOKEN}')
-  if not refresh and url in _cache:
-    return _cache[url]
-  content = None
+  content = _cache.get(url) if not refresh else None
   if 'github.io' in url:
     resp = requests.get(url)
     if resp.status_code == 200:
       content = resp.text
-  else:  
+  else:
     acct, repo, *path_elems = url.split('/')
-    url = f'https://api.github.com/repos/{acct}/{repo}/contents/{"/".join(path_elems)}?ref={ref}'
-    resp = requests.get(url, headers={
-        'Authorization': f'Token {GH_UNSCOPED_TOKEN}',
-        'Accept': 'application/vnd.github.v3+json',
-        'User-agent': 'JSTOR Labs visual essays client'
-    })
-    if resp.status_code == 200:
-      resp = resp.json()
-      content = base64.b64decode(resp['content'])
-      try:
-        content = content.decode('utf-8')
-      except:
-        pass
-    else:
-      logger.error(f'Error {resp.status_code} fetching {url}')
-    '''
-    url = f'https://raw.githubusercontent.com/{acct}/{repo}/{ref}/{"/".join(path_elems)}'
-    resp = requests.get(url)
-    logger.info(f'{url} {resp.status_code}')
-    if resp.status_code == 200:
-      content = resp.text
-    '''
-  if content:
+    path = '/'.join(path_elems)
+    if GH_UNSCOPED_TOKEN:
+      content = _get_gh_file_api(acct, repo, ref, path)
+    if not content:
+      content = _get_gh_file_raw(acct, repo, ref, path)
+  if content and url not in _cache:
     _cache[url] = content
   return content
 
@@ -188,7 +194,7 @@ def _sendmail(**kwargs):
   return resp.content, resp.status_code
 
 def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
-  logger.info(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
+  logger.debug(f'convert_urls: base={base} acct={acct} repo={repo} ref={ref} prefix={prefix} ghp={ghp}')
   path_elems = [pe for pe in base.split('/') if pe] if base else []
   if ghp:
     path_elems = [repo] + path_elems
@@ -219,7 +225,7 @@ def convert_urls(soup, base, acct, repo, ref, prefix=None, ghp=False):
           elem.attrs['href'] = f'/{elem.attrs["href"]}'
         if ref != 'main':
           elem.attrs['href'] += f'?ref={ref}'
-      logger.info(f'orig={orig} base={base} converted={elem.attrs["href"]}')
+      logger.debug(f'orig={orig} base={base} converted={elem.attrs["href"]}')
   
   # convert image URLs
   for elem in soup.find_all(url=True) + soup.find_all(src=True):
@@ -272,6 +278,21 @@ def _config_cards(soup):
       card.insert(0,card_title)
       heading.decompose()
 
+      '''
+      # For revised card formatting used by Kent and PHL
+      img = card.find('img')
+      if img:
+        img.parent.replace_with(img)
+      
+      ul = card.find('ul')
+      if ul:
+        ul.parent.replace_with(ul)
+                               
+      a = card.find('a')
+      if a:
+        a.parent.replace_with(a)
+      '''
+      
       if card.p.img:
         
         img_style = {
@@ -439,6 +460,13 @@ def parse_md(md, acct, repo, ref, path, prefix, ghp):
     if el.name in ('ve-image', 've-video'):
       el.name = 've-media'
 
+  for param in soup.find_all('param'):
+    if 'class' in param.attrs:
+      section = param.parent.parent
+      classes = set(param.attrs['class'] + section.attrs.get('class',[]))
+      section.attrs['class'] = [cls for cls in classes if cls]
+      param.parent.decompose()
+  
   _config_tabs(soup)
   _config_cards(soup)
   _set_mark_attrs(soup)
@@ -502,7 +530,6 @@ def j1_md_to_html(src, **args):
   path_elems = [pe for pe in path.split('/') if pe] if path else []
   if len(path_elems) >= 2 and '/'.join(path_elems[:2]) == f'{acct}/{repo}': path_elems = path_elems[2:]
   essay_base = '/' + '/'.join(path_elems)
-  logger.info(f'essay_base={essay_base}')
   
   if env == 'local':
     template = open(f'{BASEDIR}/static/v1.html', 'r').read()
@@ -708,8 +735,8 @@ def html_to_wp(html, **kwargs):
 
 def detect_format(src):
   """Detect format of source file"""
-  params = re.findall(r'<param', src)
-  return 'md_j1' if params else 'md_j2'
+  ve_config = re.findall(r'<param.*\s+ve-config', src)
+  return 'md_j1' if ve_config else 'md_j2'
 
 def read(src):
   """Read source file"""
@@ -988,10 +1015,9 @@ if __name__ == '__main__':
   logger.setLevel(logging.INFO)
   parser = argparse.ArgumentParser(description='Juncture content converters')  
   parser.add_argument('--env', type=str, help='Environment')
-  parser.add_argument('--localwc', type=bool, default=False, help='Use local web components')
+  parser.add_argument('--localwc', action=argparse.BooleanOptionalAction, default=False, help='Use local web components')
+  parser.add_argument('--reload', type=bool, action=argparse.BooleanOptionalAction, default=False, help='Reload on change')
   parser.add_argument('--prefix', default='juncture-digital/juncture', help='Github path')
-  parser.add_argument('--serve', type=bool, default=False, help='Serve converted content')
-  parser.add_argument('--reload', type=bool, default=False, help='Reload on change')
   parser.add_argument('--port', type=int, default=8080, help='HTTP port')
   parser.add_argument('--content', help='Local content root')
 
@@ -1003,10 +1029,5 @@ if __name__ == '__main__':
     root = os.path.abspath(args['content'])
     os.environ['LOCAL_CONTENT_ROOT'] = root
   
-  if args['serve']:
-    print(f'\nENV: {os.environ.get("ENV")}\nPREFIX: {os.environ["JUNCTURE_PREFIX"]}\nLOCAL_CONTENT_ROOT: {os.environ.get("LOCAL_CONTENT_ROOT")}\nLOCAL_WC: {os.environ.get("LOCAL_WC")}\n')
-    uvicorn.run('main:app', port=args['port'], log_level='info', reload=args['reload'])
-
-elif 'VERCEL' not in os.environ:
-  from mangum import Mangum
-  handler = Mangum(app)
+  print(f'\nENV: {os.environ.get("ENV")}\nPREFIX: {os.environ["JUNCTURE_PREFIX"]}\nLOCAL_CONTENT_ROOT: {os.environ.get("LOCAL_CONTENT_ROOT")}\nLOCAL_WC: {os.environ.get("LOCAL_WC")}\nRELOAD: {args["reload"]}\n')
+  uvicorn.run('serve:app', port=args['port'], log_level='info', reload=args['reload'])
