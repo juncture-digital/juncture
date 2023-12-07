@@ -1017,7 +1017,7 @@ if __name__ == '__main__':
   parser.add_argument('--env', type=str, help='Environment')
   parser.add_argument('--localwc', action=argparse.BooleanOptionalAction, default=False, help='Use local web components')
   parser.add_argument('--reload', type=bool, action=argparse.BooleanOptionalAction, default=False, help='Reload on change')
-  parser.add_argument('--prefix', default='juncture-digital/juncture', help='Github path')
+  parser.add_argument('--prefix', default='juncture-digital/juncture', help='Github path (acct/repo)')
   parser.add_argument('--port', type=int, default=8080, help='HTTP port')
   parser.add_argument('--content', help='Local content root')
 
