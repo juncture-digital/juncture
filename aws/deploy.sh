@@ -8,6 +8,7 @@ mkdir -p build
 
 rsync -va Dockerfile build
 rsync -va ../serve.py build
+rsync -va ../requirements.txt build
 
 # aws lambda update-function-configuration --function-name ${FUNCTION_NAME} --environment "Variables={JUNCTURE_CREDS='${JUNCTURE_CREDS}'}"
 
