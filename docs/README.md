@@ -62,7 +62,7 @@ Juncture was developed and is maintained by [![JSTOR](https://raw.githubusercont
 
 # Welcome to Juncture
 
-**Juncture** is a suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.  
+**Juncture** is a fafdasfa suite of tools and services that enable anyone to easily create engaging web pages with rich visualizations, including interactive images, videos, maps, and more.  
 
 Juncture is developed and maintained by the friendly folks at [JSTOR Labs](https://labs.jstor.org) and [grew out of a project](https://www.doaks.org/research/mellon-initiatives/plant-humanities-initiative) that used visual essays for a form of digital storytelling.  Visual essays are text narratives augmented with interactive visualizations providing depth and context.  
 

@@ -3,4 +3,4 @@
 cd "$(dirname "$0")"
 
 source .venv/bin/activate
-python main.py --reload
+python serve.py --reload
