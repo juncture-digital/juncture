@@ -1,6 +1,6 @@
 bs4==0.0.1
 expiringdict==1.2.2
-fastapi==0.104.1
+fastapi==0.110.0
 html5lib==1.1
 lxml==4.9.3
 mangum==0.17.0
@@ -9,7 +9,7 @@ mdx-breakless-lists==1.0.1
 prependnewline==1.2
 pymdown-extensions==10.4
 PyYAML==6.0.1
-requests==2.31.0
+requests==2.32.3
 uvicorn==0.24.0.post1
 git+https://github.com/juncture-digital/mdx_outline.git
 git+https://github.com/juncture-digital/markdown-customblocks.git

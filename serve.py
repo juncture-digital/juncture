@@ -33,9 +33,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
-app = FastAPI(title='Juncture', root_path='/')
-if os.path.exists(f'{BASEDIR}/static'):
-  app.mount('/static', StaticFiles(directory='static'), name='static')
+app = FastAPI(title='Juncture')
+# if os.path.exists(f'{BASEDIR}/static'):
+#   app.mount('/static', StaticFiles(directory='static'), name='static')
 app.add_middleware(
   CORSMiddleware,
   allow_origins=['*'],
