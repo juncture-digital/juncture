@@ -33,9 +33,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
-app = FastAPI(title='Juncture', root_path='/')
-if os.path.exists(f'{BASEDIR}/static'):
-  app.mount('/static', StaticFiles(directory='static'), name='static')
+app = FastAPI(title='Juncture')
+# if os.path.exists(f'{BASEDIR}/static'):
+#   app.mount('/static', StaticFiles(directory='static'), name='static')
 app.add_middleware(
   CORSMiddleware,
   allow_origins=['*'],
@@ -143,7 +143,7 @@ def _get_gh_file_api(acct, repo, ref, path):
     except:
       pass
   else:
-    logger.error(f'Error {resp.status_code} fetching {url}')
+    logger.error(f'Error {resp.status_code} fetching {url}, check GitHub Personal Access Token')
   return content
 
 def get_gh_file(url, ref='main', refresh=False, **kwargs):
@@ -744,6 +744,7 @@ def read(src):
     acct, repo, ref, *path = [pe for pe in src.split('/')[3:] if pe != '']
     if not src.endswith('.md'):
       path += ['README.md']
+    
     content = get_gh_file(f'{acct}/{repo}/{"/".join(path)}', ref=ref)
     if content is None and not src.endswith('.md'):
       path = path[:-1]
