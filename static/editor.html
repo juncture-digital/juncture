@@ -113,7 +113,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.min.js"></script>
   <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
-  <script src="https://codemirror.net/5/lib/codemirror.js"></script>
+  <!-- <script src="https://codemirror.net/5/lib/codemirror.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/md5-js@0.0.3/md5.min.js"></script>
   <script type="module">
 
@@ -280,21 +280,13 @@
       },
 
       initEditor() {
+        /*
         CodeMirror.defineMode('ve-tag', () => {
           return {
             token: function (stream, state) {
               if (stream.sol()) {
                 if (stream.match(/\.ve\-\S+/)) return 've-tag'
                 else stream.next()
-                /*
-                let ch
-                while ((ch = stream.next()) != null)
-                  if (stream.next() == ' ') {
-                    // stream.eat(' ')
-                    return 've-tag'
-                  }
-                  return 've-tag'
-                */
               } else if (stream.match(/==[^=]+=={[0-9,a-f:]+}/)) {
                 return 'mark'
               } else {
@@ -304,6 +296,7 @@
             }
           }
         })
+        */
 
         this.easyMDE = new EasyMDE({
           previewRender: this.togglePreview,
@@ -316,10 +309,10 @@
           indentWithTabs: false,
           unorderedListStyle: '-',
           tabSize: 4,
-          overlayMode: {
-            mode: CodeMirror.getMode({}, 've-tag'),
-            combine: false,
-          },
+          // overlayMode: {
+          //  mode: CodeMirror.getMode({}, 've-tag'),
+          //  combine: false,
+          // },
           toolbar: [
             ...[
               ...['undo', 'redo', '|','bold', 'italic', 'heading', 'quote'],

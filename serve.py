@@ -903,9 +903,14 @@ async def serve(
   
   if prefix == 'juncture-digital/juncture':
     path_root = path_elems[0] if path_elems else 'index'
+    logger.info(f'path_root={path_root}')
     if path_root in ('index', 'editor', 'media'):
       if env == 'local':
-        content = open(f'{BASEDIR}/static/{path_root}.html', 'r').read()
+        if LOCAL_CONTENT_ROOT:
+          src = f'{LOCAL_CONTENT_ROOT}/{path}'
+          content = convert(src=src, fmt=fmt, env=env, prefix=prefix, refresh=refresh)
+        else:
+          content = open(f'{BASEDIR}/static/{path_root}.html', 'r').read()
       else:
         content = get_gh_file(f'juncture-digital/juncture/static/{path_root}.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
 
