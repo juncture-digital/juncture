@@ -45,6 +45,9 @@
   - [Tabs](/styling/tabs)
   - [Cards](/styling/cards)
 
+- Scripts
+  - [General](/scripts/general)
+
 - Actions Framework
   - [Overview](/actions?id=overview)
   - [Marking text](/actions?id=marking-text)
