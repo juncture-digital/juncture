@@ -66,6 +66,7 @@ positional_defaults = {
   've-meta': ['title', 'description'],
   've-spacer': ['height'],
   've-plant-specimen': ['qid', 'max'],
+  've-script': ['src'],
   've-style': ['src'],
   've-video': ['src', 'caption'],
 }
@@ -570,6 +571,25 @@ def j1_md_to_html(src, **args):
   html = re.sub(r'\s+<p>\s+<\/p>', '', html) # removes empty paragraphs
   return html
 
+def get_custom_files(elem, acct, repo, ref, path, refresh):
+    src = elem.attrs.get('src')
+    if src:
+      if src.startswith('http'):
+        val = requests.get(src).text
+      else:
+        if src.startswith('/'):
+          gh_path = src[1:]
+        else:
+          gh_path_elems = [pe for pe in path.split('/') if pe]
+          if len(gh_path_elems) >= 2 and '/'.join(gh_path_elems[:2]) == f'{acct}/{repo}': gh_path_elems = gh_path_elems[2:]
+          path_elems = [pe for pe in src.split('/') if pe and pe != '.']
+          pop = len([pe for pe in path_elems if pe == '..'])
+          path_elems = gh_path_elems[pop:] + path_elems[pop:]
+          gh_path = f'{acct}/{repo}/{"/".join(path_elems)}'
+        val = get_gh_file(gh_path, ref=ref, refresh=refresh)
+    elem.decompose()
+    return val
+
 def j2_md_to_html(src, **args):
   """Convert Juncture version 2 markdown to HTML"""
   ghp = args.pop('ghp', False)
@@ -592,22 +612,12 @@ def j2_md_to_html(src, **args):
   custom_style = soup.find('ve-style')
   
   if custom_style:
-    css_src = custom_style.attrs.get('src')
-    if css_src:
-      if css_src.startswith('http'):
-        css = requests.get(css_src).text
-      else:
-        if css_src.startswith('/'):
-          gh_path = css_src[1:]
-        else:
-          gh_path_elems = [pe for pe in path.split('/') if pe]
-          if len(gh_path_elems) >= 2 and '/'.join(gh_path_elems[:2]) == f'{acct}/{repo}': gh_path_elems = gh_path_elems[2:]
-          css_path_elems = [pe for pe in css_src.split('/') if pe and pe != '.']
-          pop = len([pe for pe in css_path_elems if pe == '..'])
-          path_elems = gh_path_elems[pop:] + css_path_elems[pop:]
-          gh_path = f'{acct}/{repo}/{"/".join(path_elems)}'
-        css = get_gh_file(gh_path, ref=ref, refresh=refresh)
-    custom_style.decompose()
+    css = get_custom_files(custom_style, acct, repo, ref, path, refresh)
+  js = ''
+  custom_js = soup.find('ve-script')
+  
+  if custom_js:
+    js = get_custom_files(custom_js, acct, repo, ref, path, refresh)
 
   path_elems = [pe for pe in path.split('/') if pe] if path else []
   if len(path_elems) >= 2 and '/'.join(path_elems[:2]) == f'{acct}/{repo}': path_elems = path_elems[2:]
@@ -648,6 +658,13 @@ def j2_md_to_html(src, **args):
     style.string = css
     # template.head.append(style)
     template.body.insert(0, style)
+
+  if js:
+    # add js as script tag
+    script = soup.new_tag('script')
+    script.attrs['data-id'] = 'default'
+    script.string = js
+    template.body.append(script)
 
   if meta:
     for name in meta.attrs:
