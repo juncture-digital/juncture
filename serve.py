@@ -494,7 +494,7 @@ def parse_md(md, acct, repo, ref, path, prefix, ghp):
       footer = soup.new_tag('ve-footer')
       footer.append(BeautifulSoup('''
         <ul>
-          <li><a href="https://juncture-digital.org">Powered by: <img alt="" src="https://juncture-digital.github.io/juncture/static/images/juncture-logo.png"/></a></li>
+          <li><a href="https://juncture-digital.org">Powered by: <img alt="" src="https://juncture-digital.io/juncture/static/images/juncture-logo.png"/></a></li>
           <li>view-code</li>
         </ul>''', 
       'html5lib'))
@@ -534,7 +534,7 @@ def j1_md_to_html(src, **args):
   
   if env == 'local':
     template = open(f'{BASEDIR}/static/v1.html', 'r').read()
-    template = template.replace('https://juncture-digital.github.io/juncture/static/v1.js', f'/static/v1.js?cachebuster={time.time()}')
+    template = template.replace('https://juncture-digital.io/juncture/static/v1.js', f'/static/v1.js?cachebuster={time.time()}')
   else:
     template = get_gh_file('juncture-digital/juncture/static/v1.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
   template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
@@ -635,7 +635,7 @@ def j2_md_to_html(src, **args):
   else:
     template = get_gh_file('juncture-digital/juncture/static/v2.html', ref='dev' if env == 'dev' else 'main', refresh=refresh)
     if env == 'dev':
-      template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', 'https://juncture-digital.github.io/web-components')
+      template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', 'https://juncture-digital.io/web-components')
     else: # prod
       template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs')
 
@@ -936,7 +936,7 @@ async def serve(
           content = re.sub(r'https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/js\/index\.js', 'http://localhost:5173/src/main.ts', content)
           content = re.sub(r'.*https:\/\/cdn\.jsdelivr\.net\/npm\/juncture-digital\/docs\/css\/index\.css.*', '', content)
       elif env == 'dev':
-        content = content.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', 'https://juncture-digital.github.io/web-components')
+        content = content.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', 'https://juncture-digital.io/web-components')
       else: # prod
         content = content.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs')
       return Response(status_code=200, content=content, media_type='text/html')
