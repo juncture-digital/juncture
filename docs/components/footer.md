@@ -35,7 +35,7 @@ Footer items are defined in a Markdown list.
 
 <ve-snippet collapsible label="Footer with linked image, license badge, and About page link">
     .ve-footer
-        - Powered by: [![Juncture Logo](https://juncture-digital.io/juncture/static/images/juncture-logo.png)](https://juncture-digital.org)
+        - Powered by: [![Juncture Logo](https://juncture-digital.github.io/juncture/static/images/juncture-logo.png)](https://juncture-digital.org)
         - [![CC BY](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)
         - [About](/about)
 </ve-snippet>
