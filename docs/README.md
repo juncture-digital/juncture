@@ -33,7 +33,7 @@ p {
 <div class="splash-start">
 
 <div class="splash-logo" style="display:flex;align-items:center;">
-    <img src="https://juncture-digital.github.io/juncture/static/images/favicon.svg" style="margin:-12px 0 0 -12px;height:90px">
+    <img src="https://juncture-digital.io/juncture/static/images/favicon.svg" style="margin:-12px 0 0 -12px;height:90px">
     <div style="font-size:3rem;color:#455;margin-top:-10px;font-weight:bold;">Juncture</div>
 </div>
 
