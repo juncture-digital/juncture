@@ -640,7 +640,6 @@ def j2_md_to_html(src, **args):
       template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs')
 
   # Inject footnote CSS override before parsing
-  logger.info('Injecting footnote CSS override')
   footnote_css = '<style data-id="footnote-numbering">#juncture section.footnote ol { list-style: decimal !important; padding-left: 1.5em !important; } #juncture section.footnote li { display: list-item !important; }</style>'
   template = template.replace('</head>', f'{footnote_css}</head>')
   
