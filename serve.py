@@ -639,9 +639,14 @@ def j2_md_to_html(src, **args):
     else: # prod
       template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs')
 
+  # Inject footnote CSS override before parsing
+  footnote_css = '<style data-id="footnote-numbering">#juncture section.footnote ol { list-style: decimal !important; padding-left: 1.5em !important; } #juncture section.footnote li { display: list-item !important; }</style>'
+  template = template.replace('</head>', f'{footnote_css}</head>')
+  
   template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
   template = template.replace('window.REF = null', f"window.REF = '{ref}';")
   template = BeautifulSoup(template, 'html5lib')
+
   template.body.insert(0, soup.html.body.main)
   
   if add_hypothesis:
