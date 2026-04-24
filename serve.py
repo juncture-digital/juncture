@@ -639,16 +639,13 @@ def j2_md_to_html(src, **args):
     else: # prod
       template = template.replace('https://cdn.jsdelivr.net/npm/juncture-digital/docs', f'https://cdn.jsdelivr.net/npm/juncture-digital@{WC_VERSION}/docs')
 
+  # Inject footnote CSS override before parsing
+  footnote_css = '<style data-id="footnote-numbering">#juncture section.footnote ol { list-style: decimal !important; padding-left: 1.5em !important; } #juncture section.footnote li { display: list-item !important; }</style>'
+  template = template.replace('</head>', f'{footnote_css}</head>')
+  
   template = template.replace('window.PREFIX = null', f"window.PREFIX = '{acct}/{repo}';")
   template = template.replace('window.REF = null', f"window.REF = '{ref}';")
   template = BeautifulSoup(template, 'html5lib')
-
-  # The web-components CSS reset clears list markers globally.
-  # Restore numbering specifically for markdown-generated footnotes.
-  footnote_style = soup.new_tag('style')
-  footnote_style.attrs['data-id'] = 'footnote-numbering'
-  footnote_style.string = '#juncture section.footnote ol { list-style: decimal !important; padding-left: 1.5em !important; } #juncture section.footnote li { display: list-item !important; }'
-  template.head.append(footnote_style)
 
   template.body.insert(0, soup.html.body.main)
   
